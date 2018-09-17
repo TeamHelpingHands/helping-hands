@@ -1,4 +1,4 @@
-package site.hhsa.demo.controllers;
+package site.hhsa.demo.organizations.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
