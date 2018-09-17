@@ -45,7 +45,7 @@ public class Organization {
     @Column(nullable = false)
     private String password;
 
-    @Column(columnDefinition = " date_created DATE NOT NULL DEFAULT NOW()")
+    @Column( name="date_created", nullable = false, columnDefinition = "DEFAULT NOW()")
     private String dateCreated;
 
     public Organization() {
