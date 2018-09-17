@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-<body>
-<h1>Register</h1>
-<form>
-    <input type="text"/><br />
-    <input type="text"/><br />
+    <title>Login</title>
+</head>
+    <body>
+<h1>Login</h1>
+<form th:action="@{/organizations/register}" th:method="POST" th:object="${org}">
+
+    <label for="email">Email:</label>
+    <input type="email" id="Email" name="email" th:field="*{email}"/><br />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" th:field="*{password}"/><br />
+
+    <label for="firstname">Firstname:</label>
+    <input type="text" id="firstname" name="firstname" th:field="*{creatorFirstName}"/><br />
+
+    <label for="lastname">Lastname:</label>
+    <input type="text" id="lastname" name="lastname" th:field="*{creatorLastName}"/><br />
+
+    <label for="phn_number">Phone number:</label>
+    <input type="tel" id="phn_number" name="phonenumber" th:field="*{phNum}"/><br />
+
+    <label for="org_name">Organization Name:</label>
+    <input type="text" id="org_name" name="organization_name" th:field="*{orgName}"/><br />
+
+    <label for="tax_id">Tax Id:</label>
+    <input type="text" id="tax_id" name="tax_id" th:field="*{taxId}"/><br />
+
+    <label for="street_addr">Street Addr:</label>
+    <input type="text" id="street_addr" name="street_addr" th:field="*{strAddr}"/><br />
+
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" th:field="*{city}"/><br />
+
+    <label for="state">State:</label>
+    <input type="text" id="state" name="state" th:field="*{state}"/><br />
+
+    <label for="zip_code">Zip Code:</label>
+    <input type="text" id="zip_code" name="zip_code" th:field="*{zipCode}"/><br />
+
     <input type="submit"/>
+    <input type="reset"/>
+
 </form>
 </body>
 </html>
