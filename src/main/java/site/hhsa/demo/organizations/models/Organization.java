@@ -1,11 +1,9 @@
 package site.hhsa.demo.organizations.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "organizations")
 public class Organization {
     @Id
     @GeneratedValue
