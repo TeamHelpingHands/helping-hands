@@ -36,6 +36,14 @@ public class Volunteer {
 
     public Volunteer (){}
 
+    public Volunteer(String email, String username, String password, String phnNumber, String zipcode) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.phnNumber = phnNumber;
+        this.zipcode = zipcode;
+    }
+
     public Volunteer(long id, String email, String username, String password, String phnNumber, String zipcode, String dateCreated, boolean isSuspended, boolean isAdmin) {
         this.id = id;
         this.email = email;
@@ -80,11 +88,11 @@ public class Volunteer {
         this.password = password;
     }
 
-    public String getPhoneNo() {
+    public String getPhnNumber() {
         return phnNumber;
     }
 
-    public void setPhoneNo(String phnNumber) {
+    public void setPhnNumber(String phnNumber) {
         this.phnNumber = phnNumber;
     }
 
