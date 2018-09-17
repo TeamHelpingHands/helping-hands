@@ -1,6 +1,7 @@
 package site.hhsa.demo.organizations.models;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "organizations")
@@ -34,7 +35,7 @@ public class Organization {
     private String phNum;
 
     @Column(name="is_validated", nullable = false)
-    private String isValidated;
+    private Boolean isValidated = false;
 
     @Column(name="creator_firstname", nullable = false)
     private String creatorFirstName;
@@ -45,13 +46,13 @@ public class Organization {
     @Column(nullable = false)
     private String password;
 
-    @Column( name="date_created", nullable = false, columnDefinition = "DEFAULT NOW()")
+    @Column( name="date_created", nullable = false, columnDefinition = "DATE")
     private String dateCreated;
 
     public Organization() {
     }
 
-    public Organization(String email, String orgName, String strAddr, String city, String state, String zipCode, String taxId, String phNum, String isValidated, String creatorFirstName, String creatorLastName, String password, String dateCreated) {
+    public Organization(String email, String orgName, String strAddr, String city, String state, String zipCode, String taxId, String phNum, String creatorFirstName, String creatorLastName, String password) {
         this.email = email;
         this.orgName = orgName;
         this.strAddr = strAddr;
@@ -60,11 +61,9 @@ public class Organization {
         this.zipCode = zipCode;
         this.taxId = taxId;
         this.phNum = phNum;
-        this.isValidated = isValidated;
         this.creatorFirstName = creatorFirstName;
         this.creatorLastName = creatorLastName;
         this.password = password;
-        this.dateCreated = dateCreated;
     }
 
     public long getId() {
@@ -131,11 +130,11 @@ public class Organization {
         this.phNum = phNum;
     }
 
-    public String getIsValidated() {
+    public Boolean getIsValidated() {
         return isValidated;
     }
 
-    public void setIsValidated(String isValidated) {
+    public void setIsValidated(Boolean isValidated) {
         this.isValidated = isValidated;
     }
 
@@ -175,7 +174,8 @@ public class Organization {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setDateCreated(String date) {
+
+        this.dateCreated = date;
     }
 }
