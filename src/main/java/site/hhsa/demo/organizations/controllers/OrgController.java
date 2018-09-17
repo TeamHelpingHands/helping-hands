@@ -26,7 +26,8 @@ public class OrgController {
     }
 
     @GetMapping("/organizations/{org_name}")
-    public String OrgShow(){
+    public String OrgShow(@PathVariable String org_name, Model model){
+        model.addAttribute("myOrg", orgDao.findOrganizationByOrgName(org_name));
         return "organizations/show";
     }
 
@@ -47,7 +48,7 @@ public class OrgController {
         org.setDateCreated(new Date().toString());
         orgDao.save(org);
         model.addAttribute("myOrg", org);
-        return "redirect:/organizations/dashboard";
+        return "redirect:/organizations/"+ org.getOrgName()+"/dashboard";
     }
 
     @GetMapping("/organizations/login")
