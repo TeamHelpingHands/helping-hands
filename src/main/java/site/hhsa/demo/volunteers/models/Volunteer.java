@@ -6,6 +6,8 @@ import javax.persistence.*;
 @Table(name = "volunteers")
 public class Volunteer {
 
+    // ===== Properties & Relationship ===== \\
+
     @Id
     @GeneratedValue
     private long id;
@@ -34,6 +36,11 @@ public class Volunteer {
     @Column(name = "is_admin", nullable = false)
     private boolean isAdmin;
 
+    @OneToOne(mappedBy = "volunteer")
+    private VolunteerDetails volunteerDetails;
+
+    // ===== Constructors ===== \\
+
     public Volunteer (){}
 
     public Volunteer(String email, String username, String password, String phnNumber, String zipcode) {
@@ -44,7 +51,7 @@ public class Volunteer {
         this.zipcode = zipcode;
     }
 
-    public Volunteer(long id, String email, String username, String password, String phnNumber, String zipcode, String dateCreated, boolean isSuspended, boolean isAdmin) {
+    public Volunteer(long id, String email, String username, String password, String phnNumber, String zipcode, String dateCreated, boolean isSuspended, boolean isAdmin, VolunteerDetails volunteerDetails) {
         this.id = id;
         this.email = email;
         this.username = username;
@@ -54,7 +61,10 @@ public class Volunteer {
         this.dateCreated = dateCreated;
         this.isSuspended = isSuspended;
         this.isAdmin = isAdmin;
+        this.volunteerDetails = volunteerDetails;
     }
+
+    // ===== Getters & Setters ===== \\
 
     public long getId() {
         return id;
@@ -127,4 +137,13 @@ public class Volunteer {
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
+
+    public VolunteerDetails getVolunteerDetails() {
+        return volunteerDetails;
+    }
+
+    public void setVolunteerDetails(VolunteerDetails volunteerDetails) {
+        this.volunteerDetails = volunteerDetails;
+    }
+
 }
