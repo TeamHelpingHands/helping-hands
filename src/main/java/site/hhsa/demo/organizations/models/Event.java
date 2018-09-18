@@ -13,7 +13,7 @@ public class Event {
     @Column(nullable = false)
     private String description;
 
-    @Column(name = "date_time", nullable = false)
+    @Column(columnDefinition = "DATE NOT NULL")
     private String dateTime;
 
     @Column(name = "str_addr", nullable = false)
@@ -24,7 +24,7 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name="organization")
-    private Organization organization;
+    private Organization org;
 
     public Event() {
     }
@@ -74,5 +74,13 @@ public class Event {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public Organization getOrganization() {
+        return org;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.org= organization;
     }
 }

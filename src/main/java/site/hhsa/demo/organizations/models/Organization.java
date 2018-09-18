@@ -2,6 +2,7 @@ package site.hhsa.demo.organizations.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "organizations")
@@ -50,7 +51,7 @@ public class Organization {
     private String dateCreated;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "org")
-    private Event event;
+    private List<Event> event;
 
     public Organization() {
     }
@@ -180,5 +181,21 @@ public class Organization {
     public void setDateCreated(String date) {
 
         this.dateCreated = date;
+    }
+
+    public Boolean getValidated() {
+        return isValidated;
+    }
+
+    public void setValidated(Boolean validated) {
+        isValidated = validated;
+    }
+
+    public List<Event> getEvent() {
+        return event;
+    }
+
+    public void setEvent(List<Event> event) {
+        this.event = event;
     }
 }
