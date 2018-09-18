@@ -22,6 +22,10 @@ public class Event {
     @Column(name="zip_code", nullable = false)
     private String zipCode;
 
+    @ManyToOne
+    @JoinColumn(name="organization")
+    private Organization organization;
+
     public Event() {
     }
 
