@@ -51,7 +51,7 @@ public class Organization {
     private String dateCreated;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "org")
-    private List<Event> event;
+    private List<Event> events;
 
     public Organization() {
     }
@@ -191,11 +191,11 @@ public class Organization {
         isValidated = validated;
     }
 
-    public List<Event> getEvent() {
-        return event;
+    public List<Event> getEvents() {
+        return events;
     }
 
-    public void setEvent(List<Event> event) {
-        this.event = event;
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }
