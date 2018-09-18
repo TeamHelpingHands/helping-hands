@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments/head :: head">
     <title>Login</title>
 </head>
-    <body>
+<body>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
+
 <h1>Login</h1>
 <form th:action="@{/organizations/register}" th:method="POST" th:object="${org}">
 
@@ -44,5 +46,6 @@
     <input type="reset"/>
 
 </form>
+    <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>

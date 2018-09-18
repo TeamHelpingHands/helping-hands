@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import site.hhsa.demo.organizations.models.Event;
 import site.hhsa.demo.organizations.models.Organization;
 import site.hhsa.demo.organizations.repositories.OrgRepo;
 
@@ -20,8 +21,9 @@ public class OrgController {
         this.orgDao = orgDao;
     }
 
-    @GetMapping("/organizations/home")
-    public String OrgHome() {
+    @GetMapping("/organizations")
+    public String OrgHome(Model model) {
+        model.addAttribute("orgs", orgDao.findAll());
         return "organizations/index";
     }
 
@@ -54,6 +56,21 @@ public class OrgController {
     @GetMapping("/organizations/login")
     public String OrgLogin(){
         return "organizations/login";
+    }
+
+    @GetMapping("organizations/{org_name}/events/new")
+    public String orgNewEvent(@PathVariable String org_name, Model model){
+        Organization myOrg = orgDao.findOrganizationByOrgName(org_name);
+        model.addAttribute("myOrg", myOrg);
+        model.addAttribute("newEvent", new Event());
+        return "organizations/new_event";
+    }
+
+    @GetMapping("organizations/{org_name}/events")
+    public String orgEvents(@PathVariable String org_name, Model model){
+        Organization myOrg = orgDao.findOrganizationByOrgName(org_name);
+        model.addAttribute("myOrg", myOrg);
+        return "events/show";
     }
 
 }

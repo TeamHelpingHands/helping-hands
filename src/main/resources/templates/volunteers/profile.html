@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments/head :: head">
     <meta charset="UTF-8" />
     <title>Volunteers | Profile</title>
 </head>
-<body>
-    <h1 th:text="'Welcome back,' + ${vol.username}"></h1>
-    <p>Profile details here</p>
-    <h1 th:text="'email,' + ${vol.email}"></h1>
+    <body>
+        <nav th:replace="fragments/navbar :: navbar"></nav>
 
-</body>
+        <div class="container">
+            <h1 th:text="'Welcome back,' + ${vol.username}"></h1>
+            <p>Profile details here:</p>
+            <h3 th:text="'email: ' + ${vol.email}"></h3>
+
+            <th:block th:if="${vol.volunteerDetails != null}">
+                <h3>Account Details</h3>
+                <p th:text="${'first name: ' + vol.volunteerDetails.getFirstName()}"></p>
+                <button class="btn btn-primary">update/edit</button>
+            </th:block>
+
+            <th:block th:if="${vol.volunteerDetails == null}">
+                <h3>No Additional Profile Details</h3>
+                <!--<a th:href="''"></a>-->
+            </th:block>
+
+
+
+        </div>
+        <script th:replace="fragments/scripts :: scripts"></script>
+    </body>
 </html>

@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments/head :: head">
     <meta charset="UTF-8" />
     <title>Register | Volunteers | Helping Hands</title>
 </head>
 <body>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
 
-    <h1>Register as a Volunteer</h1>
+        <div class="container">
+            <h1>Register as a Volunteer</h1>
+        <form action="/vol/register" method="POST" th:object="${volunteer}">
+            <label for="username">Username</label>
+            <input id="username" type="text" th:field="*{username}" />
 
-    <form action="/vol/register" method="POST" th:object="${volunteer}">
-        <label for="username">Username</label>
-        <input id="username" type="text" th:field="*{username}" />
+            <label for="email">Email</label>
+            <input id="email" type="email" th:field="*{email}" />
 
-        <label for="email">Email</label>
-        <input id="email" type="email" th:field="*{email}" />
+            <label for="password">Password</label>
+            <input id="password" type="text" th:field="*{password}" />
 
-        <label for="password">Password</label>
-        <input id="password" type="text" th:field="*{password}" />
+            <label for="phnNumber">Phone Number <em>(5551113333)</em></label>
+            <input id="phnNumber" type="text" th:field="*{phnNumber}" />
 
-        <label for="phnNumber">Phone Number <em>(5551113333)</em></label>
-        <input id="phnNumber" type="text" th:field="*{phnNumber}" />
-
-        <label for="zipcode">Zip Code</label>
-        <input id="zipcode" type="text" th:field="*{zipcode}" />
-        <br />
-        <span>
-            <input type="reset" value="Reset" />
-        </span>
-        <span>
-            <input type="submit" value="Submit" />
-        </span>
-
-    </form>
-
+            <label for="zipcode">Zip Code</label>
+            <input id="zipcode" type="text" th:field="*{zipcode}" />
+            <br />
+            <span>
+                <input type="reset" value="Reset" />
+            </span>
+            <span>
+                <input type="submit" value="Submit" />
+            </span>
+        </form>
+    </div>
+    <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>

@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
+    <head th:replace="fragments/head :: head">
     <title>Organization</title>
     </head>
-    <body>
+<body>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
+    <div class="container">
         <h1><span th:text="${myOrg.orgName}"></span>'s Organization</h1>
+    </div>
+    <script th:replace="fragments/scripts :: scripts"></script>
     </body>
 </html>

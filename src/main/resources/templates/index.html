@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments/head :: head">
     <meta charset="UTF-8" />
     <title>Home | Helping Hands</title>
 </head>
 <body>
-<h1>Helping Hands is in business!</h1>
+    <div class="container">
+        <h1>Helping Hands is in business!</h1>
+        <p>connecting organizations and volunteers around the globe.</p>
+        <button>Learn More</button>
+        <br />
+        <br />
+        <br />
+        <br />
+        <h2>About HH</h2>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Architecto, aut consectetur culpa dicta doloremque eveniet ex explicabo laborum laudantium
+            minima modi mollitia natus perferendis quae sapiente, totam voluptatibus? Doloribus, temporibus!</p>
+    </div>
 </body>
 </html>

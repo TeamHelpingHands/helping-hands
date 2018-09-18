@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments/head :: head">
     <title>Dashboard</title>
 </head>
     <body>
-        <h1><span th:text="${myOrg.orgName}"></span>'s Dashboard</h1>
+        <nav th:replace="fragments/navbar :: navbar"></nav>
 
+        <div class="container">
+            <h1><span th:text="${myOrg.orgName}"></span>'s Dashboard</h1>
+
+            <h2>Admin Panel:</h2>
+            </div>
+        <script th:replace="fragments/scripts :: scripts"></script>
     </body>
 </html>
