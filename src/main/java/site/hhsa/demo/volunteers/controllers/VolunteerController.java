@@ -1,4 +1,4 @@
-package site.hhsa.demo.users.controllers;
+package site.hhsa.demo.volunteers.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import site.hhsa.demo.users.models.Volunteer;
-import site.hhsa.demo.users.repositories.VolunteerRepo;
+import site.hhsa.demo.volunteers.models.Volunteer;
+import site.hhsa.demo.volunteers.models.VolunteerDetails;
+import site.hhsa.demo.volunteers.repositories.VolunteerDetailsRepo;
+import site.hhsa.demo.volunteers.repositories.VolunteerRepo;
 
 import java.util.Date;
 
@@ -15,9 +17,11 @@ import java.util.Date;
 public class VolunteerController {
 
     VolunteerRepo volunteerRepo;
+    VolunteerDetailsRepo volunteerDetailsDao;
 
-    public VolunteerController(VolunteerRepo volunteerRepo) {
+    public VolunteerController(VolunteerRepo volunteerRepo, VolunteerDetailsRepo volunteerDetailsDao) {
         this.volunteerRepo = volunteerRepo;
+        this.volunteerDetailsDao = volunteerDetailsDao;
     }
 
     @GetMapping("/vol/register")
