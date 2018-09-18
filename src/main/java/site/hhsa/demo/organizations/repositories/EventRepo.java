@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface EventRepo extends CrudRepository<Event, Long> {
     List<Event> findAll();
-
-    Event findEventByEventName(String eventName);
 }

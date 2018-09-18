@@ -11,6 +11,10 @@ public class EventController {
 
     public EventController(EventRepo eventDao) { this.eventDao = eventDao; }
 
-
+    @GetMapping("/events")
+    private String eventsIndex(Model model){
+        model.addAttribute("events", eventDao.findAll());
+        return "events/index";
+    }
 
 }
