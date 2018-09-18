@@ -6,5 +6,8 @@
 </head>
 <body>
     <h1>test!</h1>
+    <div th:each="event : ${events}">
+        <div th:text="${event.description}"></div>
+    </div>
 </body>
 </html>

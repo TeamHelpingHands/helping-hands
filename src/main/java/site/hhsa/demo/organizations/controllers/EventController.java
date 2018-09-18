@@ -1,10 +1,12 @@
 package site.hhsa.demo.organizations.controllers;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import site.hhsa.demo.organizations.repositories.EventRepo;
 
+@Controller
 public class EventController {
 
     EventRepo eventDao;
