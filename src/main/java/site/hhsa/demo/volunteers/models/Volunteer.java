@@ -1,4 +1,4 @@
-package site.hhsa.demo.users.models;
+package site.hhsa.demo.volunteers.models;
 
 import javax.persistence.*;
 
