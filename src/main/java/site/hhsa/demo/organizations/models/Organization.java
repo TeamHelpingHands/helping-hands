@@ -49,6 +49,9 @@ public class Organization {
     @Column( name="date_created", nullable = false, columnDefinition = "DATE")
     private String dateCreated;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "org")
+    private Event event;
+
     public Organization() {
     }
 
