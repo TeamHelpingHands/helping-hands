@@ -1,11 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/head :: head">
     <meta charset="UTF-8" />
     <title>Details</title>
 </head>
 <body>
-    <h1>Update your account details here</h1>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
 
+    <div class="container">
+        <h1>Update your account details here</h1>
+
+            <form th:action="'/vol/' + ${id} + '/details/create'" th:method="POST" th:object="${volunteerDetails}">
+                <div class="form-group">
+                    <label for="firstName">
+                        First Name:
+                        <input id="firstName" class="form-control" type="text" th:field="${firstName}" />
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">
+                        Last Name:
+                        <input id="lastName" class="form-control" type="text" th:field="${lastName}" />
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="bio">
+                        <input id="bio" class="form-control" type="text" th:field="${bio}" />
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="photoUrl">
+                        <input id="photoUrl" class="form-control" type="text" th:field="${photoUrl}" />
+                    </label>
+                </div>
+            </form>
+        </div>
+    <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>

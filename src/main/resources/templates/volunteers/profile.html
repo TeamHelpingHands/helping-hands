@@ -20,7 +20,8 @@
 
             <th:block th:if="${vol.volunteerDetails == null}">
                 <h3>No Additional Profile Details</h3>
-                <!--<a th:href="''"></a>-->
+                <p>If you'd like to include a bio, full name or profile picture</p>
+                <a th:href="'/vol/'+ ${vol.id} + '/details/create'">click here</a>
             </th:block>
 
 

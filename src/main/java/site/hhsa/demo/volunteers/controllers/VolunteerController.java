@@ -51,4 +51,20 @@ public class VolunteerController {
     public String volLogin(){
         return "volunteers/login";
     }
+
+    @GetMapping("/vol/{id}/details/create")
+    public String createVolunteerDetails(@PathVariable long id, Model viewModel){
+        viewModel.addAttribute("id", id);
+        viewModel.addAttribute("volunteerDetails", new VolunteerDetails());
+        return "volunteers/details-create";
+    }
+
+    @PostMapping("/vol/{id}/details/create")
+    public String insertVolunteerDetails(@PathVariable long id, @ModelAttribute VolunteerDetails volunteerDetails){
+        volunteerDetails.setVolunteer(volunteerRepo.findOne(id));
+        volunteerDetailsDao.save(volunteerDetails);
+        return "redirect:/vol/{username}";
+    }
+
+
 }
