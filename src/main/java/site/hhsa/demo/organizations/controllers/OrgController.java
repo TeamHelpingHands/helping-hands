@@ -21,8 +21,9 @@ public class OrgController {
         this.orgDao = orgDao;
     }
 
-    @GetMapping("/organizations/home")
-    public String OrgHome() {
+    @GetMapping("/organizations")
+    public String OrgHome(Model model) {
+        model.addAttribute("orgs", orgDao.findAll());
         return "organizations/index";
     }
 
@@ -69,7 +70,7 @@ public class OrgController {
     public String orgEvents(@PathVariable String org_name, Model model){
         Organization myOrg = orgDao.findOrganizationByOrgName(org_name);
         model.addAttribute("myOrg", myOrg);
-        return "organizations/events";
+        return "events/show";
     }
 
 }
