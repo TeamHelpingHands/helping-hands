@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import site.hhsa.demo.organizations.models.Event;
 import site.hhsa.demo.organizations.models.Organization;
+import site.hhsa.demo.organizations.repositories.CategoryRepo;
 import site.hhsa.demo.organizations.repositories.OrgRepo;
 
 import java.util.Date;
@@ -16,9 +17,11 @@ import java.util.Date;
 public class OrgController {
 
     OrgRepo orgDao;
+    CategoryRepo categoryDao;
 
-    public OrgController(OrgRepo orgDao) {
+    public OrgController(OrgRepo orgDao, CategoryRepo categoryDao) {
         this.orgDao = orgDao;
+        this.categoryDao = categoryDao;
     }
 
     @GetMapping("/organizations")

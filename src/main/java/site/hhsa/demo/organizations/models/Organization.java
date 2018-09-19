@@ -7,6 +7,9 @@ import java.util.List;
 @Entity
 @Table(name = "organizations")
 public class Organization {
+
+    // ===== Properties & Relationship ===== \\
+
     @Id
     @GeneratedValue
     private long id;
@@ -53,10 +56,15 @@ public class Organization {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "org")
     private List<Event> event;
 
+    @ManyToMany(mappedBy = "categories")
+    private List<Category> categories;
+
+    // ===== Constructors ===== \\
+
     public Organization() {
     }
 
-    public Organization(String email, String orgName, String strAddr, String city, String state, String zipCode, String taxId, String phNum, String creatorFirstName, String creatorLastName, String password) {
+    public Organization(String email, String orgName, String strAddr, String city, String state, String zipCode, String taxId, String phNum, Boolean isValidated, String creatorFirstName, String creatorLastName, String password, String dateCreated, List<Event> event, List<Category> categories) {
         this.email = email;
         this.orgName = orgName;
         this.strAddr = strAddr;
@@ -65,10 +73,16 @@ public class Organization {
         this.zipCode = zipCode;
         this.taxId = taxId;
         this.phNum = phNum;
+        this.isValidated = isValidated;
         this.creatorFirstName = creatorFirstName;
         this.creatorLastName = creatorLastName;
         this.password = password;
+        this.dateCreated = dateCreated;
+        this.event = event;
+        this.categories = categories;
     }
+
+    // ===== Getters & Setters ===== \\
 
     public long getId() {
         return id;
@@ -197,5 +211,13 @@ public class Organization {
 
     public void setEvent(List<Event> event) {
         this.event = event;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 }

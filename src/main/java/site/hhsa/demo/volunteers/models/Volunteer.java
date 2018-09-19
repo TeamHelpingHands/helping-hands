@@ -1,6 +1,9 @@
 package site.hhsa.demo.volunteers.models;
 
+import site.hhsa.demo.organizations.models.Category;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "volunteers")
@@ -22,12 +25,12 @@ public class Volunteer {
     private String password;
 
     @Column(name = "phn_number", nullable = false)
-    private String phnNumber;
+    private String phNum;
 
     @Column(name = "zipcode", nullable = false)
-    private String zipcode;
+    private String zipCode;
 
-    @Column(name = "date_created", nullable = false)
+    @Column(name = "date_created", nullable = false, columnDefinition = "DATE")
     private String dateCreated;
 
     @Column(name = "is_suspended", nullable = false)
@@ -39,29 +42,36 @@ public class Volunteer {
     @OneToOne(mappedBy = "volunteer")
     private VolunteerDetails volunteerDetails;
 
+    @ManyToMany(mappedBy = "event_attendees")
+    private List<EventAttendee> eventAttendees;
+
+    @ManyToMany(mappedBy = "categories")
+    private List<Category> categories;
+
     // ===== Constructors ===== \\
 
     public Volunteer (){}
 
-    public Volunteer(String email, String username, String password, String phnNumber, String zipcode) {
+    public Volunteer(String email, String username, String password, String phNum, String zipCode) {
         this.email = email;
         this.username = username;
         this.password = password;
-        this.phnNumber = phnNumber;
-        this.zipcode = zipcode;
+        this.phNum = phNum;
+        this.zipCode = zipCode;
     }
 
-    public Volunteer(long id, String email, String username, String password, String phnNumber, String zipcode, String dateCreated, boolean isSuspended, boolean isAdmin, VolunteerDetails volunteerDetails) {
-        this.id = id;
+    public Volunteer(String email, String username, String password, String phNum, String zipCode, String dateCreated, boolean isSuspended, boolean isAdmin, VolunteerDetails volunteerDetails, List<EventAttendee> eventAttendees, List<Category> categories) {
         this.email = email;
         this.username = username;
         this.password = password;
-        this.phnNumber = phnNumber;
-        this.zipcode = zipcode;
+        this.phNum = phNum;
+        this.zipCode = zipCode;
         this.dateCreated = dateCreated;
         this.isSuspended = isSuspended;
         this.isAdmin = isAdmin;
         this.volunteerDetails = volunteerDetails;
+        this.eventAttendees = eventAttendees;
+        this.categories = categories;
     }
 
     // ===== Getters & Setters ===== \\
@@ -98,20 +108,20 @@ public class Volunteer {
         this.password = password;
     }
 
-    public String getPhnNumber() {
-        return phnNumber;
+    public String getPhNum() {
+        return phNum;
     }
 
-    public void setPhnNumber(String phnNumber) {
-        this.phnNumber = phnNumber;
+    public void setPhNum(String phNum) {
+        this.phNum = phNum;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getDateCreated() {
@@ -146,4 +156,19 @@ public class Volunteer {
         this.volunteerDetails = volunteerDetails;
     }
 
+    public List<EventAttendee> getEventAttendees() {
+        return eventAttendees;
+    }
+
+    public void setEventAttendees(List<EventAttendee> eventAttendees) {
+        this.eventAttendees = eventAttendees;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
 }
