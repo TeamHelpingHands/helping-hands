@@ -107,8 +107,8 @@
       - [ ] Event info (name, description, time, place)
       - [ ] Event banner image, at top
       - [ ] `I'm Interested` button, for volunteer to sign up
-        - [ ] Clicking this button with send automated email containing information about the event, the org's application process, and any other pertinent information
-        - [ ] Clicking this button with display small confirmation message, letting the volunteer know they have successfully expressed interest
+        - [ ] Clicking this button will send automated email containing information about the event, the org's application process, and any other pertinent information
+        - [ ] Clicking this button will display small confirmation message, letting the volunteer know they have successfully expressed interest
     - [ ] Can see list of events created/upcoming
     - `Event` page:
       - [ ] Will show basic info about event
