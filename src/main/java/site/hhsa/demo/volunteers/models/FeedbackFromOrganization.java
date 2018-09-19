@@ -14,13 +14,7 @@ public class FeedbackFromOrganization {
     @GeneratedValue
     private long id;
 
-    @Column(name = "vol_id")
-    private long volunteerId;
-
-    @Column(name = "org_id")
-    private long orgId;
-
-    @Column(name = "rating", nullable = false, )
+    @Column(name = "rating", nullable = false)
     private int rating;
 
     @Column(name = "feedback", columnDefinition = "TEXT")
@@ -32,8 +26,8 @@ public class FeedbackFromOrganization {
     @Column (name = "flags", columnDefinition = "VARCHAR(255)")
     private String flags;
 
-    @ManyToMany
-    @JoinColumn(name = "org_id")
+    @ManyToOne
+    @JoinColumn(name = "org_feedback")
     private Organization org;
 
     // ===== Constructors ===== \\
@@ -43,24 +37,7 @@ public class FeedbackFromOrganization {
     }
 
 
-    public FeedbackFromOrganization(long volunteerId, long orgId, int rating, String feedback, String dateCreated, String flags) {
-        this.volunteerId = volunteerId;
-        this.orgId = orgId;
-        this.rating = rating;
-        this.feedback = feedback;
-        this.dateCreated = dateCreated;
-        this.flags = flags;
-    }
 
-    public FeedbackFromOrganization(long volunteerId, long orgId, int rating, String feedback, String dateCreated, String flags, Organization org) {
-        this.volunteerId = volunteerId;
-        this.orgId = orgId;
-        this.rating = rating;
-        this.feedback = feedback;
-        this.dateCreated = dateCreated;
-        this.flags = flags;
-        this.org = org;
-    }
 
     // ===== Getters & Setters ===== \\
 
@@ -70,22 +47,6 @@ public class FeedbackFromOrganization {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getVolunteerId() {
-        return volunteerId;
-    }
-
-    public void setVolunteerId(long volunteerId) {
-        this.volunteerId = volunteerId;
-    }
-
-    public long getOrgId() {
-        return orgId;
-    }
-
-    public void setOrgId(long orgId) {
-        this.orgId = orgId;
     }
 
     public int getRating() {
