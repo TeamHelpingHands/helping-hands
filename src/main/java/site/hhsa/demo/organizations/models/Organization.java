@@ -56,7 +56,7 @@ public class Organization {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "org")
     private List<Event> events;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "organizations")
     private List<Category> categories;
 
     // ===== Constructors ===== \\
@@ -220,4 +220,6 @@ public class Organization {
     public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
+
+
 }

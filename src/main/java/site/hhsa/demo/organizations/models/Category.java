@@ -18,26 +18,60 @@ public class Category {
     @Column(name = "category")
     private String category;
 
-    @ManyToMany
-    @JoinTable(
-            name = "categories_vols",
-            joinColumns = {@JoinColumn(name = "volunteer_id")},
-            inverseJoinColumns = {@JoinColumn(name = "category_id")}
-    )
-    private List<Volunteer> volunteers;
+    @ManyToOne
+    @JoinColumn(name = "volunteers")
+    private Volunteer volunteer;
 
     @ManyToMany
     @JoinTable(
-            name = "categories_vols",
-            joinColumns = {@JoinColumn(name = "organization_id")},
-            inverseJoinColumns = {@JoinColumn(name = "category_id")}
+            name = "categories_orgs",
+            joinColumns = {@JoinColumn(name = "organizations")},
+            inverseJoinColumns = {@JoinColumn(name = "categories")}
     )
-    private List<Volunteer> organizations;
+    private List<Organization> organizations;
 
     // ===== Constructors ===== \\
 
+    public Category() {
+    }
 
+    public Category(String category, Volunteer volunteer, List<Organization> organizations) {
+        this.category = category;
+        this.volunteer = volunteer;
+        this.organizations = organizations;
+    }
 
     // ===== Getters & Setters ===== \\
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Volunteer getVolunteers() {
+        return volunteer;
+    }
+
+    public void setVolunteers(Volunteer volunteer) {
+        this.volunteer = volunteer;
+    }
+
+    public List<Organization> getOrganizations() {
+        return organizations;
+    }
+
+    public void setOrganizations(List<Organization> organizations) {
+        this.organizations = organizations;
+    }
 }
