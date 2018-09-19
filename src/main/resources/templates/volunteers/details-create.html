@@ -12,6 +12,10 @@
 
             <form th:action="'/vol/' + ${id} + '/details/create'" th:method="POST" th:object="${volunteerDetails}">
                 <div class="form-group">
+                    Upload a profile picture:
+                    <button id="uploadBtn" class="btn btn-primary" type="button">Upload</button>
+                </div>
+                <div class="form-group">
                     <label for="firstName">
                         First Name:
                         <input id="firstName" class="form-control" type="text" th:field="*{firstName}" />
@@ -24,15 +28,12 @@
                     </label>
                 </div>
                 <div class="form-group">
-                    <label for="bio">
-                        <input id="bio" class="form-control" type="text" th:field="*{bio}" />
+                    <label for="aboutMe">
+                        About Me: <br />
+                        <textarea class="form-control" id="aboutMe" rows="10" cols="30" th:field="*{bio}"></textarea>
                     </label>
                 </div>
-                <div class="form-group">
-                    <label for="photoUrl">
-                        <input id="photoUrl" class="form-control" type="text" th:field="*{photoUrl}" />
-                    </label>
-                </div>
+                <button type="submit">Submit</button>
             </form>
         </div>
     <script th:replace="fragments/scripts :: scripts"></script>
