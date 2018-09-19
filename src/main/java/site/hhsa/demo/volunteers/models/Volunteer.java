@@ -1,6 +1,7 @@
 package site.hhsa.demo.volunteers.models;
 
 import site.hhsa.demo.organizations.models.Category;
+import site.hhsa.demo.organizations.models.Event;
 
 import javax.persistence.*;
 import java.util.List;
@@ -42,11 +43,14 @@ public class Volunteer {
     @OneToOne(mappedBy = "volunteer")
     private VolunteerDetails volunteerDetails;
 
-    @ManyToMany(mappedBy = "event_attendees")
-    private List<EventAttendee> eventAttendees;
+    @ManyToMany(mappedBy = "volunteers")
+    private List<Event> events;
 
-    @ManyToMany(mappedBy = "categories")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "volunteer")
     private List<Category> categories;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "volunteer")
+    private List<FeedbackFromOrganization> orgFeedback;
 
     // ===== Constructors ===== \\
 
@@ -60,7 +64,7 @@ public class Volunteer {
         this.zipCode = zipCode;
     }
 
-    public Volunteer(String email, String username, String password, String phNum, String zipCode, String dateCreated, boolean isSuspended, boolean isAdmin, VolunteerDetails volunteerDetails, List<EventAttendee> eventAttendees, List<Category> categories) {
+    public Volunteer(String email, String username, String password, String phNum, String zipCode, String dateCreated, boolean isSuspended, boolean isAdmin, VolunteerDetails volunteerDetails, List<Event> events, List<Category> categories) {
         this.email = email;
         this.username = username;
         this.password = password;
@@ -70,7 +74,7 @@ public class Volunteer {
         this.isSuspended = isSuspended;
         this.isAdmin = isAdmin;
         this.volunteerDetails = volunteerDetails;
-        this.eventAttendees = eventAttendees;
+        this.events = events;
         this.categories = categories;
     }
 
@@ -156,12 +160,12 @@ public class Volunteer {
         this.volunteerDetails = volunteerDetails;
     }
 
-    public List<EventAttendee> getEventAttendees() {
-        return eventAttendees;
+    public List<Event> getEvents() {
+        return events;
     }
 
-    public void setEventAttendees(List<EventAttendee> eventAttendees) {
-        this.eventAttendees = eventAttendees;
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 
     public List<Category> getCategories() {
@@ -170,5 +174,13 @@ public class Volunteer {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public List<FeedbackFromOrganization> getOrgFeedback() {
+        return orgFeedback;
+    }
+
+    public void setOrgFeedback(List<FeedbackFromOrganization> orgFeedback) {
+        this.orgFeedback = orgFeedback;
     }
 }

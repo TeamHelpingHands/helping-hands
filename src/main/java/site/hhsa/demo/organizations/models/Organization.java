@@ -1,5 +1,8 @@
 package site.hhsa.demo.organizations.models;
 
+import site.hhsa.demo.volunteers.models.FeedbackFromOrganization;
+import site.hhsa.demo.volunteers.models.Volunteer;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -56,15 +59,18 @@ public class Organization {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "org")
     private List<Event> events;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "organizations")
     private List<Category> categories;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "org")
+    private List<FeedbackFromOrganization> orgFeedback;
 
     // ===== Constructors ===== \\
 
     public Organization() {
     }
 
-    public Organization(String email, String orgName, String strAddr, String city, String state, String zipCode, String taxId, String phNum, Boolean isValidated, String creatorFirstName, String creatorLastName, String password, String dateCreated, List<Event> events, List<Category> categories) {
+    public Organization(String email, String orgName, String strAddr, String city, String state, String zipCode, String taxId, String phNum, Boolean isValidated, String creatorFirstName, String creatorLastName, String password, String dateCreated, List<Event> events, List<Category> categories, List<FeedbackFromOrganization> orgFeedback) {
         this.email = email;
         this.orgName = orgName;
         this.strAddr = strAddr;
@@ -80,6 +86,7 @@ public class Organization {
         this.dateCreated = dateCreated;
         this.events = events;
         this.categories = categories;
+        this.orgFeedback = orgFeedback;
     }
 
     // ===== Getters & Setters ===== \\
@@ -219,5 +226,13 @@ public class Organization {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public List<FeedbackFromOrganization> getOrgFeedback() {
+        return orgFeedback;
+    }
+
+    public void setOrgFeedback(List<FeedbackFromOrganization> orgFeedback) {
+        this.orgFeedback = orgFeedback;
     }
 }
