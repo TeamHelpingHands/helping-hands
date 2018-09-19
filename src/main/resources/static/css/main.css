@@ -1,0 +1,103 @@
+body {
+    font-family: "Raleway", sans-serif;
+}
+
+#events {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}
+
+#hh-logo,
+img {
+    height: 50px;
+    width: 50px;
+}
+
+.welcome {
+    /*background-image: url("../img/rawpixel-660714-unsplash.jpg");*/
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow-y: hidden;
+}
+
+section {
+    padding: 2rem 0;
+    margin: 2rem;
+}
+
+.welcome-info,
+.register-link {
+    margin-left: 2rem;
+}
+
+.register-link {
+    margin-top: 0.25rem;
+}
+
+.org-logos-row-1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}
+
+.org-logos-row-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+}
+
+.org-1 {
+    background-image: url("../img/codeup.png");
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-size: cover;
+    border: 1px solid black;
+}
+
+.org-2 {
+    background-image: url("../img/codeup.png");
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-size: cover;
+    border: 1px solid black;
+}
+
+.org-3 {
+    background-image: url("../img/codeup.png");
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-size: cover;
+    border: 1px solid black;
+}
+
+.org-4 {
+    background-image: url("../img/codeup.png");
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-size: cover;
+    border: 1px solid black;
+}
+
+.org-5 {
+    background-image: url("../img/codeup.png");
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-size: cover;
+    border: 1px solid black;
+}
