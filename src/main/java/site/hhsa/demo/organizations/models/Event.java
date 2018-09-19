@@ -2,6 +2,7 @@ package site.hhsa.demo.organizations.models;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "events")
@@ -25,6 +26,9 @@ public class Event {
     @ManyToOne
     @JoinColumn(name="organization")
     private Organization org;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
+    private List<EventAttendee> eventAttendee;
 
     public Event() {
     }
