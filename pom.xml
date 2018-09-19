@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.blog</groupId>
-    <artifactId>blog</artifactId>
+    <groupId>site.hhsa</groupId>
+    <artifactId>helpinghands</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>blog</name>
-    <description>Demo project for Spring Boot</description>
+    <name>HelpingHands</name>
+    <description>Capstone project</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -54,6 +54,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.6</version>
         </dependency>
     </dependencies>
 

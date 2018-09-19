@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import site.hhsa.demo.organizations.repositories.CategoryRepo;
 import site.hhsa.demo.volunteers.models.Volunteer;
 import site.hhsa.demo.volunteers.models.VolunteerDetails;
 import site.hhsa.demo.volunteers.repositories.VolunteerDetailsRepo;
@@ -16,12 +17,14 @@ import java.util.Date;
 @Controller
 public class VolunteerController {
 
-    VolunteerRepo volunteerRepo;
+    VolunteerRepo volunteerDao;
     VolunteerDetailsRepo volunteerDetailsDao;
+    CategoryRepo categoryDao;
 
-    public VolunteerController(VolunteerRepo volunteerRepo, VolunteerDetailsRepo volunteerDetailsDao) {
-        this.volunteerRepo = volunteerRepo;
+    public VolunteerController(VolunteerRepo volunteerDao, VolunteerDetailsRepo volunteerDetailsDao, CategoryRepo categoryDao) {
+        this.volunteerDao = volunteerDao;
         this.volunteerDetailsDao = volunteerDetailsDao;
+        this.categoryDao = categoryDao;
     }
 
     @GetMapping("/vol/register")
@@ -36,13 +39,13 @@ public class VolunteerController {
         vol.setDateCreated(date.toString());
         vol.setAdmin(false);
         vol.setSuspended(false);
-        volunteerRepo.save(vol);
+        volunteerDao.save(vol);
         return "redirect:/vol/profile/" + vol.getUsername();
     }
 
     @GetMapping("/vol/profile/{username}")
     public String volProfile(@PathVariable String username, Model viewModel) {
-        Volunteer vol = volunteerRepo.findByUsername(username);
+        Volunteer vol = volunteerDao.findByUsername(username);
         viewModel.addAttribute("vol", vol);
         return "volunteers/profile";
     }
@@ -61,7 +64,7 @@ public class VolunteerController {
 
     @PostMapping("/vol/{id}/details/create")
     public String insertVolunteerDetails(@PathVariable long id, @ModelAttribute VolunteerDetails volunteerDetails){
-        volunteerDetails.setVolunteer(volunteerRepo.findOne(id));
+        volunteerDetails.setVolunteer(volunteerDao.findOne(id));
         volunteerDetailsDao.save(volunteerDetails);
         return "redirect:/vol/{username}";
     }
