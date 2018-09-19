@@ -1,6 +1,8 @@
 package site.hhsa.demo.organizations.models;
 
 
+import site.hhsa.demo.volunteers.models.Volunteer;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -27,8 +29,14 @@ public class Event {
     @JoinColumn(name="organization")
     private Organization org;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
-    private List<EventAttendee> eventAttendee;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "event_volunteers",
+            joinColumns = {@JoinColumn(name="volunteers")},
+            inverseJoinColumns = {@JoinColumn(name="events")}
+
+    )
+    private List<Volunteer> volunteers;
 
     public Event() {
     }
