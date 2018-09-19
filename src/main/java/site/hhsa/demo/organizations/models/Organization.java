@@ -64,7 +64,7 @@ public class Organization {
     public Organization() {
     }
 
-    public Organization(String email, String orgName, String strAddr, String city, String state, String zipCode, String taxId, String phNum, Boolean isValidated, String creatorFirstName, String creatorLastName, String password, String dateCreated, List<Event> event, List<Category> categories) {
+    public Organization(String email, String orgName, String strAddr, String city, String state, String zipCode, String taxId, String phNum, Boolean isValidated, String creatorFirstName, String creatorLastName, String password, String dateCreated, List<Event> events, List<Category> categories) {
         this.email = email;
         this.orgName = orgName;
         this.strAddr = strAddr;
@@ -78,7 +78,7 @@ public class Organization {
         this.creatorLastName = creatorLastName;
         this.password = password;
         this.dateCreated = dateCreated;
-        this.event = event;
+        this.events = events;
         this.categories = categories;
     }
 
