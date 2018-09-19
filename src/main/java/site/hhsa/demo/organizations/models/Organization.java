@@ -1,5 +1,6 @@
 package site.hhsa.demo.organizations.models;
 
+import site.hhsa.demo.volunteers.models.FeedbackFromOrganization;
 import site.hhsa.demo.volunteers.models.Volunteer;
 
 import javax.persistence.*;
@@ -62,14 +63,14 @@ public class Organization {
     private List<Category> categories;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "org")
-    private List<Volunteer> volunteers;
+    private List<FeedbackFromOrganization> orgFeedback;
 
     // ===== Constructors ===== \\
 
     public Organization() {
     }
 
-    public Organization(String email, String orgName, String strAddr, String city, String state, String zipCode, String taxId, String phNum, Boolean isValidated, String creatorFirstName, String creatorLastName, String password, String dateCreated, List<Event> events, List<Category> categories) {
+    public Organization(String email, String orgName, String strAddr, String city, String state, String zipCode, String taxId, String phNum, Boolean isValidated, String creatorFirstName, String creatorLastName, String password, String dateCreated, List<Event> events, List<Category> categories, List<FeedbackFromOrganization> orgFeedback) {
         this.email = email;
         this.orgName = orgName;
         this.strAddr = strAddr;
@@ -85,25 +86,7 @@ public class Organization {
         this.dateCreated = dateCreated;
         this.events = events;
         this.categories = categories;
-    }
-
-    public Organization(String email, String orgName, String strAddr, String city, String state, String zipCode, String taxId, String phNum, Boolean isValidated, String creatorFirstName, String creatorLastName, String password, String dateCreated, List<Event> events, List<Category> categories, List<Volunteer> volunteers) {
-        this.email = email;
-        this.orgName = orgName;
-        this.strAddr = strAddr;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
-        this.taxId = taxId;
-        this.phNum = phNum;
-        this.isValidated = isValidated;
-        this.creatorFirstName = creatorFirstName;
-        this.creatorLastName = creatorLastName;
-        this.password = password;
-        this.dateCreated = dateCreated;
-        this.events = events;
-        this.categories = categories;
-        this.volunteers = volunteers;
+        this.orgFeedback = orgFeedback;
     }
 
     // ===== Getters & Setters ===== \\
@@ -244,13 +227,12 @@ public class Organization {
     public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
-  
-    public List<Volunteer> getVolunteers() {
-        return volunteers;
+
+    public List<FeedbackFromOrganization> getOrgFeedback() {
+        return orgFeedback;
     }
 
-    public void setVolunteers(List<Volunteer> volunteers) {
-        this.volunteers = volunteers;
+    public void setOrgFeedback(List<FeedbackFromOrganization> orgFeedback) {
+        this.orgFeedback = orgFeedback;
     }
-
 }
