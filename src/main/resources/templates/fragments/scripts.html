@@ -17,6 +17,17 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
     <!--==================================-->
+
+    <!--Filestack-->
+    <script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>
+    <script>
+        var client = filestack.init("A9oLRH0uOQx236XVvgRSYz");
+
+        document.getElementById("uploadBtn").addEventListener("click", function (ev) {
+            client.pick({});
+        });
+
+    </script>
 </th:block>
 </body>
 </html>
