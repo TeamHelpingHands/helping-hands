@@ -49,6 +49,9 @@ public class Volunteer {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "volunteer")
     private List<Category> categories;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "volunteer")
+    private List<FeedbackFromOrganization> orgFeedback;
+
     // ===== Constructors ===== \\
 
     public Volunteer (){}
@@ -171,5 +174,13 @@ public class Volunteer {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public List<FeedbackFromOrganization> getOrgFeedback() {
+        return orgFeedback;
+    }
+
+    public void setOrgFeedback(List<FeedbackFromOrganization> orgFeedback) {
+        this.orgFeedback = orgFeedback;
     }
 }

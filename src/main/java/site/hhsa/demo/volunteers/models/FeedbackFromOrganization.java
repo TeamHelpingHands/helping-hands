@@ -30,6 +30,10 @@ public class FeedbackFromOrganization {
     @JoinColumn(name = "org_feedback")
     private Organization org;
 
+    @ManyToOne
+    @JoinColumn(name = "org_feeback")
+    private Volunteer volunteer;
+
     // ===== Constructors ===== \\
 
     public FeedbackFromOrganization(){
