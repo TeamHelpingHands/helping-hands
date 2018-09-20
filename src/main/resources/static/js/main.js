@@ -1,19 +1,41 @@
+// ========== FILESTACK JS ========== \\
+// |                                | \\
+
 var client = filestack.init("A9oLRH0uOQx236XVvgRSYz");
 
 document.getElementById("uploadBtn").addEventListener("click", function (ev) {
     client.pick({
         accept: 'image/*',
-        maxFiles: 1
+        maxFiles: 1,
+        imageDim: [500, 500],
+        modalSize: [750, 500],
+        fromSources: String[
+            "localFileSystem",
+                "url",
+                "imagesearch",
+                "facebook",
+                "instagram",
+                "googledrive",
+                "dropbox",
+                "webcam"
+            ],
+        transformations: {
+            circle: false,
+            crop: {
+                aspectRatio: 1,
+                force: true
+            },
+            rotate: true
+        }
     }).then(function (result) {
-        var newResult = JSON.parse(result);
-        var picName = newResult.filesUploaded.filename;
-        var picURL = newResult.filesUploaded.url;
-        console.log(picURL);
-        console.log(picName);
+        var picName = result.filesUploaded[0].filename;
+        var picURL = result.filesUploaded[0].url;
         document.getElementById("picName").innerText = picName;
         document.getElementById("picUrlInput").value = picURL;
     })
 });
+
+// ===== The Returned JSON File from `Filestack` ===== \\
 
 // {
 //     "filesUploaded": [{
@@ -32,3 +54,7 @@ document.getElementById("uploadBtn").addEventListener("click", function (ev) {
 //           "status":"InTransit"
 //         }],
 //     "filesFailed":[]}
+
+// ================================== \\
+// ================================== \\
+// ================================== \\
