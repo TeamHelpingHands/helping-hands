@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+    <meta charset="UTF-8" />
+    <title>Register | Helping Hands</title>
+</head>
+<body>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
+
+    <div class="container">
+
+        <h2 class="display-2">Register</h2>
+        <hr style="border: 1px gray solid;" />  <!-- Can be removed if needed -->
+
+        <form action="/vol/register" method="POST" th:object="${user}">
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" th:field="*{username}" />
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" id="email" th:field="*{email}" />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" th:field="*{password}" />
+            </div>
+            <div class="form-group">
+                <label for="passwordConfirm">Confirm Password</label>
+                <input type="password" id="passwordConfirm" th:field="*{}" />
+            </div>
+
+            <div class="form-group">
+                <h6>Are you registering as a <strong>Volunteer</strong> or an <strong>Organization</strong>?</h6>
+                <label><input type="radio" th:field="*{isOrg}" th:value="false" /> Volunteer</label>
+                <label><input type="radio" th:field="*{isOrg}" th:value="true" /> Organization</label>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Next <i class="far fa-arrow-alt-circle-right fa-sm"></i> </button>
+        </form>
+    </div>
+
+    <script th:replace="fragments/scripts :: scripts"></script>
+</body>
+</html>
