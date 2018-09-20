@@ -21,11 +21,11 @@ public class VolunteerDetails {
     @Column (name = "last_name")
     private String lastName;
 
-    @Column (name = "bio")
+    @Column (name = "bio", columnDefinition = "TEXT")
     private String bio;
 
     @Column (name = "photo_url")
-    private boolean photoUrl;
+    private String photoUrl;
 
     @OneToOne
     private Volunteer volunteer;
@@ -36,7 +36,7 @@ public class VolunteerDetails {
 
     }
 
-    public VolunteerDetails(long userId, String firstName, String lastName, String bio, boolean photoUrl, Volunteer volunteer) {
+    public VolunteerDetails(long userId, String firstName, String lastName, String bio, String photoUrl, Volunteer volunteer) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -44,8 +44,6 @@ public class VolunteerDetails {
         this.photoUrl = photoUrl;
         this.volunteer = volunteer;
     }
-
-
 
     // ===== Getters & Setters ===== \\
 
@@ -89,11 +87,11 @@ public class VolunteerDetails {
         this.bio = bio;
     }
 
-    public boolean isPhotoUrl() {
+    public String getPhotoUrl() {
         return photoUrl;
     }
 
-    public void setPhotoUrl(boolean photoUrl) {
+    public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
 

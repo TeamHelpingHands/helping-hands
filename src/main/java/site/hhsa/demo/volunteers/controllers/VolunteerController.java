@@ -66,7 +66,7 @@ public class VolunteerController {
     public String insertVolunteerDetails(@PathVariable long id, @ModelAttribute VolunteerDetails volunteerDetails){
         volunteerDetails.setVolunteer(volunteerDao.findOne(id));
         volunteerDetailsDao.save(volunteerDetails);
-        return "redirect:/vol/{username}";
+        return "redirect:/vol/profile/" + volunteerDetails.getVolunteer().getUsername();
     }
 
 
