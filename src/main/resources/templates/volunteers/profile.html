@@ -8,9 +8,12 @@
         <nav th:replace="fragments/navbar :: navbar"></nav>
 
         <div class="container">
-            <img th:src="${vol.volunteerDetails.photoUrl}" alt="" height="150px" width="150px" style="border-radius: 50%" />
             <h1 th:text="'Welcome back,' + ${vol.username}"></h1>
-
+            <p>Profile details here:</p>
+            <h3 th:text="'email: ' + ${vol.email}"></h3>
+            <h3 th:text="'lastname: ' + ${vol.volunteerDetails.lastName}"></h3>
+            <h3 th:text="'bio: ' + ${vol.volunteerDetails.bio}"></h3>
+            <h3 th:text="'profilepicURL: ' + ${vol.volunteerDetails.photoUrl}"></h3>
 
             <th:block th:if="${vol.volunteerDetails != null}">
                 <h3>Account Details</h3>
