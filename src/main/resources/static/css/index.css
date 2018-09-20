@@ -1,3 +1,19 @@
+@import url("https://fonts.googleapis.com/css?family=Lato|Montserrat");
+
+/* color and transition variables */
+:root {
+    --primary-color: #ff7f00;
+    --primary-color-hover: #f8c537;
+    --secondary-color: #f4f4f4;
+    --secondary-color-hover: #011627;
+    --btn-color: #2ec4b6;
+    --easeOut: all 0.25s ease-out;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
 #events {
     display: grid;
     grid-gap: 10px;
@@ -21,6 +37,25 @@ img {
     position: relative;
     overflow-y: hidden;
 }
+
+.leadWelcome {
+    font-family: "Lato", sans-serif;
+}
+
+.registerNow {
+    background-color: #2ec4b6;
+}
+
+.registerNow a {
+    text-decoration: none;
+    color: white;
+}
+
+.registerNow:hover {
+    background-color: #f8c537;
+    transition: var(--easeOut);
+}
+
 
 section {
     padding: 2rem 0;
@@ -51,8 +86,8 @@ section {
 .org-1 {
     background-image: url("../img/codeup.png");
     margin: auto;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     background-size: cover;
     border: 1px solid black;
@@ -61,8 +96,8 @@ section {
 .org-2 {
     background-image: url("../img/codeup.png");
     margin: auto;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     background-size: cover;
     border: 1px solid black;
@@ -71,8 +106,8 @@ section {
 .org-3 {
     background-image: url("../img/codeup.png");
     margin: auto;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     background-size: cover;
     border: 1px solid black;
@@ -81,8 +116,8 @@ section {
 .org-4 {
     background-image: url("../img/codeup.png");
     margin: auto;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     background-size: cover;
     border: 1px solid black;
@@ -91,9 +126,24 @@ section {
 .org-5 {
     background-image: url("../img/codeup.png");
     margin: auto;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     background-size: cover;
     border: 1px solid black;
+}
+
+/* ============= footer ============= */
+
+footer {
+    text-align: center;
+}
+
+footer a {
+    color: black;
+}
+
+footer a:hover {
+    color: var(--primary-color);
+    transition: var(--easeOut);
 }
