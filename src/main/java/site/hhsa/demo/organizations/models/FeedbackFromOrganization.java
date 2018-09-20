@@ -1,6 +1,7 @@
-package site.hhsa.demo.volunteers.models;
+package site.hhsa.demo.organizations.models;
 
 import site.hhsa.demo.organizations.models.Organization;
+import site.hhsa.demo.volunteers.models.Volunteer;
 
 import javax.persistence.*;
 
@@ -27,11 +28,11 @@ public class FeedbackFromOrganization {
     private String flags;
 
     @ManyToOne
-    @JoinColumn(name = "org_feedback")
+    @JoinColumn(name = "org_id")
     private Organization org;
 
     @ManyToOne
-    @JoinColumn(name = "org_feeback")
+    @JoinColumn(name = "vol_id")
     private Volunteer volunteer;
 
     // ===== Constructors ===== \\

@@ -16,6 +16,9 @@ public class User {
     @GeneratedValue
     private long id;
 
+    @Column( nullable = false)
+    private String email;
+
     @Column(name="first_name", nullable = false)
     private String firstName;
 
@@ -62,6 +65,12 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "receiver")
     private List<Message> receivedMessaged;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reporter")
+    private List<Report> reportsMade;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "violator")
+    private List<Report> reportsReceived;
 
     //constructors
 
@@ -174,5 +183,53 @@ public class User {
 
     public void setVolunteer(Volunteer volunteer) {
         this.volunteer = volunteer;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<Message> getSentMessages() {
+        return sentMessages;
+    }
+
+    public void setSentMessages(List<Message> sentMessages) {
+        this.sentMessages = sentMessages;
+    }
+
+    public List<Message> getReceivedMessaged() {
+        return receivedMessaged;
+    }
+
+    public void setReceivedMessaged(List<Message> receivedMessaged) {
+        this.receivedMessaged = receivedMessaged;
+    }
+
+    public List<Report> getReportsMade() {
+        return reportsMade;
+    }
+
+    public void setReportsMade(List<Report> reportsMade) {
+        this.reportsMade = reportsMade;
+    }
+
+    public List<Report> getReportsReceived() {
+        return reportsReceived;
+    }
+
+    public void setReportsReceived(List<Report> reportsReceived) {
+        this.reportsReceived = reportsReceived;
     }
 }
