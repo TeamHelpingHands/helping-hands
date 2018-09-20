@@ -50,7 +50,6 @@ public class OrgController {
 
     @PostMapping("/organizations/register")
     public String OrgCreate(@ModelAttribute Organization org, Model model){
-        org.setDateCreated(new Date().toString());
         orgDao.save(org);
         model.addAttribute("myOrg", org);
         return "redirect:/organizations/"+ org.getOrgName()+"/dashboard";

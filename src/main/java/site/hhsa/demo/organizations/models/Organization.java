@@ -1,10 +1,10 @@
 package site.hhsa.demo.organizations.models;
 
+import site.hhsa.demo.users.models.Category;
+import site.hhsa.demo.users.models.User;
 import site.hhsa.demo.volunteers.models.FeedbackFromOrganization;
-import site.hhsa.demo.volunteers.models.Volunteer;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,9 +16,6 @@ public class Organization {
     @Id
     @GeneratedValue
     private long id;
-
-    @Column(nullable = false)
-    private String email;
 
     @Column(name = "org_name", nullable = false)
     private String orgName;
@@ -32,64 +29,30 @@ public class Organization {
     @Column(nullable = false)
     private String state;
 
-    @Column(name="zip_code", nullable = false)
-    private String zipCode;
-
     @Column(name = "tax_id", nullable = false)
     private String taxId;
-
-    @Column(name="phn_number", nullable = false)
-    private String phNum;
 
     @Column(name="is_validated", nullable = false)
     private Boolean isValidated = false;
 
-    @Column(name="creator_firstname", nullable = false)
-    private String creatorFirstName;
+    //relationships
 
-    @Column(name="creator_lastname", nullable = false)
-    private String creatorLastName;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column( name="date_created", nullable = false, columnDefinition = "DATE")
-    private String dateCreated;
+    @OneToOne
+    private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "org")
     private List<Event> events;
-
-    @ManyToMany(mappedBy = "organizations")
-    private List<Category> categories;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "org")
     private List<FeedbackFromOrganization> orgFeedback;
 
     // ===== Constructors ===== \\
 
+
     public Organization() {
     }
 
-    public Organization(String email, String orgName, String strAddr, String city, String state, String zipCode, String taxId, String phNum, Boolean isValidated, String creatorFirstName, String creatorLastName, String password, String dateCreated, List<Event> events, List<Category> categories, List<FeedbackFromOrganization> orgFeedback) {
-        this.email = email;
-        this.orgName = orgName;
-        this.strAddr = strAddr;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
-        this.taxId = taxId;
-        this.phNum = phNum;
-        this.isValidated = isValidated;
-        this.creatorFirstName = creatorFirstName;
-        this.creatorLastName = creatorLastName;
-        this.password = password;
-        this.dateCreated = dateCreated;
-        this.events = events;
-        this.categories = categories;
-        this.orgFeedback = orgFeedback;
-    }
-
-    // ===== Getters & Setters ===== \\
+    //getters  & setters
 
     public long getId() {
         return id;
@@ -99,12 +62,12 @@ public class Organization {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getOrgName() {
+        return orgName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
     }
 
     public String getStrAddr() {
@@ -131,77 +94,12 @@ public class Organization {
         this.state = state;
     }
 
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
     public String getTaxId() {
         return taxId;
     }
 
     public void setTaxId(String taxId) {
         this.taxId = taxId;
-    }
-
-    public String getPhNum() {
-        return phNum;
-    }
-
-    public void setPhNum(String phNum) {
-        this.phNum = phNum;
-    }
-
-    public Boolean getIsValidated() {
-        return isValidated;
-    }
-
-    public void setIsValidated(Boolean isValidated) {
-        this.isValidated = isValidated;
-    }
-
-    public String getOrgName() {
-        return orgName;
-    }
-
-    public void setOrgName(String orgName) {
-        this.orgName = orgName;
-    }
-
-    public String getCreatorFirstName() {
-        return creatorFirstName;
-    }
-
-    public void setCreatorFirstName(String creatorFirstName) {
-        this.creatorFirstName = creatorFirstName;
-    }
-
-    public String getCreatorLastName() {
-        return creatorLastName;
-    }
-
-    public void setCreatorLastName(String creatorLastName) {
-        this.creatorLastName = creatorLastName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(String date) {
-
-        this.dateCreated = date;
     }
 
     public Boolean getValidated() {
@@ -212,20 +110,20 @@ public class Organization {
         isValidated = validated;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public List<Event> getEvents() {
         return events;
     }
 
     public void setEvents(List<Event> events) {
         this.events = events;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
     }
 
     public List<FeedbackFromOrganization> getOrgFeedback() {

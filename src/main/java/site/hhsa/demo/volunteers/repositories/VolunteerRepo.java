@@ -9,8 +9,5 @@ import java.util.List;
 @Repository
 public interface VolunteerRepo extends CrudRepository<Volunteer, Long> {
 
-    List<Volunteer> findAll();
-
-    Volunteer findByUsername(String username);
 
 }
