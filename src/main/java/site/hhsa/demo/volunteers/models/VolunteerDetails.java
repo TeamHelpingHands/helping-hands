@@ -24,7 +24,7 @@ public class VolunteerDetails {
     @Column (name = "bio", columnDefinition = "TEXT")
     private String bio;
 
-    @Column (name = "photo_url", columnDefinition = "LONGTEXT")
+    @Column (name = "photo_url")
     private String photoUrl;
 
     @OneToOne
