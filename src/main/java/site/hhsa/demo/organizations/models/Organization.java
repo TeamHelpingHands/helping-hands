@@ -1,8 +1,6 @@
 package site.hhsa.demo.organizations.models;
 
-import site.hhsa.demo.users.models.Category;
 import site.hhsa.demo.users.models.User;
-import site.hhsa.demo.volunteers.models.FeedbackFromOrganization;
 
 import javax.persistence.*;
 import java.util.List;

@@ -1,5 +1,6 @@
 package site.hhsa.demo.volunteers.models;
 
+import site.hhsa.demo.organizations.models.FeedbackFromOrganization;
 import site.hhsa.demo.users.models.User;
 import site.hhsa.demo.organizations.models.Event;
 
@@ -32,6 +33,8 @@ public class Volunteer {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "volunteer")
     private List<FeedbackFromOrganization> orgFeedback;
+
+
 
 
     // ===== Constructors ===== \\
