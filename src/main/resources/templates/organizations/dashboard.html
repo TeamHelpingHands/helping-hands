@@ -1,15 +1,81 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head">
+<head>
     <title>Dashboard</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../../css/organization/dashboard.css" />
 </head>
     <body>
         <nav th:replace="fragments/navbar :: navbar"></nav>
 
         <div class="container">
-            <h1><span th:text="${myOrg.orgName}"></span>'s Dashboard</h1>
+            <div class="org-main">
+                <h2><img src="../img/codeup.png" /> Codeup</h2>
+                <p class="lead"> 3.49<i class="fas fa-star"></i></p>
+            </div>
 
-            <h2>Admin Panel:</h2>
+            <button><a href="/org/create/event">Create Event</a></button>
+            <button><a href="/org/update-profile">Update Profile</a></button>
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <section id="reports">
+                <h2 class="lg-heading">My Reports</h2>
+                <p class="lead">Number of events created:</p>
+                <p class="lead">Number of events created:</p>
+                <p class="lead">Number of events created:</p>
+
+            </section>
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <section id="past-events">
+                <h2>Past Events</h2>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, aut consectetur culpa dicta doloremque eveniet
+                    ex explicabo laborum laudantium minima modi mollitia natus perferendis quae sapiente, totam voluptatibus? Doloribus,
+                    temporibus!
+                </p>
+                <div id="events">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Past Event #1</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                            <p class="card-text">short description about event here</p>
+                            <a href="#" class="card-link">View More</a>
+                            <a href="#" class="card-link">View Org Profile</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 20rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Past Event #2</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                            <p class="card-text">short description about event here</p>
+                            <a href="#" class="card-link">View More</a>
+                            <a href="#" class="card-link">View Org Profile</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 20rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Past Event #3</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                            <p class="card-text">short description about event here</p>
+                            <a href="#" class="card-link">View More</a>
+                            <a href="#" class="card-link">View Org Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <!--<button class="btn btn-success">(View More?)</button>-->
+                    <button class="btn btn-success">Register Now To View More</button>
+                </div>
+            </section>
+
+
             </div>
         <script th:replace="fragments/scripts :: scripts"></script>
     </body>
