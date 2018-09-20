@@ -2,7 +2,7 @@ package site.hhsa.demo.organizations.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import site.hhsa.demo.organizations.models.Category;
+import site.hhsa.demo.users.models.Category;
 
 import java.util.List;
 
