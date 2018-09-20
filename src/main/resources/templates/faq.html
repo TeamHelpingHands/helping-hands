@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>FAQ | Helping Hands</title>
+    <!--FontAwesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../../css/faq.css" />
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+    <div class="container">
+        <div>
+            <h2 class="faq-heading">Can't find your answer here? Reach out to support@helpinghands.com</h2>
+        </div>
+
+        <section id="questions">
+            <!-- ===== question 1 ===== -->
+            <div class="question1">
+                <div class="accordion" id="accordionExample">
+                    <div id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-controls="collapseOne">
+                                <i class="far fa-question-circle"></i> Is HelpingHands a free service?
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+                <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        >Absolutely. And it always will be.
+                    </div>
+                </div>
+            </div>
+            <!-- ===== question 2 ===== -->
+            <div class="question2">
+                <div class="accordion" id="accordionExample">
+                    <div id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-controls="collapseTwo">
+                                <i class="far fa-question-circle"></i> Is HelpingHands a free service?
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+                <div id="collapseTwo" class="collapse hide" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        >Yes, for the second time! :)
+                    </div>
+                </div>
+            </div>
+            <!-- ===== question 3 ===== -->
+            <div class="question2">
+                <div class="accordion" id="accordionExample">
+                    <div id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-controls="collapseThree">
+                                <i class="far fa-question-circle"></i> Is HelpingHands a free service?
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+                <div id="collapseThree" class="collapse hide" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        >Yes, for the third time :|
+                    </div>
+                </div>
+            </div>
+            <!-- ===== question 4 ===== -->
+            <div class="question4">
+                <div class="accordion" id="accordionExample">
+                    <div id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFour" aria-controls="collapseFour">
+                                <i class="far fa-question-circle"></i> Is HelpingHands a free service?
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+                <div id="collapseFour" class="collapse hide" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        >Yes, for the fourth time. . . .
+                    </div>
+                </div>
+            </div>
+
+            <h4>Question #5</h4>
+
+
+        </section>
+
+
+    </div>
+    <script th:replace="fragments/scripts :: scripts"></script>
+</body>
+</html>
