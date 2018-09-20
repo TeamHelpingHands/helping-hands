@@ -17,11 +17,14 @@ public class Volunteer {
     @GeneratedValue
     private long id;
 
-    @Column(name = "date_created", nullable = false, columnDefinition = "DATE")
+    @Column(name = "date_created", nullable = false, columnDefinition = "TIMESTAMP")
     private String dateCreated;
 
     @Column(name = "is_suspended", nullable = false)
     private boolean isSuspended;
+
+    @Column(columnDefinition = "LONGTEXT")
+    private String bio;
 
     //relationships
 
@@ -84,6 +87,14 @@ public class Volunteer {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public List<Event> getEvents() {
