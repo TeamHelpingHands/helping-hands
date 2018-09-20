@@ -8,7 +8,6 @@
 
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-    <!--<link rel="stylesheet" href="../../css/main.css" />-->
     <link rel="stylesheet" href="../../css/index.css" />
 </head>
 <body>
@@ -17,12 +16,12 @@
             <h1 class="mt-5">
                 <img id="hh-logo" class="mr-2" src="../img/hh-logo.png" />HelpingHands</h1>
             <p>connecting organizations and volunteers around the globe.</p>
-            <!-- LINK TO CORRECT REGISTER PAGE -->
-            <div class="text-center">
-                <p class="lead mb-1">Get Involved:</p>
-                <button class="btn btn-outline-danger w-25 mr-2"><a href="#">Register Now</a></button>
-            </div>
-            <!--<button class="btn btn-outline-danger w-25 ml-2">Organization</button>-->
+
+            <p class="leadWelcome leadBackgroundEffect">connecting organizations and volunteers around the globe.</p>
+            <p class="registerPrompt mb-1">Don't have an account? Get involved now:</p>
+            <button class="btn w-25 mr-2 registerNow">
+                <a href="#">Register</a>
+            </button>
         </div>
         <br />
         <br />
@@ -74,8 +73,10 @@
             </div>
         </div>
         <div class="text-center mt-3">
-            <!--<button class="btn btn-success">(View More?)</button>-->
-            <button class="btn btn-success">Register Now To View More</button>
+            <p class="leadEvents mb-2">Want to make a difference in your community?</p>
+            <button class="btn registerNow">
+                <a href="#">Create Account</a>
+            </button>
         </div>
     </section>
 
@@ -97,6 +98,25 @@
         </div>
     </section>
 
+    <!-- ====================  Footer Section ====================  -->
 
+    <footer>
+        <div class="container">
+            <div class="footer-cols">
+                <div class="text-center">
+                    <a href="#welcome">Welcome </a>
+                    <span>|</span>
+                    <a href="#about">About</a>
+                    <span>|</span>
+                    <a href="/faq.html">FAQ </a>
+                    <span>|</span>
+                    <a href="#portfolio">The Team </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            HelpingHands Copyright &copy; 2018
+        </div>
+    </footer>
 </body>
 </html>
