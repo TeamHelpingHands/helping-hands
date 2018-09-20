@@ -20,14 +20,7 @@
 
     <!--Filestack-->
     <script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>
-    <script>
-        var client = filestack.init("A9oLRH0uOQx236XVvgRSYz");
-
-        document.getElementById("uploadBtn").addEventListener("click", function (ev) {
-            client.pick({});
-        });
-
-    </script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
 </th:block>
 </body>
 </html>
