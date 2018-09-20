@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Create Event</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../../css/organization/create-event.css" />
+</head>
+<body>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
+    <div class="container">
+        <h1>Create Your Event Here</h1>
+
+        <form action="/org/create/event" method="POST">
+            <div class="form-group">
+                <label for="eventName">
+                    Event Name:
+                    <input id="eventName" class="form-control" type="text"/>
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="date">
+                    Date:
+                    <input id="date" class="form-control" type="text" placeholder="MM-DD-YYYY"/>
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="strAddr">
+                    Street Address:
+                    <input id="strAddr" class="form-control" type="text" />
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="zipCode">
+                    Zip Code:
+                    <input id="zipCode" class="form-control" type="text" />
+                </label>
+            </div>
+            <div class="form-group">
+                Volunteers Needed:
+                <br />
+                <select class="custom-select custom-select-sm w-25">
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                    <option value="4">Four</option>
+                    <option value="5">Five</option>
+                    <option value="6">Six</option>
+                    <option value="8">8+</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="description">
+                    Description: <br />
+                    <textarea class="form-control" id="description" rows="10" cols="30" placeholder="Include important event details here"></textarea>
+                </label>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <br />
+        <button><a href="/org/dashboard">Dashboard</a></button>
+    </div>
+
+<script th:replace="fragments/scripts :: scripts"></script>
+</body>
+</html>

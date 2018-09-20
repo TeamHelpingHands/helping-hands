@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import site.hhsa.demo.organizations.repositories.CategoryRepo;
 import site.hhsa.demo.volunteers.models.Volunteer;
-import site.hhsa.demo.volunteers.models.VolunteerDetails;
-import site.hhsa.demo.volunteers.repositories.VolunteerDetailsRepo;
 import site.hhsa.demo.volunteers.repositories.VolunteerRepo;
 
 import java.util.Date;
