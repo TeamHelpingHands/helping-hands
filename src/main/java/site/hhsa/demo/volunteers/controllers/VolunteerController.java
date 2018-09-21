@@ -25,25 +25,26 @@ public class VolunteerController {
         this.eventDao = eventDao;
     }
 
-    @GetMapping("/vol/register")
-    public String volRegisterGet(@ModelAttribute User user, Model model) {
+    @GetMapping("/vols/{username}/register")
+    public String volRegisterGet(@PathVariable String username, Model model) {
+        User user = userDao.findByUsername(username);
         model.addAttribute("user", user);
         return "volunteers/register";
     }
 
-    @PostMapping("/vol/register")
-    public String volRegisterPost(@ModelAttribute Volunteer vol, @ModelAttribute User user) {
-        user.setVolunteer(user.getVolunteer());
+    @PostMapping("/vols/{username}/register")
+    public String volRegisterPost(@PathVariable String username, @ModelAttribute User user) {
+        user.getVolunteer().setUser(userDao.findByUsername(username));
         volDao.save(user.getVolunteer());
-        return "redirect:/vol/"+user.getUsername()+"/dash";
+        return "redirect:/vols/"+user.getUsername()+"/dash";
     }
 
     @GetMapping("/vols/{username}/dash")
     public String volProfile(@PathVariable String username, Model model) {
-        Volunteer vol = userDao.findByUsername(username).getVolunteer();
-        model.addAttribute("vol", vol);
+        User user = userDao.findByUsername(username);
+        model.addAttribute("user", user);
         model.addAttribute("events", eventDao.findAll());
 
-        return "volunteers/profile";
+        return "volunteers/dashboard";
     }
 }
