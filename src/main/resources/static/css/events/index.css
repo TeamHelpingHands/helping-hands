@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Lato|Montserrat");
+
+/* color and transition variables */
+:root {
+    --primary-color: #ff7f00;
+    --primary-color-hover: #f8c537;
+    --secondary-color: #f4f4f4;
+    --secondary-color-hover: #011627;
+    --btn-color: #2ec4b6;
+    --easeOut: all 0.25s ease-out;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+section {
+    padding: 2rem 0;
+    margin: 2rem;
+}
+
+#events {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    margin-bottom: 10px;
+}
