@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+    <meta charset="UTF-8" />
+    <title>Volunteers | Profile</title>
+</head>
+
+<body>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
+
+    <div class="container">
+
+        <h1 class="display-1">Dashboard</h1>
+    <span><h4 class="display-4 text-muted" th:text="' - Welcome, ' + ${user.username} + '!'"></h4></span>
+
+        <div class="row">
+            <div class="col-3">
+                <div>
+                    <img th:src="${user.picUrl}" alt="" style="width: 100%; height: 100%; border-radius: 50%" />
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 th:text="'Details about ' + ${user.firstName}"></h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <p th:text="'Full Name: ' + ${user.firstName} + ' ' + ${user.lastName}"></p>
+                                <p th:text="'Phone Number: ' + ${user.phnNum}"></p>
+                            </div>
+                            <div class="col-6">
+                                <p th:text="'Email: ' + ${user.email}"></p>
+                                <p th:text="'Zipcode: ' + ${user.zipcode}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="display-3">Volunteer Record</h3>
+        <h5>Stats</h5>
+        <div class="row">
+            <div class="col-9">
+                <div class="card">
+                    <div class="card-body">
+                        <p th:text="'Kudos: [FINISH ME]'"></p>
+                        <p th:text="'Number of events committed to: [FINISH ME]'"></p>
+                        <p th:text="'Number of events attended: [FINISH ME]'"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div style="width: 100%; height: 100%; background: red;border: #011627 solid 2px; border-radius: 50%">
+                    BIG OL DONUT GRAPH
+                </div>
+            </div>
+        </div>
+        <h5>Commendations</h5>
+        <div class="row">
+            <div class="col-12" style="overflow-y: auto">
+                <div class="row" th:each="comment : ${user.volunteer.orgFeedback}">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 th:text="${org.orgName}"></h6>
+                            <span><small th:text="'  Rating:' + ${rating}"></small></span>
+                        </div>
+                        <div class="card-body">
+                            <p th:text="${feedback}"></p>
+                        </div>
+                        <div class="card-footer">
+                            <small th:text="'Date created: ' + ${dateCreated}"></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="display-3">Events</h3>
+        <div class="row">
+
+        </div>
+
+
+    </div>
+
+
+
+
+<script th:replace="fragments/scripts :: scripts"></script>
+</body>
+</html>
