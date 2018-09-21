@@ -10,16 +10,18 @@ import site.hhsa.demo.organizations.models.Event;
 import site.hhsa.demo.organizations.models.Organization;
 import site.hhsa.demo.organizations.repositories.CategoryRepo;
 import site.hhsa.demo.organizations.repositories.OrgRepo;
+import site.hhsa.demo.users.models.User;
+import site.hhsa.demo.users.repositories.UserRepo;
 
 import java.util.Date;
 
 @Controller
 public class OrgController {
-
+    UserRepo userDao;
     OrgRepo orgDao;
     CategoryRepo categoryDao;
 
-    public OrgController(OrgRepo orgDao, CategoryRepo categoryDao) {
+    public OrgController(OrgRepo orgDao, CategoryRepo categoryDao, UserRepo userDao) {
         this.orgDao = orgDao;
         this.categoryDao = categoryDao;
     }
@@ -42,20 +44,22 @@ public class OrgController {
         return "organizations/dashboard";
     }
 
-    @GetMapping("/organizations/{org_name}/register")
-    public String OrgNew(Model model){
-        model.addAttribute("org", new Organization());
+    @GetMapping("/{username}/orgs/register")
+    public String OrgNew(@PathVariable String username, Model model){
+        User user = userDao.findByUsername(username);
+        user.setOrganization(new Organization());
+        model.addAttribute("user", user);
         return "organizations/register";
     }
 
-    @PostMapping("/organizations/{org_name}/register")
-    public String OrgCreate(@ModelAttribute Organization org, Model model){
-        orgDao.save(org);
-        model.addAttribute("org", org);
-        return "redirect:/organizations/"+ org.getOrgName()+"/dashboard";
+    @PostMapping("/{username}/orgs/register")
+    public String OrgCreate(@ModelAttribute User user, Model model){
+        user.getOrganization().setUser(user);
+        orgDao.save(user.getOrganization());
+        return "redirect:/organizations/"+ user.getOrganization().getOrgName()+"/dashboard";
     }
 
-    @GetMapping("organizations/{org_name}/events/new")
+    @GetMapping("orgs/{org_name}/events/create")
     public String orgNewEvent(@PathVariable String org_name, Model model){
         Organization myOrg = orgDao.findOrganizationByOrgName(org_name);
         model.addAttribute("myOrg", myOrg);
