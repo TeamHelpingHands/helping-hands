@@ -54,7 +54,7 @@ public class User {
     @OneToOne(mappedBy = "user")
     private Organization organization;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Volunteer volunteer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -76,6 +76,27 @@ public class User {
 
 
     public User() {
+    }
+
+    public User(String email, String firstName, String lastName, String phnNum, String username, String password, String photoUrl, String zipcode, boolean isAdmin, boolean isOrg, String dateCreated, Organization organization, Volunteer volunteer, List<Category> categories, List<Message> sentMessages, List<Message> receivedMessaged, List<Report> reportsMade, List<Report> reportsReceived) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phnNum = phnNum;
+        this.username = username;
+        this.password = password;
+        this.photoUrl = photoUrl;
+        this.zipcode = zipcode;
+        this.isAdmin = isAdmin;
+        this.isOrg = isOrg;
+        this.dateCreated = dateCreated;
+        this.organization = organization;
+        this.volunteer = volunteer;
+        this.categories = categories;
+        this.sentMessages = sentMessages;
+        this.receivedMessaged = receivedMessaged;
+        this.reportsMade = reportsMade;
+        this.reportsReceived = reportsReceived;
     }
 
     //getters & setters

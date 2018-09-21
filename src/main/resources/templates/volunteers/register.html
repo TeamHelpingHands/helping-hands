@@ -2,37 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head">
     <meta charset="UTF-8" />
-    <title>Register | Volunteers | Helping Hands</title>
+    <title>Volunteers | Helping Hands</title>
 </head>
 <body>
     <nav th:replace="fragments/navbar :: navbar"></nav>
 
-        <div class="container">
-            <h1>Register as a Volunteer</h1>
-        <form action="/vol/register" method="POST" th:object="${volunteer}">
-            <label for="username">Username</label>
-            <input id="username" type="text" th:field="*{username}" />
-
-            <label for="email">Email</label>
-            <input id="email" type="email" th:field="*{email}" />
-
-            <label for="password">Password</label>
-            <input id="password" type="password" th:field="*{password}" />
-
-            <label for="phnNumber">Phone Number <em>(5551113333)</em></label>
-            <input id="phnNumber" type="text" th:field="*{phNum}" />
-
-            <label for="zipcode">Zip Code</label>
-            <input id="zipcode" type="text" th:field="*{zipCode}" />
-            <br />
-            <span>
-                <input type="reset" value="Reset" />
-            </span>
-            <span>
-                <input type="submit" value="Submit" />
-            </span>
+    <div class="container">
+        <form action="/vol/register" method="POST" th:object="${user.volunteer}">
+            <div class="card-header">
+                <h1>Complete your Profile | Volunteer</h1>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="bio">Write a short bio!</label>
+                    <textarea id="bio" cols="30" rows="10" th:field="*{bio}"></textarea>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
         </form>
     </div>
+
     <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>
