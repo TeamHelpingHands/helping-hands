@@ -6,7 +6,14 @@
 <body>
     <nav th:replace="fragments/navbar :: navbar"></nav>
     <div class="container">
-        <h1><span th:text="${myOrg.orgName}"></span>'s Organization</h1>
+        <h3><span th:text="${myOrg.orgName}"></span>'s Organization</h3>
+        <h3><span th:text="'address: ' + ${myOrg.strAddr}"></span>'s Organization</h3>
+        <h3><span th:text="${myOrg.city} + ', ' + ${myOrg.state}"></span></h3>
+
+        <button class="btn">Like/Favorite</button>
+
+
+
     </div>
     <script th:replace="fragments/scripts :: scripts"></script>
     </body>
