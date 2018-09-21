@@ -43,37 +43,39 @@
 
 #### General
 * Home Page
-    - [ ] `Registration` & `Login` Buttons
-    - [ ] `About HH` section, possibly showing participating orgs
-    - [ ] 3 most recent events
+    - [x] `Registration` Button
+    - [ ] `Login` Button
+    - [x] `About HH` section, possibly showing participating orgs
+    - [x] 3 most recent events
 
 * _From the `Register` button..._
-  - [ ] "Are you registering as a __VOLUNTEER__ or an __ORGANIZATION__?"
-  - [ ] Links attached to each of those options to branch out
+  - [x] Fields for Username, Password, First/Last name, zip, phone, profile picture, and...
+  - [x] "Are you registering as a __VOLUNTEER__ or an __ORGANIZATION__?" radio buttons
+  - [ ] Checks for existing usernames/emails to avoid duplication
+  - [x] Goes to next form depending on Vol vs Org choice
   
 ###### The experience now branches off into two directions, depending on who the user is representing...
 
 #### Volunteers
   * Registration
-    - [ ] Fields for basic info
+    - [x] Field for Bio
     - [ ] Sends email verification after submitting registration form
-    - [ ] Checks for existing usernames/emails to avoid duplication
-    - [ ] Forwards to `Dashboard`
+    - [x] Forwards to `Dashboard`
   * Login
     - [ ] `Username` and `Password`
     - [ ] Verifies username exists
     - [ ] Verifies password matches
     - [ ] Forwards to `Dashboard`
   * "Public" Profile
-    - [ ] Information about the volunteer (name, location, etc)
+    - [x] Information about the volunteer (name, location, etc)
     - [ ] Stats about events they have attended
     - [ ] Displays `Kudos` earned/given by orgs
     - [ ] Displays comments/reviews given by organizations __(ONLY VIEWABLE BY OTHER ORGANIZATIONS)__
     - [ ] `Message` option, to send a private message
     - [ ] `Report` option, to report to admin for review
   * Dashboard
-    - [ ] Ability to add more information pertaining to the volunteer (About me, profile picture, etc)
-    - [ ] Can see their own stats about events they have attended
+    - [ ] ~Ability to add more information pertaining to the volunteer (About me, profile picture, etc)~
+    - [x] Can see their own stats about events they have attended
     - [ ] Can see most recent event attended
     - `Events` Section
       - Can show the following options about events, using tabs/cards/etc:
@@ -88,11 +90,12 @@
     - [ ] Can select one event to go to that event's page
     - [ ] Can message Org with questions/comments
   * `Event XYZ` page, seen by a volunteer
+    - [ ] TBD
 
 #### Organizations
   * Registration
-    - [ ] Fields for basic info
-    - [ ] Field for Tax ID, for verification
+    - [x] Fields info necessary for event creation
+    - [x] Field for Tax ID, for verification
     - [ ] Sends email verification after submitting registration form
     - [ ] Checks for existing emails to avoid duplication
     - [ ] Forwards to `Dashboard`
