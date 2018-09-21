@@ -8,7 +8,7 @@
     <nav th:replace="fragments/navbar :: navbar"></nav>
 
     <div class="container">
-        <form action="/vol/register" method="POST" th:object="${user.volunteer}">
+        <form th:action="@{/vols/{username}/register(username=${user.getUsername()})}" method="POST" th:object="${user.volunteer}">
             <div class="card-header">
                 <h1>Complete your Profile | Volunteer</h1>
             </div>

@@ -56,7 +56,7 @@ public class HomeController {
         if (user.isOrg()) {
             return "redirect:/organizations/register";
         }
-        return "redirect:/vol/register";
+        return "redirect:/vols/"+user.getUsername()+"/register";
     }
 
 }
