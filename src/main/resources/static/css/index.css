@@ -80,12 +80,14 @@ section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: 100%;
+    grid-gap: 10px;
 }
 
 .org-logos-row-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 100%;
+    grid-gap: 10px;
 }
 
 .org-1 {
@@ -158,9 +160,7 @@ footer a:hover {
 nav {
     height: 40px;
     width: 100%;
-    /*background-color: #333;*/
     position: fixed;
-    /* ensure navbar overlaps everything else */
     z-index: 999;
 }
 nav ul {
@@ -180,16 +180,22 @@ nav a {
     color: black;
     text-decoration: none;
 }
-nav li:hover {
+nav a:hover {
     color: var(--btn-color);
+    transition: var(--easeOut);
 }
+
 nav a#openup {
     display: none;
 }
+
+/* =========== mobile view =========== */
 /* styles only applied to 580px or LESS */
 @media screen and (max-width: 580px) {
-    /* original styling from old portfolio page brought in to make about me section
-  work correclty on mobile */
+
+    .hideOnSmall {
+        display: none;
+    }
 
     main {
         align-items: center;
@@ -200,43 +206,6 @@ nav a#openup {
         margin-bottom: 1rem;
     }
 
-    /*.about-info {*/
-        /*grid-template-areas:*/
-                /*"bioimage"*/
-                /*"bio"*/
-                /*"job1"*/
-                /*"job2"*/
-                /*"job3";*/
-
-        /*grid-template-columns: 1fr;*/
-    /*}*/
-
-    /* resume stacked  */
-
-    /*.grid-resume {*/
-        /*grid-template-areas:*/
-                /*"job-1"*/
-                /*"job-2"*/
-                /*"job-3"*/
-                /*"job-4"*/
-                /*"job-5";*/
-        /*grid-template-columns: 1fr;*/
-    /*}*/
-
-    /* stacks events */
-    /*.events {*/
-        /*grid-template-areas:*/
-                /*"card-body"*/
-                /*"card-ody"*/
-                /*"card-body";*/
-        /*grid-template-columns: 1fr;*/
-    /*}*/
-
-    /* original style end======================= */
-    /* class to add/remove once I figure out best event handler for sticky header */
-    /*.hide-on-small {*/
-        /*display: none;*/
-    /*}*/
 
     #welcome {
         height: 50vh;
@@ -257,6 +226,16 @@ nav a#openup {
     h1 {
         font-size: 2.8em;
     }
+
+    .org-logos-row-1 {
+        grid-template-areas:
+        "org1"
+        "org2"
+        "org3";
+        grid-template-columns: 2fr;
+    }
+
+
 
     nav {
         height: auto;

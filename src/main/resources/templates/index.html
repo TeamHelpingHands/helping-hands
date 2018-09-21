@@ -14,20 +14,17 @@
     <header>
         <nav class='cf'>
             <ul class='cf'>
-                <!--<li class="hide-on-small">-->
-                    <!--<a href="#welcome">Login</a>-->
-                <!--</li>-->
                 <li>
                     <a href='#about'>About</a>
                 </li>
                 <li>
-                    <a href='#resume'>FAQ</a>
+                    <a href='/faq'>FAQ</a>
                 </li>
                 <li>
-                    <a href='#portfolio'>The Team</a>
+                    <a href='/about-team'>The Team</a>
                 </li>
                 <li>
-                    <a href='#contact'>Login</a>
+                    <a href='/login'>Login</a>
                 </li>
             </ul>
             <a href='#' id='openup'>HH</a>
@@ -38,10 +35,10 @@
         <div class="welcome-info">
             <h1 class="mt-5">
                 <img id="hh-logo" class="mr-2" src="../img/hh-logo.png" />HelpingHands</h1>
-            <p>connecting organizations and volunteers around the globe.</p>
+            <p class="hideOnSmall">connecting organizations and volunteers around the globe.</p>
             <p class="registerPrompt mb-1">Don't have an account? Get involved now:</p>
             <button class="btn w-25 mr-2 registerNow">
-                <a href="#">Register</a>
+                <a href="/register">Register</a>
             </button>
         </div>
         <br />
@@ -93,12 +90,12 @@
         <div class="text-center mt-3">
             <p class="leadEvents mb-2">Want to make a difference in your community?</p>
             <button class="btn registerNow">
-                <a href="#">Create Account</a>
+                <a href="/register">Create Account</a>
             </button>
         </div>
     </section>
 
-
+    <!-- ====================  Participating Orgs ====================  -->
     <section id="organizations">
         <h2>Organization Partners</h2>
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, aut consectetur culpa dicta doloremque eveniet
@@ -110,13 +107,19 @@
             <div class="org-2"></div>
             <div class="org-3"></div>
         </div>
-        <div class="org-logos-row-2">
+        <div class="org-logos-row-2 hideOnSmall">
             <div class="org-4"></div>
             <div class="org-5"></div>
         </div>
+        <div class="text-center mt-3">
+            <p class="leadEvents mb-2">Browse all participating orgs:</p>
+            <button class="btn registerNow">
+                <a href="/orgs/index">View More</a>
+            </button>
+        </div>
     </section>
 
-    <!-- ====================  Footer Section ====================  -->
+    <!-- ====================  Footer ====================  -->
 
     <footer>
         <div class="container">
@@ -128,7 +131,7 @@
                     <span>|</span>
                     <a href="/faq.html">FAQ </a>
                     <span>|</span>
-                    <a href="#portfolio">The Team </a>
+                    <a href="/about-team">The Team </a>
                 </div>
             </div>
         </div>
