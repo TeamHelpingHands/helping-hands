@@ -24,15 +24,15 @@ public class OrgController {
         this.categoryDao = categoryDao;
     }
 
-    @GetMapping("/organizations")
+    @GetMapping("/orgs")
     public String OrgHome(Model model) {
         model.addAttribute("orgs", orgDao.findAll());
         return "organizations/index";
     }
 
-    @GetMapping("/organizations/{org_name}")
+    @GetMapping("/orgs/{org_name}")
     public String OrgShow(@PathVariable String org_name, Model model){
-        model.addAttribute("myOrg", orgDao.findOrganizationByOrgName(org_name));
+        model.addAttribute("org", orgDao.findOrganizationByOrgName(org_name));
         return "organizations/show";
     }
 
@@ -42,22 +42,17 @@ public class OrgController {
         return "organizations/dashboard";
     }
 
-    @GetMapping("/organizations/register")
+    @GetMapping("/organizations/{org_name}/register")
     public String OrgNew(Model model){
         model.addAttribute("org", new Organization());
         return "organizations/register";
     }
 
-    @PostMapping("/organizations/register")
+    @PostMapping("/organizations/{org_name}/register")
     public String OrgCreate(@ModelAttribute Organization org, Model model){
         orgDao.save(org);
-        model.addAttribute("myOrg", org);
+        model.addAttribute("org", org);
         return "redirect:/organizations/"+ org.getOrgName()+"/dashboard";
-    }
-
-    @GetMapping("/organizations/login")
-    public String OrgLogin(){
-        return "organizations/login";
     }
 
     @GetMapping("organizations/{org_name}/events/new")
