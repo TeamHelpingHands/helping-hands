@@ -27,6 +27,9 @@ public class FeedbackFromOrganization {
     @Column (name = "flags", columnDefinition = "VARCHAR(255)")
     private String flags;
 
+    @Column(columnDefinition = "INT")
+    private int rating;
+
     @ManyToOne
     @JoinColumn(name = "event_id")
     private Event event;
@@ -45,11 +48,12 @@ public class FeedbackFromOrganization {
 
     }
 
-    public FeedbackFromOrganization(boolean didAttend, String feedback, String dateCreated, String flags, Event event, Organization org, Volunteer volunteer) {
+    public FeedbackFromOrganization(boolean didAttend, String feedback, String dateCreated, String flags, int rating, Event event, Organization org, Volunteer volunteer) {
         this.didAttend = didAttend;
         this.feedback = feedback;
         this.dateCreated = dateCreated;
         this.flags = flags;
+        this.rating = rating;
         this.event = event;
         this.org = org;
         this.volunteer = volunteer;
@@ -121,4 +125,11 @@ public class FeedbackFromOrganization {
         this.org = org;
     }
 
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 }

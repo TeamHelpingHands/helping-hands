@@ -8,25 +8,47 @@
         <nav th:replace="fragments/navbar :: navbar"></nav>
 
         <div class="container">
-            <h1 th:text="'Welcome back,' + ${vol.username}"></h1>
-            <p>Profile details here:</p>
-            <h3 th:text="'email: ' + ${vol.email}"></h3>
-            <h3 th:text="'lastname: ' + ${vol.volunteerDetails.lastName}"></h3>
-            <h3 th:text="'bio: ' + ${vol.volunteerDetails.bio}"></h3>
-            <h3 th:text="'profilepicURL: ' + ${vol.volunteerDetails.photoUrl}"></h3>
 
-            <th:block th:if="${vol.volunteerDetails != null}">
-                <h3>Account Details</h3>
-                <p th:text="${'first name: ' + vol.volunteerDetails.getFirstName()}"></p>
-                <a class="btn btn-primary" th:href="'/vol/' + ${vol.id} + '/details/create'">Update/Edit</a>
-            </th:block>
+            <h1 th:text="'Profile - ' + ${user.username}"></h1>
 
-            <th:block th:if="${vol.volunteerDetails == null}">
-                <h3>No Additional Profile Details</h3>
-                <p>If you'd like to include a bio, full name or profile picture</p>
-                <a th:href="'/vol/'+ ${vol.id} + '/details/create'">click here</a>
-            </th:block>
+            <div class="row my-3">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 th:text="'Details about ' + ${user.firstName}"></h6>
+                        </div>
+                        <div class="card-body row">
+                            <div class="col-3">
+                                <div>
+                                    <img th:src="${user.photoUrl}" alt="" style="width: 100%; height: 100%; border-radius: 50%" />
+                                    <a href="#" class="btn btn-primary btn-sm disabled my-1">Message</a>
+                                    <a href="#" class="btn btn-danger btn-sm disabled my-1">Report</a>
+                                </div>
+                            </div>
+                            <div class="col-9">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p th:text="'Full Name: ' + ${user.firstName} + ' ' + ${user.lastName}"></p>
+                                        <p th:text="'Phone Number: ' + ${user.phnNum}"></p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p th:text="'Email: ' + ${user.email}"></p>
+                                        <p th:text="'Zipcode: ' + ${user.zipcode}"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h6>About Me:</h6>
+                                        <p th:text="${user.volunteer.bio}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <a href="/" class="btn btn-primary">Back to Home</a>
 
 
         </div>

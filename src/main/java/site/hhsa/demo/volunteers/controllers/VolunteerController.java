@@ -47,4 +47,11 @@ public class VolunteerController {
 
         return "volunteers/dashboard";
     }
+
+    @GetMapping("vols/{username}/profile")
+    public String showProfile(@PathVariable String username, Model model) {
+        User user = userDao.findByUsername(username);
+        model.addAttribute("user", user);
+        return "volunteers/profile";
+    }
 }

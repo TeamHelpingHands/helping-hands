@@ -34,6 +34,7 @@
                                 <div class="col-6">
                                     <p th:text="'Email: ' + ${user.email}"></p>
                                     <p th:text="'Zipcode: ' + ${user.zipcode}"></p>
+                                    <a class="btn btn-primary btn-sm" th:href="'/vols/'+${user.username}+'/profile'">View Profile</a>
                                 </div>
                             </div>
                             <div class="row">
@@ -77,22 +78,19 @@
                         <h5>Commendations</h5>
                     </div>
                     <div class="card-body">
-                        This is where a bunch of comments will go
                         <div class="col-12" style="overflow-y: auto">
-                            <!--<div class="row" th:each="comment : ${user.volunteer.orgFeedback}">-->
-                            <!--<div class="card">-->
-                            <!--<div class="card-header">-->
-                            <!--<h6 th:text="${org.orgName}"></h6>-->
-                            <!--<span><small th:text="'  Rating:' + ${rating}"></small></span>-->
-                            <!--</div>-->
-                            <!--<div class="card-body">-->
-                            <!--<p th:text="${feedback}"></p>-->
-                            <!--</div>-->
-                            <!--<div class="card-footer">-->
-                            <!--<small th:text="'Date created: ' + ${dateCreated}"></small>-->
-                            <!--</div>-->
-                            <!--</div>-->
-                            <!--</div>-->
+                            <div class="row" th:each="orgFeedback : ${user.getVolunteer().getOrgFeedback()}">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6 th:text="${orgFeedback.getOrg().getOrgName()}"></h6>
+                                        <span><small th:text="'  Rating:' + ${orgFeedback.getRating()}"></small></span>
+                                        <p th:text="${orgFeedback.getFeedback()}"></p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small th:text="'Date created: ' + ${orgFeedback.getDateCreated()}"></small>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
