@@ -10,8 +10,9 @@
         <nav th:replace="fragments/navbar :: navbar"></nav>
 
         <div class="container">
+
             <div class="org-main">
-                <h2><img src="../img/codeup.png" /> Codeup</h2>
+                <h2 th:text="${org.orgName}"><img src="../../img/codeup.png" /> Codeup</h2>
                 <p class="lead"> 3.49<i class="fas fa-star"></i></p>
             </div>
 
@@ -23,10 +24,10 @@
                     <a href="/org/update-profile">Update Profile</a>
                 </button>
                 <button>
-                    <a href="/org/past/events">View Past Events</a>
+                    <a href="/org/past/events">Past Events</a>
                 </button>
                 <button>
-                    <a href="/org/upcoming/events">View Upcoming Events</a>
+                    <a href="/org/upcoming/events">Upcoming Events</a>
                 </button>
             </div>
 
@@ -41,15 +42,15 @@
                 <div class="reports">
                     <div class="report1">
                         <p class="lead text-center">Number of events created:</p>
-                        <img src="../img/foodBank.jpg" alt="graph1" />
+                        <img src="../../img/foodBank.jpg" alt="graph1" />
                     </div>
                     <div class="report2 text-center">
                         <p class="lead">Number of volunteers:</p>
-                        <img src="../img/foodBank.jpg" alt="graph2" />
+                        <img src="../../img/foodBank.jpg" alt="graph2" />
                     </div>
                     <div class="report3">
                         <p class="lead text-center">Annual Average # Events:</p>
-                        <img src="foodBank.jpg" alt="graph3" />
+                        <img src="../../img/foodBank.jpg" alt="graph3" />
                     </div>
                 </div>
             </main>
@@ -59,11 +60,11 @@
                     <div class="container">
                         <div class="footer-cols">
                             <div class="text-center">
-                                <a href="/home">Home </a>
+                                <a href="/">Home </a>
                                 <span>|</span>
                                 <a href="/faq">FAQ</a>
                                 <span>|</span>
-                                <a href="/team">The Team </a>
+                                <a href="/about-team">The Team </a>
                             </div>
                         </div>
                     </div>
