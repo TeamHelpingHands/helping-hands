@@ -24,19 +24,18 @@ public class VolunteerController {
 
     @GetMapping("/vol/register")
     public String volRegisterGet(@ModelAttribute User user, Model model) {
-        Volunteer vol = new Volunteer();
-        vol.setUser(); ;
-        model.addAttribute("vol", vol);
+        model.addAttribute("user", user);
         return "volunteers/register";
     }
 
     @PostMapping("/vol/register")
-    public String volRegisterPost(@ModelAttribute Volunteer vol) {
-        volDao.save(vol);
-        return "redirect: /vol/profile/" + vol.getUser().getUsername();
+    public String volRegisterPost(@ModelAttribute Volunteer vol, @ModelAttribute User user) {
+        user.setVolunteer(user.getVolunteer());
+        volDao.save(user.getVolunteer());
+        return "redirect:/vol/"+user.getUsername()+"/dash";
     }
 
-    @GetMapping("/vol/profile/{username}")
+    @GetMapping("/vol/{username}/dash")
     public String volProfile(@PathVariable String username, Model model) {
         Volunteer vol = userDao.findByUsername(username).getVolunteer();
         model.addAttribute("vol", vol);

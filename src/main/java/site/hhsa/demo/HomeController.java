@@ -50,14 +50,13 @@ public class HomeController {
     @PostMapping("/register")
     public String userRegister(@ModelAttribute User user, @RequestParam String isOrg, Model model) {
         user.setOrg(Boolean.parseBoolean(isOrg));
+        user.setVolunteer(new Volunteer());
         userDao.save(user);
-        User newUser = userDao.findByUsername(user.getUsername());
-        model.addAttribute("user", newUser);
+        model.addAttribute("user", user);
         if (user.isOrg()) {
             return "redirect:/organizations/register";
         }
         return "redirect:/vol/register";
     }
-
 
 }

@@ -7,22 +7,23 @@
 <body>
     <nav th:replace="fragments/navbar :: navbar"></nav>
 
-        <div class="container">
-            <form action="/vol/register" method="POST" th:object="${vol}">
-                <div class="card-header">
-                    <h1>Complete your Profile | Volunteer</h1>
+    <div class="container">
+        <form action="/vol/register" method="POST" th:object="${user.volunteer}">
+            <div class="card-header">
+                <h1>Complete your Profile | Volunteer</h1>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="bio">Write a short bio!</label>
+                    <textarea id="bio" cols="30" rows="10" th:field="*{bio}"></textarea>
                 </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="bio">Write a short bio!</label>
-                        <textarea id="bio" cols="30" rows="10" th:field="*{bio}"></textarea>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                </div>
-            </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
     </div>
+
     <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>
