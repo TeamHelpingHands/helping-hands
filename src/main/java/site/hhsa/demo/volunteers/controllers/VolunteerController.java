@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import site.hhsa.demo.organizations.repositories.EventRepo;
 import site.hhsa.demo.users.models.User;
 import site.hhsa.demo.users.repositories.UserRepo;
 import site.hhsa.demo.volunteers.models.Volunteer;
@@ -16,10 +17,12 @@ public class VolunteerController {
 
     UserRepo userDao;
     VolunteerRepo volDao;
+    EventRepo eventDao
 
-    public VolunteerController(UserRepo userDao, VolunteerRepo volDao) {
+    public VolunteerController(UserRepo userDao, VolunteerRepo volDao, EventRepo eventDao) {
         this.userDao = userDao;
         this.volDao = volDao;
+        this.eventDao = eventDao;
     }
 
     @GetMapping("/vol/register")
@@ -35,10 +38,12 @@ public class VolunteerController {
         return "redirect:/vol/"+user.getUsername()+"/dash";
     }
 
-    @GetMapping("/vol/{username}/dash")
+    @GetMapping("/vols/{username}/dash")
     public String volProfile(@PathVariable String username, Model model) {
         Volunteer vol = userDao.findByUsername(username).getVolunteer();
         model.addAttribute("vol", vol);
+        model.addAttribute("events", eventDao.findAll());
+
         return "volunteers/profile";
     }
 }
