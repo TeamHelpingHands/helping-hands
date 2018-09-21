@@ -17,7 +17,7 @@ public class VolunteerController {
 
     UserRepo userDao;
     VolunteerRepo volDao;
-    EventRepo eventDao
+    EventRepo eventDao;
 
     public VolunteerController(UserRepo userDao, VolunteerRepo volDao, EventRepo eventDao) {
         this.userDao = userDao;
