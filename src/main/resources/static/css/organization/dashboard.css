@@ -1,3 +1,48 @@
 .org-main img {
     border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+.admin-panel,
+button {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(4, 1fr);
+}
+.reports,
+img {
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}
+
+/* mobile view */
+@media screen and (max-width: 580px) {
+    .org-main {
+        text-align: center;
+    }
+
+    .admin-panel {
+        grid-template-areas:
+                "button"
+                "button"
+                "button"
+                "button";
+        grid-template-columns: 1fr;
+    }
+
+    main {
+        align-items: center;
+        text-align: center;
+    }
+
+    .reports {
+        grid-template-areas:
+                "img"
+                "img"
+                "img";
+        grid-template-columns: 1fr;
+    }
 }
