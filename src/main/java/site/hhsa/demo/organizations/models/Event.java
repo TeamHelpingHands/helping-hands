@@ -16,7 +16,7 @@ public class Event {
     @Column(nullable = false)
     private String description;
 
-    @Column(columnDefinition = "DATE NOT NULL")
+    @Column(columnDefinition = "TIMESTAMP")
     private String dateTime;
 
     @Column(name = "str_addr", nullable = false)
