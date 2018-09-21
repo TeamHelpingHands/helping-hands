@@ -15,8 +15,8 @@ public class FeedbackFromOrganization {
     @GeneratedValue
     private long id;
 
-    @Column(name = "rating", nullable = false)
-    private int rating;
+    @Column(name = "did_attend", nullable = false)
+    private boolean didAttend = false;
 
     @Column(name = "feedback", columnDefinition = "TEXT")
     private String feedback;
@@ -26,6 +26,10 @@ public class FeedbackFromOrganization {
 
     @Column (name = "flags", columnDefinition = "VARCHAR(255)")
     private String flags;
+
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private Event event;
 
     @ManyToOne
     @JoinColumn(name = "org_id")
@@ -41,8 +45,15 @@ public class FeedbackFromOrganization {
 
     }
 
-
-
+    public FeedbackFromOrganization(boolean didAttend, String feedback, String dateCreated, String flags, Event event, Organization org, Volunteer volunteer) {
+        this.didAttend = didAttend;
+        this.feedback = feedback;
+        this.dateCreated = dateCreated;
+        this.flags = flags;
+        this.event = event;
+        this.org = org;
+        this.volunteer = volunteer;
+    }
 
     // ===== Getters & Setters ===== \\
 
@@ -54,12 +65,28 @@ public class FeedbackFromOrganization {
         this.id = id;
     }
 
-    public int getRating() {
-        return rating;
+    public boolean isDidAttend() {
+        return didAttend;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public void setDidAttend(boolean didAttend) {
+        this.didAttend = didAttend;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public Volunteer getVolunteer() {
+        return volunteer;
+    }
+
+    public void setVolunteer(Volunteer volunteer) {
+        this.volunteer = volunteer;
     }
 
     public String getFeedback() {
