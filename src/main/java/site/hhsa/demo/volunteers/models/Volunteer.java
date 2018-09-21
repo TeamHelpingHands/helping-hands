@@ -46,9 +46,10 @@ public class Volunteer {
     public Volunteer() {
     }
 
-    public Volunteer(String dateCreated, boolean isSuspended, User user, List<Event> events, List<FeedbackFromOrganization> orgFeedback) {
+    public Volunteer(String dateCreated, boolean isSuspended, String bio, User user, List<Event> events, List<FeedbackFromOrganization> orgFeedback) {
         this.dateCreated = dateCreated;
         this.isSuspended = isSuspended;
+        this.bio = bio;
         this.user = user;
         this.events = events;
         this.orgFeedback = orgFeedback;
