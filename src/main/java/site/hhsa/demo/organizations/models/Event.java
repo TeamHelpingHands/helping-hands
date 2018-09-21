@@ -29,6 +29,9 @@ public class Event {
     @JoinColumn(name="organization")
     private Organization org;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
+    private List<FeedbackFromOrganization> feedback;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "event_volunteers",
