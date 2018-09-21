@@ -36,9 +36,9 @@ public class OrgController {
         return "organizations/show";
     }
 
-    @GetMapping("/organizations/{org_name}/dashboard")
+    @GetMapping("/orgs/{org_name}/dashboard")
     public String OrgDashboard(@PathVariable String org_name, Model model){
-        model.addAttribute("myOrg", orgDao.findOrganizationByOrgName(org_name));
+        model.addAttribute("org", orgDao.findOrganizationByOrgName(org_name));
         return "organizations/dashboard";
     }
 
