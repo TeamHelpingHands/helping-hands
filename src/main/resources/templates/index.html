@@ -11,13 +11,34 @@
     <link rel="stylesheet" href="../../css/index.css" />
 </head>
 <body>
-    <div class="welcome">
+    <header>
+        <nav class='cf'>
+            <ul class='cf'>
+                <!--<li class="hide-on-small">-->
+                    <!--<a href="#welcome">Login</a>-->
+                <!--</li>-->
+                <li>
+                    <a href='#about'>About</a>
+                </li>
+                <li>
+                    <a href='#resume'>FAQ</a>
+                </li>
+                <li>
+                    <a href='#portfolio'>The Team</a>
+                </li>
+                <li>
+                    <a href='#contact'>Login</a>
+                </li>
+            </ul>
+            <a href='#' id='openup'>HH</a>
+        </nav>
+    </header>
+    <!-- ===== Welcome Start ===== -->
+    <div id="welcome">
         <div class="welcome-info">
             <h1 class="mt-5">
                 <img id="hh-logo" class="mr-2" src="../img/hh-logo.png" />HelpingHands</h1>
             <p>connecting organizations and volunteers around the globe.</p>
-
-            <p class="leadWelcome leadBackgroundEffect">connecting organizations and volunteers around the globe.</p>
             <p class="registerPrompt mb-1">Don't have an account? Get involved now:</p>
             <button class="btn w-25 mr-2 registerNow">
                 <a href="#">Register</a>
@@ -31,20 +52,17 @@
 
     <section id="about">
         <h2>About HH</h2>
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, aut consectetur culpa dicta doloremque eveniet
-            ex explicabo laborum laudantium minima modi mollitia natus perferendis quae sapiente, totam voluptatibus? Doloribus,
-            temporibus!
-        </p>
+        <p class="lead">HelpingHands was designed to help facilitate volunteer enrollment and participation for any given charitable event.
+        Volunteers have the ability to apply to help an organization/event, follow/favorite organizations, and earn points for frequent participation. HH makes it easy to
+        get involved, and stay involved</p>
     </section>
 
     <section id="past-events">
         <h2>Past Events</h2>
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, aut consectetur culpa dicta doloremque eveniet
-            ex explicabo laborum laudantium minima modi mollitia natus perferendis quae sapiente, totam voluptatibus? Doloribus,
-            temporibus!
+        <p class="lead">Want to browse through previous events hosted by our partner organization
         </p>
         <div id="events">
-            <div class="card" style="width: 18rem;">
+            <div class="card event1" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Past Event #1</h5>
                     <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
@@ -53,7 +71,7 @@
                     <a href="#" class="card-link">View Org Profile</a>
                 </div>
             </div>
-            <div class="card" style="width: 20rem;">
+            <div class="card event2" style="width: 20rem;">
                 <div class="card-body">
                     <h5 class="card-title">Past Event #2</h5>
                     <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
@@ -62,7 +80,7 @@
                     <a href="#" class="card-link">View Org Profile</a>
                 </div>
             </div>
-            <div class="card" style="width: 20rem;">
+            <div class="card event3" style="width: 20rem;">
                 <div class="card-body">
                     <h5 class="card-title">Past Event #3</h5>
                     <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
@@ -118,5 +136,6 @@
             HelpingHands Copyright &copy; 2018
         </div>
     </footer>
+    <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>

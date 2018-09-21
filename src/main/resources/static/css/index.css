@@ -27,7 +27,7 @@ img {
     width: 50px;
 }
 
-.welcome {
+#welcome {
     background-image: url("../img/rawpixel-660714-unsplash.jpg");
     background-size: cover;
     margin: 0;
@@ -54,6 +54,11 @@ img {
 .registerNow:hover {
     background-color: #f8c537;
     transition: var(--easeOut);
+}
+
+.lead {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9rem;
 }
 
 
@@ -84,7 +89,7 @@ section {
 }
 
 .org-1 {
-    background-image: url("../img/codeup.png");
+    background-image: url("../img/duff.jpg");
     margin: auto;
     width: 150px;
     height: 150px;
@@ -104,7 +109,7 @@ section {
 }
 
 .org-3 {
-    background-image: url("../img/codeup.png");
+    background-image: url("../img/polloshermanos.jpg");
     margin: auto;
     width: 150px;
     height: 150px;
@@ -114,7 +119,7 @@ section {
 }
 
 .org-4 {
-    background-image: url("../img/codeup.png");
+    background-image: url("../img/umbrella.jpeg");
     margin: auto;
     width: 150px;
     height: 150px;
@@ -124,7 +129,7 @@ section {
 }
 
 .org-5 {
-    background-image: url("../img/codeup.png");
+    background-image: url("../img/Dunder-Mifflin.jpg");
     margin: auto;
     width: 150px;
     height: 150px;
@@ -147,3 +152,173 @@ footer a:hover {
     color: var(--primary-color);
     transition: var(--easeOut);
 }
+
+/* ========= Navigation ========= */
+
+nav {
+    height: 40px;
+    width: 100%;
+    /*background-color: #333;*/
+    position: fixed;
+    /* ensure navbar overlaps everything else */
+    z-index: 999;
+}
+nav ul {
+    padding: 0;
+    margin: 0;
+}
+nav li {
+    display: inline;
+    float: right;
+}
+nav a {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 0;
+    color: black;
+    text-decoration: none;
+}
+nav li:hover {
+    color: var(--btn-color);
+}
+nav a#openup {
+    display: none;
+}
+/* styles only applied to 580px or LESS */
+@media screen and (max-width: 580px) {
+    /* original styling from old portfolio page brought in to make about me section
+  work correclty on mobile */
+
+    main {
+        align-items: center;
+        text-align: center;
+    }
+    .lg-heading {
+        line-height: 1;
+        margin-bottom: 1rem;
+    }
+
+    /*.about-info {*/
+        /*grid-template-areas:*/
+                /*"bioimage"*/
+                /*"bio"*/
+                /*"job1"*/
+                /*"job2"*/
+                /*"job3";*/
+
+        /*grid-template-columns: 1fr;*/
+    /*}*/
+
+    /* resume stacked  */
+
+    /*.grid-resume {*/
+        /*grid-template-areas:*/
+                /*"job-1"*/
+                /*"job-2"*/
+                /*"job-3"*/
+                /*"job-4"*/
+                /*"job-5";*/
+        /*grid-template-columns: 1fr;*/
+    /*}*/
+
+    /* stacks events */
+    /*.events {*/
+        /*grid-template-areas:*/
+                /*"card-body"*/
+                /*"card-ody"*/
+                /*"card-body";*/
+        /*grid-template-columns: 1fr;*/
+    /*}*/
+
+    /* original style end======================= */
+    /* class to add/remove once I figure out best event handler for sticky header */
+    /*.hide-on-small {*/
+        /*display: none;*/
+    /*}*/
+
+    #welcome {
+        height: 50vh;
+    }
+
+    #welcome .container {
+        margin-top: 15vh;
+    }
+
+    #welcome h1 {
+        font-size: 3rem;
+    }
+
+    #welcome h2 {
+        font-size: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2.8em;
+    }
+
+    nav {
+        height: auto;
+        border-bottom: 0;
+    }
+    nav ul {
+        display: none;
+        height: auto;
+    }
+    nav li {
+        width: 100%;
+        float: left;
+        position: relative;
+    }
+    nav a {
+        text-align: left;
+        width: 100%;
+        text-indent: 25px;
+        background: #333;
+        border-bottom: 1px solid #555;
+    }
+    nav a:hover {
+        background: #444;
+        text-decoration: none;
+    }
+    nav a#openup:after {
+        content: "|||";
+        transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        /* IE 9 */
+        -webkit-transform: rotate(-90deg);
+        /* Safari and Chrome */
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        position: absolute;
+        right: 5px;
+        top: 20px;
+    }
+    nav a#openup {
+        display: block;
+        background-color: #333;
+        width: 100%;
+        position: relative;
+    }
+}
+.cf:before,
+.cf:after {
+    content: "";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    zoom: 1;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+
+/* @media screen and (max-width: 580px) {
+
+} */
