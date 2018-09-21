@@ -1,13 +1,139 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>All Events</title>
-</head>
-<body>
-    <h1>test!</h1>
-    <div th:each="event : ${events}">
-        <div th:text="${event.description}"></div>
+ <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>FAQ | Helping Hands</title>
+        <!--FontAwesome-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+
+        <!--Bootstrap-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+        <link rel="stylesheet" href="../../css/events/index.css" />
+    </head>
+    <body>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
+    <div class="container">
+
+        <section id="all-events">
+            <h2>Upcoming Events</h2>
+            <p class="lead">Find all the events you're able to volunteer for here!
+            </p>
+            <div id="events">
+                <div class="card event1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Event #1</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                        <p class="card-text">short description about event here</p>
+                        <a href="#" class="card-link">View More</a>
+                        <a href="#" class="card-link">View Org Profile</a>
+                    </div>
+                </div>
+                <div class="card event2" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Event #2</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                        <p class="card-text">short description about event here</p>
+                        <a href="#" class="card-link">View More</a>
+                        <a href="#" class="card-link">View Org Profile</a>
+                    </div>
+                </div>
+                <div class="card event3" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Event #3</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                        <p class="card-text">short description about event here</p>
+                        <a href="#" class="card-link">View More</a>
+                        <a href="#" class="card-link">View Org Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div id="events">
+                <div class="card event1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Event #1</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                        <p class="card-text">short description about event here</p>
+                        <a href="#" class="card-link">View More</a>
+                        <a href="#" class="card-link">View Org Profile</a>
+                    </div>
+                </div>
+                <div class="card event2" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Event #2</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                        <p class="card-text">short description about event here</p>
+                        <a href="#" class="card-link">View More</a>
+                        <a href="#" class="card-link">View Org Profile</a>
+                    </div>
+                </div>
+                <div class="card event3" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Event #3</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                        <p class="card-text">short description about event here</p>
+                        <a href="#" class="card-link">View More</a>
+                        <a href="#" class="card-link">View Org Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div id="events">
+                <div class="card event1" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Event #1</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                        <p class="card-text">short description about event here</p>
+                        <a href="#" class="card-link">View More</a>
+                        <a href="#" class="card-link">View Org Profile</a>
+                    </div>
+                </div>
+                <div class="card event2" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Event #2</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                        <p class="card-text">short description about event here</p>
+                        <a href="#" class="card-link">View More</a>
+                        <a href="#" class="card-link">View Org Profile</a>
+                    </div>
+                </div>
+                <div class="card event3" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Event #3</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                        <p class="card-text">short description about event here</p>
+                        <a href="#" class="card-link">View More</a>
+                        <a href="#" class="card-link">View Org Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <p class="leadEvents mb-2">Want to make a difference in your community?</p>
+                <button class="btn registerNow">
+                    <a href="/register">Create Account</a>
+                </button>
+            </div>
+        </section>
+
+        <br />
+
+        <!-- ====================  Footer Section ====================  -->
+
+        <footer>
+            <div class="container">
+                <div class="footer-cols">
+                    <div class="text-center">
+                        <a href="/">Home </a>
+                        <span>|</span>
+                        <a href="/faq">FAQ</a>
+                        <span>|</span>
+                        <a href="/about-team">The Team</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                HelpingHands Copyright &copy; 2018
+            </div>
+        </footer>
     </div>
+    <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>
