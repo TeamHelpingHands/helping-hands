@@ -12,11 +12,17 @@ public class Message {
     @GeneratedValue
     private long id;
 
-    @Column(columnDefinition = "TEXT")
-    private String message;
+    @Column(columnDefinition = "VARCHAR(255) default '<No Subject>'")
+    private String subject;
 
-    @Column(name = "date_created", nullable = false, columnDefinition = "TIMESTAMP")
-    private String dateCreated;
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String body;
+
+    @Column(name = "time_sent", nullable = false, columnDefinition = "TIMESTAMP")
+    private String timeSent;
+
+    @Column
+    private boolean opened = false;
 
     //relationships
 
@@ -27,4 +33,77 @@ public class Message {
     @ManyToOne
     @JoinColumn(name="receiver_id")
     private User receiver;
+
+    // ===== Constructors ===== \\
+
+    public Message(){}
+
+    public Message(String subject, String body, String timeSent, boolean opened, User sender, User receiver) {
+        this.subject = subject;
+        this.body = body;
+        this.timeSent = timeSent;
+        this.opened = opened;
+        this.sender = sender;
+        this.receiver = receiver;
+    }
+
+    // ===== Getters & Setters ===== \\
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public String getTimeSent() {
+        return timeSent;
+    }
+
+    public void setTimeSent(String timeSent) {
+        this.timeSent = timeSent;
+    }
+
+    public boolean isOpened() {
+        return opened;
+    }
+
+    public void setOpened(boolean opened) {
+        this.opened = opened;
+    }
+
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public User getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
+    }
+
 }
