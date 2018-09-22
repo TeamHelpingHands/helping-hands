@@ -25,3 +25,7 @@
 /.nb-gradle/
 
 src/main/resources/application.properties
+
+src/main/services/Config.java
+
+

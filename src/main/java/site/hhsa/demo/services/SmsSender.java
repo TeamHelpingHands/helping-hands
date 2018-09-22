@@ -10,14 +10,13 @@ import java.math.BigDecimal;
 
 public class SmsSender {
     // Find your Account Sid and Token at twilio.com/console
-    private final String ACCOUNT_SID = "AC0aab0858a7c9ff5624bbbc06e5afa9ed";
-    private final String AUTH_TOKEN = "f72c35ea6aa47a734b0cfab7fbb6b5a6";
+    Config config;
 
     public SmsSender (String eventMessage, String recieverNum) {
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        Twilio.init(config.getACCOUNT_SID(), config.getAUTH_TOKEN());
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber(recieverNum),
-                new com.twilio.type.PhoneNumber("+12109412256"),
+                new com.twilio.type.PhoneNumber(config.getPhn_num()),
                 eventMessage)
                 .create();
 

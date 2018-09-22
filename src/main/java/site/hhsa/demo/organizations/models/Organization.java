@@ -18,6 +18,9 @@ public class Organization {
     @Column(name = "org_name", nullable = false)
     private String orgName;
 
+    @Column(name="about_us", columnDefinition = "TEXT")
+    private String aboutUs;
+
     @Column(name="str_addr", nullable = false)
     private String strAddr;
 
@@ -66,6 +69,14 @@ public class Organization {
 
     public void setOrgName(String orgName) {
         this.orgName = orgName;
+    }
+
+    public String getAboutUs() {
+        return aboutUs;
+    }
+
+    public void setAboutUs(String aboutUs) {
+        this.aboutUs = aboutUs;
     }
 
     public String getStrAddr() {

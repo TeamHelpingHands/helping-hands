@@ -16,6 +16,9 @@ public class Event {
     @Column(nullable = false)
     private String description;
 
+    @Column(name="photo_url")
+    private String photoUrl;
+
     @Column(columnDefinition = "TIMESTAMP")
     private String dateTime;
 
@@ -98,4 +101,6 @@ public class Event {
     public void setOrganization(Organization organization) {
         this.org= organization;
     }
+
+
 }
