@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../css/index.css" />
 </head>
 <body>
+    <!-- ====================  Right-Side Nav ====================  -->
     <header>
         <nav class='cf'>
             <ul class='cf'>
@@ -33,6 +34,7 @@
             <a href='#' id='openup'>HH</a>
         </nav>
     </header>
+
     <!-- ===== Welcome Start ===== -->
     <div id="welcome">
         <div class="welcome-info">
@@ -40,16 +42,16 @@
                 <img id="hh-logo" class="mr-2" src="../img/hh-logo.png" />HelpingHands</h1>
             <p class="hideOnSmall">connecting organizations and volunteers around the globe.</p>
             <p class="registerPrompt mb-1">Don't have an account? Get involved now:</p>
-            <button class="btn w-25 mr-2 registerNow">
-                <a href="/register">Register</a>
-            </button>
+
+            <a href="/register"><button class="btn w-25 mr-2 registerNow">Register</button></a>
+
         </div>
         <br />
         <br />
         <br />
         <br />
     </div>
-
+    <!-- ====================  About HH ====================  -->
     <section id="about">
         <h2>About HH</h2>
         <p class="lead">HelpingHands was designed to help facilitate volunteer enrollment and participation for any given charitable event.
@@ -57,7 +59,7 @@
         get involved, and stay involved</p>
     </section>
 
-    <section id="past-events">
+    <section id="past-events" class="hideOnSmall">
         <h2>Past Events</h2>
         <p class="lead">Want to browse through previous events hosted by our partner organization
         </p>
@@ -92,9 +94,7 @@
         </div>
         <div class="text-center mt-3">
             <p class="leadEvents mb-2">Want to make a difference in your community?</p>
-            <button class="btn registerNow">
-                <a href="/register">Create Account</a>
-            </button>
+            <a href="/register"><button class="btn registerNow">Create Account</button></a>
         </div>
     </section>
 
@@ -116,14 +116,12 @@
         </div>
         <div class="text-center mt-3">
             <p class="leadEvents mb-2">Browse all participating orgs:</p>
-            <button class="btn registerNow">
-                <a href="/orgs/index">View More</a>
-            </button>
+            <a href="/orgs/index"><button class="btn registerNow">View More</button></a>
+
         </div>
     </section>
 
     <!-- ====================  Footer ====================  -->
-
     <footer>
         <div class="container">
             <div class="footer-cols">

@@ -1,14 +1,30 @@
+@import url("https://fonts.googleapis.com/css?family=Lato|Montserrat");
+
+/* color and transition variables */
+:root {
+    --primary-color: #ff7f00;
+    --primary-color-hover: #f8c537;
+    --secondary-color: #f4f4f4;
+    --secondary-color-hover: #011627;
+    --btn-color: #2ec4b6;
+    --easeOut: all 0.25s ease-out;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
 .org-main img {
     border-radius: 50%;
     height: 100px;
     width: 100px;
 }
 
-.admin-panel,
-button {
+.adminHeader a {
     display: grid;
     grid-gap: 5px;
     grid-template-columns: repeat(4, 1fr);
+    text-decoration: none;
 }
 .reports,
 img {
@@ -18,13 +34,30 @@ img {
     width: 100%;
 }
 
-/* mobile view */
+/* ============ buttons ============ */
+.adminBtn {
+    background-color: #2ec4b6;
+    color: white;
+}
+
+.adminBtn a {
+    text-decoration: none;
+}
+
+.adminBtn:hover {
+    background-color: #f8c537;
+    transition: var(--easeOut);
+}
+
+/* ============ mobile view ============ */
 @media screen and (max-width: 580px) {
     .org-main {
         text-align: center;
     }
 
-    .admin-panel {
+    .adminHeader a {
+        display: block;
+        width: 100%;
         grid-template-areas:
                 "button"
                 "button"
