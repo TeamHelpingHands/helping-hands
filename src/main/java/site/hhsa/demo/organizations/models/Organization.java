@@ -1,6 +1,7 @@
 package site.hhsa.demo.organizations.models;
 
 import site.hhsa.demo.users.models.User;
+import site.hhsa.demo.volunteers.models.FeedbackFromVols;
 import site.hhsa.demo.volunteers.models.Volunteer;
 
 import javax.persistence.*;
@@ -47,6 +48,9 @@ public class Organization {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "org")
     private List<FeedbackFromOrganization> orgFeedback;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "organization")
+    private List<FeedbackFromVols> volFeedback;
 
 
     // ===== Constructors ===== \\
