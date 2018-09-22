@@ -1,6 +1,7 @@
 package site.hhsa.demo.organizations.models;
 
 import site.hhsa.demo.users.models.User;
+import site.hhsa.demo.volunteers.models.Volunteer;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,6 +18,9 @@ public class Organization {
 
     @Column(name = "org_name", nullable = false)
     private String orgName;
+
+    @Column(name="about_us",columnDefinition = "TEXT")
+    private String aboutUs;
 
     @Column(name="str_addr", nullable = false)
     private String strAddr;
@@ -44,10 +48,33 @@ public class Organization {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "org")
     private List<FeedbackFromOrganization> orgFeedback;
 
+
     // ===== Constructors ===== \\
 
 
     public Organization() {
+    }
+
+    public Organization(String orgName, String aboutUs, String strAddr, String city, String state, String taxId) {
+        this.orgName = orgName;
+        this.aboutUs = aboutUs;
+        this.strAddr = strAddr;
+        this.city = city;
+        this.state = state;
+        this.taxId = taxId;
+    }
+
+    public Organization(String orgName, String aboutUs, String strAddr, String city, String state, String taxId, Boolean isValidated, User user, List<Event> events, List<FeedbackFromOrganization> orgFeedback) {
+        this.orgName = orgName;
+        this.aboutUs = aboutUs;
+        this.strAddr = strAddr;
+        this.city = city;
+        this.state = state;
+        this.taxId = taxId;
+        this.isValidated = isValidated;
+        this.user = user;
+        this.events = events;
+        this.orgFeedback = orgFeedback;
     }
 
     //getters  & setters
@@ -131,4 +158,14 @@ public class Organization {
     public void setOrgFeedback(List<FeedbackFromOrganization> orgFeedback) {
         this.orgFeedback = orgFeedback;
     }
+
+    public String getAboutUs() {
+        return aboutUs;
+    }
+
+    public void setAboutUs(String aboutUs) {
+        this.aboutUs = aboutUs;
+    }
+
+
 }
