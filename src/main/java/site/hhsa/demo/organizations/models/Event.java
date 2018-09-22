@@ -16,6 +16,9 @@ public class Event {
     @Column(nullable = false)
     private String description;
 
+    @Column(name="photo_url", columnDefinition = "TEXT")
+    private String photoUrl;
+
     @Column(columnDefinition = "TIMESTAMP")
     private String dateTime;
 
@@ -44,11 +47,13 @@ public class Event {
     public Event() {
     }
 
-    public Event(String description, String dateTime, String strAddr, String zipCode) {
+    public Event(String description, String photoUrl, String dateTime, String strAddr, String zipCode, Organization org) {
         this.description = description;
+        this.photoUrl = photoUrl;
         this.dateTime = dateTime;
         this.strAddr = strAddr;
         this.zipCode = zipCode;
+        this.org = org;
     }
 
     public long getId() {
@@ -97,5 +102,37 @@ public class Event {
 
     public void setOrganization(Organization organization) {
         this.org= organization;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    public Organization getOrg() {
+        return org;
+    }
+
+    public void setOrg(Organization org) {
+        this.org = org;
+    }
+
+    public List<FeedbackFromOrganization> getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(List<FeedbackFromOrganization> feedback) {
+        this.feedback = feedback;
+    }
+
+    public List<Volunteer> getVolunteers() {
+        return volunteers;
+    }
+
+    public void setVolunteers(List<Volunteer> volunteers) {
+        this.volunteers = volunteers;
     }
 }
