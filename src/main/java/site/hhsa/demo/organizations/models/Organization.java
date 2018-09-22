@@ -52,6 +52,14 @@ public class Organization {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "organization")
     private List<FeedbackFromVols> volFeedback;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "org_volunteers",
+            joinColumns = {@JoinColumn(name="volunteers")},
+            inverseJoinColumns = {@JoinColumn(name="orgs")}
+    )
+    private List<Volunteer> volunteers;
+
 
     // ===== Constructors ===== \\
 

@@ -38,6 +38,8 @@ public class Volunteer {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "volunteer")
     private List<FeedbackFromOrganization> orgFeedback;
 
+    @ManyToMany(mappedBy = "volunteers")
+    private List<Event> orgs;
 
     // ===== Constructors ===== \\
 
