@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table()
-public class feedbackFromVols {
+public class FeedbackFromVols {
 
     //columns
 
@@ -36,7 +36,7 @@ public class feedbackFromVols {
 
     //constructors
 
-    public feedbackFromVols() {
+    public FeedbackFromVols() {
     }
 
     //getters and setters

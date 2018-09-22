@@ -1,6 +1,7 @@
 package site.hhsa.demo.volunteers.models;
 
 import site.hhsa.demo.organizations.models.FeedbackFromOrganization;
+import site.hhsa.demo.organizations.models.Organization;
 import site.hhsa.demo.users.models.User;
 import site.hhsa.demo.organizations.models.Event;
 
@@ -38,8 +39,6 @@ public class Volunteer {
     private List<FeedbackFromOrganization> orgFeedback;
 
 
-
-
     // ===== Constructors ===== \\
 
 
@@ -54,6 +53,8 @@ public class Volunteer {
         this.events = events;
         this.orgFeedback = orgFeedback;
     }
+
+
 
     // getters & setters
 

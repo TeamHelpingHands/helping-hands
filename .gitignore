@@ -26,4 +26,5 @@
 
 src/main/resources/application.properties
 
-src/main/services/site.hhsa.demo.services.Config.java
+
+src/main/java/site/hhsa/demo/services/Config.java
