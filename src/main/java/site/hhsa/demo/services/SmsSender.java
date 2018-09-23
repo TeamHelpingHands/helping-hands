@@ -7,11 +7,11 @@ import com.twilio.type.PhoneNumber;
 import java.net.URI;
 import java.math.BigDecimal;
 
-public class smsSender {
+public class SmsSender {
     // Find your Account Sid and Token at twilio.com/console
     private Config config;
 
-    public smsSender(String recieverNum, String txtMessage) {
+    public void SmsSender(String recieverNum, String txtMessage) {
         Twilio.init(config.getACCOUNT_SID() , config.getAUTH_TOKEN());
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber("+"+recieverNum),

@@ -52,6 +52,14 @@ public class Organization {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "organization")
     private List<FeedbackFromVols> volFeedback;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "likes",
+            joinColumns = {@JoinColumn(name="followers")},
+            inverseJoinColumns = {@JoinColumn(name="favorites")}
+    )
+    private List<Volunteer> followers;
+
 
     // ===== Constructors ===== \\
 
@@ -68,7 +76,7 @@ public class Organization {
         this.taxId = taxId;
     }
 
-    public Organization(String orgName, String aboutUs, String strAddr, String city, String state, String taxId, Boolean isValidated, User user, List<Event> events, List<FeedbackFromOrganization> orgFeedback) {
+    public Organization(String orgName, String aboutUs, String strAddr, String city, String state, String taxId, Boolean isValidated, User user, List<Event> events, List<FeedbackFromOrganization> orgFeedback, List<FeedbackFromVols> volFeedback, List<Volunteer> followers) {
         this.orgName = orgName;
         this.aboutUs = aboutUs;
         this.strAddr = strAddr;
@@ -79,6 +87,8 @@ public class Organization {
         this.user = user;
         this.events = events;
         this.orgFeedback = orgFeedback;
+        this.volFeedback = volFeedback;
+        this.followers = followers;
     }
 
     //getters  & setters
@@ -171,5 +181,19 @@ public class Organization {
         this.aboutUs = aboutUs;
     }
 
+    public List<FeedbackFromVols> getVolFeedback() {
+        return volFeedback;
+    }
 
+    public void setVolFeedback(List<FeedbackFromVols> volFeedback) {
+        this.volFeedback = volFeedback;
+    }
+
+    public List<Volunteer> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<Volunteer> followers) {
+        this.followers = followers;
+    }
 }
