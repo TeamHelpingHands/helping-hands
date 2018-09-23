@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import site.hhsa.demo.organizations.models.Event;
 import site.hhsa.demo.organizations.models.Organization;
 import site.hhsa.demo.organizations.repositories.CategoryRepo;
+import site.hhsa.demo.organizations.repositories.EventRepo;
 import site.hhsa.demo.organizations.repositories.OrgRepo;
+import site.hhsa.demo.services.MassMessenger;
 import site.hhsa.demo.users.models.User;
 import site.hhsa.demo.users.repositories.UserRepo;
 
@@ -18,14 +20,16 @@ import java.util.Date;
 
 @Controller
 public class OrgController {
+    EventRepo eventDao;
     UserRepo userDao;
     OrgRepo orgDao;
     CategoryRepo categoryDao;
 
-    public OrgController(OrgRepo orgDao, CategoryRepo categoryDao, UserRepo userDao) {
+    public OrgController(OrgRepo orgDao, CategoryRepo categoryDao, UserRepo userDao, EventRepo eventDao) {
         this.orgDao = orgDao;
         this.categoryDao = categoryDao;
         this.userDao = userDao;
+        this.eventDao = eventDao;
     }
 
     @GetMapping("/orgs")
@@ -73,11 +77,29 @@ public class OrgController {
         return "organizations/create-event";
     }
 
+    @PostMapping("orgs/{org_name/events/create")
+    public String orgInsertEvent(@PathVariable String org_name, @ModelAttribute Event newEvent){
+        eventDao.save(newEvent);
+        Organization org = orgDao.findOrganizationByOrgName(org_name);
+        new MassMessenger(org.getFollowers(), "One of your liked liked organizations has posted an event! https://www.hhsa.com/"+org_name+"/events");
+        return "redirect:/organizations/dashboard";
+    }
+
     @GetMapping("orgs/{org_name}/events")
     public String orgEvents(@PathVariable String org_name, Model model){
         Organization myOrg = orgDao.findOrganizationByOrgName(org_name);
         model.addAttribute("myOrg", myOrg);
         return "events/show";
+    }
+    @PostMapping("{username}/orgs/{org_name}/follow")
+    public String orgAddFollower(@PathVariable String username, @PathVariable String org_name){
+        if(userDao.findByUsername(username).getVolunteer().getFavorites().contains(orgDao.findOrganizationByOrgName(org_name))){
+            userDao.findByUsername(username).getVolunteer().getFavorites().remove(orgDao.findOrganizationByOrgName(org_name));
+        }else{
+            userDao.findByUsername(username).getVolunteer().getFavorites().add(orgDao.findOrganizationByOrgName(org_name));
+        }
+        orgDao.save(orgDao.findOrganizationByOrgName(org_name));
+        return "redirect:/orgs/{org_name}";
     }
 
 // ======== Listener for org to create event and insert into database ===== \\
