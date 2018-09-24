@@ -1,15 +1,15 @@
 use hh_db;
 
 # users
-INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('tj', 'english', TRUE, FALSE, 'codeup1', '2101111111', 'tjenglish', 'tjenglish@codeup.com', '78233');
-INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('vince', 'lewis', TRUE, FALSE, 'codeup1', '2101111111', 'vlewis', 'vlewis@codeup.com', '78205');
-INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('mykel', 'kovar', FALSE, TRUE, 'codeup1', '2101111111', 'mkovar', 'mkovar@codeup.com', '78111');
-INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('lisa', 'rodriguez', FALSE, FALSE, 'codeup1', '2101111111', 'lrod', 'lrod@codeup.com', '78240');
-INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('sponge', 'bob', FALSE, FALSE, 'codeup1', '222222222', 'sbob', 'sbob@bbottom.com', '58576');
-INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('squid', 'ward', FALSE, FALSE, 'codeup1', '222222222', 'sward', 'sward@bbottom.com', '58576');
-INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('patrick', 'starfish', FALSE, FALSE, 'codeup1', '222222222', 'pstarfish', 'pstarfish@bbottom.com', '58576');
-INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('sandy', 'squirrel', FALSE, FALSE, 'codeup1', '222222222', 'ssquirrel', 'ssquirrel@bbottom.com', '58576');
-INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('mr', 'crabs', FALSE, FALSE, 'codeup1', '222222222', 'mcrabs', 'mrcrabs@bbbottom.com', '58576');
+INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('tj', 'english', TRUE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111111', 'tjenglish', 'tjenglish@codeup.com', '78233');
+INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('vince', 'lewis', TRUE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111112', 'vlewis', 'vlewis@codeup.com', '78205');
+INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('mykel', 'kovar', FALSE, TRUE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111113', 'mkovar', 'mkovar@codeup.com', '78111');
+INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('lisa', 'rodriguez', FALSE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111114', 'lrod', 'lrod@codeup.com', '78240');
+INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('sponge', 'bob', FALSE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111115', 'sbob', 'sbob@bbottom.com', '58576');
+INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('squid', 'ward', FALSE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111116', 'sward', 'sward@bbottom.com', '58576');
+INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('patrick', 'starfish', FALSE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111117', 'pstarfish', 'pstarfish@bbottom.com', '58576');
+INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('sandy', 'squirrel', FALSE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111118', 'ssquirrel', 'ssquirrel@bbottom.com', '58576');
+INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('mr', 'crabs', FALSE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111119', 'mcrabs', 'mrcrabs@bbbottom.com', '58576');
 
 
 #organizations --hard coded user_id
@@ -156,8 +156,8 @@ INSERT INTO feedback_from_orgs (date_created,did_attend,feedback,flags,rating) v
 
 
 # volunteers
-INSERT INTO volunteers (bio, is_suspended) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE);
-INSERT INTO volunteers (bio, is_suspended) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE);
-INSERT INTO volunteers (bio, is_suspended) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE);
-INSERT INTO volunteers (bio, is_suspended) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE);
-INSERT INTO volunteers (bio, is_suspended) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE);
+INSERT INTO volunteers (bio, is_suspended) Values('Anything I can do to give back to the community drives me in my everyday life.', FALSE);
+INSERT INTO volunteers (bio, is_suspended) Values('There was a time in my life I needed help and this is my way to give back.', FALSE);
+INSERT INTO volunteers (bio, is_suspended) Values('I enjoy helping people.', FALSE);
+INSERT INTO volunteers (bio, is_suspended) Values('I love volunteering at running events.  It keeps me active.', FALSE);
+INSERT INTO volunteers (bio, is_suspended) Values('Anytime there is a need for volunteers at my local soup kitchen I am there!', FALSE);
