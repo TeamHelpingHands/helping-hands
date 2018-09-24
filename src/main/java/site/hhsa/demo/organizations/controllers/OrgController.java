@@ -15,7 +15,6 @@ import site.hhsa.demo.organizations.repositories.OrgRepo;
 import site.hhsa.demo.services.MassMessenger;
 import site.hhsa.demo.users.models.User;
 import site.hhsa.demo.users.repositories.UserRepo;
-import sun.plugin.liveconnect.SecurityContextHelper;
 
 @Controller
 public class OrgController {

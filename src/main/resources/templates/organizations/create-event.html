@@ -12,7 +12,7 @@
         <h1>Create Your Event Here</h1>
 
 
-        <form th:action="@{/orgs/{org_name}/events/create}" method="POST" th:object="${newEvent}">
+        <form th:action="'/orgs/'+${myOrg.getOrgName()}+'/events/create'" method="POST" th:object="${newEvent}">
 
             <!--<label for="orgId">-->
                 <!--&lt;!&ndash;<input id="orgId" class="form-control" type="hidden" th:field="*{}" />&ndash;&gt;-->
