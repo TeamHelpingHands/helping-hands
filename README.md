@@ -62,7 +62,7 @@
     - [ ] Sends email verification after submitting registration form
     - [x] Forwards to `Dashboard`
   * Login
-    - [ ] `Username` and `Password`
+    - [x] `Username` and `Password`
     - [ ] Verifies username exists
     - [ ] Verifies password matches
     - [ ] Forwards to `Dashboard`
