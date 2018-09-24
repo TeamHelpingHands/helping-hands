@@ -16,8 +16,8 @@ public class Event {
     @Column(nullable = false)
     private String description;
 
-    @Column(name="photo_url", columnDefinition = "TEXT")
-    private String photoUrl;
+    @Column(name="event_name")
+    private String eventName;
 
     @Column(columnDefinition = "TIMESTAMP")
     private String dateTime;
@@ -47,9 +47,9 @@ public class Event {
     public Event() {
     }
 
-    public Event(String description, String photoUrl, String dateTime, String strAddr, String zipCode, Organization org) {
+    public Event(String description, String eventName, String dateTime, String strAddr, String zipCode, Organization org) {
         this.description = description;
-        this.photoUrl = photoUrl;
+        this.eventName = eventName;
         this.dateTime = dateTime;
         this.strAddr = strAddr;
         this.zipCode = zipCode;
@@ -104,12 +104,12 @@ public class Event {
         this.org= organization;
     }
 
-    public String getPhotoUrl() {
-        return photoUrl;
+    public String getEventName() {
+        return eventName;
     }
 
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
     public Organization getOrg() {
