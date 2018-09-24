@@ -1,6 +1,5 @@
 package site.hhsa.demo.organizations.controllers;
 
-import groovy.lang.ObjectRange;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +14,6 @@ import site.hhsa.demo.organizations.repositories.OrgRepo;
 import site.hhsa.demo.services.MassMessenger;
 import site.hhsa.demo.users.models.User;
 import site.hhsa.demo.users.repositories.UserRepo;
-
-import java.util.Date;
 
 @Controller
 public class OrgController {
@@ -89,8 +86,14 @@ public class OrgController {
     public String orgEvents(@PathVariable String org_name, Model model){
         Organization myOrg = orgDao.findOrganizationByOrgName(org_name);
         model.addAttribute("myOrg", myOrg);
-        return "events/show";
+        return "events/orgs-index";
     }
+    @GetMapping("/orgs/{org_name}/event/{id}")
+    public String orgEvents(@PathVariable String org_name, @PathVariable long id, Model model){
+        model.addAttribute("event", eventDao.findOne(id));
+        return "events/show-event";
+    }
+
     @PostMapping("{username}/orgs/{org_name}/follow")
     public String orgAddFollower(@PathVariable String username, @PathVariable String org_name){
         if(userDao.findByUsername(username).getVolunteer().getFavorites().contains(orgDao.findOrganizationByOrgName(org_name))){
