@@ -1,5 +1,6 @@
 package site.hhsa.demo.volunteers.controllers;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +45,7 @@ public class VolunteerController {
 
     @GetMapping("/vols/{username}/dash")
     public String volProfile(@PathVariable String username, Model model) {
-        User currentUser = userDao.findByUsername("tenglishjr");
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Message> messages = messageDao.findAllByReceiver(currentUser);
         int newMessagesCount = 0;
         for (Message message : messages) {
@@ -54,7 +55,7 @@ public class VolunteerController {
             }
         }
         model.addAttribute("newMessageCount", newMessagesCount);
-        model.addAttribute("user", currentUser);
+        model.addAttribute("currentUser", currentUser);
         model.addAttribute("events", eventDao.findAll());
         return "volunteers/dashboard";
     }
