@@ -23,3 +23,16 @@ label {
     width: 100%;
     grid-template-columns: 1fr;
 }
+
+.headerText {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9rem;
+}
+
+.formHeader {
+    font-family: "Lato", sans-serif;
+}
+
+.bioHeader {
+    font-size: 1rem;
+}
