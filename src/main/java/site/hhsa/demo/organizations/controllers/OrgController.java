@@ -55,7 +55,6 @@ public class OrgController {
     @GetMapping("/{username}/orgs/register")
     public String OrgNew(@PathVariable String username, Model model){
         User user = userDao.findByUsername(username);
-//        user.setOrganization(new Organization());
         model.addAttribute("user", user);
         return "organizations/register";
     }
@@ -64,7 +63,7 @@ public class OrgController {
     public String OrgCreate(@ModelAttribute User user,@PathVariable String username, Model model){
         user.getOrganization().setUser(userDao.findByUsername(username));
         orgDao.save(user.getOrganization());
-        return "redirect:/orgs/"+ user.getOrganization().getOrgName()+"/dashboard";
+        return "redirect:/login";
     }
 
     @GetMapping("orgs/{org_name}/events/create")
