@@ -5,11 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import site.hhsa.demo.organizations.models.Event;
+import site.hhsa.demo.organizations.models.FeedbackFromOrganization;
 import site.hhsa.demo.organizations.repositories.EventRepo;
 import site.hhsa.demo.users.models.Message;
 import site.hhsa.demo.users.models.User;
 import site.hhsa.demo.users.repositories.MessageRepo;
 import site.hhsa.demo.users.repositories.UserRepo;
+import site.hhsa.demo.volunteers.repositories.FeedbackFromOrgRepo;
 import site.hhsa.demo.volunteers.repositories.VolunteerRepo;
 
 import java.util.ArrayList;
@@ -22,12 +24,14 @@ public class VolunteerController {
     VolunteerRepo volDao;
     EventRepo eventDao;
     MessageRepo messageDao;
+    FeedbackFromOrgRepo feedbackFromOrgDao;
 
-    public VolunteerController(UserRepo userDao, VolunteerRepo volDao, EventRepo eventDao, MessageRepo messageDao) {
+    public VolunteerController(UserRepo userDao, VolunteerRepo volDao, EventRepo eventDao, MessageRepo messageDao, FeedbackFromOrgRepo feedbackFromOrgDao) {
         this.userDao = userDao;
         this.volDao = volDao;
         this.eventDao = eventDao;
         this.messageDao = messageDao;
+        this.feedbackFromOrgDao = feedbackFromOrgDao;
     }
 
     @GetMapping("/vols/{username}/register")
@@ -46,8 +50,20 @@ public class VolunteerController {
 
     @GetMapping("/vols/dash")
     public String volProfile(Model model) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
         List<Message> messages = messageDao.findAllByReceiver(currentUser);
+        List<FeedbackFromOrganization> feedbacks = feedbackFromOrgDao.findAllByVolunteer(currentUser.getVolunteer());
+        int noOfEventsEnrolled = 0;
+        int noOfDidAttend = 0;
+
+        for (FeedbackFromOrganization feedback: feedbacks) {
+            if (feedback.isDidAttend()) {
+                noOfDidAttend++;
+            }
+            noOfEventsEnrolled++;
+        }
+
         int newMessagesCount = 0;
         for (Message message : messages) {
             if (!message.isOpened()) {
@@ -55,6 +71,8 @@ public class VolunteerController {
 
             }
         }
+        model.addAttribute("noEventsEnrolled", noOfEventsEnrolled);
+        model.addAttribute("noOfDidAttend", noOfDidAttend);
         model.addAttribute("newMessageCount", newMessagesCount);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("events", eventDao.findAll());

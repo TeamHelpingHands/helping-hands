@@ -19,20 +19,16 @@ public class UserController {
         this.userDao = userDao;
     }
 
-//    @GetMapping("/{org_name}/create/event")
-//    private String userCreateEvent(@PathVariable String org_name, Model viewModel, @ModelAttribute UserRepo userDao){
-//        viewModel.addAttribute("org_name", userDao);
-//
-//
-//        return "organizations/dashboard";
-//    }
     @GetMapping("/home")
-    @ResponseBody
     public String test(){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userDao.findByUsername(user.getUsername());
-        return currentUser.getOrganization().getOrgName();
+        if (currentUser.isOrg()) {
+            return "redirect:/orgs/"+currentUser.getOrganization().getOrgName()+"/dashboard";
+        } else {
+            return "redirect:/vols/dash";
+        }
     }
 
 
