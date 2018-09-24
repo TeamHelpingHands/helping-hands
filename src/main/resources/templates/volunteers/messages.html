@@ -8,42 +8,149 @@
     <nav th:replace="fragments/navbar :: navbar"></nav>
 
     <div class="container">
-        <h1>Messages</h1>
+        <h1 class="mt-3">Messages</h1>
         <a th:href="'/vols/'+${currentUser.username}+'/dash'" class="btn btn-primary btn-sm">Back to Dashboard</a>
         <hr class="mb-2" />
+        <hr class="mb-5" />
 
-        <th:block th:if="${noOfMessages == 0}">
-            <div class="row my-4">
-                <h4>No messages</h4>
-            </div>
+        <th:block th:if="${deleted != null}">
+            <div class="alert alert-info" role="alert" th:text="${deleted}"></div>
         </th:block>
-        <th:block th:if="${noOfMessages != 0}">
-            <div class="row mt-3" th:each="message : ${messages}">
-                <div class="row">
-                    <div class="col-6">
-                        <h6 th:text="'From: ' + ${message.getSender().getUsername()}"></h6>
+        <th:block th:if="${messageSent != null}">
+            <div class="alert alert-success" role="alert" th:text="${messageSent}"></div>
+        </th:block>
+
+        <ul class="nav nav-tabs" id="messagesTabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="inbox-tab" data-toggle="tab" href="#inboxPane" role="tab" aria-controls="inbox" aria-selected="true">Inbox <span class="badge badge-dark" th:text="${newMessages}"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="sent-tab" data-toggle="tab" href="#sentPane" role="tab" aria-controls="sent" aria-selected="false">Sent</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="inboxPane" role="tabpanel" aria-labelledby="inbox-tab">
+                <h3 class="mt-3 mb-4">Received Messages</h3>
+                <th:block th:if="${noOfMessagesInbox == 0}">
+                    <div class="row my-4">
+                        <h5>No messages</h5>
                     </div>
-                    <div class="col-6">
-                        <small class="text-muted" th:text="'Sent: ' + ${message.getTimeSent()}"></small>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-3">
-                        <div class="row">
-                            <p class="mb-2"><strong>Subject: </strong></p>
-                            <p class="mb-2"><strong>Message: </strong></p>
+                </th:block>
+                <th:block th:if="${noOfMessagesInbox != 0}">
+                    <div class="row mt-3" th:each="message : ${inboxMessages}" style="border-bottom: 3px lightgrey double;">
+                        <div class="col-2 d-flex align-items-center text-center">
+                            <p class="text-muted mt-0" th:text="${message.getTimeSent().substring(0,10)}"></p>
+                        </div>
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-12">
+                                    <a th:href="'/vols/'+${message.getSender().getUsername()}+'/profile'"><h6 class="mb-2" style="font-weight: 800; font-size: 1.6rem;" th:text="${message.getSender().getUsername()}"></h6></a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="row">
+                                        <p class="col-12 mb-2"><strong>Subject: </strong></p>
+                                        <p class="col-12 mb-2"><strong>Message: </strong></p>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="row">
+                                        <p class="col-12 mb-2" th:text="${message.getSubject()}"></p>
+                                        <p class="col-12 mb-2" th:text="${message.getBody()}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-warning btn-sm mb-2" id="reply" data-toggle="modal" th:attr="data-target='#reply'+${message.getId()}">Reply</button>
+                            <br />
+                            <form th:action="'/vols/'+${currentUser.getUsername()}+'/messages'" method="POST">
+                                <input type="hidden" name="id" th:value="${message.id}" />
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
+
+                        <!--REPLY MODAL-->
+                        <div class="modal fade" th:id="'reply'+${message.getId()}" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="replyModalLabel" th:text="'Replying to ' + ${message.getSender().getUsername()}"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form action="/vols/message/reply" method="POST">
+                                        <div class="modal-body">
+                                            <input type="hidden" name="receiverId" th:value="${message.getSender().getId()}" />
+                                            <input type="hidden" name="senderId" th:value="${message.getReceiver().getId()}" />
+
+                                            <div class="form-group">
+                                                <label for="subject">Subject</label>
+                                                <input class="form-control" type="text" id="subject" placeholder="Enter subject..." name="subject" th:value="'RE: ' + ${message.getSubject()}"/>
+                                            </div>
+                                            <div class="row my-3">
+                                                <div class="col-3">
+                                                    <p><strong>Previous Message: </strong></p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <p class="text-muted" th:text="${message.getBody()}"></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="body">Message Body</label>
+                                                <textarea class="form-control" id="body" name="body" rows="10" placeholder="Enter your message..."></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Send</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-9">
-                        <div class="row">
-                            <p class="mb-2" th:text="${message.getSubject()}"></p>
-                            <p class="mb-2" th:text="${message.getBody()}"></p>
+                </th:block>
+            </div>
+            <div class="tab-pane fade" id="sentPane" role="tabpanel" aria-labelledby="sent-tab">
+                <h3 class="mt-3 mb-4">Sent Messages</h3>
+                <th:block th:if="${noOfMessagesSent == 0}">
+                    <div class="row my-4">
+                        <h5>No messages</h5>
+                    </div>
+                </th:block>
+                <th:block th:if="${noOfMessagesSent != 0}">
+                    <div class="row mt-3" th:each="message : ${sentMessages}" style="border-bottom: 3px lightgrey double;">
+                        <div class="col-2 d-flex align-items-center text-center">
+                            <p class="text-muted mt-0" th:text="${message.getTimeSent().substring(0,10)}"></p>
+                        </div>
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="col-12">
+                                    <a th:href="'/vols/'+${message.getReceiver().getUsername()+'/profile'}"><h6 class="mb-2" style="font-weight: 800; font-size: 1.6rem;" th:text="${message.getReceiver().getUsername()}"></h6></a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="row">
+                                        <p class="col-12 mb-2"><strong>Subject: </strong></p>
+                                        <p class="col-12 mb-2"><strong>Message: </strong></p>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="row">
+                                        <p class="col-12 mb-2" th:text="${message.getSubject()}"></p>
+                                        <p class="col-12 mb-2" th:text="${message.getBody()}"></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <hr />
+                </th:block>
             </div>
-        </th:block>
+        </div>
 
     </div>
 

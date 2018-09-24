@@ -24,6 +24,9 @@ public class Message {
     @Column
     private boolean opened = false;
 
+    @Column(name = "receiver_del")
+    private boolean receiverDel = false;
+
     //relationships
 
     @ManyToOne
@@ -38,11 +41,12 @@ public class Message {
 
     public Message(){}
 
-    public Message(String subject, String body, String timeSent, boolean opened, User sender, User receiver) {
+    public Message(String subject, String body, String timeSent, boolean opened, boolean receiverDel, User sender, User receiver) {
         this.subject = subject;
         this.body = body;
         this.timeSent = timeSent;
         this.opened = opened;
+        this.receiverDel = receiverDel;
         this.sender = sender;
         this.receiver = receiver;
     }
@@ -106,4 +110,11 @@ public class Message {
         this.receiver = receiver;
     }
 
+    public boolean isReceiverDel() {
+        return receiverDel;
+    }
+
+    public void setReceiverDel(boolean receiverDel) {
+        this.receiverDel = receiverDel;
+    }
 }

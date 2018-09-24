@@ -6,33 +6,23 @@
 </head>
 <body>
 <th:block th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="/">HelpingHands</a>
         <!--events should not be shown to unregistered/not signed users-->
-        <a class="navbar-brand" href="/events">Events</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="navbar-nav mr-auto">
+            <a class="nav-item nav-link" href="/events">Events</a>
+        </div>
+
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        //Username//
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">View Profile</a>
-                        <a class="dropdown-item" href="#">Edit Profile</a>
-                        <a class="dropdown-item" href="/posts/create">Create a Post</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Logout</a>
-                    </div>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" th:href="'/vols/'+${currentUser.getUsername()}+'/profile'" th:text="${currentUser.getUsername()}" style="border-right: 2px double #aaa6a2;"></a>
+                <a class="nav-item nav-link" th:href="'/vols/'+${currentUser.getUsername()}+'/dash'">Dashboard</a>
+                <a class="nav-item nav-link" th:href="'/vols/'+${currentUser.getUsername()}+'/profile'">Profile</a>
+                <a class="nav-item nav-link" th:href="'/vols/'+${currentUser.getUsername()}+'/messages'">Inbox</a>
+            </div>
         </div>
     </nav>
 </th:block>
