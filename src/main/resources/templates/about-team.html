@@ -1,43 +1,134 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8" />
-    <title>FAQ | Helping Hands</title>
-    <!--FontAwesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <title>Register | Volunteers | Helping Hands</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+          crossorigin="anonymous" />
 
     <!--Bootstrap-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="../../css/team.css" />
 </head>
 <body>
-<nav th:replace="fragments/navbar :: navbar"></nav>
-<div class="container">
+    <nav th:replace="fragments/navbar :: navbar"></nav>
 
-    <h1> Brought to you by:</h1>
-    <h1>TJ</h1>
-    <h1>Vince</h1>
-    <h1>Lisa</h1>
-    <h1>Mykel</h1>
+        <!-- ====================  About Team ==================== -->
+        <section id="team" class="section">
+            <div class="container">
+                <h2 class="section-head">About The Team</h2>
+                <p class="lead">The people behind HelpingHands
+                </p>
+                <hr />
+                <div class="grid-profile">
+                    <div class="profiles-left-side">
 
+                        <!-- =================  tj profile ================= -->
+                        <div id="tj mb-5">
+                            <div class="tjPic teamImg"></div>
+                            <h4 class="mb-1"> - TJ English - </h4>
+                            <div id="icons">
+                                <a href="mailto:timothy.english.jr@gmail.com">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/tenglishjr" target="_#">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://www.github.com/tenglishjr">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="tel:210-683-3627">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </a>
+                            </div>
+                        </div>
 
-    <!-- ====================  Footer Section ====================  -->
+                        <!-- ================= lisa profile ================= -->
+                        <div id="lisa">
+                            <div class="lisaPic teamImg"></div>
+                            <h4 class="mb-1"> - Lisa Rodriguez- </h4>
+                            <div id="icons">
+                                <a href="mailto:lisa.rodriguez257@gmail.com">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/lisa-rodriguez/" target="_#">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://github.com/RodriguezL75">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="tel:210-683-3627">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profiles-right-side">
 
-    <footer>
-        <div class="container">
-            <div class="footer-cols">
-                <div class="text-center">
-                    <a href="/">Home </a>
-                    <span>|</span>
-                    <a href="/faq">FAQ</a>
+                        <!-- ================= vince profile ================= -->
+                        <div id="vince mb-5">
+                            <div class="vincePic teamImg"></div>
+                            <h4 class="mb-1"> - Vincent Lewis - </h4>
+                            <div id="icons">
+                                <a href="mailto:vincent.sean.lewis@gmail.com">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/lewis-vincent/" target="_#">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://github.com/vlewisGH">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="tel:210-683-3627">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- ================= mykel profile ================= -->
+                        <div id="mykel">
+                            <div class="mykelPic teamImg"></div>
+                            <h4 class="mb-1"> - Mykel Kovar - </h4>
+                            <div id="icons">
+                                <a href="mailto:mykelkovar@gmail.com">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/mykel-kovar" target="_#">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://github.com/mkovar52">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="tel:210-683-3627">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="footer-bottom text-center">
-            HelpingHands Copyright &copy; 2018
-        </div>
-    </footer>
-</div>
-<script th:replace="fragments/scripts :: scripts"></script>
+        </section>
+
+        <!-- ====================  Footer Section ====================  -->
+        <footer>
+            <div class="container mt-5">
+                <div class="footer-cols">
+                    <div class="text-center">
+                        <a href="/">Home </a>
+                        <span>|</span>
+                        <a href="/faq">FAQ</a>
+                        <span>|</span>
+                        <a href="/register">Register</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom text-center p-2">
+                HelpingHands Copyright &copy; 2018
+            </div>
+        </footer>
+    <script th:replace="fragments/scripts :: scripts"></script>
 </body>
+
 </html>

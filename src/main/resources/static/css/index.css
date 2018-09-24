@@ -46,9 +46,13 @@ img {
     background-color: #2ec4b6;
 }
 
+button {
+    color: white;
+}
+
 .registerNow a {
     text-decoration: none;
-    color: white;
+    /*color: white;*/
 }
 
 .registerNow:hover {
@@ -250,6 +254,7 @@ nav a#openup {
     }
     nav a {
         text-align: left;
+        color: var(--btn-color);
         width: 100%;
         text-indent: 25px;
         background: #333;
@@ -258,6 +263,7 @@ nav a#openup {
     nav a:hover {
         background: #444;
         text-decoration: none;
+        color: var(--primary-color-hover);
     }
     nav a#openup:after {
         content: "|||";

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Single Event Page View</title>
+    <!--FontAwesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{/css/events/show-event.css}" />
+</head>
+<body>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
+        <div class="container">
+            <section id="single-event">
+                <h2 class="mt-5" th:text="'Event: ' + ${event.description}"></h2>
+                <p class="textSecondary">Interested in this event? Click 'volunteer' to send your info to the organization.
+                </p>
+                <div id="event">
+                    <div class="card eventInfo">
+                        <div class="card-body">
+                            <a th:href="'/orgs/'+${event.org.orgName}" th:text="${event.org.orgName}"></a>
+                            <!--<a th:href="'/orgs/'+${event.org.orgName}">(view profile)</a>-->
+                            <h6 class="textSecondary mb-2 text-muted" th:text="'Date/Time: ' + ${event.dateTime}"></h6>
+                            <p class="textSecondary text-left" th:text="'Street Address: ' +${event.strAddr}"></p>
+                            <p class="textSecondary text-left" th:text="'Zipcode: ' +${event.zipCode}"></p>
+                            <p class="card-text text-center mt-5 mb-0">Description:</p>
+                            <p class="textSecondary text-center mb-5 eventCategories" th:text="${event.description}+ ' this should have a lot more information to provide volunteers lorem  ipsum o provide volunteers lorem  ipsumo provide volunteers lorem  ipsumo provide volunteers lorem  ipsum'"></p>
+                            <div class="text-center">
+                                <a href="#" class="card-link">
+                                    <button>** Volunteer **</button>
+                                </a>
+                            </div>
+
+                            <!-- ====== embedded map to show location of event ===== -->
+                            <p class="card-text text-center mt-5 mb-5">Small Map of Location:</p>
+                            <div id="map-canvas"></div>
+                            <!-- MAP END -->
+
+                            <!-- ====== link options ===== -->
+                            <div class="text-center">
+                                <a th:href="'/orgs/'+ ${event.org.orgName} +'/events'" class="card-link">View All Events From This Organization</a>
+                            </div>
+
+                            <!-- ====== event categories ===== -->
+                            <div class="text-left mt-5 eventCategories hideOnSmall">
+                                <p class="card-text">
+                                    <em>Event Categories: sports, outdoors, church, mentor, etc</em>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <a href="/events">Back To All Events Page</a>
+                </div>
+            </section>
+
+            <!-- ====================  Footer Section ====================  -->
+            <footer class="p-5">
+                <div class="container">
+                    <div class="footer-cols">
+                        <div class="text-center">
+                            <a href="/">Home </a>
+                            <span>|</span>
+                            <a href="/faq">FAQ</a>
+                            <span>|</span>
+                            <a href="/about-team">The Team</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom text-center">
+                    HelpingHands Copyright &copy; 2018
+                </div>
+            </footer>
+        </div>
+    <script th:replace="fragments/scripts :: scripts"></script>
+</body>
+</html>
