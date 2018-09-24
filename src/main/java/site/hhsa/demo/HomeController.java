@@ -1,10 +1,14 @@
 package site.hhsa.demo;
 
+
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,16 +59,28 @@ public class HomeController {
         return "register";
     }
 
+    @GetMapping("/dash")
+    public String dashRedirect(Model model){
+
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", currentUser);
+
+        if (currentUser.isOrg()) {
+            return "redirect: /orgs/"+ currentUser.getOrganization().getOrgName()+"/dashboard";
+        }
+
+        return "/vols/dash";
+    }
+
     @PostMapping("/register")
     public String userRegister(@ModelAttribute User user, @RequestParam String isOrg, Model model) {
+
+        user.setOrg(Boolean.parseBoolean(isOrg));
+
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
-        authenticate(user);
-        if (user.isOrg()) {
-            return "redirect:/"+ user.getUsername()+"/orgs/register";
-        }
-        return "redirect:/vols/"+user.getUsername()+"/register";
+        return "redirect:/login";
     }
 
     private void authenticate(User user) {

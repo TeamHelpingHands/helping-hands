@@ -1,5 +1,6 @@
 package site.hhsa.demo.organizations.controllers;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import site.hhsa.demo.organizations.repositories.OrgRepo;
 import site.hhsa.demo.services.MassMessenger;
 import site.hhsa.demo.users.models.User;
 import site.hhsa.demo.users.repositories.UserRepo;
+import sun.plugin.liveconnect.SecurityContextHelper;
 
 @Controller
 public class OrgController {
@@ -74,12 +76,15 @@ public class OrgController {
         return "organizations/create-event";
     }
 
-    @PostMapping("orgs/{org_name/events/create")
+    @PostMapping("orgs/{org_name}/events/create")
     public String orgInsertEvent(@PathVariable String org_name, @ModelAttribute Event newEvent){
+
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Organization org = currentUser.getOrganization();
+        newEvent.setOrg(org);
         eventDao.save(newEvent);
-        Organization org = orgDao.findOrganizationByOrgName(org_name);
-        new MassMessenger(org.getFollowers(), "One of your liked liked organizations has posted an event! https://www.hhsa.com/"+org_name+"/events");
-        return "redirect:/organizations/dashboard";
+//        new MassMessenger(org.getFollowers(), "One of your liked liked organizations has posted an event! https://www.hhsa.com/"+org_name+"/events");
+        return "redirect:/events";
     }
 
     @GetMapping("orgs/{org_name}/events")
