@@ -1,8 +1,10 @@
 package site.hhsa.demo.volunteers.controllers;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import site.hhsa.demo.organizations.models.Event;
 import site.hhsa.demo.organizations.repositories.EventRepo;
 import site.hhsa.demo.users.models.Message;
 import site.hhsa.demo.users.models.User;
@@ -39,12 +41,12 @@ public class VolunteerController {
     public String volRegisterPost(@PathVariable String username, @ModelAttribute User user) {
         user.getVolunteer().setUser(userDao.findByUsername(username));
         volDao.save(user.getVolunteer());
-        return "redirect:/vols/"+user.getUsername()+"/dash";
+        return "redirect:/vols/dash";
     }
 
-    @GetMapping("/vols/{username}/dash")
-    public String volProfile(@PathVariable String username, Model model) {
-        User currentUser = userDao.findByUsername("tenglishjr");
+    @GetMapping("/vols/dash")
+    public String volProfile(Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Message> messages = messageDao.findAllByReceiver(currentUser);
         int newMessagesCount = 0;
         for (Message message : messages) {
@@ -54,14 +56,14 @@ public class VolunteerController {
             }
         }
         model.addAttribute("newMessageCount", newMessagesCount);
-        model.addAttribute("user", currentUser);
+        model.addAttribute("currentUser", currentUser);
         model.addAttribute("events", eventDao.findAll());
         return "volunteers/dashboard";
     }
 
-    @GetMapping("/vols/{username}/messages")
-    public String myMessages(@PathVariable String username, Model model) {
-        User currentUser = userDao.findByUsername(username);
+    @GetMapping("/vols/messages")
+    public String myMessages(Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Message> inboxMessages = messageDao.findAllByReceiver(currentUser);
         List<Message> sentMessages = messageDao.findAllBySender(currentUser);
         List<Message> delMessages = new ArrayList<>();
@@ -91,20 +93,16 @@ public class VolunteerController {
         return "volunteers/messages";
     }
 
-    @PostMapping("vols/{username}/messages")
-    public String deleteMessage(@PathVariable String username, @RequestParam String id, Model model) {
-        System.out.println("THIS IS THE ID YOURE LOOKING FOR:  " + id);
+    @PostMapping("vols/messages")
+    public String deleteMessage(@RequestParam String id, Model model) {
         Message message = messageDao.findOne(Long.parseLong(id));
-        System.out.println("LOOOOOOK HEREREERERERER: 1");
         message.setReceiverDel(true);
-        System.out.println("LOOOOOOOK HEREREERERERER: 2");
         messageDao.save(message);
-        System.out.println("LOOOOOOK HERERREREERRE: 3");
         model.addAttribute("deleted", "Message deleted.");
-        return "redirect:/vols/"+username+"/messages";
+        return "redirect:/vols/messages";
     }
 
-    @PostMapping("/vols/message/reply")
+    @PostMapping("/vols/messages/reply")
     public String messageReply(
             @ModelAttribute Message newReply,
             @RequestParam String receiverId,
@@ -112,20 +110,20 @@ public class VolunteerController {
             @RequestParam String subject,
             @RequestParam String body,
             Model model) {
-        User currentUser = userDao.findByUsername("tenglishjr");
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Message message = new Message();
         message.setSubject(subject);
         message.setBody(body);
         message.setReceiver(userDao.findOne(Long.parseLong(receiverId)));
-        message.setSender(userDao.findOne(Long.parseLong(senderId)));
+        message.setSender(currentUser);
         message.setOpened(false);
         message.setReceiverDel(false);
         messageDao.save(message);
         model.addAttribute("messageSent", "Message sent.");
-        return "redirect:/vols/"+currentUser.getUsername()+"/messages";
+        return "redirect:/vols/messages";
     }
 
-    @GetMapping("vols/{username}/profile")
+    @GetMapping("vols/{username}")
     public String showProfile(@PathVariable String username, Model model) {
         User currentUser = userDao.findByUsername("tenglishjr");
         User user = userDao.findByUsername(username);
@@ -135,14 +133,14 @@ public class VolunteerController {
         return "volunteers/profile";
     }
 
-    @PostMapping("vols/{username}/profile")
-    public String sendMessageVol(@PathVariable String username, @ModelAttribute Message message) {
-//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User currentUser = userDao.findByUsername("tenglishjr");
+    @PostMapping("vols/{username}")
+    public String sendMessageVol(@PathVariable String username, @ModelAttribute Message message, Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findByUsername(username);
         message.setSender(currentUser);
         message.setReceiver(user);
         messageDao.save(message);
-        return "redirect:/vols/"+username+"/profile";
+        model.addAttribute("messageSent", "Your message has been sent.");
+        return "redirect:/vols/"+username;
     }
 }
