@@ -1,5 +1,6 @@
 package site.hhsa.demo.users.repositories;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import site.hhsa.demo.users.models.Message;
@@ -11,5 +12,6 @@ import java.util.List;
 public interface MessageRepo extends CrudRepository<Message, Long> {
 
     List<Message> findAllByReceiver(User user);
+    List<Message> findAllBySender(User user);
 
 }
