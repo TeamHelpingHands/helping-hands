@@ -16,7 +16,7 @@
             <h3 class="headerText mt-3">Organization Registration - (continued)</h3>
 
             <div class="card mt-3 text-center">
-                <form th:action="@{/{username}/orgs/register(username=${user.getUsername()})}" th:method="POST" th:object="${user.organization}">
+                <form th:action="@{/{username}/orgs/register(username=${user.getUsername()})}" method="POST" th:object="${org}">
                     <div class="card-header">
                         <h1 class="formHeader">Complete Registration</h1>
                     </div>

@@ -1,6 +1,7 @@
 package site.hhsa.demo;
 
 
+import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -60,16 +61,20 @@ public class HomeController {
     }
 
     @GetMapping("/dash")
-    public String dashRedirect(Model model){
-
+    public String dashRedirect(){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("user", currentUser);
 
-        if (currentUser.isOrg()) {
-            return "redirect:/orgs/"+ currentUser.getOrganization().getOrgName()+"/dashboard";
+//        This is giving us problems...The logged-in user apparently
+//        has no Org associated with it, but if you look in your DB
+//        you will be able to see the Org was successfully created
+//        for that user...so what's up with that
+        System.out.println("THIS COMES UP NULL, FOR SOME REASON: " + currentUser.getOrganization());
+        if (currentUser.getOrganization() == null) {
+            return "redirect:/vols/dash";
+        } else {
+            return "redirect:/orgs/"+currentUser.getOrganization().getOrgName()+"/dashboard";
         }
 
-        return "redirect:/vols/dash";
     }
 
     @PostMapping("/register")
@@ -84,8 +89,9 @@ public class HomeController {
         System.out.println("IS THIS AN ORG????: " + user.isOrg());
         if (user.isOrg()) {
             return "redirect:/"+user.getUsername()+"/orgs/register";
+        } else {
+            return "redirect:/vols/" + user.getUsername() + "/register";
         }
-        return "redirect:/vols/"+user.getUsername()+"/register";
     }
 
     private void authenticate(User user) {
