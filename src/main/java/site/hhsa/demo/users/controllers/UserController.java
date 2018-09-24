@@ -3,9 +3,7 @@ package site.hhsa.demo.users.controllers;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import site.hhsa.demo.organizations.models.Organization;
 import site.hhsa.demo.organizations.repositories.EventRepo;
 import site.hhsa.demo.organizations.repositories.OrgRepo;
@@ -28,14 +26,13 @@ public class UserController {
 //
 //        return "organizations/dashboard";
 //    }
-
     @GetMapping("/home")
-    public String goToDash(){
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(currentUser.isOrg()){
-            return "/orgs/"+currentUser.getOrganization().getOrgName()+"/dashboard";
-        }
-        return "/vols/"+currentUser.getUsername()+"/dashboard";
+    @ResponseBody
+    public String test(){
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
+        return currentUser.getOrganization().getOrgName();
     }
 
 
