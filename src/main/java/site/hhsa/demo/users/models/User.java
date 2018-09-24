@@ -16,7 +16,7 @@ public class User {
     @GeneratedValue
     private long id;
 
-    @Column( nullable = false)
+    @Column( nullable = false, unique = true)
     private String email;
 
     @Column(name="first_name", nullable = false)
@@ -25,10 +25,10 @@ public class User {
     @Column(name="last_name", nullable = false)
     private String lastName;
 
-    @Column(name="phn_num", nullable = false)
+    @Column(name="phn_num", nullable = false, unique = true)
     private String phnNum;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable = false)
@@ -76,6 +76,13 @@ public class User {
 
 
     public User() {
+    }
+
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
     }
 
     public User(String email, String firstName, String lastName, String phnNum, String username, String password, String photoUrl, String zipcode, boolean isAdmin, boolean isOrg, String dateCreated, Organization organization, Volunteer volunteer, List<Category> categories, List<Message> sentMessages, List<Message> receivedMessaged, List<Report> reportsMade, List<Report> reportsReceived) {

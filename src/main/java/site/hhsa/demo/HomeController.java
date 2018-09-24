@@ -1,11 +1,9 @@
 package site.hhsa.demo;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import site.hhsa.demo.organizations.models.Organization;
 import site.hhsa.demo.organizations.repositories.OrgRepo;
 import site.hhsa.demo.users.models.User;
@@ -19,11 +17,13 @@ public class HomeController {
     UserRepo userDao;
     VolunteerRepo volDao;
     OrgRepo orgDao;
+    private PasswordEncoder passwordEncoder;
 
-    public HomeController(UserRepo userDao, VolunteerRepo volDao, OrgRepo orgDao) {
+    public HomeController(UserRepo userDao, VolunteerRepo volDao, OrgRepo orgDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.volDao = volDao;
         this.orgDao = orgDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/")
@@ -49,7 +49,8 @@ public class HomeController {
 
     @PostMapping("/register")
     public String userRegister(@ModelAttribute User user, @RequestParam String isOrg, Model model) {
-        user.setOrg(Boolean.parseBoolean(isOrg));
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
         userDao.save(user);
         if (user.isOrg()) {
             return "redirect:/"+ user.getUsername()+"/orgs/register";
