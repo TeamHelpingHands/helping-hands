@@ -1,5 +1,6 @@
 package site.hhsa.demo.users.controllers;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +21,21 @@ public class UserController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/{org_name}/create/event")
-    private String userCreateEvent(@PathVariable String org_name, Model viewModel, @ModelAttribute UserRepo userDao){
-        viewModel.addAttribute("org_name", userDao);
+//    @GetMapping("/{org_name}/create/event")
+//    private String userCreateEvent(@PathVariable String org_name, Model viewModel, @ModelAttribute UserRepo userDao){
+//        viewModel.addAttribute("org_name", userDao);
+//
+//
+//        return "organizations/dashboard";
+//    }
 
-
-        return "organizations/dashboard";
+    @GetMapping("/home")
+    public String goToDash(){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(currentUser.isOrg()){
+            return "/orgs/"+currentUser.getOrganization().getOrgName()+"/dashboard";
+        }
+        return "/vols/"+currentUser.getUsername()+"/dashboard";
     }
 
 

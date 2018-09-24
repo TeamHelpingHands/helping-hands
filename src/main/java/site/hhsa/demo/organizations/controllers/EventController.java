@@ -19,4 +19,10 @@ public class EventController {
         return "events/index";
     }
 
+    @GetMapping("/events/{event_id}")
+    private String eventsIndex(@PathVariable long event_id, Model model){
+        model.addAttribute("event", eventDao.findOne(event_id));
+        return "events/index";
+    }
+
 }
