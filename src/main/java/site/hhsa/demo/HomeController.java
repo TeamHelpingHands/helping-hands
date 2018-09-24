@@ -1,5 +1,6 @@
 package site.hhsa.demo;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,16 +47,4 @@ public class HomeController {
         model.addAttribute("user", new User());
         return "register";
     }
-
-    @PostMapping("/register")
-    public String userRegister(@ModelAttribute User user, @RequestParam String isOrg, Model model) {
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-        userDao.save(user);
-        if (user.isOrg()) {
-            return "redirect:/"+ user.getUsername()+"/orgs/register";
-        }
-        return "redirect:/vols/"+user.getUsername()+"/register";
-    }
-
 }

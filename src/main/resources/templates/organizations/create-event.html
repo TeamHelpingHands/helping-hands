@@ -11,54 +11,32 @@
     <div class="container">
         <h1>Create Your Event Here</h1>
 
-        <form action="/org/create/event" method="POST">
-            <div class="form-group">
-                <label for="eventName">
-                    Event Name:
-                    <input id="eventName" class="form-control" type="text"/>
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="date">
-                    Date:
-                    <input id="date" class="form-control" type="text" placeholder="MM-DD-YYYY"/>
-                </label>
-            </div>
+
+        <form th:action="@{/orgs/{org_name}/events/create}" method="POST" th:object="${newEvent}">
+
+            <!--<label for="orgId">-->
+                <!--&lt;!&ndash;<input id="orgId" class="form-control" type="hidden" th:field="*{}" />&ndash;&gt;-->
+            <!--</label>-->
             <div class="form-group">
                 <label for="strAddr">
                     Street Address:
-                    <input id="strAddr" class="form-control" type="text" />
+                    <input id="strAddr" class="form-control" type="text" th:field="*{strAddr}" />
                 </label>
             </div>
             <div class="form-group">
                 <label for="zipCode">
                     Zip Code:
-                    <input id="zipCode" class="form-control" type="text" />
+                    <input id="zipCode" class="form-control" type="text" th:field="*{zipCode}"   />
                 </label>
-            </div>
-            <div class="form-group">
-                Volunteers Needed:
-                <br />
-                <select class="custom-select custom-select-sm w-25">
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                    <option value="4">Four</option>
-                    <option value="5">Five</option>
-                    <option value="6">Six</option>
-                    <option value="8">8+</option>
-                </select>
             </div>
             <div class="form-group">
                 <label for="description">
                     Description: <br />
-                    <textarea class="form-control" id="description" rows="10" cols="30" placeholder="Include important event details here"></textarea>
+                    <textarea class="form-control" id="description" rows="10" cols="30" placeholder="Include important event details here" th:field="*{description}" ></textarea>
                 </label>
             </div>
             <button type="submit">Submit</button>
         </form>
-        <br />
-        <button><a href="/org/dashboard">Dashboard</a></button>
     </div>
 
 <script th:replace="fragments/scripts :: scripts"></script>
