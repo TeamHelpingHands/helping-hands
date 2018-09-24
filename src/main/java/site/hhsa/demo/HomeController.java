@@ -56,7 +56,7 @@ public class HomeController {
     }
 
     @PostMapping("/register")
-    public String userRegister(@ModelAttribute User user, @RequestParam String isOrg, Model model) {
+    public String userRegister(@ModelAttribute User user, Model model) {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
