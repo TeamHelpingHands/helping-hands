@@ -69,7 +69,7 @@ public class HomeController {
             return "redirect: /orgs/"+ currentUser.getOrganization().getOrgName()+"/dashboard";
         }
 
-        return "/vols/dash";
+        return "redirect: /vols/dash";
     }
 
     @PostMapping("/register")
