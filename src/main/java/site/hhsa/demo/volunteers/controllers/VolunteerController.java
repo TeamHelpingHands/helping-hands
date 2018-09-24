@@ -4,6 +4,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import site.hhsa.demo.organizations.models.Event;
 import site.hhsa.demo.organizations.repositories.EventRepo;
 import site.hhsa.demo.users.models.Message;
 import site.hhsa.demo.users.models.User;
@@ -55,7 +56,7 @@ public class VolunteerController {
             }
         }
         model.addAttribute("newMessageCount", newMessagesCount);
-        model.addAttribute("user", currentUser);
+        model.addAttribute("currentUser", currentUser);
         model.addAttribute("events", eventDao.findAll());
         return "volunteers/dashboard";
     }
