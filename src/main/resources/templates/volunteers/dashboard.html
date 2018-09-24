@@ -65,13 +65,16 @@
                     </div>
                     <div class="card-body row">
                         <div class="col-12 col-md">
+
+                            <small id="noEventsEnrolled" class="hide" th:value="${noEventsEnrolled}"></small>
+                            <small id="noOfDidAttend" class="hide" th:value="${noOfDidAttend}"></small>
                             <p th:text="'Kudos: [FINISH ME]'"></p>
-                            <p th:text="'Number of events committed to: [FINISH ME]'"></p>
-                            <p th:text="'Number of events attended: [FINISH ME]'"></p>
+                            <p th:text="'Number of events committed to: ' + ${noEventsEnrolled}"></p>
+                            <p th:text="'Number of events attended: ' + ${noOfDidAttend}"></p>
                         </div>
                         <div class="col-12 col-md">
-                            <div style="height: 300px; width: 300px; background: red;border: #011627 solid 2px; border-radius: 50%">
-                                <p style="margin-top: 8em; text-align: center">BIG OL DONUT CHART</p>
+                            <div id="chartdiv" style="height: 300px; width: 300px;">
+                                <!--<p style="margin-top: 8em; text-align: center">BIG OL DONUT CHART</p>-->
                             </div>
                         </div>
                     </div>
