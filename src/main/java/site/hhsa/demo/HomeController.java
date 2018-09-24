@@ -66,21 +66,26 @@ public class HomeController {
         model.addAttribute("user", currentUser);
 
         if (currentUser.isOrg()) {
-            return "redirect: /orgs/"+ currentUser.getOrganization().getOrgName()+"/dashboard";
+            return "redirect:/orgs/"+ currentUser.getOrganization().getOrgName()+"/dashboard";
         }
 
-        return "redirect: /vols/dash";
+        return "redirect:/vols/dash";
     }
 
     @PostMapping("/register")
     public String userRegister(@ModelAttribute User user, @RequestParam String isOrg, Model model) {
 
+        System.out.println("isOrg string: " + isOrg);
         user.setOrg(Boolean.parseBoolean(isOrg));
 
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
-        return "redirect:/login";
+        System.out.println("IS THIS AN ORG????: " + user.isOrg());
+        if (user.isOrg()) {
+            return "redirect:/"+user.getUsername()+"/orgs/register";
+        }
+        return "redirect:/vols/"+user.getUsername()+"/register";
     }
 
     private void authenticate(User user) {
