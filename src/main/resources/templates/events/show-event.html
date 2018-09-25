@@ -11,70 +11,122 @@
     <link rel="stylesheet" th:href="@{/css/events/show-event.css}" />
 </head>
 <body>
-    <nav th:replace="fragments/navbar :: navbar"></nav>
-        <div class="container">
-            <section id="single-event">
-                <h2 class="mt-5" th:text="'Event: ' + ${event.description}"></h2>
-                <p class="textSecondary">Interested in this event? Click 'volunteer' to send your info to the organization.
-                </p>
-                <div id="event">
-                    <div class="card eventInfo">
-                        <div class="card-body">
-                            <a th:href="'/orgs/'+${event.org.orgName}" th:text="${event.org.orgName}"></a>
-                            <!--<a th:href="'/orgs/'+${event.org.orgName}">(view profile)</a>-->
-                            <h6 class="textSecondary mb-2 text-muted" th:text="'Date/Time: ' + ${event.dateTime}"></h6>
-                            <p class="textSecondary text-left" th:text="'Street Address: ' +${event.strAddr}"></p>
-                            <p class="textSecondary text-left" th:text="'Zipcode: ' +${event.zipCode}"></p>
-                            <p class="card-text text-center mt-5 mb-0">Description:</p>
-                            <p class="textSecondary text-center mb-5 eventCategories" th:text="${event.description}+ ' this should have a lot more information to provide volunteers lorem  ipsum o provide volunteers lorem  ipsumo provide volunteers lorem  ipsumo provide volunteers lorem  ipsum'"></p>
-                            <div class="text-center">
-                                <a href="#" class="card-link">
-                                    <button>** Volunteer **</button>
-                                </a>
-                            </div>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<div class="container">
+    <section id="single-event">
+        <h2 class="mt-5" th:text="'Event: ' + ${event.description}"></h2>
+        <p class="textSecondary">Interested in this event? Click 'volunteer' to send your info to the organization.
+        </p>
+        <div id="event">
+            <div class="card eventInfo">
+                <div class="card-body">
+                    <a id="orgNameLink" th:href="'/orgs/'+${event.org.orgName}" th:text="${event.org.orgName}"></a>
+                    <!--<a th:href="'/orgs/'+${event.org.orgName}">(view profile)</a>-->
+                    <h6 class="textSecondary mb-2 text-muted" th:text="'Date/Time: ' + ${event.dateTime}"></h6>
+                    <p class="textSecondary text-left" id="streetAddress" th:text="'Street Address: ' +${event.strAddr}"></p>
+                    <p class="textSecondary text-left zip" th:text="'Zipcode: ' +${event.zipCode}"></p>
+                    <p class="card-text text-center mt-3 mb-0">Description:</p>
+                    <p class="textSecondary text-center mb-2 eventCategories" th:text="${event.description}+ ' this should have a lot more information to provide volunteers lorem  ipsum o provide volunteers lorem  ipsumo provide volunteers lorem  ipsumo provide volunteers lorem  ipsum'"></p>
+                    <div class="text-center">
+                        <a href="#" class="card-link">
+                            <button>** Volunteer **</button>
+                        </a>
+                    </div>
 
-                            <!-- ====== embedded map to show location of event ===== -->
-                            <p class="card-text text-center mt-5 mb-5">Small Map of Location:</p>
-                            <div id="map-canvas"></div>
-                            <!-- MAP END -->
+                    <!-- ====== embedded map to show location of event ===== -->
+                    <p class="card-text text-center mt-5 mb-2">Location:</p>
+                    <div id="map-canvas" style="height: 350px; width: 100%;"></div>
+                    <!-- MAP END -->
 
-                            <!-- ====== link options ===== -->
-                            <div class="text-center">
-                                <a th:href="'/orgs/'+ ${event.org.orgName} +'/events'" class="card-link">View All Events From This Organization</a>
-                            </div>
-
-                            <!-- ====== event categories ===== -->
-                            <div class="text-left mt-5 eventCategories hideOnSmall">
-                                <p class="card-text">
-                                    <em>Event Categories: sports, outdoors, church, mentor, etc</em>
-                                </p>
-                            </div>
-                        </div>
+                    <!-- ====== link options ===== -->
+                    <div class="text-center">
+                        <a th:href="'/orgs/'+ ${event.org.orgName} +'/events'" class="card-link">View All Events From This Organization</a>
+                    </div>
+                    <!-- ====== event categories ===== -->
+                    <div class="text-left mt-5 eventCategories hideOnSmall">
+                        <p class="card-text">
+                            <em>Event Categories: sports, outdoors, church, mentor, etc</em>
+                        </p>
                     </div>
                 </div>
-                <div class="text-center mt-3">
-                    <a href="/events">Back To All Events Page</a>
-                </div>
-            </section>
-
-            <!-- ====================  Footer Section ====================  -->
-            <footer class="p-5">
-                <div class="container">
-                    <div class="footer-cols">
-                        <div class="text-center">
-                            <a href="/">Home </a>
-                            <span>|</span>
-                            <a href="/faq">FAQ</a>
-                            <span>|</span>
-                            <a href="/about-team">The Team</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-bottom text-center">
-                    HelpingHands Copyright &copy; 2018
-                </div>
-            </footer>
+            </div>
         </div>
-    <script th:replace="fragments/scripts :: scripts"></script>
+        <div class="text-center mt-3">
+            <a href="/events">Back To All Events Page</a>
+        </div>
+    </section>
+
+    <!-- ====================  Footer Section ====================  -->
+    <footer class="p-5">
+        <div class="container">
+            <div class="footer-cols">
+                <div class="text-center">
+                    <a href="/">Home </a>
+                    <span>|</span>
+                    <a href="/faq">FAQ</a>
+                    <span>|</span>
+                    <a href="/about-team">The Team</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            HelpingHands Copyright &copy; 2018
+        </div>
+    </footer>
+</div>
+
+
+<small id="street" th:class="hide" th:text="${event.strAddr}"></small>
+<small id="zip" th:class="hide" th:text="${event.zipCode}"></small>
+
+<!--<script th:replace="fragments/scripts :: scripts"></script>-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBr-hdb0AFXxNojXtRDX0_R4thUc-ET0t0&amp;callback=initMap" async="defer"></script>
+<script>
+
+    function initMap() {
+        var mapCanvas = document.getElementById('map-canvas');
+        // Must have map configuration of zoom and location.
+        var mapOptions = {
+            zoom: 10,
+            center: {
+                lat: 29.4958247,
+                lng: -98.5352398
+            }
+
+        };
+
+
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+        var geo = new google.maps.Geocoder();
+
+        // console.log(geo);
+
+        // var zip = "78240";
+
+
+        var streetAddress = "6015 Wilde Glen";
+        // var zip = "78240";
+
+
+        geo.geocode({ 'address': streetAddress }, function (results, status) {
+            if (status === "OK") {
+                if (results[0]) {
+                    map.setZoom(12);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                }
+
+            } else {
+                console.log("Invalid Address.")
+            }
+
+        });
+
+
+    }
+
+</script>
 </body>
 </html>
