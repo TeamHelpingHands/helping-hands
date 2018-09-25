@@ -72,6 +72,9 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "violator")
     private List<Report> reportsReceived;
 
+    @ManyToMany(mappedBy = "followers")
+    private List<Organization> favorites;
+
     //constructors
 
 
@@ -85,7 +88,7 @@ public class User {
         password = copy.password;
     }
 
-    public User(String email, String firstName, String lastName, String phnNum, String username, String password, String photoUrl, String zipcode, boolean isAdmin, boolean isOrg, String dateCreated, Organization organization, Volunteer volunteer, List<Category> categories, List<Message> sentMessages, List<Message> receivedMessaged, List<Report> reportsMade, List<Report> reportsReceived) {
+    public User(String email, String firstName, String lastName, String phnNum, String username, String password, String photoUrl, String zipcode, boolean isAdmin, boolean isOrg, String dateCreated, Organization organization, Volunteer volunteer, List<Category> categories, List<Message> sentMessages, List<Message> receivedMessaged, List<Report> reportsMade, List<Report> reportsReceived, List<Organization> favorites) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -104,6 +107,7 @@ public class User {
         this.receivedMessaged = receivedMessaged;
         this.reportsMade = reportsMade;
         this.reportsReceived = reportsReceived;
+        this.favorites = favorites;
     }
 
     //getters & setters
@@ -259,5 +263,13 @@ public class User {
 
     public void setReportsReceived(List<Report> reportsReceived) {
         this.reportsReceived = reportsReceived;
+    }
+
+    public List<Organization> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Organization> favorites) {
+        this.favorites = favorites;
     }
 }

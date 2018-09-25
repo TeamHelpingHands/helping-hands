@@ -3,10 +3,7 @@ package site.hhsa.demo.organizations.controllers;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import site.hhsa.demo.organizations.models.Event;
 import site.hhsa.demo.organizations.models.Organization;
 import site.hhsa.demo.organizations.repositories.CategoryRepo;
@@ -39,15 +36,23 @@ public class OrgController {
     @GetMapping("/orgs/{org_name}")
     public String OrgShow(@PathVariable String org_name, Model model){
         Organization org = orgDao.findOrganizationByOrgName(org_name);
+        model.addAttribute("org", org);
+        return "organizations/show";
+    }
+
+    @GetMapping("/orgs/{org_name}/favorites")
+    public String OrgShowUser(@PathVariable String org_name, Model model){
+        Organization org = orgDao.findOrganizationByOrgName(org_name);
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findByUsername(currentUser.getUsername());
-        if(user.getVolunteer().getFavorites().contains(org)){
+        if(user.getFavorites().contains(org)){
             model.addAttribute("follower", true);
         }else{
             model.addAttribute("follower",false);
         }
         orgDao.save(orgDao.findOrganizationByOrgName(org_name));
         model.addAttribute("user", user);
+        model.addAttribute("org", org);
         return "organizations/show";
     }
 
@@ -109,11 +114,12 @@ public class OrgController {
 
     @PostMapping("/orgs/{org_name}/follow")
     public String orgAddFollower(@PathVariable String org_name){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(userDao.findByUsername(user.getUsername()).getVolunteer().getFavorites().contains(orgDao.findOrganizationByOrgName(org_name))){
-            userDao.findByUsername(user.getUsername()).getVolunteer().getFavorites().remove(orgDao.findOrganizationByOrgName(org_name));
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findByUsername(currentUser.getUsername());
+        if(user.getFavorites().contains(orgDao.findOrganizationByOrgName(org_name))){
+            user.getFavorites().remove(orgDao.findOrganizationByOrgName(org_name));
         }else{
-            userDao.findByUsername(user.getUsername()).getVolunteer().getFavorites().add(orgDao.findOrganizationByOrgName(org_name));
+            user.getFavorites().add(orgDao.findOrganizationByOrgName(org_name));
         }
         orgDao.save(orgDao.findOrganizationByOrgName(org_name));
         return "redirect:/orgs/{org_name}";
