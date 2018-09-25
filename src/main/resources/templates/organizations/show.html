@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8" />
     <title>Volunteers | Profile</title>
@@ -12,32 +13,38 @@
 
 <div class="container">
 
-    <h1 th:text="'Profile - ' + ${user.organization.orgName}"></h1>
+    <h1 th:text="'Profile - ' + ${org.orgName}"></h1>
 
     <div class="row my-3">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h6 th:text="'Details about this organization ' + ${user.organization.orgName}"></h6>
+                    <h6 th:text="'Details about this organization ' + ${org.orgName}"></h6>
                 </div>
                 <div class="card-body row">
                     <div class="col-3">
                         <div>
-                            <img th:src="${user.photoUrl}" alt="" style="width: 100%; height: 100%; border-radius: 50%" />
+                            <img th:src="${org.user.photoUrl}" alt="" style="width: 100%; height: 100%; border-radius: 50%" />
                             <h3>Photo goes here</h3>
+                            <div sec:authorize="isAuthenticated()">
                             <a href="#" class="btn btn-primary btn-sm my-1">Message</a>
-                            <a href="#" class="btn btn-success btn-sm my-1">Favorite/Follow</a>
+
+                                <th:block>
+                                    <a th:if="${follower}"  th:href="@{/orgs/{orgname}(orgname = ${org.getOrgName()})}" class="btn btn-success btn-sm my-1">unfollow</a>
+                                    <a th:unless="not ${follower}"  th:href="@{/orgs/{orgname}(orgname = ${org.getOrgName()})}" class="btn btn-success btn-sm my-1">follow</a>
+                                </th:block>
+                            </div>
                         </div>
                     </div>
                     <div class="col-9">
                         <div class="row">
                             <div class="col-6">
-                                <p th:text="'Contact Number: ' + ${user.phnNum}"></p>
-                                <p th:tex="'Address: ' + ${user.organization.strAddr}"></p>
+                                <p th:text="'Contact Number: ' + ${org.user.phnNum}"></p>
+                                <p th:tex="'Address: ' + ${org.strAddr}"></p>
                             </div>
                             <div class="col-6">
-                                <p th:text="'Email: ' + ${user.email}"></p>
-                                <p th:text="'Zipcode: ' + ${user.zipcode}"></p>
+                                <p th:text="'Email: ' + ${org.user.email}"></p>
+                                <p th:text="'Zipcode: ' + ${org.user.zipcode}"></p>
                             </div>
                         </div>
                         <div class="row text-center">

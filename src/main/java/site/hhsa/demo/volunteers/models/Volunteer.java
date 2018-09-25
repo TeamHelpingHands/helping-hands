@@ -38,8 +38,7 @@ public class Volunteer {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "volunteer")
     private List<FeedbackFromOrganization> orgFeedback;
 
-    @ManyToMany(mappedBy = "followers")
-    private List<Organization> favorites;
+
 
     // ===== Constructors ===== \\
 
@@ -47,14 +46,13 @@ public class Volunteer {
     public Volunteer() {
     }
 
-    public Volunteer(String dateCreated, boolean isSuspended, String bio, User user, List<Event> events, List<FeedbackFromOrganization> orgFeedback, List<Organization> favorites) {
+    public Volunteer(String dateCreated, boolean isSuspended, String bio, User user, List<Event> events, List<FeedbackFromOrganization> orgFeedback) {
         this.dateCreated = dateCreated;
         this.isSuspended = isSuspended;
         this.bio = bio;
         this.user = user;
         this.events = events;
         this.orgFeedback = orgFeedback;
-        this.favorites = favorites;
     }
 
     // getters & setters
@@ -116,11 +114,4 @@ public class Volunteer {
         this.orgFeedback = orgFeedback;
     }
 
-    public List<Organization> getFavorites() {
-        return favorites;
-    }
-
-    public void setFavorites(List<Organization> favorites) {
-        this.favorites = favorites;
-    }
 }
