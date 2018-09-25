@@ -7,32 +7,32 @@
     - Ability to search for events using a radius based on zipcodes
   * Documentation:
     - https://developers.google.com/maps/documentation/
-#### Google Places (Still using? @vlewisgh)
-  * Purpose:
-    - [COMPLETE ME]
-  * Documentation:
-    - https://developers.google.com/places/web-service/intro
-#### Facebook (Maven dependency)
-  * Purpose:
-    - Ability to register & login with Facebook account
-  * Documentation:
-    - https://mvnrepository.com/artifact/com.facebook.api
+~#### Google Places (Still using? @vlewisgh)~
+  ~* Purpose:~
+    ~- [COMPLETE ME]~
+  ~* Documentation:~
+    ~- https://developers.google.com/places/web-service/intro~
+~#### Facebook (Maven dependency)~
+  ~* Purpose:~
+    ~- Ability to register & login with Facebook account~
+  ~* Documentation:~
+    ~- https://mvnrepository.com/artifact/com.facebook.api~
 #### Twilio
   * Purpose:
     - Ability to send out email blasts to volunteers that have signed up for an event
   * Documentation:
     - https://www.twilio.com/docs/
-#### MailGun
-  * Purpose:
-    - Ability to send confirmation/verification emails, for registration
-  * Documentation:
-    - https://documentation.mailgun.com/en/latest/
-#### Uber/Lyft
-  * Purpose:
-    - Ability to arrange a ride to event, if needed
-  * Documentation:
-    - Uber: https://developer.uber.com/docs
-    - Lyft: https://developer.lyft.com/docs/overview
+~#### MailGun~
+  ~* Purpose:~
+    ~- Ability to send confirmation/verification emails, for registration~
+  ~* Documentation:~
+    ~- https://documentation.mailgun.com/en/latest/~
+~#### Uber/Lyft~
+  ~* Purpose:~
+    ~- Ability to arrange a ride to event, if needed~
+ ~* Documentation:~
+   ~- Uber: https://developer.uber.com/docs~
+   ~- Lyft: https://developer.lyft.com/docs/overview~
 #### Filestack
   * Purpose:
     - Image hosting for profile/event pictures for users
@@ -44,7 +44,7 @@
 #### General
 * Home Page
     - [x] `Registration` Button
-    - [ ] `Login` Button
+    - [x] `Login` Button
     - [x] `About HH` section, possibly showing participating orgs
     - [x] 3 most recent events
 
@@ -63,15 +63,15 @@
     - [x] Forwards to `Dashboard`
   * Login
     - [x] `Username` and `Password`
-    - [ ] Verifies username exists
-    - [ ] Verifies password matches
-    - [ ] Forwards to `Dashboard`
+    - [x] Verifies username exists
+    - [x] Verifies password matches
+    - [x] Forwards to `Dashboard`
   * "Public" Profile
     - [x] Information about the volunteer (name, location, etc)
     - [ ] Stats about events they have attended
     - [ ] Displays `Kudos` earned/given by orgs
     - [ ] Displays comments/reviews given by organizations __(ONLY VIEWABLE BY OTHER ORGANIZATIONS)__
-    - [ ] `Message` option, to send a private message
+    - [X] `Message` option, to send a private message
     - [ ] `Report` option, to report to admin for review
   * Dashboard
     - [ ] ~Ability to add more information pertaining to the volunteer (About me, profile picture, etc)~
@@ -79,7 +79,7 @@
     - [ ] Can see most recent event attended
     - `Events` Section
       - Can show the following options about events, using tabs/cards/etc:
-      - [ ] All events, ordered by date (most recent)
+      - [x] All events, ordered by date (most recent)
       - [ ] All events near me, using zipcodes
       - [ ] All events matching a category I can select
       - [ ] All events by a specific organization
@@ -100,14 +100,14 @@
     - [ ] Checks for existing emails to avoid duplication
     - [ ] Forwards to `Dashboard`
   * Login
-    - [ ] `Email` and `Password`
+    - [x] `Email` and `Password`
     - [ ] Verifies email exists
     - [ ] Verifies password matches
     - [ ] Forwards to `Dashboard`
   * Dashboard
     - [ ] Ability to add more information pertaining to the Org (About us, profile picture, etc)
     - `Create an Event` button -> `Create` page
-      - [ ] Event info (name, description, time, place)
+      - [x] Event info (name, description, time, place)
       - [ ] Event banner image, at top
       - [ ] `I'm Interested` button, for volunteer to sign up
         - [ ] Clicking this button will send automated email containing information about the event, the org's application process, and any other pertinent information
@@ -134,12 +134,12 @@
   - No registration form for an Admin
   - Must be manually entered into the database by existing admin
 * Login
-  - [ ] Will login through the volunteer `Login` page
-  - [ ] Admin will have special username & password
+  - [x] Will login through the volunteer `Login` page
+  - [x] Admin will have special username & password
   - [ ] Forwarded to Admin `Dashboard`
 * Dashboard
   - Organization Validation
-    - [ ] Will be able to click a button to Approve or Deny an organization, after verifying they are legitimate
+    - [x] Will be able to click a button to Approve or Deny an organization, after verifying they are legitimate
         - This process is manual for now, however we are interested in looking into how this could be automated
   - User management
     - [ ] Able to see list of all volunteers
