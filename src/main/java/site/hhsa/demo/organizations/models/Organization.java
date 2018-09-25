@@ -58,7 +58,7 @@ public class Organization {
             joinColumns = {@JoinColumn(name="followers")},
             inverseJoinColumns = {@JoinColumn(name="favorites")}
     )
-    private List<Volunteer> followers;
+    private List<User> followers;
 
 
     // ===== Constructors ===== \\
@@ -76,7 +76,7 @@ public class Organization {
         this.taxId = taxId;
     }
 
-    public Organization(String orgName, String aboutUs, String strAddr, String city, String state, String taxId, Boolean isValidated, User user, List<Event> events, List<FeedbackFromOrganization> orgFeedback, List<FeedbackFromVols> volFeedback, List<Volunteer> followers) {
+    public Organization(String orgName, String aboutUs, String strAddr, String city, String state, String taxId, Boolean isValidated, User user, List<Event> events, List<FeedbackFromOrganization> orgFeedback, List<FeedbackFromVols> volFeedback, List<User> followers) {
         this.orgName = orgName;
         this.aboutUs = aboutUs;
         this.strAddr = strAddr;
@@ -189,11 +189,11 @@ public class Organization {
         this.volFeedback = volFeedback;
     }
 
-    public List<Volunteer> getFollowers() {
+    public List<User> getFollowers() {
         return followers;
     }
 
-    public void setFollowers(List<Volunteer> followers) {
+    public void setFollowers(List<User> followers) {
         this.followers = followers;
     }
 }

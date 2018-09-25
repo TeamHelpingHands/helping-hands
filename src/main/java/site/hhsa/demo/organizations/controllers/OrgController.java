@@ -3,10 +3,7 @@ package site.hhsa.demo.organizations.controllers;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import site.hhsa.demo.organizations.models.Event;
 import site.hhsa.demo.organizations.models.Organization;
 import site.hhsa.demo.organizations.repositories.CategoryRepo;
@@ -39,8 +36,23 @@ public class OrgController {
     @GetMapping("/orgs/{org_name}")
     public String OrgShow(@PathVariable String org_name, Model model){
         Organization org = orgDao.findOrganizationByOrgName(org_name);
-        User user = org.getUser();
+        model.addAttribute("org", org);
+        return "organizations/show";
+    }
+
+    @GetMapping("/orgs/{org_name}/favorites")
+    public String OrgShowUser(@PathVariable String org_name, Model model){
+        Organization org = orgDao.findOrganizationByOrgName(org_name);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findByUsername(currentUser.getUsername());
+        if(user.getFavorites().contains(org)){
+            model.addAttribute("follower", true);
+        }else{
+            model.addAttribute("follower",false);
+        }
+        orgDao.save(orgDao.findOrganizationByOrgName(org_name));
         model.addAttribute("user", user);
+        model.addAttribute("org", org);
         return "organizations/show";
     }
 
@@ -63,6 +75,7 @@ public class OrgController {
     @PostMapping("/{username}/orgs/register")
     public String OrgCreate(@ModelAttribute User user,@PathVariable String username, Model model){
         user.getOrganization().setUser(userDao.findByUsername(username));
+//        user.getOrganization().setOrgName(user.getOrganization().getOrgName().replace(" ","-"));
         orgDao.save(user.getOrganization());
         return "redirect:/orgs/"+ user.getOrganization().getOrgName()+"/dashboard";
     }
@@ -79,6 +92,7 @@ public class OrgController {
     public String orgInsertEvent(@PathVariable String org_name, @ModelAttribute Event newEvent){
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         Organization org = currentUser.getOrganization();
         newEvent.setOrg(org);
         eventDao.save(newEvent);
@@ -98,12 +112,14 @@ public class OrgController {
         return "events/show-event";
     }
 
-    @PostMapping("{username}/orgs/{org_name}/follow")
-    public String orgAddFollower(@PathVariable String username, @PathVariable String org_name){
-        if(userDao.findByUsername(username).getVolunteer().getFavorites().contains(orgDao.findOrganizationByOrgName(org_name))){
-            userDao.findByUsername(username).getVolunteer().getFavorites().remove(orgDao.findOrganizationByOrgName(org_name));
+    @PostMapping("/orgs/{org_name}/follow")
+    public String orgAddFollower(@PathVariable String org_name){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findByUsername(currentUser.getUsername());
+        if(user.getFavorites().contains(orgDao.findOrganizationByOrgName(org_name))){
+            user.getFavorites().remove(orgDao.findOrganizationByOrgName(org_name));
         }else{
-            userDao.findByUsername(username).getVolunteer().getFavorites().add(orgDao.findOrganizationByOrgName(org_name));
+            user.getFavorites().add(orgDao.findOrganizationByOrgName(org_name));
         }
         orgDao.save(orgDao.findOrganizationByOrgName(org_name));
         return "redirect:/orgs/{org_name}";

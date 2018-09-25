@@ -35,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 /* Login configuration */
-                .csrf().disable()
+//                .csrf().disable()
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/home") // user's home page, it can be any URL
@@ -55,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/orgs/{org_name}/dash", "/vols/{username}/dash"// only authenticated users can view
+                        "/orgs/{org_name}/dash", "/vols/{username}/dash","/orgs/{org_dash}/favorites","/orgs/{org_name}/follow" // only authenticated users can view
 
                 )
                 .authenticated()
