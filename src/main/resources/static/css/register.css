@@ -10,6 +10,14 @@
     --easeOut: all 0.25s ease-out;
 }
 
+html, body {
+    background-image: linear-gradient(
+            rgba(255,255,255,0.65),
+            rgba(255,255,255,0.65)
+    ), url("https://i.postimg.cc/g2FhhKkp/charity-cheerful-community-1374360.jpg");
+    background-size: cover;
+}
+
 body {
     font-family: "Montserrat", sans-serif;
 }

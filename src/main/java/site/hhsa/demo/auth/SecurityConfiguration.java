@@ -59,7 +59,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/vols/{username}/dash",
                         "/orgs/{org_dash}/favorites",
                         "/orgs/{org_name}/follow",
-                        "/orgs/message/reply"
+                        "/orgs/message/reply",
+                        "/register",
+                        "/orgs/{org_name}/register"
                         // only authenticated users can view
 
                 )
