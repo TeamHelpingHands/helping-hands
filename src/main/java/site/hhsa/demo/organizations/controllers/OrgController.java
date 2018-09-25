@@ -14,6 +14,7 @@ import site.hhsa.demo.users.models.Message;
 import site.hhsa.demo.users.models.User;
 import site.hhsa.demo.users.repositories.MessageRepo;
 import site.hhsa.demo.users.repositories.UserRepo;
+import site.hhsa.demo.volunteers.models.Volunteer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -182,6 +183,19 @@ public class OrgController {
     public String orgEvents(@PathVariable String org_name, @PathVariable long id, Model model){
         model.addAttribute("event", eventDao.findOne(id));
         return "events/show-event";
+    }
+
+    @PostMapping("/orgs/{org_name}/event/{id}")
+    public String insertVolToEvent(@PathVariable String org_name, @PathVariable long id, Model model){
+        Event event = eventDao.findOne(id);
+
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findByUsername(currentUser.getUsername());
+
+        List<Volunteer> vol = event.getVolunteers();
+        vol.add(user.getVolunteer());
+        eventDao.save(event);
+        return"redirect:/orgs/"+ org_name+"/event/"+id;
     }
 
     @PostMapping("/orgs/{org_name}/follow")
