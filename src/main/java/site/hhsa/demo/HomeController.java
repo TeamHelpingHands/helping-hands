@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import site.hhsa.demo.auth.UserWithRoles;
 import site.hhsa.demo.organizations.models.Organization;
 import site.hhsa.demo.organizations.repositories.OrgRepo;
+import site.hhsa.demo.services.SmsSender;
 import site.hhsa.demo.users.models.User;
 import site.hhsa.demo.users.repositories.UserRepo;
 import site.hhsa.demo.volunteers.models.Volunteer;
@@ -98,5 +99,16 @@ public class HomeController {
         );
         SecurityContext context = SecurityContextHolder.getContext();
         context.setAuthentication(auth);
+    }
+
+    @GetMapping("/test")
+    public String testSenderForm(){
+        return "sender";
+    }
+
+    @PostMapping("/test")
+    public String testSenderSend(@RequestParam("number")String number, @RequestParam("message") String message){
+        new SmsSender().SmsSender(number,message);
+        return "sender";
     }
 }
