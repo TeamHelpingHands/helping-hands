@@ -1,5 +1,6 @@
 package site.hhsa.demo.organizations.controllers;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,15 @@ public class OrgController {
     OrgRepo orgDao;
     CategoryRepo categoryDao;
     MessageRepo messageDao;
+
+    @Value("${accountSID}")
+    private String ACCOUNT_SID;
+
+    @Value("${authTOKEN}")
+    private String AUTH_TOKEN;
+
+    @Value("${phnNUM}")
+    private String Phn_num;
 
     public OrgController(EventRepo eventDao, UserRepo userDao, OrgRepo orgDao, CategoryRepo categoryDao, MessageRepo messageDao) {
         this.eventDao = eventDao;
@@ -183,10 +193,10 @@ public class OrgController {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userDao.findByUsername(user.getUsername());
-        Organization org = currentUser.getOrganization();
+        Organization org = orgDao.findOrganizationByOrgName(org_name);
         newEvent.setOrg(org);
         eventDao.save(newEvent);
-//        new MassMessenger(org.getFollowers(), "One of your liked liked organizations has posted an event! https://www.hhsa.com/"+org_name+"/events");
+        new MassMessenger(org.getFollowers(), "One of your liked liked organizations has posted an event! https://www.hhsa.com/"+org_name+"/events", ACCOUNT_SID,AUTH_TOKEN,Phn_num);
         return "redirect:/events";
     }
 

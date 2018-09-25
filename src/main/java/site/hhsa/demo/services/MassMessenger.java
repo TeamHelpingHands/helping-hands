@@ -7,9 +7,9 @@ import java.util.List;
 
 public class MassMessenger {
 
-    public MassMessenger(List<Volunteer> followers, String message) {
-        for(Volunteer follower : followers){
-            new SmsSender().SmsSender(follower.getUser().getPhnNum(),message);
+    public MassMessenger(List<User> followers, String message, String sid, String token, String phnNum) {
+        for(User follower : followers){
+            new SmsSender().SmsSender(follower.getPhnNum(),message, sid,token, phnNum);
         }
     }
 }
