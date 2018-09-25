@@ -167,14 +167,17 @@ nav {
     /*position: fixed;*/
     z-index: 999;
 }
+
 nav ul {
     padding: 0;
     margin: 0;
 }
+
 nav li {
     display: inline;
     float: right;
 }
+
 nav a {
     display: inline-block;
     width: 100px;
@@ -183,6 +186,7 @@ nav a {
     padding: 10px 0;
     color: black;
 }
+
 nav a:hover {
     color: var(--btn-color);
     transition: var(--easeOut);

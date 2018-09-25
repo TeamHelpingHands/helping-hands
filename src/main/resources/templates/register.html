@@ -8,75 +8,77 @@
 
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/register.css" />
+    <link rel="stylesheet" th:href="@{/css/register.css}" />
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
 <div class="container">
 
-    <div class="card mt-3 text-center">
-        <form th:action="@{/register}" method="POST" th:object="${user}">
-            <div class="card-header">
-                <h1 class="formHeader">Register Account</h1>
-            </div>
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input id="username" type="text" th:field="*{username}" />
+    <div class="row mt-5 d-flex justify-content-center">
+        <div class="card mt-3 text-center card-custom">
+            <form th:action="@{/register}" method="POST" th:object="${user}">
+                <div class="card-header">
+                    <h1 class="formHeader">Register Account</h1>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email address:</label>
-                    <input id="email" type="email" th:field="*{email}" />
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input id="username" type="text" th:field="*{username}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input id="email" type="email" th:field="*{email}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input id="password" type="password" th:field="*{password}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input id="firstName" type="text" th:field="*{firstName}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input id="lastName" type="text" th:field="*{lastName}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="phnNum">Phone Number:</label>
+                        <input id="phnNum" type="text" th:field="*{phnNum}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="zipcode">Zip Code:</label>
+                        <input id="zipcode" type="text" th:field="*{zipcode}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="picUrlInput">Profile picture:</label>
+                        <button type="button" class="btn btn-primary btn-custom" id="uploadBtn">Upload</button>
+                        <small id="picName"></small>
+                        <input id="picUrlInput" type="hidden" th:field="*{photoUrl}" />
+                    </div>
+                    <div class="form-group">
+                        <h6>Are you registering as a <strong>Volunteer</strong> or an <strong>Organization</strong>?</h6>
+                        <label for="vol">Volunteer</label>
+                        <input class="mr-3" id="vol" type="radio" name="isOrg" value="false" />
+                        <label for="org">Organization</label>
+                        <input id="org" type="radio" name="isOrg" value="true" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input id="password" type="password" th:field="*{password}" />
+                <div class="card-footer">
+                    <button class="btn btn-primary btn-custom" type="submit">Next <i class="far fa-arrow-alt-circle-right fa-sm"></i></button>
                 </div>
-                <div class="form-group">
-                    <label for="firstName">First Name:</label>
-                    <input id="firstName" type="text" th:field="*{firstName}" />
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Last Name:</label>
-                    <input id="lastName" type="text" th:field="*{lastName}" />
-                </div>
-                <div class="form-group">
-                    <label for="phnNum">Phone Number:</label>
-                    <input id="phnNum" type="text" th:field="*{phnNum}" />
-                </div>
-                <div class="form-group">
-                    <label for="zipcode">Zip Code:</label>
-                    <input id="zipcode" type="text" th:field="*{zipcode}" />
-                </div>
-                <div class="form-group">
-                    <label for="picUrlInput">Profile picture:</label>
-                    <button type="button" class="btn btn-primary" id="uploadBtn">Upload</button>
-                    <small id="picName"></small>
-                    <input id="picUrlInput" type="hidden" th:field="*{photoUrl}" />
-                </div>
-                <div class="form-group">
-                    <h6>Are you registering as a <strong>Volunteer</strong> or an <strong>Organization</strong>?</h6>
-                    <label for="vol">Volunteer</label>
-                    <input class="mr-3" id="vol" type="radio" name="isOrg" value="false" />
-                    <label for="org">Organization</label>
-                    <input id="org" type="radio" name="isOrg" value="true" />
-                </div>
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-primary" type="submit">Next <i class="far fa-arrow-alt-circle-right fa-sm"></i></button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
     <footer>
         <div class="container mt-3 p-3">
             <div class="text-center">
-                <a href="/">Home </a>
+                <a class="link-custom" href="/">Home </a>
                 <span>|</span>
-                <a href="/faq">FAQ </a>
+                <a class="link-custom" href="/faq">FAQ </a>
                 <span>|</span>
-                <a href="/about-team">The Team </a>
+                <a class="link-custom" href="/about-team">The Team </a>
             </div>
         </div>
         <div class="footer-bottom text-center mb-2">
