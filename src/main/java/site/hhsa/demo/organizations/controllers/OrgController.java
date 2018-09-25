@@ -81,7 +81,7 @@ public class OrgController {
     }
 
     @GetMapping("/orgs/dashboard")
-    public String OrgDashboard(@PathVariable String org_name, Model model){
+    public String OrgDashboard(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userDao.findByUsername(user.getUsername());
         List<Message> messages = messageDao.findAllByReceiver(currentUser);
@@ -148,15 +148,15 @@ public class OrgController {
         return "redirect:/orgs/messages";
     }
 
-    @PostMapping("/orgs/messages/reply")
+    @PostMapping("/orgs/message/reply")
     public String messageReply(
             @ModelAttribute Message newReply,
             @RequestParam String receiverId,
-            @RequestParam String senderId,
             @RequestParam String subject,
             @RequestParam String body,
             Model model) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
         Message message = new Message();
         message.setSubject(subject);
         message.setBody(body);

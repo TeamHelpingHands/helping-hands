@@ -15,7 +15,12 @@
 
 <div class="container">
 
-
+    <th:block th:if="${param.error}">
+        <div class="alert alert-danger">Invalid username and/or password. Please try again.</div>
+    </th:block>
+    <th:block th:if="${param.logout}">
+        <div class="alert alert-info">You have been logged out.</div>
+    </th:block>
 
     <div class="card mt-3 text-center">
         <form th:action="@{/login}" method="POST">
