@@ -82,7 +82,7 @@ INSERT INTO events(description,str_addr,zip_code) Values('Thanskgiving','900 E. 
 INSERT INTO events(description,str_addr,zip_code) Values('Oct Run','15900 La Cantera Parkway','78256');
 INSERT INTO events(description,str_addr,zip_code) Values('Front End X','501 W Cesar E Chavez Blvd','78207');
 INSERT INTO events(description,str_addr,zip_code) Values('Daily Kitchen','5802 E Indian School Rd','85018');
-INSERT INTO events(description,str_addr,zip_code) Values('Solar Day','456 Reflection','90178');
+INSERT INTO events(description,str_addr,zip_code) Values('Solar Day','9050 Lake Hefner Pkwy','74120');
 INSERT INTO events(description,str_addr,zip_code) Values('Landa Run','Landa Park Drive','78130');
 
 
