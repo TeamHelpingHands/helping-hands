@@ -6,10 +6,10 @@ INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, us
 INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('mykel', 'kovar', FALSE, TRUE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111113', 'mkovar', 'mkovar@codeup.com', '78111');
 INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('lisa', 'rodriguez', FALSE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111114', 'lrod', 'lrod@codeup.com', '78240');
 INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('sponge', 'bob', FALSE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111115', 'sbob', 'sbob@bbottom.com', '58576');
-INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('squid', 'ward', FALSE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111116', 'sward', 'sward@bbottom.com', '58576');
+INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('squidward', 'tentacles', FALSE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111116', 'sward', 'stentacles@bbottom.com', '58576');
 INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('patrick', 'starfish', FALSE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111117', 'pstarfish', 'pstarfish@bbottom.com', '58576');
 INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('sandy', 'squirrel', FALSE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111118', 'ssquirrel', 'ssquirrel@bbottom.com', '58576');
-INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('mr', 'crabs', FALSE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111119', 'mcrabs', 'mrcrabs@bbbottom.com', '58576');
+INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, username, email, zipcode) Values('eugene', 'crabs', FALSE, FALSE, '$2a$10$SV5XNdI0CEp4DbLybM1pGeb4ny6RFIAJUjMky7/5jg84gL3l7Tdvm', '2101111119', 'mcrabs', 'ecrabs@bbbottom.com', '58576');
 
 
 #organizations --hard coded user_id
@@ -26,14 +26,14 @@ INSERT INTO users (first_name, last_name, is_admin,is_org, password, phn_num, us
 
 # organizations
 INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'Codeup','600 Navarro','San Antonio','TX','12-3456757');
-INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'ClearStream','123 Hello','Dallas','TX','12-3456758');
-INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'Petra Oil','34 Pump','Houston','TX','12-3456759');
-INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'Family T','23 San Antonio St','New Braunfels','TX','12-3456760');
-INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'Creek Solutions','987 Houston St','San Antonio','TX','12-3456761');
-INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'Brock and Lee','890 Veggies Way','Oklahoma City','OK','12-3456762');
-INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'Panel Time','56 Sun Alley','Phoenix','AZ','12-3456763');
-INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'Sole Pacer','22 One Lace','New Braunfels','NB','12-3456764');
-INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'Our Kitchen','103 Soup Lane','Plano','TX','12-3456765');
+INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'ClearStream','1895 Campfire Circle','Dallas','TX','12-3456758');
+INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'Hermann Green','6001 Fannin St','Houston','TX','12-3456759');
+INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'Landa Falls','120 Landa St','New Braunfels','TX','12-3456760');
+INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'San Pedro Springs','2200 N Flores','San Antonio','TX','12-3456761');
+INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'City Rescue Mission','800 W California Ave','Oklahoma City','OK','12-3456762');
+INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'Andre House','213 S 11th Ave','Phoenix','AZ','12-3456763');
+INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'Food Bank','5200 Enrique M. Barrera Pkwy','San Antonio','TX','12-3456764');
+INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Values(TRUE,'Storehouse','1401 Mira Vista Blvd','Plano','TX','12-3456765');
 
 
 
@@ -75,15 +75,15 @@ INSERT INTO categories (category) values('education');
 # INSERT INTO events(id,description,str_addr,zip_code,organization) values('10','Landa Run','23 San Antonio Street','78130','1');
 
 # events
-INSERT INTO events(description,str_addr,zip_code) Values('Dev Day','1 UTSA blvd','78261');
-INSERT INTO events(description,str_addr,zip_code) Values('Family Day','7181 san jose','56789');
-INSERT INTO events(description,str_addr,zip_code) Values('Park View','1 Peace Out','32145');
-INSERT INTO events(description,str_addr,zip_code) Values('Thanskgiving','534 Feast','19191');
-INSERT INTO events(description,str_addr,zip_code) Values('Oct Run','210 Kicks','78209');
-INSERT INTO events(description,str_addr,zip_code) Values('Front End X','34 UI Way','78245');
-INSERT INTO events(description,str_addr,zip_code) Values('Daily Kitchen','78 Laddle','98765');
-INSERT INTO events(description,str_addr,zip_code) Values('Solar Day','456 Reflection','90178');
-INSERT INTO events(description,str_addr,zip_code) Values('Landa Run','23 San Antonio Street','78130');
+INSERT INTO events(description,str_addr,zip_code) Values('Dev Day','2800 Broadway St','78209');
+INSERT INTO events(description,str_addr,zip_code) Values('Family Day','6701 San Jose Dr','78214');
+INSERT INTO events(description,str_addr,zip_code) Values('Park View','9050 Lake Hefner Pkwy','73120');
+INSERT INTO events(description,str_addr,zip_code) Values('Thanskgiving','900 E. Market','78205');
+INSERT INTO events(description,str_addr,zip_code) Values('Oct Run','15900 La Cantera Parkway','78256');
+INSERT INTO events(description,str_addr,zip_code) Values('Front End X','501 W Cesar E Chavez Blvd','78207');
+INSERT INTO events(description,str_addr,zip_code) Values('Daily Kitchen','5802 E Indian School Rd','85018');
+INSERT INTO events(description,str_addr,zip_code) Values('Solar Day','9050 Lake Hefner Pkwy','74120');
+INSERT INTO events(description,str_addr,zip_code) Values('Landa Run','Landa Park Drive','78130');
 
 
 #messages--hard coded id, receiver_id, sender_id
