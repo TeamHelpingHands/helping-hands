@@ -13,8 +13,13 @@ import site.hhsa.demo.organizations.repositories.CategoryRepo;
 import site.hhsa.demo.organizations.repositories.EventRepo;
 import site.hhsa.demo.organizations.repositories.OrgRepo;
 import site.hhsa.demo.services.MassMessenger;
+import site.hhsa.demo.users.models.Message;
 import site.hhsa.demo.users.models.User;
+import site.hhsa.demo.users.repositories.MessageRepo;
 import site.hhsa.demo.users.repositories.UserRepo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class OrgController {
@@ -22,12 +27,14 @@ public class OrgController {
     UserRepo userDao;
     OrgRepo orgDao;
     CategoryRepo categoryDao;
+    MessageRepo messageDao;
 
-    public OrgController(OrgRepo orgDao, CategoryRepo categoryDao, UserRepo userDao, EventRepo eventDao) {
+    public OrgController(EventRepo eventDao, UserRepo userDao, OrgRepo orgDao, CategoryRepo categoryDao, MessageRepo messageDao) {
+        this.eventDao = eventDao;
+        this.userDao = userDao;
         this.orgDao = orgDao;
         this.categoryDao = categoryDao;
-        this.userDao = userDao;
-        this.eventDao = eventDao;
+        this.messageDao = messageDao;
     }
 
     @GetMapping("/orgs")
@@ -65,6 +72,38 @@ public class OrgController {
         user.getOrganization().setUser(userDao.findByUsername(username));
         orgDao.save(user.getOrganization());
         return "redirect:/orgs/"+ user.getOrganization().getOrgName()+"/dashboard";
+    }
+
+    @GetMapping("/orgs/messages")
+    public String myOrgMessages(Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Message> inboxMessages = messageDao.findAllByReceiver(currentUser);
+        List<Message> sentMessages = messageDao.findAllBySender(currentUser);
+        List<Message> delMessages = new ArrayList<>();
+        int noOfMessagesInbox = inboxMessages.size();
+        int noOfMessagesSent = sentMessages.size();
+        int newMessages = 0;
+        for (Message message : inboxMessages) {
+            if (!message.isReceiverDel()) {
+                if (!message.isOpened()) {
+                    newMessages++;
+                    message.setOpened(true);
+                    messageDao.save(message);
+                }
+            } else {
+                delMessages.add(message);
+            }
+        }
+        inboxMessages.removeAll(delMessages);
+        model.addAttribute("delMessage", new Message());
+        model.addAttribute("newReply", new Message());
+        model.addAttribute("noOfMessagesInbox", noOfMessagesInbox);
+        model.addAttribute("noOfMessagesSent", noOfMessagesSent);
+        model.addAttribute("newMessages", newMessages);
+        model.addAttribute("inboxMessages", inboxMessages);
+        model.addAttribute("sentMessages", sentMessages);
+        model.addAttribute("currentUser", currentUser);
+        return "organizations/messages";
     }
 
     @GetMapping("orgs/{org_name}/events/create")
