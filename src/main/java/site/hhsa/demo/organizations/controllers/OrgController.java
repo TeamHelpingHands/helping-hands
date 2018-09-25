@@ -63,11 +63,14 @@ public class OrgController {
         return "organizations/show";
     }
 
-    @GetMapping("/orgs/{org_name}/dashboard")
+    @GetMapping("/orgs/dashboard")
     public String OrgDashboard(@PathVariable String org_name, Model model){
-        Organization org = orgDao.findOrganizationByOrgName(org_name);
-        User user = org.getUser();
-        model.addAttribute("user", user);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
+        List<Message> messages = messageDao.findAllByReceiver(currentUser);
+        int newMessages = messages.size();
+        model.addAttribute("newMessages", newMessages);
+        model.addAttribute("currentUser", currentUser);
         return "organizations/dashboard";
     }
 
@@ -84,7 +87,7 @@ public class OrgController {
         user.getOrganization().setUser(userDao.findByUsername(username));
 //        user.getOrganization().setOrgName(user.getOrganization().getOrgName().replace(" ","-"));
         orgDao.save(user.getOrganization());
-        return "redirect:/orgs/"+ user.getOrganization().getOrgName()+"/dashboard";
+        return "redirect:/login";
     }
 
     @GetMapping("/orgs/messages")
@@ -119,6 +122,36 @@ public class OrgController {
         return "organizations/messages";
     }
 
+    @PostMapping("orgs/messages")
+    public String deleteMessage(@RequestParam String id, Model model) {
+        Message message = messageDao.findOne(Long.parseLong(id));
+        message.setReceiverDel(true);
+        messageDao.save(message);
+        model.addAttribute("deleted", "Message deleted.");
+        return "redirect:/orgs/messages";
+    }
+
+    @PostMapping("/orgs/messages/reply")
+    public String messageReply(
+            @ModelAttribute Message newReply,
+            @RequestParam String receiverId,
+            @RequestParam String senderId,
+            @RequestParam String subject,
+            @RequestParam String body,
+            Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Message message = new Message();
+        message.setSubject(subject);
+        message.setBody(body);
+        message.setReceiver(userDao.findOne(Long.parseLong(receiverId)));
+        message.setSender(currentUser);
+        message.setOpened(false);
+        message.setReceiverDel(false);
+        messageDao.save(message);
+        model.addAttribute("messageSent", "Message sent.");
+        return "redirect:/orgs/messages";
+    }
+
     @GetMapping("orgs/{org_name}/events/create")
     public String orgNewEvent(@PathVariable String org_name, Model model){
         Organization myOrg = orgDao.findOrganizationByOrgName(org_name);
@@ -130,8 +163,8 @@ public class OrgController {
     @PostMapping("orgs/{org_name}/events/create")
     public String orgInsertEvent(@PathVariable String org_name, @ModelAttribute Event newEvent){
 
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
         Organization org = currentUser.getOrganization();
         newEvent.setOrg(org);
         eventDao.save(newEvent);
