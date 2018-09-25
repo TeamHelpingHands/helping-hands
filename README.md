@@ -134,12 +134,12 @@
   - No registration form for an Admin
   - Must be manually entered into the database by existing admin
 * Login
-  - [ ] Will login through the volunteer `Login` page
-  - [ ] Admin will have special username & password
+  - [x] Will login through the volunteer `Login` page
+  - [x] Admin will have special username & password
   - [ ] Forwarded to Admin `Dashboard`
 * Dashboard
   - Organization Validation
-    - [ ] Will be able to click a button to Approve or Deny an organization, after verifying they are legitimate
+    - [x] Will be able to click a button to Approve or Deny an organization, after verifying they are legitimate
         - This process is manual for now, however we are interested in looking into how this could be automated
   - User management
     - [ ] Able to see list of all volunteers
