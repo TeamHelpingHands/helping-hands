@@ -45,6 +45,7 @@ public class OrgController {
         Organization org = orgDao.findOrganizationByOrgName(org_name);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userDao.findByUsername(user.getUsername());
+        model.addAttribute("message", new Message());
         model.addAttribute("org", org);
         model.addAttribute("currentUser", currentUser);
         return "organizations/show";
@@ -52,8 +53,10 @@ public class OrgController {
 
     @PostMapping("orgs/{org_name}")
     public String sendMessageVol(@PathVariable String org_name, @ModelAttribute Message message, Model model) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userDao.findByUsername(org_name);
+        User user1 = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user1.getUsername());
+        Organization org = orgDao.findOrganizationByOrgName(org_name);
+        User user = userDao.findByUsername(org.getUser().getUsername());
         message.setSender(currentUser);
         message.setReceiver(user);
         messageDao.save(message);
