@@ -10,8 +10,13 @@ import site.hhsa.demo.organizations.repositories.CategoryRepo;
 import site.hhsa.demo.organizations.repositories.EventRepo;
 import site.hhsa.demo.organizations.repositories.OrgRepo;
 import site.hhsa.demo.services.MassMessenger;
+import site.hhsa.demo.users.models.Message;
 import site.hhsa.demo.users.models.User;
+import site.hhsa.demo.users.repositories.MessageRepo;
 import site.hhsa.demo.users.repositories.UserRepo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class OrgController {
@@ -19,12 +24,14 @@ public class OrgController {
     UserRepo userDao;
     OrgRepo orgDao;
     CategoryRepo categoryDao;
+    MessageRepo messageDao;
 
-    public OrgController(OrgRepo orgDao, CategoryRepo categoryDao, UserRepo userDao, EventRepo eventDao) {
+    public OrgController(EventRepo eventDao, UserRepo userDao, OrgRepo orgDao, CategoryRepo categoryDao, MessageRepo messageDao) {
+        this.eventDao = eventDao;
+        this.userDao = userDao;
         this.orgDao = orgDao;
         this.categoryDao = categoryDao;
-        this.userDao = userDao;
-        this.eventDao = eventDao;
+        this.messageDao = messageDao;
     }
 
     @GetMapping("/orgs")
@@ -56,11 +63,14 @@ public class OrgController {
         return "organizations/show";
     }
 
-    @GetMapping("/orgs/{org_name}/dashboard")
+    @GetMapping("/orgs/dashboard")
     public String OrgDashboard(@PathVariable String org_name, Model model){
-        Organization org = orgDao.findOrganizationByOrgName(org_name);
-        User user = org.getUser();
-        model.addAttribute("user", user);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
+        List<Message> messages = messageDao.findAllByReceiver(currentUser);
+        int newMessages = messages.size();
+        model.addAttribute("newMessages", newMessages);
+        model.addAttribute("currentUser", currentUser);
         return "organizations/dashboard";
     }
 
@@ -77,7 +87,69 @@ public class OrgController {
         user.getOrganization().setUser(userDao.findByUsername(username));
 //        user.getOrganization().setOrgName(user.getOrganization().getOrgName().replace(" ","-"));
         orgDao.save(user.getOrganization());
-        return "redirect:/orgs/"+ user.getOrganization().getOrgName()+"/dashboard";
+        return "redirect:/login";
+    }
+
+    @GetMapping("/orgs/messages")
+    public String myOrgMessages(Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Message> inboxMessages = messageDao.findAllByReceiver(currentUser);
+        List<Message> sentMessages = messageDao.findAllBySender(currentUser);
+        List<Message> delMessages = new ArrayList<>();
+        int noOfMessagesInbox = inboxMessages.size();
+        int noOfMessagesSent = sentMessages.size();
+        int newMessages = 0;
+        for (Message message : inboxMessages) {
+            if (!message.isReceiverDel()) {
+                if (!message.isOpened()) {
+                    newMessages++;
+                    message.setOpened(true);
+                    messageDao.save(message);
+                }
+            } else {
+                delMessages.add(message);
+            }
+        }
+        inboxMessages.removeAll(delMessages);
+        model.addAttribute("delMessage", new Message());
+        model.addAttribute("newReply", new Message());
+        model.addAttribute("noOfMessagesInbox", noOfMessagesInbox);
+        model.addAttribute("noOfMessagesSent", noOfMessagesSent);
+        model.addAttribute("newMessages", newMessages);
+        model.addAttribute("inboxMessages", inboxMessages);
+        model.addAttribute("sentMessages", sentMessages);
+        model.addAttribute("currentUser", currentUser);
+        return "organizations/messages";
+    }
+
+    @PostMapping("orgs/messages")
+    public String deleteMessage(@RequestParam String id, Model model) {
+        Message message = messageDao.findOne(Long.parseLong(id));
+        message.setReceiverDel(true);
+        messageDao.save(message);
+        model.addAttribute("deleted", "Message deleted.");
+        return "redirect:/orgs/messages";
+    }
+
+    @PostMapping("/orgs/messages/reply")
+    public String messageReply(
+            @ModelAttribute Message newReply,
+            @RequestParam String receiverId,
+            @RequestParam String senderId,
+            @RequestParam String subject,
+            @RequestParam String body,
+            Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Message message = new Message();
+        message.setSubject(subject);
+        message.setBody(body);
+        message.setReceiver(userDao.findOne(Long.parseLong(receiverId)));
+        message.setSender(currentUser);
+        message.setOpened(false);
+        message.setReceiverDel(false);
+        messageDao.save(message);
+        model.addAttribute("messageSent", "Message sent.");
+        return "redirect:/orgs/messages";
     }
 
     @GetMapping("orgs/{org_name}/events/create")
@@ -91,8 +163,8 @@ public class OrgController {
     @PostMapping("orgs/{org_name}/events/create")
     public String orgInsertEvent(@PathVariable String org_name, @ModelAttribute Event newEvent){
 
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
         Organization org = currentUser.getOrganization();
         newEvent.setOrg(org);
         eventDao.save(newEvent);

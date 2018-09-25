@@ -25,7 +25,7 @@ public class UserController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userDao.findByUsername(user.getUsername());
         if (currentUser.isOrg()) {
-            return "redirect:/orgs/"+currentUser.getOrganization().getOrgName()+"/dashboard";
+            return "redirect:/orgs/dashboard";
         } else {
             return "redirect:/vols/dash";
         }

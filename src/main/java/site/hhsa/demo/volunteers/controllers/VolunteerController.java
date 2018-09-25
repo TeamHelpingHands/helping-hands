@@ -45,7 +45,7 @@ public class VolunteerController {
     public String volRegisterPost(@PathVariable String username, @ModelAttribute User user) {
         user.getVolunteer().setUser(userDao.findByUsername(username));
         volDao.save(user.getVolunteer());
-        return "redirect:/vols/dash";
+        return "redirect:/login";
     }
 
     @GetMapping("/vols/dash")

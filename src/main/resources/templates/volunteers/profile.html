@@ -60,7 +60,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form th:action="'/vols/'+${user.getUsername()}+'/profile'" method="POST" th:object="${message}">
+                        <form th:action="'/vols/'+${user.getUsername()}" method="POST" th:object="${message}">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="subject">Subject</label>
