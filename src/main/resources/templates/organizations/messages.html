@@ -80,7 +80,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="/vols/message/reply" method="POST">
+                                    <form th:action="'/orgs/message/reply'" method="POST">
                                         <div class="modal-body">
                                             <input type="hidden" name="receiverId" th:value="${message.getSender().getId()}" />
 

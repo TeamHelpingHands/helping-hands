@@ -14,6 +14,7 @@ import site.hhsa.demo.users.models.Message;
 import site.hhsa.demo.users.models.User;
 import site.hhsa.demo.users.repositories.MessageRepo;
 import site.hhsa.demo.users.repositories.UserRepo;
+import site.hhsa.demo.volunteers.models.Volunteer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +44,25 @@ public class OrgController {
     @GetMapping("/orgs/{org_name}")
     public String OrgShow(@PathVariable String org_name, Model model){
         Organization org = orgDao.findOrganizationByOrgName(org_name);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
+        model.addAttribute("message", new Message());
         model.addAttribute("org", org);
+        model.addAttribute("currentUser", currentUser);
         return "organizations/show";
+    }
+
+    @PostMapping("orgs/{org_name}")
+    public String sendMessageVol(@PathVariable String org_name, @ModelAttribute Message message, Model model) {
+        User user1 = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user1.getUsername());
+        Organization org = orgDao.findOrganizationByOrgName(org_name);
+        User user = userDao.findByUsername(org.getUser().getUsername());
+        message.setSender(currentUser);
+        message.setReceiver(user);
+        messageDao.save(message);
+        model.addAttribute("messageSent", "Your message has been sent.");
+        return "redirect:/orgs/"+org_name;
     }
 
     @GetMapping("/orgs/{org_name}/favorites")
@@ -64,7 +82,7 @@ public class OrgController {
     }
 
     @GetMapping("/orgs/dashboard")
-    public String OrgDashboard(@PathVariable String org_name, Model model){
+    public String OrgDashboard(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userDao.findByUsername(user.getUsername());
         List<Message> messages = messageDao.findAllByReceiver(currentUser);
@@ -131,15 +149,15 @@ public class OrgController {
         return "redirect:/orgs/messages";
     }
 
-    @PostMapping("/orgs/messages/reply")
+    @PostMapping("/orgs/message/reply")
     public String messageReply(
             @ModelAttribute Message newReply,
             @RequestParam String receiverId,
-            @RequestParam String senderId,
             @RequestParam String subject,
             @RequestParam String body,
             Model model) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
         Message message = new Message();
         message.setSubject(subject);
         message.setBody(body);
@@ -182,6 +200,19 @@ public class OrgController {
     public String orgEvents(@PathVariable String org_name, @PathVariable long id, Model model){
         model.addAttribute("event", eventDao.findOne(id));
         return "events/show-event";
+    }
+
+    @PostMapping("/orgs/{org_name}/event/{id}")
+    public String insertVolToEvent(@PathVariable String org_name, @PathVariable long id, Model model){
+        Event event = eventDao.findOne(id);
+
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findByUsername(currentUser.getUsername());
+
+        List<Volunteer> vol = event.getVolunteers();
+        vol.add(user.getVolunteer());
+        eventDao.save(event);
+        return"redirect:/orgs/"+ org_name+"/event/"+id;
     }
 
     @PostMapping("/orgs/{org_name}/follow")

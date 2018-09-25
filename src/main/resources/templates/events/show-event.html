@@ -28,10 +28,16 @@
                     <p class="card-text text-center mt-3 mb-0">Description:</p>
                     <p class="textSecondary text-center mb-2 eventCategories" th:text="${event.description}+ ' this should have a lot more information to provide volunteers lorem  ipsum o provide volunteers lorem  ipsumo provide volunteers lorem  ipsumo provide volunteers lorem  ipsum'"></p>
                     <div class="text-center">
-                        <a href="#" class="card-link">
-                            <button>** Volunteer **</button>
-                        </a>
+                        <form th:action="'/orgs/'+${event.org.orgName}+'/event/'+${event.id}" method="POST">
+
+
+                            <button type="submit">** Volunteer **</button>
+
+                        </form>
+
                     </div>
+
+                    <!--post request within modal -->
 
                     <!-- ====== embedded map to show location of event ===== -->
                     <p class="card-text text-center mt-5 mb-2">Location:</p>
