@@ -49,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/","/test", "/orgs","/orgs/{org_name}","/vols/{username}","/register","/vols/{username}/register", "{username}/orgs/register") // anyone can see the home and the ads pages
                 .permitAll()
-                .antMatchers(HttpMethod.POST,"/register","/vols/{username}/register", "{username}/orgs/register") // anyone can see the home and the ads pages
+                .antMatchers(HttpMethod.POST,"/register","/test","/vols/{username}/register", "{username}/orgs/register") // anyone can see the home and the ads pages
                 .permitAll()
                 /* Pages that require athentication */
                 .and()
@@ -59,7 +59,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/vols/{username}/dash",
                         "/orgs/{org_dash}/favorites",
                         "/orgs/{org_name}/follow",
-                        "/orgs/message/reply"// only authenticated users can view
+                        "/orgs/message/reply"
+                        // only authenticated users can view
 
                 )
                 .authenticated()

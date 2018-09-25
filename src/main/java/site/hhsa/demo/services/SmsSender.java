@@ -12,20 +12,20 @@ public class SmsSender {
     // Find your Account Sid and Token at twilio.com/console
 //    private Config config;
 
-    @Value("${accountSID}")
-    private String ACCOUNT_SID;
+//    @Value("${accountSID}")
+//    private String ACCOUNT_SID;
+//
+//    @Value("${authTOKEN}")
+//    private String AUTH_TOKEN;
+//
+//    @Value("${phnNUM}")
+//    private String Phn_num;
 
-    @Value("${authTOKEN}")
-    private String AUTH_TOKEN;
-
-    @Value("${phnNUM}")
-    private String Phn_num;
-
-    public void SmsSender(String recieverNum, String txtMessage) {
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+    public void SmsSender(String recieverNum, String txtMessage,String sid, String token, String phnNum) {
+        Twilio.init(sid, token);
         Message message = Message.creator(
-                new com.twilio.type.PhoneNumber("+"+recieverNum),
-                new com.twilio.type.PhoneNumber(Phn_num),
+                new com.twilio.type.PhoneNumber(recieverNum),
+                new com.twilio.type.PhoneNumber(phnNum),
                 txtMessage)
                 .create();
 

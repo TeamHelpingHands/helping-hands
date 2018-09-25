@@ -1,6 +1,7 @@
 package site.hhsa.demo;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,6 +32,14 @@ public class HomeController {
     VolunteerRepo volDao;
     OrgRepo orgDao;
     private PasswordEncoder passwordEncoder;
+    @Value("${accountSID}")
+    private String ACCOUNT_SID;
+
+    @Value("${authTOKEN}")
+    private String AUTH_TOKEN;
+
+    @Value("${phnNUM}")
+    private String Phn_num;
 
     public HomeController(UserRepo userDao, VolunteerRepo volDao, OrgRepo orgDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
@@ -108,7 +117,9 @@ public class HomeController {
 
     @PostMapping("/test")
     public String testSenderSend(@RequestParam("number")String number, @RequestParam("message") String message){
-        new SmsSender().SmsSender(number,message);
+
+
+        new SmsSender().SmsSender(number,message,ACCOUNT_SID,AUTH_TOKEN,Phn_num);
         return "sender";
     }
 }
