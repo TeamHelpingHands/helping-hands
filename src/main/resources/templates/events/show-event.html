@@ -28,16 +28,34 @@
                     <p class="card-text text-center mt-3 mb-0">Description:</p>
                     <p class="textSecondary text-center mb-2 eventCategories" th:text="${event.description}+ ' this should have a lot more information to provide volunteers lorem  ipsum o provide volunteers lorem  ipsumo provide volunteers lorem  ipsumo provide volunteers lorem  ipsum'"></p>
                     <div class="text-center">
-                        <form th:action="'/orgs/'+${event.org.orgName}+'/event/'+${event.id}" method="POST">
 
-
-                            <button type="submit">** Volunteer **</button>
-
-                        </form>
-
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm">
+                            ** Volunteer **
+                        </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="myModalLabel">Please Confirm</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you wish to register to volunteer for this event?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form th:action="'/orgs/'+${event.org.orgName}+'/event/'+${event.id}" method="POST">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Yes/Confirm</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
-
-                    <!--post request within modal -->
 
                     <!-- ====== embedded map to show location of event ===== -->
                     <p class="card-text text-center mt-5 mb-2">Location:</p>
@@ -85,10 +103,20 @@
 <small id="street" th:class="hide" th:text="${event.strAddr}"></small>
 <small id="zip" th:class="hide" th:text="${event.zipCode}"></small>
 
-<!--<script th:replace="fragments/scripts :: scripts"></script>-->
+<script th:replace="fragments/scripts :: scripts"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBr-hdb0AFXxNojXtRDX0_R4thUc-ET0t0&amp;callback=initMap" async="defer"></script>
+<!--<script-->
+        <!--src="https://code.jquery.com/jquery-2.2.4.min.js"-->
+        <!--integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="-->
+        <!--crossorigin="anonymous"></script>-->
 <script>
 
+    // ===== Confirming Volunteer Modal ===== \\
+    $('#confirm').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    });
+
+    // ===== Maps API ===== \\
     function initMap() {
         var mapCanvas = document.getElementById('map-canvas');
         // Must have map configuration of zoom and location.
@@ -127,10 +155,7 @@
             } else {
                 console.log("Invalid Address.")
             }
-
         });
-
-
     }
 
 </script>
