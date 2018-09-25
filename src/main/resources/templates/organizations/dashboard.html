@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:pth="http://www.w3.org/1999/html">
 <head>
-    <title>Dashboard</title>
+    <meta charset="UTF-8" />
+    <title>Org | Dashboard</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
     <link rel="stylesheet" href="../../css/organization/dashboard.css" />
@@ -13,36 +14,26 @@
 
             <div class="org-main mt-3">
                 <h2>My Dashboard</h2>
-                <p th:text="'Welcome back, '+${currentUser.organization.orgName}"></p>
-                <p th:text="'street address' + ${currentUser.organization}"></p>
-                <!-- getting address is not working -->
-                <!--<p th:tex="'Address: ' + ${user.organization.strAddr}"></p>-->
+                <p th:text="'Welcome, '+${currentUser.organization.orgName}"></p>
             </div>
-
-            <!-- ====================  Admin Panel Buttons ====================  -->
-            <!--<div class="admin-panel text-center">-->
-                <!--<a href="/org/create/event"><button class="btn adminBtn">Create Event</button></a>-->
-                <!--<a href="/org/update-profile"><button class="btn adminBtn">Update Profile</button></a>-->
-                <!--<a href="/org/past/events"><button class="btn adminBtn">Past Events</button></a>-->
-                <!--<a href="/org/upcoming/events"><button class="btn adminBtn">Upcoming Events</button></a>-->
-            <!--</div>-->
 
             <!-- ====================  Admin Information ====================  -->
             <div class="row my-3">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header adminHeader">
+                        <div class="card-header" id="menu">
                             <div>
-                                <a th:href="'/orgs/'+ ${currentUser.organization.orgName} + '/events/create'"><button class="btn adminBtn">Create Event</button></a>
-                            </div>
-                            <div>
-                                <a href="/org/update-profile"><button class="btn adminBtn">Update Profile</button></a>
-                            </div>
-                            <div>
-                                 <a href="/org/past/events"><button class="btn adminBtn">Past Events</button></a>
-                            </div>
-                            <div>
-                                <a th:href="'/orgs/'+ ${currentUser.organization.orgName} + '/events'"><button class="btn adminBtn">Upcoming Events</button></a>
+                                <ul>
+                                    <li><a th:href="'/orgs/messages'">Messages <span class="badge badge-light" th:text="${newMessages}"></span></a></li>
+                                    <span>|</span>
+                                    <li><a th:href="'/orgs/'+ ${currentUser.organization.orgName}+'/events/create'">Create Event</a></li>
+                                    <span>|</span>
+                                    <li><a href="#">Update Profile</a></li>
+                                    <span>|</span>
+                                    <li><a href="#">Past Events</a></li>
+                                    <span>|</span>
+                                    <li><a th:href="'/orgs/'+ ${currentUser.organization.orgName}+'/events/'">Upcoming Events</a></li>
+                                </ul>
                             </div>
                         </div>
                         <div class="card-body row">
@@ -57,20 +48,12 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <p th:text="'Contact Number: ' + ${currentUser.phnNum}"></p>
-                                        <!--<p th:tex="'Address: ' + ${user.organization.}"></p>-->
+                                        <p th:text="'Address: ' + ${currentUser.organization.strAddr}"></p>
                                     </div>
                                     <div class="col-6">
                                         <p th:text="'Email: ' + ${currentUser.email}"></p>
                                         <p th:text="'Zipcode: ' + ${currentUser.zipcode}"></p>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <span>
-                                        <a class="btn btn-primary btn-sm ml-3" th:href="'/vols/'+${currentUser.username}">View Profile</a>
-                                    </span>
-                                        <span>
-                                        <a th:href="'/orgs/messages'" class="btn btn-primary btn-sm ml-2">Messages <span class="badge badge-light" th:text="${newMessages}"></span></a>
-                                    </span>
                                 </div>
                             </div>
                         </div>

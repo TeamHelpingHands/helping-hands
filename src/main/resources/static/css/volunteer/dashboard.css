@@ -81,17 +81,6 @@ img {
         text-align: center;
     }
 
-    /*.adminHeader a {*/
-        /*display: block;*/
-        /*width: 100%;*/
-        /*grid-template-areas:*/
-                /*"button"*/
-                /*"button"*/
-                /*"button"*/
-                /*"button";*/
-        /*grid-template-columns: 1fr;*/
-    /*}*/
-
     main {
         align-items: center;
         text-align: center;
@@ -99,11 +88,11 @@ img {
 
     #menu {
         grid-template-areas:
-        "li"
-        "li"
-        "li"
-        "li"
-        "li";
+                "li"
+                "li"
+                "li"
+                "li"
+                "li";
         grid-template-columns: 1fr;
     }
 
