@@ -18,6 +18,24 @@ label {
     font-family: "Lato", sans-serif;
 }
 
+.btn-custom {
+    background-color: var(--btn-color);
+    border-color: var(--btn-color);
+}
+
+.card-custom {
+    width: 60% !important;
+}
+
+/*.card-header-custom {*/
+    /*background-color:;*/
+/*}*/
+
+.link-custom {
+    text-underline: none;
+    color: var(--primary-color);
+}
+
 #registerForm {
     display: grid;
     width: 100%;
