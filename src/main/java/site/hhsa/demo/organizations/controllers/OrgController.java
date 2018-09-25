@@ -43,8 +43,22 @@ public class OrgController {
     @GetMapping("/orgs/{org_name}")
     public String OrgShow(@PathVariable String org_name, Model model){
         Organization org = orgDao.findOrganizationByOrgName(org_name);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
         model.addAttribute("org", org);
+        model.addAttribute("currentUser", currentUser);
         return "organizations/show";
+    }
+
+    @PostMapping("orgs/{org_name}")
+    public String sendMessageVol(@PathVariable String org_name, @ModelAttribute Message message, Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findByUsername(org_name);
+        message.setSender(currentUser);
+        message.setReceiver(user);
+        messageDao.save(message);
+        model.addAttribute("messageSent", "Your message has been sent.");
+        return "redirect:/orgs/"+org_name;
     }
 
     @GetMapping("/orgs/{org_name}/favorites")
