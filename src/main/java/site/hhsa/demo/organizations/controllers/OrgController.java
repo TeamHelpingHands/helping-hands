@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import site.hhsa.demo.organizations.models.Event;
+import site.hhsa.demo.organizations.models.FeedbackFromOrganization;
 import site.hhsa.demo.organizations.models.Organization;
 import site.hhsa.demo.organizations.repositories.CategoryRepo;
 import site.hhsa.demo.organizations.repositories.EventRepo;
@@ -251,6 +252,13 @@ public class OrgController {
         }
         orgDao.save(org);
         return "redirect:/orgs/"+org_name+"/favorites";
+    }
+
+    @GetMapping("/orgs/{org_name}/events/{event_id}/dash")
+    public String eventDash(@PathVariable long event_id, Model model){
+        Event event = eventDao.findOne(event_id);
+        model.addAttribute("event", event);
+        return "organizations/event-dash";
     }
 
 // ======== Listener for org to create event and insert into database ===== \\

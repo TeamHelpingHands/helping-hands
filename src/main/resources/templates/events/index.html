@@ -1,5 +1,5 @@
  <!DOCTYPE html>
-    <html xmlns:th="http://www.thymeleaf.org">
+ <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
     <head>
         <meta charset="UTF-8" />
         <title>FAQ | Helping Hands</title>
@@ -24,7 +24,7 @@
                             <div class="card event1">
                                 <div class="card-body">
                                     <h5 class="card-title" th:text="'Event Name: ' + ${event.eventName}"></h5>
-                                    <h6 class="card-subtitle mb-2 text-muted" th:text="'Date/Time: '+ ${event.dateTime}"></h6>
+                                    <h6 class="card-subtitle mb-2 text-muted" th:text="'Date/Time: '+ ${event.dateTime}" sec:authorize="isAuthenticated()"></h6>
                                     <p class="card-text" th:text="'Description: ' + ${event.description}"></p>
                                     <a th:href="'/orgs/'+${event.organization.orgName}+'/event/'+${event.id}" class="card-link">View More</a>
                                     <a th:href="'/orgs/'+${event.organization.orgName}" class="card-link">View Org Profile</a>
@@ -34,12 +34,14 @@
                     </div>
 
                     <!-- ========== CTA After Event Cards ========== -->
-                    <div class="text-center mt-3">
-                        <p class="leadEvents mb-2">Want to make a difference in your community?</p>
-                        <button class="btn registerNow">
-                            <a href="/register">Create Account</a>
-                        </button>
-                    </div>
+                    <th:block sec:authorize="isAnonymous()">
+                        <div class="text-center mt-3">
+                            <p class="leadEvents mb-2">Want to make a difference in your community?</p>
+                            <button class="btn registerNow">
+                                <a href="/register">Create Account</a>
+                            </button>
+                        </div>
+                    </th:block>
                 </section>
 
                 <br />
