@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        #logoutBtn {
+            background: transparent;!important;
+            border: none;!important;
+        }
+
+        #logoutBtn:hover {
+            border: none; !important;
+        }
+    </style>
+</head>
+<body>
+<th:block th:fragment="navbar">
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #2ec4b6">
+        <a class="navbar-brand" href="/">HelpingHands</a>
+        <!--events should not be shown to unregistered/not signed users-->
+        <div class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
+            <a class="nav-item nav-link" th:href="'/events'">Events</a>
+        </div>
+
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
+                <a class="nav-item nav-link" th:href="'/vols/'+${#authentication.principal.username}" th:text="${#authentication.principal.username}" style="border-right: 2px double #aaa6a2;"></a>
+                <a class="nav-item nav-link" th:href="'/home'">Dashboard</a>
+                <a class="nav-item nav-link" th:href="'/vols/'+${#authentication.principal.username}">Profile</a>
+                <a class="nav-item nav-link" th:href="'/vols/messages'">Inbox</a>
+                <form th:action="@{/logout}" method="POST">
+                    <button id="logoutBtn" type="submit" class="nav-item nav-link btn btn-light" style="background-color: transparent">Logout</button>
+                </form>
+
+            </div>
+            <div class="navbar-nav ml-auto" sec:authorize="isAnonymous()">
+                <a th:href="'/register'" class="nav-item nav-link">Register</a>
+                <a th:href="'/login'" class="nav-item nav-link">Login</a>
+            </div>
+        </div>
+    </nav>
+</th:block>
+</body>
+</html>

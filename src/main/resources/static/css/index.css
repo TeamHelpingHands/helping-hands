@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Lato|Montserrat");
+@import url("https://fonts.googleapis.com/css?family=Lato|Montserrat|Bungee+Shade");
 
 /* color and transition variables */
 :root {
@@ -14,6 +14,19 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+nav {
+    height: 65px;
+    background: transparent;
+}
+
+.navbar-brand {
+    font-size: 1.2rem;
+}
+
+.nav-item.nav-link {
+    font-weight: 600;
+}
+
 #events {
     display: grid;
     grid-gap: 10px;
@@ -27,15 +40,55 @@ img {
     width: 50px;
 }
 
+#hh-logo-new {
+    width: 260px;
+    height: 235px;
+}
+
 #welcome {
-    background-image: url("../img/rawpixel-660714-unsplash.jpg");
-    background-size: cover;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
+    height: calc(100vh - 40px);
     width: 100%;
     position: relative;
-    overflow-y: hidden;
+    overflow: hidden;
+    background: linear-gradient(rgba(255,127,0,0.49), rgba(255,255,255,0.34));
+}
+
+#title-header {
+    font-size: 5rem;
+    letter-spacing: 3px;
+    color: var(--primary-color);
+    font-family: 'Bungee Shade', Helvetica, sans-serif;
+}
+
+#vid-container {
+    position: relative;
+    height: 100px;
+}
+
+.vid-bg {
+    position: absolute;
+    top: -200px;
+    left: -200px;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.title-col {
+    background: rgba(255,255,255,0.65);
 }
 
 .leadWelcome {
@@ -69,11 +122,6 @@ button {
 section {
     padding: 2rem 0;
     margin: 2rem;
-}
-
-.welcome-info,
-.register-link {
-    margin-left: 2rem;
 }
 
 .register-link {
@@ -235,9 +283,9 @@ nav a#openup {
 
     .org-logos-row-1 {
         grid-template-areas:
-        "org1"
-        "org2"
-        "org3";
+                "org1"
+                "org2"
+                "org3";
         grid-template-columns: 2fr;
     }
 
@@ -309,3 +357,14 @@ nav a#openup {
 /* @media screen and (max-width: 580px) {
 
 } */
+
+@media (max-width: 767px) {
+    .fullscreen-bg {
+        background: url("../resources/static/img/rawpixel-660714-unsplash.jpg") center center / cover no-repeat;
+    }
+
+    .fullscreen-bg__video {
+        display: none;
+    }
+}
+
