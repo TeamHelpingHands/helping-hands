@@ -35,7 +35,7 @@ public class User {
     private String password;
 
     @Column(name="photo_url")
-    private String photoUrl;
+    private String photoUrl = "http://swasti.org/wp-content/plugins/awsm-team-pro/images/default-user.png";
 
     @Column(nullable = false)
     private String zipcode;

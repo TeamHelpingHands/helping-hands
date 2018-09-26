@@ -17,6 +17,8 @@ import site.hhsa.demo.users.repositories.MessageRepo;
 import site.hhsa.demo.users.repositories.UserRepo;
 import site.hhsa.demo.volunteers.models.Volunteer;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -218,6 +220,23 @@ public class OrgController {
     }
     @GetMapping("/orgs/{org_name}/event/{id}")
     public String orgEvents(@PathVariable String org_name, @PathVariable long id, Model model){
+        Event event = eventDao.findOne(id);
+        List<Volunteer> vols = event.getVolunteers();
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = userDao.findByUsername(currentUser.getUsername());
+            model.addAttribute("user", user);
+            if (vols.contains(user.getVolunteer())) {
+                String alert = "Test123";
+                model.addAttribute("alert", alert);
+            }
+        }
+        String oldDateTime = eventDao.findOne(id).getDateTime();
+        String newDate = oldDateTime.substring(0, 10);
+        String newTime = oldDateTime.substring(11);
+        model.addAttribute("vols", vols);
+        model.addAttribute("newTime", newTime);
+        model.addAttribute("newDate", newDate);
         model.addAttribute("event", eventDao.findOne(id));
         return "events/show-event";
     }
@@ -225,13 +244,15 @@ public class OrgController {
     @PostMapping("/orgs/{org_name}/event/{id}")
     public String insertVolToEvent(@PathVariable String org_name, @PathVariable long id, Model model){
         Event event = eventDao.findOne(id);
-
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findByUsername(currentUser.getUsername());
-
-        List<Volunteer> vol = event.getVolunteers();
-        vol.add(user.getVolunteer());
+        List<Volunteer> vols = event.getVolunteers();
+        if (!vols.contains(user.getVolunteer())) {
+            vols.add(user.getVolunteer());
+        }
         eventDao.save(event);
+        model.addAttribute("user", user);
+        model.addAttribute("vols", vols);
         return"redirect:/orgs/"+ org_name+"/event/"+id;
     }
 
@@ -243,9 +264,9 @@ public class OrgController {
         Organization org = orgDao.findOrganizationByOrgName(org_name);
         List<User> followers = org.getFollowers();
 
-        if(followers.contains(user)){
+        if (followers.contains(user)) {
             followers.remove(user);
-        }else{
+        } else {
             followers.add(user);
             org.setFollowers(followers);
         }

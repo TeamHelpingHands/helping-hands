@@ -9,6 +9,13 @@
     --btn-color: #2ec4b6;
     --easeOut: all 0.25s ease-out;
 }
+html, body {
+    background-image: linear-gradient(
+            rgba(255,255,255,0.75),
+            rgba(255,255,255,0.75)
+    ), url("https://i.postimg.cc/JnCZTJMS/IMG_0779.jpg");
+    background-size: cover;
+}
 
 body {
     font-family: "Montserrat", sans-serif;
@@ -25,6 +32,22 @@ section {
 
 .eventCategories {
     font-size: 0.85rem;
+}
+
+.btn-custom {
+    background-color: var(--btn-color);
+    border-color: var(--btn-color);
+}
+.link-custom {
+    text-underline: none;
+    color: var(--primary-color);
+}
+
+#map-canvas {
+    border: 2px var(--primary-color) solid;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 /* ============ mobile view ============  */
