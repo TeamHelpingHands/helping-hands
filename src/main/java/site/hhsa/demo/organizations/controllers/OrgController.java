@@ -17,12 +17,14 @@ import site.hhsa.demo.users.models.User;
 import site.hhsa.demo.users.repositories.MessageRepo;
 import site.hhsa.demo.users.repositories.UserRepo;
 import site.hhsa.demo.volunteers.models.Volunteer;
+import site.hhsa.demo.volunteers.repositories.FeedbackFromOrgRepo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class OrgController {
+    FeedbackFromOrgRepo feedbackDao;
     EventRepo eventDao;
     UserRepo userDao;
     OrgRepo orgDao;
@@ -38,12 +40,13 @@ public class OrgController {
     @Value("${phnNUM}")
     private String Phn_num;
 
-    public OrgController(EventRepo eventDao, UserRepo userDao, OrgRepo orgDao, CategoryRepo categoryDao, MessageRepo messageDao) {
+    public OrgController(EventRepo eventDao, UserRepo userDao, OrgRepo orgDao, CategoryRepo categoryDao, MessageRepo messageDao, FeedbackFromOrgRepo feedbackDao) {
         this.eventDao = eventDao;
         this.userDao = userDao;
         this.orgDao = orgDao;
         this.categoryDao = categoryDao;
         this.messageDao = messageDao;
+        this.feedbackDao = feedbackDao;
     }
 
     @GetMapping("/orgs")
@@ -257,6 +260,15 @@ public class OrgController {
     @GetMapping("/orgs/{org_name}/events/{event_id}/dash")
     public String eventDash(@PathVariable long event_id, Model model){
         Event event = eventDao.findOne(event_id);
+        model.addAttribute("event", event);
+        model.addAttribute("feedback", new FeedbackFromOrganization());
+        return "organizations/event-dash";
+    }
+
+    @PostMapping("/orgs/{org_name}/events/{event_id}/dash")
+    public String eventDashUpdate(@PathVariable long event_id,@ModelAttribute FeedbackFromOrganization feedback, Model model){
+        Event event = eventDao.findOne(event_id);
+        feedbackDao.save(feedback);
         model.addAttribute("event", event);
         return "organizations/event-dash";
     }

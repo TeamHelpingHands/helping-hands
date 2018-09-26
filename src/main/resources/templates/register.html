@@ -21,36 +21,36 @@
                 <div class="card-header">
                     <h1 class="formHeader">Register Account</h1>
                 </div>
-                <div class="card-body">
-                    <div class="form-group">
+                <div class="card-body col-7 m-auto">
+                    <div class="form-group d-flex justify-content-between">
                         <label for="username">Username:</label>
                         <input id="username" type="text" minlength="5" maxlength="12" th:field="*{username}" required="required" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-flex justify-content-between">
                         <label for="email">Email address:</label>
                         <input id="email" type="email" th:field="*{email}" required="required" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-flex justify-content-between">
                         <label for="password">Password:</label>
                         <input id="password" type="password" th:field="*{password}" required="required" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-flex justify-content-between">
                         <label for="firstName">First Name:</label>
                         <input id="firstName" type="text" th:field="*{firstName}" required="required" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-flex justify-content-between">
                         <label for="lastName">Last Name:</label>
                         <input id="lastName" type="text" th:field="*{lastName}" required="required" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-flex justify-content-between">
                         <label for="phnNum">Phone Number:</label>
                         <input id="phnNum" type="text" minlength="10" th:field="*{phnNum}" required="required" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-flex justify-content-between">
                         <label for="zipcode">Zip Code:</label>
                         <input id="zipcode" type="text" minlength="5" maxlength="5" th:field="*{zipcode}" required="required" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-flex justify-content-between">
                         <label for="picUrlInput">Profile picture:</label>
                         <button type="button" class="btn btn-primary btn-custom" id="uploadBtn">Upload</button>
                         <small id="picName"></small>
@@ -58,10 +58,16 @@
                     </div>
                     <div class="form-group">
                         <h6>Are you registering as a <strong>Volunteer</strong> or an <strong>Organization</strong>?</h6>
-                        <label for="vol">Volunteer</label>
-                        <input class="mr-3" id="vol" type="radio" name="isOrg" value="false" />
-                        <label for="org">Organization</label>
-                        <input id="org" type="radio" name="isOrg" value="true" />
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <label for="vol">Volunteer</label>
+                                <input class="mr-3" id="vol" type="radio" name="isOrg" value="false" />
+                            </div>
+                            <div>
+                                <label for="org">Organization</label>
+                                <input id="org" type="radio" name="isOrg" value="true" />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">

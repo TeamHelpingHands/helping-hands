@@ -15,14 +15,24 @@
 <div class="container">
     <section id="single-event">
         <h2 class="mt-5" th:text="'Event: ' + ${event.description}"></h2>
-        <h3 th:text="${event.organization}"></h3>
+        <h3 th:text="${event.org}"></h3>
         <h3 th:text="${event.volunteers}"></h3>
         <div th:each="volunteer : ${event.volunteers}">
-            <form th:action="" th:method="${volunteer.orgFeedback}">
+            <form th:action="@{/orgs/{org_name}/{event_id}/dash(org_name = ${event.getOrganization().getOrgName()}, event_id = ${event.getId()})}" th:method="${feedback}" >
                 <label><span th:text="${volunteer.user.firstName}" /> <span th:text="${volunteer.user.lastName}" /></label>
+                <span>|</span>
+                <input type="hidden" th:field="${feedback.volunteer}" th:value="${volunteer}" />
+                <input type="hidden" th:field="${feedback.event}" th:value="${event}" />
+                <input type="hidden" th:field="${feedback.org}" th:value="${event.organization}"/>
                 <label for="attended">Attended?</label>
-                <input type="checkbox" id="attended" name="attended" th:field="*{did_attend}" />
-                <textarea th:field="*{feedback}">Feedback</textarea>
+                <input type="checkbox" id="attended" name="attended" th:field="${feedback.didAttend}" th:value="${true}" />
+                <span>|</span>
+                <label for="feedback">feedback:</label>
+                <input type="text" id="feedback" name="feedback" th:field="${feedback.feedback}" />
+                <span>|</span>
+                <label for="rating"> rating:</label>
+                <input type="number" id="rating" name="rating" min="1" max="5" th:field="${feedback.rating}" />
+                <input type="submit" />
             </form>
         </div>
     </section>
