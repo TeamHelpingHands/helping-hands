@@ -124,3 +124,7 @@ document.getElementById("uploadBtn").addEventListener("click", function (ev) {
 //     // adjust darker band to new value
 //     chart.axes[0].bands[1].setEndValue(value);
 // }
+
+
+// ======================================= \\
+

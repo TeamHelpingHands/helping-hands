@@ -16,10 +16,10 @@
 <body>
 <th:block th:fragment="navbar">
     <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #2ec4b6">
-        <a class="navbar-brand" href="/">HelpingHands</a>
+        <a class="navbar-brand" href="/">HelpingHands </a>
         <!--events should not be shown to unregistered/not signed users-->
         <div class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
-            <a class="nav-item nav-link" th:href="'/events'">Events</a>
+            <a class="nav-item nav-link" th:href="'/events'"> Events</a>
         </div>
 
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
                 <a class="nav-item nav-link" th:href="'/home'">Dashboard</a>
                 <a class="nav-item nav-link" th:href="'/vols/'+${#authentication.principal.username}">Profile</a>
                 <a class="nav-item nav-link" th:href="'/vols/messages'">Inbox</a>
-                <form th:action="@{/logout}" method="POST">
+                <form th:action="@{/login?logout}" method="POST">
                     <button id="logoutBtn" type="submit" class="nav-item nav-link btn btn-light" style="background-color: transparent">Logout</button>
                 </form>
 

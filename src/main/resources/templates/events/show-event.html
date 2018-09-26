@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8" />
     <title>Single Event Page View</title>
@@ -12,27 +12,104 @@
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
-<div class="container">
+<div class="container wrapper">
+
     <section id="single-event">
-        <h2 class="mt-5" th:text="'Event: ' + ${event.description}"></h2>
-        <p class="textSecondary">Interested in this event? Click 'volunteer' to send your info to the organization.
-        </p>
         <div id="event">
             <div class="card eventInfo">
+
                 <div class="card-body">
-                    <a id="orgNameLink" th:href="'/orgs/'+${event.org.orgName}" th:text="${event.org.orgName}"></a>
-                    <!--<a th:href="'/orgs/'+${event.org.orgName}">(view profile)</a>-->
-                    <h6 class="textSecondary mb-2 text-muted" th:text="'Date/Time: ' + ${event.dateTime}"></h6>
-                    <p class="textSecondary text-left" id="streetAddress" th:text="'Street Address: ' +${event.strAddr}"></p>
-                    <p class="textSecondary text-left zip" th:text="'Zipcode: ' +${event.zipCode}"></p>
-                    <p class="card-text text-center mt-3 mb-0">Description:</p>
-                    <p class="textSecondary text-center mb-2 eventCategories" th:text="${event.description}+ ' this should have a lot more information to provide volunteers lorem  ipsum o provide volunteers lorem  ipsumo provide volunteers lorem  ipsumo provide volunteers lorem  ipsum'"></p>
+
+
+                    <div class="row p-2">
+
+                        <div class="col-6">
+                            <h2 th:text="${event.eventName}"></h2>
+
+                             <p class="text-muted"><span>
+                                <a th:href="'/orgs/'+${event.org.orgName}">
+                                    <img th:src="${event.getOrg().getUser().getPhotoUrl()}" alt="Org LOGO" style="width: 35px; height: 35px; border-radius: 50%" />
+                                </a>
+                            </span> <a id="orgNameLink" class="link-custom" th:href="'/orgs/'+${event.org.orgName}" th:text="${event.org.orgName}"></a></p>
+                            <small><a th:href="'/orgs/'+ ${event.org.orgName} +'/events'" class="card-link link-custom">View All Events From This Organization</a></small>
+
+                            <th:block sec:authorize="isAuthenticated()">
+                                <p class="text-muted" th:text="${'When: ' + newDate + ' at ' + newTime}"></p>
+                                <p class="text-muted" id="streetAddress" th:text="'Street Address: ' +${event.strAddr}"></p>
+                                <p class="text-muted" th:text="'Zipcode: ' +${event.zipCode}"></p>
+                            </th:block>
+                            <!-- ====== event categories ===== -->
+                            <div class="text-left eventCategories hideOnSmall">
+                                <small class="card-text">
+                                    <em>Event Categories: sports, outdoors, church, mentor, etc</em>
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="col-6" style="border-left: solid 2px #c3bebe;">
+                             <div class="row h-100">
+                                 <div class="col-4 d-flex align-self-center justify-content-end">
+                                     <h6 class="">Description:</h6>
+                                 </div>
+                                 <div class="col-8 d-flex align-self-center">
+                                     <p th:text="${event.description}"></p>
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row mt-3 p-2">
+
+                        <div class="col-6">
+                            <!-- ====== embedded map to show location of event ===== -->
+                            <div id="map-canvas" style="height: 350px; width: 100%;"></div>
+                            <!-- MAP END -->
+                        </div>
+
+                        <div class="col-6 text-center align-self-center">
+
+                            <th:block sec:authorize="isAuthenticated()">
+                            <div class="row">
+
+                                <th:block th:if="${vols.contains(user.getVolunteer())}">
+                                    <div class="col-12">
+                                        <div class="alert alert-success my-3 w-80">You are registered for this event! Nice job!</div>
+                                    </div>
+                                </th:block>
+
+                                <th:block th:if="${!vols.contains(user.getVolunteer())}">
+                                   <div class="col-12">
+                                       <small class="textSecondary text-muted">Interested in volunteering for this event? Click 'Put Me In, Coach!' to add yourself to the list of volunteers!
+                                       </small>
+                                       <button type="button" class="btn btn-primary btn-custom" data-toggle="modal" data-target="#confirm">
+                                           Put me in, Coach!
+                                       </button>
+                                   </div>
+                                </th:block>
+                            </div>
+                            </th:block>
+
+                            <th:block sec:authorize="isAnonymous()">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5>Want to get involved in this project?</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>
+                                            <a class="link-custom" th:href="'/register'">Register</a> or
+                                            <a class="link-custom" th:href="'/login'">Login</a>!
+                                        </p>
+                                    </div>
+                                </div>
+                            </th:block>
+                        </div>
+                    </div>
                     <div class="text-center">
 
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm">
-                            ** Volunteer **
-                        </button>
+
                             <!-- Modal -->
                             <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -43,40 +120,22 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
-                                            Are you sure you wish to register to volunteer for this event?
-                                        </div>
+                                        <div class="modal-body" th:text="${'Are you sure you wish to register to volunteer for &quot;' + event.getEventName() + '&quot;?'}"></div>
                                         <div class="modal-footer">
-                                            <form th:action="'/orgs/'+${event.org.orgName}+'/event/'+${event.id}" method="POST">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Yes/Confirm</button>
+                                            <form th:action="'/orgs/'+${event.org.orgName}+'/event/'+${event.id}" method="POST">
+                                                <button type="submit" class="btn btn-primary" id="volEnrollBtn">Sign up!</button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                     </div>
-
-                    <!-- ====== embedded map to show location of event ===== -->
-                    <p class="card-text text-center mt-5 mb-2">Location:</p>
-                    <div id="map-canvas" style="height: 350px; width: 100%;"></div>
-                    <!-- MAP END -->
-
-                    <!-- ====== link options ===== -->
-                    <div class="text-center">
-                        <a th:href="'/orgs/'+ ${event.org.orgName} +'/events'" class="card-link">View All Events From This Organization</a>
-                    </div>
-                    <!-- ====== event categories ===== -->
-                    <div class="text-left mt-5 eventCategories hideOnSmall">
-                        <p class="card-text">
-                            <em>Event Categories: sports, outdoors, church, mentor, etc</em>
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>
         <div class="text-center mt-3">
-            <a href="/events">Back To All Events Page</a>
+            <a class="link-custom" href="/events">Back To All Events Page</a>
         </div>
     </section>
 
@@ -85,36 +144,24 @@
         <div class="container">
             <div class="footer-cols">
                 <div class="text-center">
-                    <a href="/">Home </a>
+                    <a class="link-custom" href="/">Home </a>
                     <span>|</span>
-                    <a href="/faq">FAQ</a>
+                    <a class="link-custom" href="/faq">FAQ</a>
                     <span>|</span>
-                    <a href="/about-team">The Team</a>
+                    <a class="link-custom" href="/about-team">The Team</a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom text-center">
-            HelpingHands Copyright &copy; 2018
+            <em>HelpingHands Copyright &copy; 2018</em>
         </div>
     </footer>
 </div>
 
-
-<small id="street" th:class="hide" th:text="${event.strAddr}"></small>
-<small id="zip" th:class="hide" th:text="${event.zipCode}"></small>
-
 <script th:replace="fragments/scripts :: scripts"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBr-hdb0AFXxNojXtRDX0_R4thUc-ET0t0&amp;callback=initMap" async="defer"></script>
-<!--<script-->
-        <!--src="https://code.jquery.com/jquery-2.2.4.min.js"-->
-        <!--integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="-->
-        <!--crossorigin="anonymous"></script>-->
+<script type="text/javascript" th:href="@{/js/event-enrollment.js}"></script>
+<script th:src="'https://maps.googleapis.com/maps/api/js?key=AIzaSyDN81ncRMrxQ1T-tFTqOVXkKGGT2YyZURA&amp;callback=initMap'" async="async" defer="defer"></script>
 <script>
-
-    // ===== Confirming Volunteer Modal ===== \\
-    $('#confirm').on('shown.bs.modal', function () {
-        $('#myInput').trigger('focus')
-    });
 
     // ===== Maps API ===== \\
     function initMap() {
@@ -138,7 +185,7 @@
         // var zip = "78240";
 
 
-        var streetAddress = "6015 Wilde Glen";
+        var streetAddress = "6015 Wilde Glen, San Antonio, TX";
         // var zip = "78240";
 
 
@@ -150,12 +197,15 @@
                         map: map,
                         position: results[0].geometry.location
                     });
+                    var latLng = marker.getPosition(); // returns LatLng object
+                    map.setCenter(latLng); // setCenter takes a LatLng object
                 }
 
             } else {
                 console.log("Invalid Address.")
             }
         });
+
     }
 
 </script>
