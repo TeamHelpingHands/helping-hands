@@ -5,113 +5,112 @@
     <title>Volunteer | Dashboard</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-    <link rel="stylesheet" th:href="@{/css/volunteer/dashboard.css}" />
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 
 <body>
-    <nav th:replace="fragments/navbar :: navbar"></nav>
+
+<nav th:replace="fragments/navbar :: navbar"></nav>
 
     <div class="container">
 
-        <h1>My Dashboard</h1>
-        <p th:text="'Welcome, ' + ${currentUser.username} + '!'"></p>
+        <h1 class="title">My Dashboard</h1>
+        <p th:text="'Welcome, ' + ${currentUser.username} + '!'" class="hideOnSmall"></p>
 
-        <div class="row my-5">
+        <div class="row my-3">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header" id="menu">
                         <div>
                             <ul>
-                                <li><a th:href="'/vols/messages'">Messages <span class="badge badge-light" th:text="${newMessagesCount}"></span></a></li>
-                                <span>|</span>
-                                <li><a href="/">Update Profile</a></li>
-                                <span>|</span>
-                                <li><a href="/">My Events</a></li>
-                                <span>|</span>
-                                <li><a th:href="@{/events}">Upcoming Events</a></li>
+                                <li>
+                                    <a th:href="'/vols/messages'">Messages
+                                        <span class="badge badge-light" th:text="${newMessagesCount}"></span>
+                                    </a>
+                                </li>
+                                <span class="hideOnSmall">|</span>
+                                <li>
+                                    <a href="/">Update Profile</a>
+                                </li>
+                                <span class="hideOnSmall">|</span>
+                                <li>
+                                    <a href="/">Past Events</a>
+                                </li>
+                                <span class="hideOnSmall">|</span>
+                                <li>
+                                  <li><a th:href="@{/events}">Upcoming Events</a></li>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="card-body row">
                         <div class="col-12 col-sm-3">
                             <div>
-                                <img class="mb-3 mb-sm-0" th:src="${currentUser.photoUrl}" alt="" style="width: 100%; height: 100%; border-radius: 50%" />
+                                <img class="mb-3 mb-sm-0" th:src="${currentUser.photoUrl}" alt="" style="width: 100%;" />
                             </div>
                         </div>
                         <div class="col-12 col-sm-9">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12 col-m-6 col-lg-6 text-center">
                                     <p th:text="'Full Name: ' + ${currentUser.firstName} + ' ' + ${currentUser.lastName}"></p>
                                     <p th:text="'Phone Number: ' + ${currentUser.phnNum}"></p>
-                                </div>
-                                <div class="col-6">
                                     <p th:text="'Email: ' + ${currentUser.email}"></p>
-                                    <p th:text="'Zipcode: ' + ${currentUser.zipcode}"></p>
                                 </div>
-                            </div>
-                            <div class="row text-center">
-                                <div class="col-12">
+                                <div class="col-12 col-m6 col-lg-6 text-center">
                                     <h6>About Me:</h6>
                                     <p th:text="${currentUser.volunteer.bio}"></p>
                                 </div>
                             </div>
-                            <!-- ====== section tj had prior to admin panel updates included ====== -->
-                            <!--<div class="row">-->
-                                <!--<span>-->
-                                    <!--<a class="btn btn-primary btn-sm ml-3" th:href="'/vols/'+${currentUser.username}">View Profile</a>-->
-                                <!--</span>-->
-                                <!--<span>-->
-                                    <!--<a th:href="'messages'" class="btn btn-primary btn-sm ml-2">Messages <span class="badge badge-light" th:text="${newMessageCount}"></span></a>-->
-                                <!--</span>-->
-                            <!--</div>-->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <h4>Volunteer Record</h4>
-        <div class="row mb-1">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
+        <!-- ====== participation information ====== -->
+        <h4 class="title">Volunteer Record</h4>
+        <div class=" row mb-1 ">
+            <div class="col-12 ">
+                <div class="card ">
+                    <div class="card-header ">
                         <h5>Stats</h5>
                     </div>
-                    <div class="card-body row">
-                        <div class="col-12 col-md">
+                    <div class="card-body row ">
+                        <div class="col-12 col-md ">
 
-                            <small id="noEventsEnrolled" class="hide" th:value="${noEventsEnrolled}"></small>
-                            <small id="noOfDidAttend" class="hide" th:value="${noOfDidAttend}"></small>
-                            <p th:text="'Kudos: [FINISH ME]'"></p>
-                            <p th:text="'Number of events committed to: ' + ${noEventsEnrolled}"></p>
-                            <p th:text="'Number of events attended: ' + ${noOfDidAttend}"></p>
+                            <small id="noEventsEnrolled " class="hide " th:value="${noEventsEnrolled} "></small>
+                            <small id="noOfDidAttend " class="hide " th:value="${noOfDidAttend} "></small>
+                            <p th:text=" 'Kudos: [FINISH ME]' "></p>
+                            <p th:text=" 'Number of events committed to: ' + ${noEventsEnrolled} "></p>
+                            <p th:text=" 'Number of events attended: ' + ${noOfDidAttend} "></p>
                         </div>
-                        <div class="col-12 col-md">
-                            <div id="chartdiv" style="height: 300px; width: 300px;">
-                                <!--<p style="margin-top: 8em; text-align: center">BIG OL DONUT CHART</p>-->
+                        <div class="col-12 col-md ">
+                            <div id="chartdiv " style="height: 300px; width: 300px; ">
+                                <!--<p style="margin-top: 8em; text-align: center ">BIG OL DONUT CHART</p>-->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row mb-5">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Commendations</h5>
+        <div class="row mb-5 ">
+            <div class="col-12 ">
+                <div class="card ">
+                    <div class="card-header ">
+                        <h5>Feedback</h5>
                     </div>
-                    <div class="card-body">
-                        <div class="col-12" style="overflow-y: auto">
-                            <div class="row" th:each="orgFeedback : ${currentUser.getVolunteer().getOrgFeedback()}">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h6 th:text="${orgFeedback.getOrg().getOrgName()}"></h6>
-                                        <span><small th:text="'  Rating:' + ${orgFeedback.getRating()}"></small></span>
-                                        <p th:text="${orgFeedback.getFeedback()}"></p>
+                    <div class="card-body ">
+                        <div class="col-12 " style="overflow-y: auto ">
+                            <div class="row " th:each="orgFeedback : ${currentUser.getVolunteer().getOrgFeedback()} ">
+                                <div class="card ">
+                                    <div class="card-body ">
+                                        <h6 th:text="${orgFeedback.getOrg().getOrgName()} "></h6>
+                                        <span>
+                                                <small th:text=" '  Rating:' + ${orgFeedback.getRating()} "></small>
+                                            </span>
+                                        <p th:text="${orgFeedback.getFeedback()} "></p>
                                     </div>
-                                    <div class="card-footer">
-                                        <small th:text="'Date created: ' + ${orgFeedback.getDateCreated()}"></small>
+                                    <div class="card-footer ">
+                                        <small th:text=" 'Date created: ' + ${orgFeedback.getDateCreated()} "></small>
                                     </div>
                                 </div>
                             </div>
@@ -122,6 +121,21 @@
         </div>
 
     </div>
+    <!-- ======= Footer ======= -->
+    <footer>
+        <div>
+            <div class="text-center">
+                <a href="/">Home </a>
+                <span>|</span>
+                <a href="/faq">FAQ </a>
+                <span>|</span>
+                <a href="/about-team">The Team </a>
+            </div>
+        </div>
+        <div class="text-center">
+            HelpingHands Copyright &copy; 2018
+        </div>
+    </footer>
 
 <script th:replace="fragments/scripts :: scripts"></script>
 </body>
