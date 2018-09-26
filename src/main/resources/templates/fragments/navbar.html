@@ -16,7 +16,14 @@
 <body>
 <th:block th:fragment="navbar">
     <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #484659">
-        <a class="navbar-brand" href="/">HelpingHands</a>
+
+        <div class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
+            <a class="navbar-brand" href="/home">HelpingHands</a>
+        </div>
+        <div class="navbar-nav mr-auto" sec:authorize="isAnonymous()">
+            <a class="navbar-brand" href="/">HelpingHands</a>
+        </div>
+
         <!--events should not be shown to unregistered/not signed users-->
         <div class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
             <a class="nav-item nav-link" th:href="'/events'">Events</a>

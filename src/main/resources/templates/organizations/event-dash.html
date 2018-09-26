@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Single Event Page View</title>
+    <!--FontAwesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{/css/events/show-event.css}" />
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<div class="container">
+    <section id="single-event">
+        <h2 class="mt-5" th:text="'Event: ' + ${event.description}"></h2>
+        <h3 th:text="${event.organization}"></h3>
+        <h3 th:text="${event.volunteers}"></h3>
+        <div th:each="volunteer : ${event.volunteers}">
+            <form th:action="" th:method="${volunteer.orgFeedback}">
+                <label><span th:text="${volunteer.user.firstName}" /> <span th:text="${volunteer.user.lastName}" /></label>
+                <label for="attended">Attended?</label>
+                <input type="checkbox" id="attended" name="attended" th:field="*{did_attend}" />
+                <textarea th:field="*{feedback}">Feedback</textarea>
+            </form>
+        </div>
+    </section>
+
+    <!-- ====================  Footer Section ====================  -->
+    <footer class="p-5">
+        <div class="container">
+            <div class="footer-cols">
+                <div class="text-center">
+                    <a href="/">Home </a>
+                    <span>|</span>
+                    <a href="/faq">FAQ</a>
+                    <span>|</span>
+                    <a href="/about-team">The Team</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            HelpingHands Copyright &copy; 2018
+        </div>
+    </footer>
+</div>
+
+
+<small id="street" th:class="hide" th:text="${event.strAddr}"></small>
+<small id="zip" th:class="hide" th:text="${event.zipCode}"></small>
+
+<script th:replace="fragments/scripts :: scripts"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBr-hdb0AFXxNojXtRDX0_R4thUc-ET0t0&amp;callback=initMap" async="defer"></script>
+<!--<script-->
+<!--src="https://code.jquery.com/jquery-2.2.4.min.js"-->
+<!--integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="-->
+<!--crossorigin="anonymous"></script>-->
+<script>
+
+    // ===== Confirming Volunteer Modal ===== \\
+    $('#confirm').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    });
+
+    // ===== Maps API ===== \\
+    function initMap() {
+        var mapCanvas = document.getElementById('map-canvas');
+        // Must have map configuration of zoom and location.
+        var mapOptions = {
+            zoom: 10,
+            center: {
+                lat: 29.4958247,
+                lng: -98.5352398
+            }
+
+        };
+
+
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+        var geo = new google.maps.Geocoder();
+
+        // console.log(geo);
+
+        // var zip = "78240";
+
+
+        var streetAddress = "6015 Wilde Glen";
+        // var zip = "78240";
+
+
+        geo.geocode({ 'address': streetAddress }, function (results, status) {
+            if (status === "OK") {
+                if (results[0]) {
+                    map.setZoom(12);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                }
+
+            } else {
+                console.log("Invalid Address.")
+            }
+        });
+    }
+
+</script>
+</body>
+</html>
