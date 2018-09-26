@@ -11,143 +11,168 @@
     <link rel="stylesheet" th:href="@{/css/index.css}" />
 </head>
 <body>
-    <!-- ====================  Right-Side Nav ====================  -->
-    <header>
-        <nav class='cf'>
-            <ul class='cf' style="color: black;">
-                <li>
-                    <a href='#about'>About</a>
-                </li>
-                <li>
-                    <a th:href="'/faq'">FAQ</a>
-                </li>
-                <li>
-                    <a th:href="'/events'">Events</a>
-                </li>
-                <li>
-                    <a th:href="'/about-team'">The Team</a>
-                </li>
-                <li>
-                    <a th:href="'/login'">Login</a>
-                </li>
-            </ul>
-            <a href='#' id='openup'>HH</a>
-        </nav>
-    </header>
+<nav th:replace="fragments/index-navbar :: navbar"></nav>
 
-    <!-- ===== Welcome Start ===== -->
-    <div id="welcome">
-        <div class="welcome-info">
-            <h1 class="mt-5">
-                <img id="hh-logo" class="mr-2" src="../img/hh-logo.png" />HelpingHands</h1>
-            <p class="hideOnSmall">connecting organizations and volunteers around the globe.</p>
-            <p class="registerPrompt mb-1">Don't have an account? Get involved now:</p>
+<!-- ====================  Right-Side Nav ====================  -->
+<!--<header>-->
+<!--<nav class='cf'>-->
+<!--<ul class='cf' style="color: black;">-->
+<!--<li>-->
+<!--<a href='#about'>About</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a th:href="'/faq'">FAQ</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a th:href="'/events'">Events</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a th:href="'/about-team'">The Team</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a th:href="'/login'">Login</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--<a href='#' id='openup'>HH</a>-->
+<!--</nav>-->
+<!--</header>-->
 
-            <a href="/register"><button class="btn w-25 mr-2 registerNow">Register</button></a>
-
+<!-- ===== Welcome Start ===== -->
+<div id="welcome" class="mb-5">
+    <div class="row my-0" id="vid-container">
+        <div class="vid-bg">
+            <video th:poster="@{css/index.css}" id="video-bg-elem" preload="auto" autoplay="autoplay" loop="loop" muted="muted">
+                <source th:src="@{/video/servetest.mp4}" type="video/mp4" />
+                <!--<source th:src="@{/video/servetest.webm}" type="video/webm" />-->
+                <!--<source th:src="@{/video/servetest.ogg}" type="video/ogg" />-->
+                <!--<source src="video/husky.webm" type="video/webm" />-->
+                Video not supported
+            </video>
         </div>
-        <br />
-        <br />
-        <br />
-        <br />
     </div>
-    <!-- ====================  About HH ====================  -->
-    <section id="about">
-        <h2>About HH</h2>
-        <p class="lead">HelpingHands was designed to help facilitate volunteer enrollment and participation for any given charitable event.
+    <div class="row">
+        <div class="col-12 title-col p-5">
+            <div class="row img-row">
+                <div class="col-12 text-center">
+                    <img th:src="@{/img/hh-logo-new.png}" alt="hh-logo" id="hh-logo-new" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="welcome-info">
+                        <h1 id="title-header">Helping Hands</h1>
+                        <p class="hideOnSmall">connecting organizations and volunteers around the globe.</p>
+                        <p class="registerPrompt mb-1">Don't have an account? Get involved now:</p>
+
+                        <a href="/register"><button class="btn w-25 mr-2 registerNow">Register</button></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+</div>
+<!-- ====================  About HH ====================  -->
+<section class="mt-4" id="about">
+    <h2>About HH</h2>
+    <p class="lead">HelpingHands was designed to help facilitate volunteer enrollment and participation for any given charitable event.
         Volunteers have the ability to apply to help an organization/event, follow/favorite organizations, and earn points for frequent participation. HH makes it easy to
         get involved, and stay involved</p>
-    </section>
+</section>
 
-    <section id="past-events" class="hideOnSmall">
-        <h2>Past Events</h2>
-        <p class="lead">Want to browse through previous events hosted by our partner organization
-        </p>
-        <div id="events">
-            <div class="card event1" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Past Event #1</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
-                    <p class="card-text">short description about event here</p>
-                    <a href="#" class="card-link">View More</a>
-                    <a href="#" class="card-link">View Org Profile</a>
-                </div>
-            </div>
-            <div class="card event2" style="width: 20rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Past Event #2</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
-                    <p class="card-text">short description about event here</p>
-                    <a href="#" class="card-link">View More</a>
-                    <a href="#" class="card-link">View Org Profile</a>
-                </div>
-            </div>
-            <div class="card event3" style="width: 20rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Past Event #3</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
-                    <p class="card-text">short description about event here</p>
-                    <a href="#" class="card-link">View More</a>
-                    <a href="#" class="card-link">View Org Profile</a>
-                </div>
+<section id="past-events" class="hideOnSmall">
+    <h2>Past Events</h2>
+    <p class="lead">Want to browse through previous events hosted by our partner organization
+    </p>
+    <div id="events">
+        <div class="card event1" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Past Event #1</h5>
+                <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                <p class="card-text">short description about event here</p>
+                <a href="#" class="card-link">View More</a>
+                <a href="#" class="card-link">View Org Profile</a>
             </div>
         </div>
-        <div class="text-center mt-3">
-            <p class="leadEvents mb-2">Want to make a difference in your community?</p>
-            <a href="/register"><button class="btn registerNow">Create Account</button></a>
-        </div>
-    </section>
-
-    <!-- ====================  Participating Orgs ====================  -->
-    <section id="organizations">
-        <h2>Organization Partners</h2>
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, aut consectetur culpa dicta doloremque eveniet
-            ex explicabo laborum laudantium minima modi mollitia natus perferendis quae sapiente, totam voluptatibus? Doloribus,
-            temporibus!
-        </p>
-        <div class="org-logos-row-1 text-center">
-            <div class="org-1"></div>
-            <div class="org-2"></div>
-            <div class="org-3"></div>
-        </div>
-        <div class="org-logos-row-2 hideOnSmall">
-            <div class="org-4"></div>
-            <div class="org-5"></div>
-        </div>
-        <div class="text-center mt-3">
-            <p class="leadEvents mb-2">Browse all participating orgs:</p>
-            <a href="/orgs"><button class="btn registerNow">View More</button></a>
-
-        </div>
-    </section>
-
-    <!-- ====================  Footer ====================  -->
-    <footer>
-        <div class="container">
-            <div class="footer-cols">
-                <div class="text-center">
-                    <a href="#welcome">Welcome </a>
-                    <span>|</span>
-                    <a href="#about">About</a>
-                    <span>|</span>
-                    <a href="/faq.html">FAQ </a>
-                    <span>|</span>
-                    <a href="/about-team">The Team </a>
-                </div>
+        <div class="card event2" style="width: 20rem;">
+            <div class="card-body">
+                <h5 class="card-title">Past Event #2</h5>
+                <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                <p class="card-text">short description about event here</p>
+                <a href="#" class="card-link">View More</a>
+                <a href="#" class="card-link">View Org Profile</a>
             </div>
         </div>
-        <div class="footer-bottom text-center">
-            HelpingHands Copyright &copy; 2018
+        <div class="card event3" style="width: 20rem;">
+            <div class="card-body">
+                <h5 class="card-title">Past Event #3</h5>
+                <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
+                <p class="card-text">short description about event here</p>
+                <a href="#" class="card-link">View More</a>
+                <a href="#" class="card-link">View Org Profile</a>
+            </div>
         </div>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-    <script src="../js/index.js"></script>
+    </div>
+    <div class="text-center mt-3">
+        <p class="leadEvents mb-2">Want to make a difference in your community?</p>
+        <a href="/register"><button class="btn registerNow">Create Account</button></a>
+    </div>
+</section>
+
+<!-- ====================  Participating Orgs ====================  -->
+<section id="organizations">
+    <h2>Organization Partners</h2>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, aut consectetur culpa dicta doloremque eveniet
+        ex explicabo laborum laudantium minima modi mollitia natus perferendis quae sapiente, totam voluptatibus? Doloribus,
+        temporibus!
+    </p>
+    <div class="org-logos-row-1 text-center">
+        <div class="org-1"></div>
+        <div class="org-2"></div>
+        <div class="org-3"></div>
+    </div>
+    <div class="org-logos-row-2 hideOnSmall">
+        <div class="org-4"></div>
+        <div class="org-5"></div>
+    </div>
+    <div class="text-center mt-3">
+        <p class="leadEvents mb-2">Browse all participating orgs:</p>
+        <a href="/orgs/index"><button class="btn registerNow">View More</button></a>
+
+    </div>
+</section>
+
+<!-- ====================  Footer ====================  -->
+<footer>
+    <div class="container">
+        <div class="footer-cols">
+            <div class="text-center">
+                <a href="#welcome">Welcome </a>
+                <span>|</span>
+                <a href="#about">About</a>
+                <span>|</span>
+                <a href="/faq.html">FAQ </a>
+                <span>|</span>
+                <a href="/about-team">The Team </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom text-center">
+        HelpingHands Copyright &copy; 2018
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="../js/index.js"></script>
 </body>
 </html>
