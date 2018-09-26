@@ -24,31 +24,31 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="username">Username:</label>
-                        <input id="username" type="text" th:field="*{username}" />
+                        <input id="username" type="text" minlength="5" maxlength="12" th:field="*{username}" required="required" />
                     </div>
                     <div class="form-group">
                         <label for="email">Email address:</label>
-                        <input id="email" type="email" th:field="*{email}" />
+                        <input id="email" type="email" th:field="*{email}" required="required" />
                     </div>
                     <div class="form-group">
                         <label for="password">Password:</label>
-                        <input id="password" type="password" th:field="*{password}" />
+                        <input id="password" type="password" th:field="*{password}" required="required" />
                     </div>
                     <div class="form-group">
                         <label for="firstName">First Name:</label>
-                        <input id="firstName" type="text" th:field="*{firstName}" />
+                        <input id="firstName" type="text" th:field="*{firstName}" required="required" />
                     </div>
                     <div class="form-group">
                         <label for="lastName">Last Name:</label>
-                        <input id="lastName" type="text" th:field="*{lastName}" />
+                        <input id="lastName" type="text" th:field="*{lastName}" required="required" />
                     </div>
                     <div class="form-group">
                         <label for="phnNum">Phone Number:</label>
-                        <input id="phnNum" type="text" th:field="*{phnNum}" />
+                        <input id="phnNum" type="text" minlength="10" th:field="*{phnNum}" required="required" />
                     </div>
                     <div class="form-group">
                         <label for="zipcode">Zip Code:</label>
-                        <input id="zipcode" type="text" th:field="*{zipcode}" />
+                        <input id="zipcode" type="text" minlength="5" maxlength="5" th:field="*{zipcode}" required="required" />
                     </div>
                     <div class="form-group">
                         <label for="picUrlInput">Profile picture:</label>
