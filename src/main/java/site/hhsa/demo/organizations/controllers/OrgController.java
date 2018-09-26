@@ -84,6 +84,7 @@ public class OrgController {
         orgDao.save(orgDao.findOrganizationByOrgName(org_name));
         model.addAttribute("user", user);
         model.addAttribute("org", org);
+        model.addAttribute("message", new Message());
         return "organizations/show";
     }
 
@@ -234,17 +235,22 @@ public class OrgController {
         return"redirect:/orgs/"+ org_name+"/event/"+id;
     }
 
-    @PostMapping("/orgs/{org_name}/follow")
+
+    @GetMapping("/orgs/{org_name}/follow")
     public String orgAddFollower(@PathVariable String org_name){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findByUsername(currentUser.getUsername());
-        if(user.getFavorites().contains(orgDao.findOrganizationByOrgName(org_name))){
-            user.getFavorites().remove(orgDao.findOrganizationByOrgName(org_name));
+        Organization org = orgDao.findOrganizationByOrgName(org_name);
+        List<User> followers = org.getFollowers();
+
+        if(followers.contains(user)){
+            followers.remove(user);
         }else{
-            user.getFavorites().add(orgDao.findOrganizationByOrgName(org_name));
+            followers.add(user);
+            org.setFollowers(followers);
         }
-        orgDao.save(orgDao.findOrganizationByOrgName(org_name));
-        return "redirect:/orgs/{org_name}";
+        orgDao.save(org);
+        return "redirect:/orgs/"+org_name+"/favorites";
     }
 
 // ======== Listener for org to create event and insert into database ===== \\

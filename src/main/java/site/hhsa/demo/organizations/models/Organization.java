@@ -55,8 +55,8 @@ public class Organization {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "likes",
-            joinColumns = {@JoinColumn(name="followers")},
-            inverseJoinColumns = {@JoinColumn(name="favorites")}
+            joinColumns = {@JoinColumn(name="org_id")},
+            inverseJoinColumns = {@JoinColumn(name="follower_id")}
     )
     private List<User> followers;
 
