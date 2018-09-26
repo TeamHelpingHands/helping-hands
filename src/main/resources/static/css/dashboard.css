@@ -43,14 +43,14 @@ body {
 }
 
 #menu a {
-    color: #FFF;
+    color: #fff;
     padding: 10px;
     text-decoration: none;
 }
 
 #menu a:hover {
     background-color: #f8c537;
-    color: #FFF;
+    color: #fff;
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -60,48 +60,42 @@ body {
 
 #menu li .active {
     background-color: #ff7f00;
-    color: #FFF;
+    color: #fff;
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     -o-border-radius: 20px;
 }
 
-.reports,
-img {
-    display: grid;
-    grid-gap: 0.5rem;
-    grid-template-columns: repeat(3, 1fr);
-    width: 100%;
+footer {
+    text-align: center;
+}
+
+footer a {
+    color: black;
+}
+
+footer a:hover {
+    color: var(--primary-color);
+    transition: var(--easeOut);
 }
 
 /* ============ mobile view ============ */
 @media screen and (max-width: 580px) {
-    .org-main {
+    #menu a {
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        display: block;
+    }
+
+    .title {
         text-align: center;
     }
 
-    main {
-        align-items: center;
+    .row {
         text-align: center;
-    }
-
-    #menu {
-        grid-template-areas:
-                "li"
-                "li"
-                "li"
-                "li"
-                "li";
-        grid-template-columns: 1fr;
-    }
-
-    .reports {
-        grid-template-areas:
-                "img"
-                "img"
-                "img";
-        grid-template-columns: 1fr;
     }
 
     .hideOnSmall {
