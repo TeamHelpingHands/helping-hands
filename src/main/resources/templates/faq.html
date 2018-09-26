@@ -12,14 +12,16 @@
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
-    <div class="container">
+    <div class="container text-center mt-4">
         <div>
-            <h2 class="faq-heading">Can't find your answer here? Reach out to support@helpinghands.com</h2>
+            <h2 class="faq-heading mt-5">Frequently Asked Questions</h2>
+            <hr/>
         </div>
 
-        <section id="questions">
+        <div class="mt-4">
+        <section id="questions mt-5">
             <!-- ===== question 1 ===== -->
-            <div class="question1">
+            <div class="question1 questionLead">
                 <div class="accordion" id="accordionExample">
                     <div id="headingOne">
                         <h5 class="mb-0">
@@ -36,9 +38,9 @@
                 </div>
             </div>
             <!-- ===== question 2 ===== -->
-            <div class="question2">
+            <div class="question2 questionLead">
                 <div class="accordion" id="accordionExample">
-                    <div id="headingTwo">
+                    <div id="heading headingTwo">
                         <h5 class="mb-0">
                             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-controls="collapseTwo">
                                 <i class="far fa-question-circle"></i> Is HelpingHands a free service?
@@ -53,7 +55,7 @@
                 </div>
             </div>
             <!-- ===== question 3 ===== -->
-            <div class="question2">
+            <div class="question2 questionLead">
                 <div class="accordion" id="accordionExample">
                     <div id="headingThree">
                         <h5 class="mb-0">
@@ -70,7 +72,7 @@
                 </div>
             </div>
             <!-- ===== question 4 ===== -->
-            <div class="question4">
+            <div class="question4 questionLead">
                 <div class="accordion" id="accordionExample">
                     <div id="headingFour">
                         <h5 class="mb-0">
@@ -80,19 +82,31 @@
                         </h5>
                     </div>
                 </div>
-                <div id="collapseFour" class="collapse hide" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div id="collapseFour" class="collapse hide mb-5" aria-labelledby="headingFour" data-parent="#accordionExample">
                     <div class="card-body">
                         >Yes, for the fourth time. . . . -_-
                     </div>
                 </div>
             </div>
         </section>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
 
         <!-- ====================  Footer Section ====================  -->
 
         <footer>
             <div class="container">
-                <div class="footer-cols">
+                <div class="footer-cols mt-5">
                     <div class="text-center">
                         <a href="/">Home </a>
                         <span>|</span>

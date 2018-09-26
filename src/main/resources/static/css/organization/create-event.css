@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css?family=Lato|Montserrat");
+
+/* color and transition variables */
+:root {
+    --primary-color: #ff7f00;
+    --primary-color-hover: #f8c537;
+    --secondary-color: #f4f4f4;
+    --secondary-color-hover: #011627;
+    --btn-color: #2ec4b6;
+    --easeOut: all 0.25s ease-out;
+}
+
+html, body {
+    background-image: linear-gradient(
+            rgba(255,255,255,0.65),
+            rgba(255,255,255,0.65)
+    ), url("https://i.postimg.cc/g2FhhKkp/charity-cheerful-community-1374360.jpg");
+    background-size: cover;
+    font-family: "Montserrat", sans-serif;
+}
+
+label {
+    font-family: "Lato", sans-serif;
+}
+
+.card{
+    width: 60%;
+}
+
+.link-custom {
+    text-underline: none;
+    color: var(--primary-color);
+}
+
+button {
+    color: white;
+}
+
+.submitBtn {
+    background-color: #2ec4b6;
+}
+
+.submitBtn:hover {
+    background-color: #f8c537;
+    transition: var(--easeOut);
+}
+
+.headerText {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9rem;
+}
+
+.formHeader {
+    font-family: "Lato", sans-serif;
+}
+
+footer {
+    text-align: center;
+}
+
+footer a {
+    color: black;
+}
+
+footer a:hover {
+    color: var(--btn-color);
+    transition: var(--easeOut);
+}
+
