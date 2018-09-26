@@ -4,40 +4,58 @@
     <meta charset="UTF-8" />
     <title>Create Event</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/organization/create-event.css" />
+    <link rel="stylesheet" th:href="@{/css/organization/create-event.css}" />
 </head>
 <body>
     <nav th:replace="fragments/navbar :: navbar"></nav>
+
     <div class="container">
-        <h1>Create Your Event Here</h1>
-
-
-        <form th:action="'/orgs/'+${myOrg.getOrgName()}+'/events/create'" method="POST" th:object="${newEvent}">
-
-            <!--<label for="orgId">-->
-                <!--&lt;!&ndash;<input id="orgId" class="form-control" type="hidden" th:field="*{}" />&ndash;&gt;-->
-            <!--</label>-->
-            <div class="form-group">
-                <label for="strAddr">
-                    Street Address:
-                    <input id="strAddr" class="form-control" type="text" th:field="*{strAddr}" />
-                </label>
+        <div class="row mt-5 d-flex justify-content-center">
+            <div class="card mt-3 text-center">
+                <form class="cf" th:action="'/orgs/'+${myOrg.getOrgName()}+'/events/create'" method="POST" th:object="${newEvent}">
+                <div class="card-header">
+                    <h1 class="formHeader">Create An Event</h1>
+                </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="eventName">Event Name:</label><br/>
+                            <input id="eventName" th:type="text" th:field="*{eventName}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="strAdr">Street Address:</label><br/>
+                            <input id="strAdr" th:type="text" th:field="*{strAddr}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">Zipcode:</label><br/>
+                            <input id="zip" th:type="text" th:field="*{zipCode}" />
+                        </div>
+                        <div class="form-group">
+                        <label for="description">
+                        Description: <br />
+                        <textarea class="form-control" id="description" rows="10" cols="30" placeholder="Include important event details here" th:field="*{description}" ></textarea>
+                        </label>
+                        </div>
+                    </div>
+                    <button class="btn submitBtn mb-3" type="submit">Submit</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="zipCode">
-                    Zip Code:
-                    <input id="zipCode" class="form-control" type="text" th:field="*{zipCode}"   />
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="description">
-                    Description: <br />
-                    <textarea class="form-control" id="description" rows="10" cols="30" placeholder="Include important event details here" th:field="*{description}" ></textarea>
-                </label>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
+        </div>
     </div>
+
+    <footer>
+        <div class="container mt-3 p-3">
+            <div class="text-center">
+                <a class="link-custom" href="/">Home </a>
+                <span>|</span>
+                <a class="link-custom" href="/faq">FAQ </a>
+                <span>|</span>
+                <a class="link-custom" href="/about-team">The Team </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center mb-2">
+            HelpingHands Copyright &copy; 2018
+        </div>
+    </footer>
 
 <script th:replace="fragments/scripts :: scripts"></script>
 </body>
