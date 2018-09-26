@@ -37,6 +37,24 @@ INSERT INTO organizations(is_validated,org_name,str_addr,city,state,tax_id) Valu
 
 
 
+#volunteers--hard coded user_id
+
+# INSERT INTO volunteers (bio, is_suspended, user_id) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE, '1');
+# INSERT INTO volunteers (bio, is_suspended, user_id) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE, '2');
+# INSERT INTO volunteers (bio, is_suspended, user_id) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE, '3');
+# INSERT INTO volunteers (bio, is_suspended, user_id) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE, '4');
+# INSERT INTO volunteers (bio, is_suspended, user_id) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE, '5');
+
+
+# volunteers
+INSERT INTO volunteers (bio, is_suspended, user_id) Values('Anything I can do to give back to the community drives me in my everyday life.', FALSE, '1');
+INSERT INTO volunteers (bio, is_suspended, user_id) Values('There was a time in my life I needed help and this is my way to give back.', FALSE, '2');
+INSERT INTO volunteers (bio, is_suspended, user_id) Values('I enjoy helping people.', FALSE, '3');
+INSERT INTO volunteers (bio, is_suspended, user_id) Values('I love volunteering at running events.  It keeps me active.', FALSE, '4');
+INSERT INTO volunteers (bio, is_suspended, user_id) Values('Anytime there is a need for volunteers at my local soup kitchen I am there!', FALSE, '5');
+
+
+
 
 
 #categories--hard coded id & user_id
@@ -128,11 +146,11 @@ INSERT INTO reports (message, reasons) Values('Volunteer xyz was late.', 'Too fa
 #INSERT INTO feedback_from_vols (feedback, rating, org_id, vol_id) Values('needed staff', '3', '5', '5');
 
 # feedback_from_vols
-INSERT INTO feedback_from_vols (feedback, rating) Values('great event', '5');
-INSERT INTO feedback_from_vols (feedback, rating) Values('great event', '5');
-INSERT INTO feedback_from_vols (feedback, rating) Values('needed staff', '3');
-INSERT INTO feedback_from_vols (feedback, rating) Values('great event', '4');
-INSERT INTO feedback_from_vols (feedback, rating) Values('needed staff', '3');
+INSERT INTO feedback_from_vols (feedback, rating, org_id, vol_id) Values('great event', '5', '2', '1');
+INSERT INTO feedback_from_vols (feedback, rating, org_id, vol_id) Values('great event', '5', '6', '2');
+INSERT INTO feedback_from_vols (feedback, rating, org_id, vol_id) Values('needed staff', '3', '7', '3');
+INSERT INTO feedback_from_vols (feedback, rating, org_id, vol_id) Values('great event', '4', '4', '4');
+INSERT INTO feedback_from_vols (feedback, rating, org_id, vol_id) Values('needed staff', '3', '5', '5');
 
 
 #feedback_from_orgs
@@ -146,18 +164,3 @@ INSERT INTO feedback_from_orgs (date_created,did_attend,feedback,flags,rating) v
 INSERT INTO feedback_from_orgs (date_created,did_attend,feedback,flags,rating) values('2018-09-25',TRUE,'Hard worker','reliable','5');
 
 
-#volunteers--hard coded user_id
-
-# INSERT INTO volunteers (bio, is_suspended, user_id) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE, '1');
-# INSERT INTO volunteers (bio, is_suspended, user_id) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE, '2');
-# INSERT INTO volunteers (bio, is_suspended, user_id) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE, '3');
-# INSERT INTO volunteers (bio, is_suspended, user_id) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE, '4');
-# INSERT INTO volunteers (bio, is_suspended, user_id) Values('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus et ante eu porttitor. Fusce a congue nunc. Pellentesque faucibus rhoncus lectus, eget maximus quam pharetra sed.', FALSE, '5');
-
-
-# volunteers
-INSERT INTO volunteers (bio, is_suspended) Values('Anything I can do to give back to the community drives me in my everyday life.', FALSE);
-INSERT INTO volunteers (bio, is_suspended) Values('There was a time in my life I needed help and this is my way to give back.', FALSE);
-INSERT INTO volunteers (bio, is_suspended) Values('I enjoy helping people.', FALSE);
-INSERT INTO volunteers (bio, is_suspended) Values('I love volunteering at running events.  It keeps me active.', FALSE);
-INSERT INTO volunteers (bio, is_suspended) Values('Anytime there is a need for volunteers at my local soup kitchen I am there!', FALSE);
