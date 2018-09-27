@@ -67,6 +67,18 @@ body {
     -o-border-radius: 20px;
 }
 
+.cardFeedback {
+    max-width: 75%;
+    min-width: 50%;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.date {
+    font-family: "Lato", sans-serif;
+    font-size: 1rem;
+}
+
 footer {
     text-align: center;
 }

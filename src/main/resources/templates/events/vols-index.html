@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Vols Event | Index</title>
+</head>
+<body>
+
+<h1 th:text="'All events for volunteer: ' + ${user.username}"></h1>
+
+    <!--<h1 th:text="${}"></h1>-->
+
+    <div th:each="event : ${events}">
+        <h1 th:text="${event.description}" ></h1>
+        <h1 th:text="${event.strAddr}" ></h1>
+    </div>
+
+    <!--<h1 th:text="${users.username}"></h1>-->
+
+
+
+</body>
+</html>

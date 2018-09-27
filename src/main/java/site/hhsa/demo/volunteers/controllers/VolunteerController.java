@@ -11,6 +11,7 @@ import site.hhsa.demo.users.models.Message;
 import site.hhsa.demo.users.models.User;
 import site.hhsa.demo.users.repositories.MessageRepo;
 import site.hhsa.demo.users.repositories.UserRepo;
+import site.hhsa.demo.volunteers.models.Volunteer;
 import site.hhsa.demo.volunteers.repositories.FeedbackFromOrgRepo;
 import site.hhsa.demo.volunteers.repositories.VolunteerRepo;
 
@@ -46,6 +47,19 @@ public class VolunteerController {
         user.getVolunteer().setUser(userDao.findByUsername(username));
         volDao.save(user.getVolunteer());
         return "redirect:/login";
+    }
+
+    @GetMapping("/vols/{username}/events")
+    public String volsEventIndex(Model model ){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
+        List<Event> events = eventDao.findAllByVolunteersContains(currentUser.getVolunteer());
+
+        model.addAttribute("user", user);
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("events", events);
+
+        return"/events/vols-index";
     }
 
     @GetMapping("/vols/dash")
