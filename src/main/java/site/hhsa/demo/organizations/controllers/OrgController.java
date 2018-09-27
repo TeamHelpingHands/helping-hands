@@ -283,17 +283,29 @@ public class OrgController {
     @GetMapping("/orgs/{org_name}/events/{event_id}/dash")
     public String eventDash(@PathVariable long event_id, Model model){
         Event event = eventDao.findOne(event_id);
+        List<FeedbackFromOrganization> feedbacks = feedbackDao.findFeedbackFromOrganizationByEvent(event);
+        List<Volunteer> eventVolunteers = new ArrayList<>();
+        for(FeedbackFromOrganization feedback : feedbacks ){
+            eventVolunteers.add(feedback.getVolunteer());
+        }
         model.addAttribute("event", event);
-        model.addAttribute("feedback", new FeedbackFromOrganization());
+        model.addAttribute("attendees", eventVolunteers);
+
         return "organizations/event-dash";
     }
 
     @PostMapping("/orgs/{org_name}/events/{event_id}/dash")
-    public String eventDashUpdate(@PathVariable long event_id,@ModelAttribute FeedbackFromOrganization feedback, Model model){
+    public String eventDashUpdate(@PathVariable long event_id,@RequestParam("volunteer") long volunteer, @RequestParam("feedback") String feedback, Model model){
         Event event = eventDao.findOne(event_id);
-        feedbackDao.save(feedback);
+        FeedbackFromOrganization orgFeedback = new FeedbackFromOrganization();
+        orgFeedback.setDidAttend(true);
+        orgFeedback.setFeedback(feedback);
+        orgFeedback.setEvent(event);
+        orgFeedback.setVolunteer(userDao.findOne(volunteer).getVolunteer());
+        orgFeedback.setOrg(event.getOrganization());
+        feedbackDao.save(orgFeedback);
         model.addAttribute("event", event);
-        return "organizations/event-dash";
+        return "redirect:/orgs/"+ event.getOrganization() + "/events/" + event.getId() + "/dash";
     }
 
 // ======== Listener for org to create event and insert into database ===== \\

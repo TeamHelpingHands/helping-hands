@@ -103,6 +103,7 @@
                             <div class="row ">
                                 <div class="card cardFeedback m-3 " th:each="orgFeedback : ${currentUser.getVolunteer().getOrgFeedback()}" style=" min-width: 100px; max-width: 300px;">
                                     <div class="card-body ">
+
                                         <img th:src="${orgFeedback.org.user.photoUrl}" style="width: 50px; height: 50px; border-radius: 50%; "/>
                                         <a th:href="'/orgs/'+${orgFeedback.org.orgName}">
                                             <h6 th:text="${orgFeedback.getOrg().getOrgName()}"></h6>
