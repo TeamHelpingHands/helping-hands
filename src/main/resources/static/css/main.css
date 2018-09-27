@@ -3,5 +3,13 @@ body {
 }
 
 nav {
-    height: 40px;
+    /*height: 40px;*/
+}
+
+.footer {
+    position: absolute;
+    background: #484659;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }

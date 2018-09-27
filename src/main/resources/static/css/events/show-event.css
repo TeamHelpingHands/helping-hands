@@ -44,7 +44,7 @@ section {
 }
 
 #map-canvas {
-    border: 2px var(--primary-color) solid;
+    border: 2px #c3bebe solid;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
