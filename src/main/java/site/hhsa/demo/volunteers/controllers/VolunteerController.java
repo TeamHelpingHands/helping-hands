@@ -50,16 +50,15 @@ public class VolunteerController {
     }
 
     @GetMapping("/vols/{username}/events")
-    public String volsEventIndex(Model model ){
+    public String volsEventIndex(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userDao.findByUsername(user.getUsername());
         List<Event> events = eventDao.findAllByVolunteersContains(currentUser.getVolunteer());
 
-        model.addAttribute("user", user);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("events", events);
 
-        return"/events/vols-index";
+        return "/events/vols-index";
     }
 
     @GetMapping("/vols/dash")
@@ -68,21 +67,20 @@ public class VolunteerController {
         User currentUser = userDao.findByUsername(user.getUsername());
         List<Message> messages = messageDao.findAllByReceiver(currentUser);
         List<FeedbackFromOrganization> feedbacks = feedbackFromOrgDao.findAllByVolunteer(currentUser.getVolunteer());
-        int noOfEventsEnrolled = 0;
+        List<Event> events = eventDao.findAllByVolunteersContains(currentUser.getVolunteer());
+        int noOfEventsEnrolled = events.size();
         int noOfDidAttend = 0;
 
         for (FeedbackFromOrganization feedback: feedbacks) {
             if (feedback.isDidAttend()) {
                 noOfDidAttend++;
             }
-            noOfEventsEnrolled++;
         }
 
         int newMessagesCount = 0;
         for (Message message : messages) {
             if (!message.isOpened()) {
                 newMessagesCount++;
-
             }
         }
         model.addAttribute("noEventsEnrolled", noOfEventsEnrolled);

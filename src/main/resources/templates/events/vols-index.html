@@ -1,23 +1,74 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <meta charset="UTF-8" />
-    <title>Vols Event | Index</title>
+    <th:block th:replace="fragments/head :: head" />
+    <title>Events by Volunteer | Helping Hands</title>
+    <link rel="stylesheet" th:href="@{/css/events/index.css}" />
 </head>
 <body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
 
-<h1 th:text="'All events for volunteer: ' + ${user.username}"></h1>
+<div class="container">
 
-    <!--<h1 th:text="${}"></h1>-->
+    <section id="all-events">
+        <h1>
+            Upcoming Events -
+            <span><a class="link-custom" th:href="'/vols/'+${currentUser.getUsername()}" th:text="${currentUser.getUsername()}"></a></span>
+        </h1>
 
-    <div th:each="event : ${events}">
-        <h1 th:text="${event.description}" ></h1>
-        <h1 th:text="${event.strAddr}" ></h1>
+        <div class="row mt-3">
+            <div class="col-4 p-2" id="events" th:each=" event : ${events}">
+                <div class="card event1">
+                    <div class="card-body text-center">
+                        <h4 class="card-title" th:text="${event.eventName}"></h4>
+                        <p class="text-muted">
+                                     <span>
+                                        <a th:href="'/orgs/'+${event.org.orgName}" style="font-size: 12px;">
+                                        <img th:src="${event.getOrg().getUser().getPhotoUrl()}" alt="Org LOGO" style="width: 20px; height: 20px; border-radius: 50%" />
+                                        </a>
+                                     </span>
+                            <a id="orgNameLink" class="link-custom" th:href="'/orgs/'+${event.org.orgName}" th:text="${event.org.orgName}"></a>
+                        </p>
+                        <a th:href="'/orgs/'+${event.organization.orgName}+'/event/'+${event.id}" class="btn btn-primary btn-custom">View More</a>
+                        <a th:href="'/orgs/'+${event.organization.orgName}" class="btn btn-primary btn-custom">Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== CTA After Event Cards ========== -->
+        <th:block sec:authorize="isAnonymous()">
+            <div class="text-center mt-3">
+                <p class="leadEvents mb-2">Want to make a difference in your community?</p>
+                <p>
+                    <a class="link-custom" th:href="'/register'">Register</a> or
+                    <a class="link-custom" th:href="'/login'">Login</a>!
+                </p>
+            </div>
+        </th:block>
+    </section>
+
+    <br />
+
+    <th:block th:replace="fragments/hr-custom :: hr-custom" />
+
+    <!-- ====================  Footer Section ====================  -->
+</div>
+
+<footer class="footer">
+    <div class="container text-center p-2">
+        <div class="col-12">
+            <a class="link-custom" href="/">Home </a>
+            <span>|</span>
+            <a class="link-custom" href="/faq">FAQ</a>
+            <span>|</span>
+            <a class="link-custom" href="/about-team">The Team</a>
+        </div>
+        <div class="col-12 footer-bottom text-center white">
+            <em>HelpingHands Copyright &copy; 2018</em>
+        </div>
     </div>
-
-    <!--<h1 th:text="${users.username}"></h1>-->
-
-
-
+</footer>
+<script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>

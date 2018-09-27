@@ -18,9 +18,6 @@ import site.hhsa.demo.users.repositories.MessageRepo;
 import site.hhsa.demo.users.repositories.UserRepo;
 import site.hhsa.demo.volunteers.models.Volunteer;
 import site.hhsa.demo.volunteers.repositories.FeedbackFromOrgRepo;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,7 +126,6 @@ public class OrgController {
     @PostMapping("/{username}/orgs/register")
     public String OrgCreate(@ModelAttribute User user,@PathVariable String username, Model model){
         user.getOrganization().setUser(userDao.findByUsername(username));
-//        user.getOrganization().setOrgName(user.getOrganization().getOrgName().replace(" ","-"));
         orgDao.save(user.getOrganization());
         return "redirect:/login";
     }
@@ -224,6 +220,7 @@ public class OrgController {
         model.addAttribute("myOrg", myOrg);
         return "events/orgs-index";
     }
+
     @GetMapping("/orgs/{org_name}/event/{id}")
     public String orgEvents(@PathVariable String org_name, @PathVariable long id, Model model){
         Event event = eventDao.findOne(id);
