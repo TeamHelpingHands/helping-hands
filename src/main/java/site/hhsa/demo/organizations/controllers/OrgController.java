@@ -212,7 +212,7 @@ public class OrgController {
         Organization org = orgDao.findOrganizationByOrgName(org_name);
         newEvent.setOrg(org);
         eventDao.save(newEvent);
-        new MassMessenger(org.getFollowers(), "One of your liked liked organizations has posted an event! https://www.hhsa.com/"+org_name+"/events", ACCOUNT_SID,AUTH_TOKEN,Phn_num);
+        new MassMessenger(org.getFollowers(), "One of your liked liked organizations,"+org_name+", has posted an event! https://www.hhsa.com/events", ACCOUNT_SID,AUTH_TOKEN,Phn_num);
         return "redirect:/events";
     }
 

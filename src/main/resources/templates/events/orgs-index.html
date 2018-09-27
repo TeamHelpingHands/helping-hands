@@ -31,7 +31,7 @@
                             <a id="orgNameLink" class="link-custom" th:href="'/orgs/'+${event.org.orgName}" th:text="${event.org.orgName}"></a>
                         </p>
                         <a th:href="'/orgs/'+${event.organization.orgName}+'/event/'+${event.id}" class="btn btn-primary btn-custom">View More</a>
-                        <a th:href="'/orgs/'+${event.organization.orgName}" class="btn btn-primary btn-custom">Profile</a>
+                        <a th:href="'/orgs/'+${event.organization.orgName}+'/events/'+${event.id}+'/dash'" class="btn btn-primary btn-custom">Manage Event</a>
                     </div>
                 </div>
             </div>
