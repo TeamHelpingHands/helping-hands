@@ -34,7 +34,7 @@
                                 </li>
                                 <span class="hideOnSmall">|</span>
                                 <li>
-                                    <a href="/">Past Events</a>
+                                    <a th:href="'/vols/'+ ${currentUser.username} + '/events/'">My Events</a>
                                 </li>
                                 <span class="hideOnSmall">|</span>
                                 <li>
@@ -67,12 +67,12 @@
             </div>
         </div>
         <!-- ====== participation information ====== -->
-        <h4 class="title">Volunteer Record</h4>
+
         <div class=" row mb-1 ">
             <div class="col-12 ">
                 <div class="card ">
                     <div class="card-header ">
-                        <h5>Stats</h5>
+                        <h5>Volunteer Record</h5>
                     </div>
                     <div class="card-body row ">
                         <div class="col-12 col-md ">
@@ -99,18 +99,16 @@
                         <h5>Feedback</h5>
                     </div>
                     <div class="card-body ">
-                        <div class="col-12 " style="overflow-y: auto ">
-                            <div class="row " th:each="orgFeedback : ${currentUser.getVolunteer().getOrgFeedback()} ">
-                                <div class="card ">
+                        <div class="col-12 " style="overflow-y: auto;">
+                            <div class="row ">
+                                <div class="card cardFeedback m-3 " th:each="orgFeedback : ${currentUser.getVolunteer().getOrgFeedback()}" style=" min-width: 100px; max-width: 300px;">
                                     <div class="card-body ">
-                                        <h6 th:text="${orgFeedback.getOrg().getOrgName()} "></h6>
-                                        <span>
-                                                <small th:text=" '  Rating:' + ${orgFeedback.getRating()} "></small>
-                                            </span>
-                                        <p th:text="${orgFeedback.getFeedback()} "></p>
-                                    </div>
-                                    <div class="card-footer ">
-                                        <small th:text=" 'Date created: ' + ${orgFeedback.getDateCreated()} "></small>
+                                        <img th:src="${orgFeedback.org.user.photoUrl}" style="width: 50px; height: 50px; border-radius: 50%; "/>
+                                        <a th:href="'/orgs/'+${orgFeedback.org.orgName}">
+                                            <h6 th:text="${orgFeedback.getOrg().getOrgName()}"></h6>
+                                        </a>
+                                        <p th:text="'Comments: ' + ${orgFeedback.getFeedback()}"></p>
+                                        <small class="text-muted" th:text=" 'Date created: ' + ${orgFeedback.getDateCreated()} "></small>
                                     </div>
                                 </div>
                             </div>
