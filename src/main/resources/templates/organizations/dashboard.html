@@ -64,7 +64,7 @@
             <!-- ====== Org Reports ====== -->
             <h4 class="title">Organization Reports/Stats (currently has col info in it)</h4>
             <div class=" row mb-1 ">
-                <div class="col-12 ">
+                <div class="col-5 ">
                     <div class="card ">
                         <div class="card-header ">
                             <h5>Stats</h5>
@@ -83,6 +83,22 @@
                                     <!--<p style="margin-top: 8em; text-align: center ">BIG OL DONUT CHART</p>-->
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5 ">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h5>Followers</h5>
+                        </div>
+                        <div class="card-body row ">
+                            <div class="col-12 col-md " th:each="follower : ${currentUser.organization.followers}">
+                                <div>
+                                    <h4 th:text="${follower.username}"></h4>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
