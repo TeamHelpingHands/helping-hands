@@ -122,4 +122,28 @@ public class HomeController {
         new SmsSender().SmsSender(number,message,ACCOUNT_SID,AUTH_TOKEN,Phn_num);
         return "sender";
     }
+
+    @GetMapping("/router")
+    public String volOrOrg(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
+
+        if(currentUser.isOrg()){
+            return "redirect:/orgs/"+currentUser.getOrganization().getOrgName();
+        }else{
+            return "redirect:/vols/"+currentUser.getUsername();
+        }
+    }
+
+    @GetMapping("/router/messages")
+    public String volOrOrgMail(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
+
+        if(currentUser.isOrg()){
+            return "redirect:/orgs/messages";
+        }else{
+            return "redirect:/vols/messages";
+        }
+    }
 }
