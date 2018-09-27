@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head">
-    <meta charset="UTF-8" />
+<head>
+    <th:block th:replace="fragments/head :: head" />
     <title>My Messages | Helping Hands</title>
 </head>
 <body>
@@ -39,7 +39,20 @@
                 <th:block th:if="${noOfMessagesInbox != 0}">
                     <div class="row mt-3" th:each="message : ${inboxMessages}" style="border-bottom: 3px lightgrey double;">
                         <div class="col-2 d-flex align-items-center text-center">
-                            <p class="text-muted mt-0" th:text="${message.getTimeSent().substring(0,10)}"></p>
+                            <div class="row">
+                                <div class="col-12">
+                                     <span class="text-muted mt-0" th:text="${message.getTimeSent().substring(0,10)}"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 text-right">
+                                    <button class="btn btn-warning btn-sm mb-2" id="reply" data-toggle="modal" th:attr="data-target='#reply'+${message.getId()}"><i class="fas fa-reply"></i></button>
+                                </div>
+                                    <div class="col-6 text-left"><form th:action="'/vols/'+${currentUser.getUsername()}+'/messages'" method="POST">
+                                <input type="hidden" name="id" th:value="${message.id}" />
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                            </form></div>
+                            </div>
                         </div>
                         <div class="col-8">
                             <div class="row">
@@ -63,12 +76,7 @@
                             </div>
                         </div>
                         <div class="col-2">
-                            <button class="btn btn-warning btn-sm mb-2" id="reply" data-toggle="modal" th:attr="data-target='#reply'+${message.getId()}">Reply</button>
-                            <br />
-                            <form th:action="'/vols/'+${currentUser.getUsername()}+'/messages'" method="POST">
-                                <input type="hidden" name="id" th:value="${message.id}" />
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
+
                         </div>
 
                         <!--REPLY MODAL-->
