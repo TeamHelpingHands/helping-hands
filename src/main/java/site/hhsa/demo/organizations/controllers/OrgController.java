@@ -219,6 +219,8 @@ public class OrgController {
     @GetMapping("orgs/{org_name}/events")
     public String orgEvents(@PathVariable String org_name, Model model){
         Organization myOrg = orgDao.findOrganizationByOrgName(org_name);
+        List<Event> eventsByOrg = eventDao.findAllByOrg(myOrg);
+        model.addAttribute("events", eventsByOrg);
         model.addAttribute("myOrg", myOrg);
         return "events/orgs-index";
     }

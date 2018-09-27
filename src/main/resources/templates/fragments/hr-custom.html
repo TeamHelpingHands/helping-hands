@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+   <th:block th:fragment="hr-custom">
+       <div class="row">
+           <div class="col d-flex align-self-center justify-content-center">
+               <hr style="width: 100%; border: 1px solid #c3bebe;" />
+           </div>
+           <div class="col-2 text-center d-flex align-self-center justify-content-center">
+               <a th:href="'/'"><img th:src="@{/img/hh-logo-new.png}" alt="" style="width: auto; height: 80px;" /></a>
+           </div>
+           <div class="col d-flex align-self-center justify-content-center">
+               <hr style="width: 100%; border: 1px solid #c3bebe;" />
+           </div>
+       </div>
+   </th:block>
+</body>
+</html>
