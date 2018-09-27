@@ -104,9 +104,7 @@
                                 <div class="card ">
                                     <div class="card-body ">
                                         <h6 th:text="${orgFeedback.getOrg().getOrgName()} "></h6>
-                                        <span>
-                                                <small th:text=" '  Rating:' + ${orgFeedback.getRating()} "></small>
-                                            </span>
+
                                         <p th:text="${orgFeedback.getFeedback()} "></p>
                                     </div>
                                     <div class="card-footer ">

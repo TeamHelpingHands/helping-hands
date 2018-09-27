@@ -28,6 +28,7 @@
                 <a class="nav-item nav-link" th:href="'/home'">Dashboard</a>
                 <a class="nav-item nav-link" th:href="'/vols/'+${#authentication.principal.username}">Profile</a>
                 <a class="nav-item nav-link" th:href="'/vols/messages'">Inbox</a>
+
                 <form th:action="@{/login?logout}" method="POST">
                     <button id="logoutBtn" type="submit" class="nav-item nav-link btn btn-light" style="background-color: transparent; border: none;">Logout</button>
                 </form>

@@ -23,7 +23,7 @@
                             <h5 class="card-title">(Event Name Here)</h5>
                             <h6 class="card-subtitle mb-2 text-muted" th:text="'Date/time: '+ ${event.dateTime}"></h6>
                             <p class="card-text" th:text="'Description: ' + ${event.description}"></p>
-                            <a th:href="'/orgs/'+${myOrg.orgName} +'/event/' + ${event.id}" class="card-link">View More Details</a>
+                            <a th:href="'/orgs/'+${myOrg.orgName} +'/events/' + ${event.id}+ '/dash'" class="card-link">View More Details</a>
                         </div>
                     </div>
                 </div>
