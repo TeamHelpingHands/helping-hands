@@ -11,7 +11,10 @@
             <a class="navbar-brand" href="/home">HelpingHands</a>
         </div>
         <div class="navbar-nav mr-auto" sec:authorize="isAnonymous()">
-            <a class="navbar-brand" href="/">HelpingHands</a>
+            <a class="navbar-brand" href="/">
+                <span class="mr-1"><img th:src="@{/img/hh-logo-3.png}" alt="" style="width: 26px; height: 30px;" /></span>
+                 HelpingHands
+            </a>
         </div>
 
         <!--events should not be shown to unregistered/not signed users-->
