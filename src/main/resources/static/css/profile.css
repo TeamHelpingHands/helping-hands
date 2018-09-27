@@ -14,6 +14,13 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+.cardProfile {
+    /*max-width: 75%;*/
+    /*min-width: 50%;*/
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
 
 
 footer {
@@ -33,23 +40,13 @@ footer a:hover {
 
 /* ============ mobile view ============ */
 @media screen and (max-width: 580px) {
-    #menu a {
-        color: #fff;
-        margin: 0;
-        padding: 0;
-        text-decoration: none;
-        display: block;
-    }
 
-    .title {
+
+    h1, h6 {
         text-align: center;
     }
 
     .row {
         text-align: center;
-    }
-
-    .hideOnSmall {
-        display: none;
     }
 }

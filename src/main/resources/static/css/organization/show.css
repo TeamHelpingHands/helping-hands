@@ -13,3 +13,20 @@
 body {
     font-family: "Montserrat", sans-serif;
 }
+
+.cardProfile {
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== Mobile View ===== */
+@media screen and (max-width: 580px) {
+
+    h1, h6 {
+        text-align: center;
+    }
+
+    .row {
+        text-align: center;
+    }
+}
