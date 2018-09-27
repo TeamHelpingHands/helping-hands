@@ -7,27 +7,32 @@
     - Ability to search for events using a radius based on zipcodes
   * Documentation:
     - https://developers.google.com/maps/documentation/
-~#### Google Places (Still using? @vlewisgh)~
+
+#### ~Google Places (Still using? @vlewisgh)~
   ~* Purpose:~
     ~- [COMPLETE ME]~
   ~* Documentation:~
     ~- https://developers.google.com/places/web-service/intro~
-~#### Facebook (Maven dependency)~
+
+#### ~Facebook (Maven dependency)~
   ~* Purpose:~
     ~- Ability to register & login with Facebook account~
   ~* Documentation:~
     ~- https://mvnrepository.com/artifact/com.facebook.api~
+
 #### Twilio
   * Purpose:
     - Ability to send out email blasts to volunteers that have signed up for an event
   * Documentation:
     - https://www.twilio.com/docs/
-~#### MailGun~
+
+#### ~MailGun~
   ~* Purpose:~
     ~- Ability to send confirmation/verification emails, for registration~
   ~* Documentation:~
     ~- https://documentation.mailgun.com/en/latest/~
-~#### Uber/Lyft~
+
+#### ~Uber/Lyft~
   ~* Purpose:~
     ~- Ability to arrange a ride to event, if needed~
  ~* Documentation:~
