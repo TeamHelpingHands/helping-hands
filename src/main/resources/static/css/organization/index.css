@@ -1,0 +1,13 @@
+html, body {
+    height: 100%;
+    font-family: Montserrat, Helvetica, sans-serif;
+}
+
+.footer {
+    position: absolute;
+}
+
+.y-scroll {
+    overflow-y: scroll;
+    overflow-x: auto;
+}

@@ -56,7 +56,7 @@
 * _From the `Register` button..._
   - [x] Fields for Username, Password, First/Last name, zip, phone, profile picture, and...
   - [x] "Are you registering as a __VOLUNTEER__ or an __ORGANIZATION__?" radio buttons
-  - [ ] Checks for existing usernames/emails to avoid duplication
+  - [x] Checks for existing usernames/emails to avoid duplication
   - [x] Goes to next form depending on Vol vs Org choice
   
 ###### The experience now branches off into two directions, depending on who the user is representing...
@@ -117,9 +117,9 @@
       - [ ] `I'm Interested` button, for volunteer to sign up
         - [ ] Clicking this button will send automated email containing information about the event, the org's application process, and any other pertinent information
         - [ ] Clicking this button will display small confirmation message, letting the volunteer know they have successfully expressed interest
-    - [ ] Can see list of events created/upcoming
+    - [x] Can see list of events created/upcoming
     - `Event` page:
-      - [ ] Will show basic info about event
+      - [x] Will show basic info about event
       - [ ] Option to "close" event because either 1) the event took place and is now over, or 2) it has been cancelled
       - [ ] Can approve/deny interested volunteers for the event
       - [ ] Able to take attendance of volunteers that actually participated

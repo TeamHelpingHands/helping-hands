@@ -15,7 +15,11 @@ body {
 }
 
 .navbar-brand {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+}
+
+.navbar-brand span img {
+    margin-bottom: .25em;
 }
 
 /*.nav-item.nav-link {*/
@@ -138,7 +142,7 @@ section {
 }
 
 .org-1 {
-    background-image: url("../img/duff.jpg");
+    background-image: url("../img/dderby.jpeg");
     margin: auto;
     width: 150px;
     height: 150px;
@@ -210,6 +214,11 @@ footer a:hover {
     border: none;
 }
 
+a.nav-item.nav-link.navlink-custom {
+    color: #FFFFFF; !important;
+    font-size: 1.1rem;
+}
+
 /* =========== mobile view =========== */
 /* styles only applied to 580px or LESS */
 @media screen and (max-width: 580px) {
@@ -267,6 +276,8 @@ footer a:hover {
     #hh-logo-new
 
 }
+
+
 .cf:before,
 .cf:after {
     content: "";

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+
+<th:block th:fragment="footer">
+    <footer class="footer">
+        <div class="container text-center p-2 white">
+            <div class="col-12">
+                <a class="link-custom" th:href="'/'">Home </a>
+                <span>|</span>
+                <a class="link-custom" th:href="'/faq'">FAQ</a>
+                <span>|</span>
+                <a class="link-custom" th:href="'/about-team'">The Team</a>
+            </div>
+            <div class="col-12 footer-bottom text-center white">
+                <em>HelpingHands Copyright &copy; 2018</em>
+            </div>
+        </div>
+    </footer>
+</th:block>
+
+</body>
+</html>

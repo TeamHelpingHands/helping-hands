@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Single Event Page View</title>
-    <!--FontAwesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
-
-    <!--Bootstrap-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <th:block th:replace="fragments/head :: head" />
+    <title>Events Dashboard | Helping Hands</title>
     <link rel="stylesheet" th:href="@{/css/events/show-event.css}" />
 </head>
 <body>
+
 <nav th:replace="fragments/navbar :: navbar"></nav>
+
 <div class="container">
     <section id="single-event">
         <h2 class="mt-5" th:text="'Event: ' + ${event.eventName}"></h2>
-        <h3>Attendees:</h3>
+        <h3><i class="fas fa-users header-icons"></i> Attendees:</h3>
         <div th:each="volunteer : ${event.volunteers}">
             <div th:if="not ${attendees.contains(volunteer)}">
                 <form th:action="@{/orgs/{org_name}/events/{event_id}/dash(org_name = ${event.getOrganization().getOrgName()}, event_id = ${event.getId()})}" th:method="post">
@@ -41,34 +38,19 @@
     </section>
 
     <!-- ====================  Footer Section ====================  -->
-    <footer class="p-5">
-        <div class="container">
-            <div class="footer-cols">
-                <div class="text-center">
-                    <a href="/">Home </a>
-                    <span>|</span>
-                    <a href="/faq">FAQ</a>
-                    <span>|</span>
-                    <a href="/about-team">The Team</a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom text-center">
-            HelpingHands Copyright &copy; 2018
-        </div>
-    </footer>
+
 </div>
 
+<th:block th:replace="fragments/hr-custom :: hr-custom" />
 
-<small id="street" th:class="hide" th:text="${event.strAddr}"></small>
-<small id="zip" th:class="hide" th:text="${event.zipCode}"></small>
+<th:block th:replace="fragments/footer :: footer" />
+
+
+<!--<small id="street" th:class="hide" th:text="${event.strAddr}"></small>-->
+<!--<small id="zip" th:class="hide" th:text="${event.zipCode}"></small>-->
 
 <script th:replace="fragments/scripts :: scripts"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBr-hdb0AFXxNojXtRDX0_R4thUc-ET0t0&amp;callback=initMap" async="defer"></script>
-<!--<script-->
-<!--src="https://code.jquery.com/jquery-2.2.4.min.js"-->
-<!--integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="-->
-<!--crossorigin="anonymous"></script>-->
 <script>
 
     // ===== Confirming Volunteer Modal ===== \\

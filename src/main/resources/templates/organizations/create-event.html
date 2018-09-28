@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Create Event</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <th:block th:replace="fragments/head :: head" />
+    <title>Create Event | Helping Hands</title>
     <link rel="stylesheet" th:href="@{/css/organization/create-event.css}" />
 </head>
 <body>
@@ -14,7 +13,7 @@
             <div class="card mt-3 text-center">
                 <form class="cf" th:action="'/orgs/'+${myOrg.getOrgName()}+'/events/create'" method="POST" th:object="${newEvent}">
                 <div class="card-header">
-                    <h1 class="formHeader">Create An Event</h1>
+                    <h1 class="formHeader"><i class="fas fa-calendar-plus header-icons"></i> Create An Event</h1>
                 </div>
                     <div class="card-body">
                         <div class="form-group">
@@ -44,26 +43,15 @@
                         </label>
                         </div>
                     </div>
-                    <button class="btn submitBtn mb-3" type="submit">Submit</button>
+                    <button class="btn submitBtn mb-3" type="submit">Submit <i class="fas fa-check-circle"></i></button>
                 </form>
             </div>
         </div>
     </div>
 
-    <footer>
-        <div class="container mt-3 p-3">
-            <div class="text-center">
-                <a class="link-custom" href="/">Home </a>
-                <span>|</span>
-                <a class="link-custom" href="/faq">FAQ </a>
-                <span>|</span>
-                <a class="link-custom" href="/about-team">The Team </a>
-            </div>
-        </div>
-        <div class="footer-bottom text-center mb-2">
-            HelpingHands Copyright &copy; 2018
-        </div>
-    </footer>
+    <th:block th:replace="fragments/hr-custom :: hr-custom" />
+
+    <th:block th:replace="fragments/footer :: footer" />
 
 <script th:replace="fragments/scripts :: scripts"></script>
 </body>
