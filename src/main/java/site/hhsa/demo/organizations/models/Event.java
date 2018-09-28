@@ -19,7 +19,7 @@ public class Event {
     @Column(name="event_name")
     private String eventName;
 
-    @Column(columnDefinition = "TIMESTAMP")
+    @Column(nullable = false, columnDefinition = "DATE")
     private String dateTime;
 
     @Column(name = "str_addr", nullable = false)

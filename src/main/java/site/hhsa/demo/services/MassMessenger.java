@@ -9,7 +9,11 @@ public class MassMessenger {
 
     public MassMessenger(List<User> followers, String message, String sid, String token, String phnNum) {
         for(User follower : followers){
-            new SmsSender().SmsSender(follower.getPhnNum(),message, sid,token, phnNum);
+            try {
+                new SmsSender().SmsSender(follower.getPhnNum(), message, sid, token, phnNum);
+            }catch(Exception e){
+                continue;
+            }
         }
     }
 }
