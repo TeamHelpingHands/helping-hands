@@ -306,10 +306,10 @@ public class OrgController {
         orgFeedback.setFeedback(feedback);
         orgFeedback.setEvent(event);
         orgFeedback.setVolunteer(userDao.findOne(volunteer).getVolunteer());
-        orgFeedback.setOrg(event.getOrganization());
+        orgFeedback.setOrg(event.getOrg());
         feedbackDao.save(orgFeedback);
         model.addAttribute("event", event);
-        return "redirect:/orgs/"+ event.getOrganization() + "/events/" + event.getId() + "/dash";
+        return "redirect:/orgs/"+ event.getOrg() + "/events/" + event.getId() + "/dash";
     }
 
 // ======== Listener for org to create event and insert into database ===== \\
