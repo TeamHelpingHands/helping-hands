@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import site.hhsa.demo.organizations.models.Event;
 import site.hhsa.demo.organizations.models.FeedbackFromOrganization;
 import site.hhsa.demo.organizations.models.Organization;
@@ -71,6 +72,17 @@ public class OrgController {
         model.addAttribute("message", new Message());
         model.addAttribute("org", org);
         return "organizations/show";
+    }
+
+    @PostMapping("/orgs/{org_name}")
+    public String sendMessage(@PathVariable String org_name, @ModelAttribute Message message, RedirectAttributes redir) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findByUsername(currentUser.getUsername());
+        message.setSender(user);
+        message.setReceiver(orgDao.findOrganizationByOrgName(org_name).getUser());
+        messageDao.save(message);
+        redir.addFlashAttribute("messageSent", 1);
+        return "redirect:/orgs/"+org_name;
     }
 
 

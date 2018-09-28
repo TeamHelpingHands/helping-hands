@@ -4,6 +4,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import site.hhsa.demo.organizations.models.Event;
 import site.hhsa.demo.organizations.models.FeedbackFromOrganization;
 import site.hhsa.demo.organizations.repositories.EventRepo;
@@ -136,11 +137,11 @@ public class VolunteerController {
     public String messageReply(
             @ModelAttribute Message newReply,
             @RequestParam String receiverId,
-            @RequestParam String senderId,
             @RequestParam String subject,
             @RequestParam String body,
             Model model) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
         Message message = new Message();
         message.setSubject(subject);
         message.setBody(body);
@@ -149,28 +150,28 @@ public class VolunteerController {
         message.setOpened(false);
         message.setReceiverDel(false);
         messageDao.save(message);
-        model.addAttribute("messageSent", "Message sent.");
         return "redirect:/vols/messages";
     }
 
     @GetMapping("vols/{username}")
     public String showProfile(@PathVariable String username, Model model) {
-        User currentUser = userDao.findByUsername("tenglishjr");
-        User user = userDao.findByUsername(username);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findByUsername(user.getUsername());
+        User userProfile = userDao.findByUsername(username);
         model.addAttribute("message", new Message());
-        model.addAttribute("user", user);
+        model.addAttribute("user", userProfile);
         model.addAttribute("currentUser", currentUser);
         return "volunteers/profile";
     }
 
     @PostMapping("vols/{username}")
-    public String sendMessageVol(@PathVariable String username, @ModelAttribute Message message, Model model) {
+    public String sendMessageVol(@PathVariable String username, @ModelAttribute Message message, RedirectAttributes redir) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userDao.findByUsername(username);
-        message.setSender(currentUser);
-        message.setReceiver(user);
+        User user = userDao.findByUsername(currentUser.getUsername());
+        message.setSender(user);
+        message.setReceiver(userDao.findByUsername(username));
         messageDao.save(message);
-        model.addAttribute("messageSent", "Your message has been sent.");
+        redir.addFlashAttribute("messageSent", 1);
         return "redirect:/vols/"+username;
     }
 }
