@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Edit/Update Details</title>
+    <th:block th:replace="fragments/head :: head" />
+    <title>Profile Details | Helping Hands</title>
 </head>
 <body>
-    <h1>Add Additional Account Information Here</h1>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
 
+    <div class="container">
+        <h1><i class="fas fa-user-edit header-icons"></i> Update Profile</h1>
+
+            <form th:action="'/vol/' + ${id} + '/details/create'" th:method="POST" th:object="${user}">
+                <input type="hidden" th:name="'userId'" th:value="${currentUser.getId()}" />
+                <div class="form-group">
+                    Upload a new profile picture:
+                    <button id="uploadBtn" class="btn btn-primary" type="button">Upload</button>
+                    <div id="picName"></div>
+                    <input id="picUrlInput" type="hidden" th:field="*{photoUrl}" />
+                </div>
+                <div class="form-group">
+                    <label for="firstName">
+                        First Name:
+                        <input id="firstName" class="form-control" type="text" th:field="*{firstName}" />
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">
+                        Last Name:
+                        <input id="lastName" class="form-control" type="text" th:field="*{lastName}" />
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="aboutMe">
+                        About Me: <br />
+                        <textarea class="form-control" id="aboutMe" rows="10" cols="30" th:field="*{user.getVolunteer.bio}"></textarea>
+                    </label>
+                </div>
+                <button type="submit">Submit <i class="fas fa-check-circle"></i></button>
+            </form>
+        </div>
+
+    <th:block th:replace="fragments/hr-custom :: hr-custom" />
+
+    <th:block th:replace="fragments/footer :: footer" />
+
+    <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>

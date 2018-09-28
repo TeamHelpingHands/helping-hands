@@ -10,7 +10,8 @@
     --easeOut: all 0.25s ease-out;
 }
 
-body {
+body, html {
+    height: 100%;
     font-family: "Montserrat", sans-serif;
 }
 
@@ -30,4 +31,14 @@ section {
 
 .white {
     color: #fff;
+}
+
+.footer {
+    position: absolute;
+}
+
+.y-scroll {
+    max-height: 75vh;
+    overflow-x: auto;
+    overflow-y: scroll;
 }

@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments/head :: head">
-        <title>Organizations</title>
-    </head>
-    <body>
-        <nav th:replace="fragments/navbar :: navbar"></nav>
-        <div class="container">
-            <h1>Organizations Index</h1>
-            <div th:each="org : ${orgs}">
-                <h3 th:text="${org.orgName}"></h3>
+<head>
+    <th:block th:replace="fragments/head :: head" />
+    <title>Organizations | Helping Hands</title>
+    <link rel="stylesheet" th:href="@{/css/organization/index.css}" />
+</head>
+<body>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
+    <div class="container">
+        <h1 class="my-3"><i class="fas fa-users header-icons"></i> Organizations</h1>
+        <div class="row mt-5 y-scroll" th:each="org : ${orgs}">
+            <div class="col-3 p-2 d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row text-center"><div class="col-12 text-center">
+                            <img th:src="${org.getUser().getPhotoUrl()}" th:alt="${org.getOrgName()}" style="border-radius: 50%; height: 125px; width: 125px;" />
+                        </div></div>
+                        <div class="row text-center"><div class="col-12 pt-3 text-center">
+                            <a class="link-custom" th:href="'orgs/'+${org.getOrgName()}"><h4 th:text="${org.getOrgName()}"></h4></a>
+                        </div></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <script th:replace="fragments/scripts :: scripts"></script>
-    </body>
+        <th:block th:replace="fragments/hr-custom :: hr-custom" />
+    </div>
+    <th:block th:replace="fragments/footer :: footer" />
+    <script th:replace="fragments/scripts :: scripts"></script>
+</body>
 </html>

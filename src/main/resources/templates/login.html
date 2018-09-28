@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Organization Login | Helping Hands</title>
-    <!--FontAwesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
-
-    <!--Bootstrap-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <th:block th:replace="fragments/head :: head" />
+    <title>Login | Helping Hands</title>
     <link rel="stylesheet" th:href="@{/css/register.css}" />
     <link rel="stylesheet" th:href="@{/css/login.css}" />
 </head>
@@ -16,18 +11,18 @@
 
 <div class="container">
 
-    <th:block th:if="${param.error}">
-        <div class="alert alert-danger my-3">Invalid username and/or password. Please try again.</div>
-    </th:block>
     <th:block th:if="${param.logout}">
         <div class="alert alert-info my-3">You have been logged out.</div>
+    </th:block>
+    <th:block th:if="${param.error}">
+        <div class="alert alert-danger my-3">Invalid username and/or password. Please try again.</div>
     </th:block>
 
     <div class="row mt-5 d-flex justify-content-center">
         <div class="card mt-5 text-center card-custom">
             <form th:action="@{/login}" method="POST">
                 <div class="card-header card-header-custom">
-                    <h1>Login</h1>
+                    <h1><i class="fas fa-sign-in-alt header-icons"></i> Login</h1>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
@@ -39,31 +34,18 @@
                         <input class="form-control" id="password" name="password" type="password" />
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-custom">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-custom">Submit <i class="fas fa-check-circle"></i></button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
-    <footer>
-        <div class="container mt-3 p-3">
-            <div class="text-center">
-                <a class="link-custom" href="#welcome">Welcome </a>
-                <span>|</span>
-                <a class="link-custom" href="#about">About</a>
-                <span>|</span>
-                <a class="link-custom" href="/faq.html">FAQ </a>
-                <span>|</span>
-                <a class="link-custom" href="/about-team">The Team </a>
-            </div>
-        </div>
-        <div class="footer-bottom text-center mb-2">
-            HelpingHands Copyright &copy; 2018
-        </div>
-    </footer>
+    <th:block th:replace="fragments/hr-custom :: hr-custom" />
 
 </div>
+
+    <th:block th:replace="fragments/footer :: footer" />
 <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>

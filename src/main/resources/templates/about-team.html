@@ -2,15 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Register | Volunteers | Helping Hands</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-          crossorigin="anonymous" />
-
-    <!--Bootstrap-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-          crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/team.css" />
+    <th:block th:replace="fragments/head :: head" />
+    <title>Meet the Developers | Helping Hands</title>
+    <link rel="stylesheet" th:href="@{/css/team.css}" />
 </head>
 <body>
     <nav th:replace="fragments/navbar :: navbar"></nav>
@@ -18,7 +12,7 @@
         <!-- ====================  About Team ==================== -->
         <section id="team" class="section">
             <div class="container">
-                <h2 class="section-head">About The Team</h2>
+                <h2 class="section-head"><i class="fas fa-users header-icons"></i> Meet The Team</h2>
                 <p class="lead">The people behind HelpingHands
                 </p>
                 <hr />
@@ -114,22 +108,7 @@
         <th:block th:replace="fragments/hr-custom :: hr-custom" />
 
         <!-- ====================  Footer Section ====================  -->
-        <footer>
-            <div class="container mt-5">
-                <div class="footer-cols">
-                    <div class="text-center">
-                        <a href="/">Home </a>
-                        <span>|</span>
-                        <a href="/faq">FAQ</a>
-                        <span>|</span>
-                        <a href="/register">Register</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom text-center p-2">
-                HelpingHands Copyright &copy; 2018
-            </div>
-        </footer>
+        <th:block th:replace="fragments/footer :: footer" />
     <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 

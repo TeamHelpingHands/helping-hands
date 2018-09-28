@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <th:block th:replace="fragments/head :: head" />
     <title>FAQ | Helping Hands</title>
-    <!--FontAwesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
-
-    <!--Bootstrap-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/faq.css" />
+    <link rel="stylesheet" th:href="@{/css/faq.css}" />
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
     <div class="container text-center mt-4">
         <div>
-            <h2 class="faq-heading mt-5">Frequently Asked Questions</h2>
+            <h2 class="faq-heading mt-5"><i class="fas fa-clock header-icons"></i> Frequently Asked Questions</h2>
             <hr/>
         </div>
 
@@ -94,30 +89,11 @@
         <br/>
         <br/>
         <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+        <th:block th:replace="fragments/hr-custom :: hr-custom" />
 
         <!-- ====================  Footer Section ====================  -->
 
-        <footer>
-            <div class="container">
-                <div class="footer-cols mt-5">
-                    <div class="text-center">
-                        <a href="/">Home </a>
-                        <span>|</span>
-                        <a href="/about-team">The Team </a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom text-center">
-                HelpingHands Copyright &copy; 2018
-            </div>
-        </footer>
+        <th:block th:replace="fragments/footer :: footer" />
     </div>
     <script th:replace="fragments/scripts :: scripts"></script>
 </body>

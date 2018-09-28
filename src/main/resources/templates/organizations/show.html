@@ -2,10 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-    <title>Organizations | Profile | Helping Hands</title>
+    <th:block th:replace="fragments/head :: head" />
+    <title th:text="${org.getOrgName()} + ' | Helping Hands'"></title>
     <link rel="stylesheet" th:href="@{/css/organization/show.css}" />
 </head>
 <body>
@@ -81,32 +79,17 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Send</button>
+                        <button type="submit" class="btn btn-primary btn-custom">Send <i class="fas fa-envelope"></i></button>
                     </div>
                 </form>
             </div>
         </div>
+    <th:block th:replace="fragments/hr-custom :: hr-custom" />
     </div>
 
-    <th:block th:replace="fragments/hr-custom :: hr-custom" />
 
     <!-- ====================  Footer Section ====================  -->
-    <footer class="mt-5">
-        <div class="container">
-            <div class="footer-cols">
-                <div class="text-center">
-                    <a href="/">Home </a>
-                    <span>|</span>
-                    <a href="/faq">FAQ</a>
-                    <span>|</span>
-                    <a href="/about-team">The Team </a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom text-center">
-            HelpingHands Copyright &copy; 2018
-        </div>
-    </footer>
+    <th:block th:replace="fragments/footer :: footer" />
 
 </div>
 <script th:replace="fragments/scripts :: scripts"></script>
