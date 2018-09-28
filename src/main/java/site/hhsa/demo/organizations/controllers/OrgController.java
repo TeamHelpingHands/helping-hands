@@ -246,12 +246,7 @@ public class OrgController {
                 model.addAttribute("alert", alert);
             }
         }
-        String oldDateTime = eventDao.findOne(id).getDateTime();
-        String newDate = oldDateTime.substring(0, 10);
-        String newTime = oldDateTime.substring(11);
         model.addAttribute("vols", vols);
-        model.addAttribute("newTime", newTime);
-        model.addAttribute("newDate", newDate);
         model.addAttribute("event", eventDao.findOne(id));
         return "events/show-event";
     }
