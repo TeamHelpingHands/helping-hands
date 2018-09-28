@@ -16,10 +16,18 @@
 <body>
 <th:block th:fragment="navbar">
     <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #2ec4b6">
-        <a class="navbar-brand" href="/">
-            <span class="mr-1"><img th:src="@{/img/hh-logo-2.png}" alt="" style="width: 26px; height: 30px;" /></span>
-            HelpingHands
-        </a>
+        <div class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
+            <a class="navbar-brand" th:href="'/home'">
+                <span class="mr-1"><img th:src="@{/img/hh-logo-2.png}" alt="" style="width: 26px; height: 30px;" /></span>
+                HelpingHands
+            </a>
+        </div>
+        <div class="navbar-nav mr-auto"  sec:authorize="isAnonymous()">
+            <a class="navbar-brand" th:href="'/'">
+                <span class="mr-1"><img th:src="@{/img/hh-logo-2.png}" alt="" style="width: 26px; height: 30px;" /></span>
+                HelpingHands
+            </a>
+        </div>
         <!--events should not be shown to unregistered/not signed users-->
         <div class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
             <a class="nav-item nav-link" th:href="'/events'"> Events</a>

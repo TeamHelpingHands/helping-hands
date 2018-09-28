@@ -18,9 +18,9 @@ body {
     font-size: 1.2rem;
 }
 
-.nav-item.nav-link {
-    font-weight: 600;
-}
+/*.nav-item.nav-link {*/
+    /*font-weight: 600;*/
+/*}*/
 
 #events {
     display: grid;
@@ -204,38 +204,10 @@ footer a:hover {
 
 /* ========= Navigation ========= */
 
-nav {
-    width: 100%;
-    /*position: fixed;*/
-    z-index: 999;
-}
-
-nav ul {
-    padding: 0;
-    margin: 0;
-}
-
-nav li {
-    display: inline;
-    float: right;
-}
-
-nav a {
-    display: inline-block;
-    width: 100px;
-    text-align: center;
-    text-decoration: none;
-    padding: 10px 0;
-    color: black;
-}
-
-nav a:hover {
-    color: var(--btn-color);
-    transition: var(--easeOut);
-}
-
-nav a#openup {
-    display: none;
+#logoutBtn,
+#logoutBtn:hover,
+#logoutBtn:focus {
+    border: none;
 }
 
 /* =========== mobile view =========== */
@@ -283,54 +255,17 @@ nav a#openup {
         grid-template-columns: 2fr;
     }
 
-
-
-    nav {
-        height: auto;
-        border-bottom: 0;
-    }
-    nav ul {
+    video {
         display: none;
-        height: auto;
     }
-    nav li {
-        width: 100%;
-        float: left;
-        position: relative;
+
+    .vidBgAlt {
+        background-image: url("https://i.postimg.cc/zX2hs4qC/IMG_1039.jpg");
+        background-size: cover;
     }
-    nav a {
-        text-align: left;
-        color: var(--btn-color);
-        width: 100%;
-        text-indent: 25px;
-        background: #333;
-        border-bottom: 1px solid #555;
-    }
-    nav a:hover {
-        background: #444;
-        text-decoration: none;
-        color: var(--primary-color-hover);
-    }
-    nav a#openup:after {
-        content: "|||";
-        transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
-        /* IE 9 */
-        -webkit-transform: rotate(-90deg);
-        /* Safari and Chrome */
-        width: 30px;
-        height: 30px;
-        display: inline-block;
-        position: absolute;
-        right: 5px;
-        top: 20px;
-    }
-    nav a#openup {
-        display: block;
-        background-color: #333;
-        width: 100%;
-        position: relative;
-    }
+
+    #hh-logo-new
+
 }
 .cf:before,
 .cf:after {

@@ -7,46 +7,20 @@
 <body>
 <nav th:replace="fragments/index-navbar :: navbar"></nav>
 
-<!-- ====================  Right-Side Nav ====================  -->
-<!--<header>-->
-<!--<nav class='cf'>-->
-<!--<ul class='cf' style="color: black;">-->
-<!--<li>-->
-<!--<a href='#about'>About</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a th:href="'/faq'">FAQ</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a th:href="'/events'">Events</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a th:href="'/about-team'">The Team</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a th:href="'/login'">Login</a>-->
-<!--</li>-->
-<!--</ul>-->
-<!--<a href='#' id='openup'>HH</a>-->
-<!--</nav>-->
-<!--</header>-->
-
 <!-- ===== Welcome Start ===== -->
 <div id="welcome" class="mb-5">
     <div class="row my-0" id="vid-container">
         <div class="vid-bg">
+            <div class="vidBgAlt"></div>
             <video th:poster="@{css/index.css}" id="video-bg-elem" preload="auto" autoplay="autoplay" loop="loop" muted="muted">
                 <source th:src="@{/video/servetest.mp4}" type="video/mp4" />
-                <!--<source th:src="@{/video/servetest.webm}" type="video/webm" />-->
-                <!--<source th:src="@{/video/servetest.ogg}" type="video/ogg" />-->
-                <!--<source src="video/husky.webm" type="video/webm" />-->
                 Video not supported
             </video>
         </div>
     </div>
     <div class="row">
         <div class="col-12 title-col p-5">
-            <div class="row img-row">
+            <div class="row img-row row img-row d-flex align-items-center">
                 <div class="col-12 text-center">
                     <img th:src="@{/img/hh-logo-new.png}" alt="hh-logo" id="hh-logo-new" />
                 </div>
@@ -65,10 +39,6 @@
             </div>
         </div>
     </div>
-    <br />
-    <br />
-    <br />
-    <br />
 </div>
 <!-- ====================  About HH ====================  -->
 <section class="mt-4" id="about">

@@ -3,17 +3,19 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8" />
-    <title>Volunteers | Profile</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../../css/organization/show.css" />
+    <title>Organizations | Profile | Helping Hands</title>
+    <link rel="stylesheet" th:href="@{/css/organization/show.css}" />
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
 <div class="container">
-    
-   <th:block th:if="${messageSent != null}"> <div class="alert alert-info" th:text="${messageSent}"></div></th:block>
+
+    <th:block th:if="${messageSent != null}">
+        <div class="alert alert-success mt-3">Message sent!</div>
+    </th:block>
 
     <h1 th:text="'Profile - ' + ${org.orgName}"></h1>
 
