@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css?family=Lato|Montserrat");
+
+/* color and transition variables */
+:root {
+    --primary-color: #ff7f00;
+    --primary-color-hover: #f8c537;
+    --secondary-color: #f4f4f4;
+    --secondary-color-hover: #011627;
+    --btn-color: #2ec4b6;
+    --easeOut: all 0.25s ease-out;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+#menu {
+    margin: 0;
+    width: auto;
+    background-color: var(--primary-color-hover);
+    font-size: 16px;
+    font-family: "Lato", sans-serif;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+#menu ul {
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    height: auto;
+    text-align: center;
+}
+
+#menu li {
+    display: inline;
+    padding: 8px;
+}
+
+#menu a {
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+}
+
+#menu a:hover {
+    background-color: var(--btn-color);
+    color: #fff;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -o-border-radius: 20px;
+    transition: var(--easeOut);
+}
+
+#menu li .active {
+    background-color: #ff7f00;
+    color: #fff;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.cardFeedback {
+    max-width: 75%;
+    min-width: 50%;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.date {
+    font-family: "Lato", sans-serif;
+    font-size: 1rem;
+}
+
+footer {
+    text-align: center;
+}
+
+footer a {
+    color: black;
+}
+
+footer a:hover {
+    color: var(--primary-color);
+    transition: var(--easeOut);
+}
+
+/* ============ mobile view ============ */
+@media screen and (max-width: 580px) {
+    #menu a {
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        display: block;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .row {
+        text-align: center;
+    }
+
+    .hideOnSmall {
+        display: none;
+    }
+}

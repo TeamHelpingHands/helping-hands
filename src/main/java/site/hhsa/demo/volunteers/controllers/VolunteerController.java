@@ -58,7 +58,7 @@ public class VolunteerController {
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("events", events);
 
-        return "/events/vols-index";
+        return "events/vols-index";
     }
 
     @GetMapping("/vols/dash")
