@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Register | Volunteers | Helping Hands</title>
-    <!--FontAwesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
-
-    <!--Bootstrap-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <th:block th:replace="fragments/head :: head" />
+    <title>Register | Helping Hands</title>
     <link rel="stylesheet" th:href="@{/css/register.css}" />
 </head>
 <body>
@@ -15,11 +10,11 @@
 
 <div class="container">
 
-    <div class="row mt-5 d-flex justify-content-center">
+    <div class="row mt-5 mb-3 d-flex justify-content-center">
         <div class="card mt-3 text-center card-custom">
             <form th:action="@{/register}" method="POST" th:object="${user}">
                 <div class="card-header">
-                    <h1 class="formHeader">Register Account</h1>
+                    <h1 class="formHeader"><i class="fas fa-user-plus header-icons"></i> Register</h1>
                 </div>
                 <div class="card-body col-7 m-auto">
                     <div class="form-group d-flex justify-content-between">
@@ -77,22 +72,10 @@
         </div>
     </div>
 
-    <footer>
-        <div class="container mt-3 p-3">
-            <div class="text-center">
-                <a class="link-custom" href="/">Home </a>
-                <span>|</span>
-                <a class="link-custom" href="/faq">FAQ </a>
-                <span>|</span>
-                <a class="link-custom" href="/about-team">The Team </a>
-            </div>
-        </div>
-        <div class="footer-bottom text-center mb-2">
-            HelpingHands Copyright &copy; 2018
-        </div>
-    </footer>
+    <th:block th:replace="fragments/hr-custom :: hr-custom" />
 
 </div>
+    <th:block th:replace="fragments/footer :: footer" />
 <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>

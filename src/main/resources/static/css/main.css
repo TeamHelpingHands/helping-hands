@@ -1,5 +1,18 @@
+@import url("https://fonts.googleapis.com/css?family=Lato|Montserrat|Bungee+Shade");
+
+/* color and transition variables */
+:root {
+    --primary-color: #ff7f00;
+    --primary-color-hover: #f8c537;
+    --secondary-color: #f4f4f4;
+    --secondary-color-hover: #011627;
+    --btn-color: #2ec4b6;
+    --easeOut: all 0.25s ease-out;
+}
+
 body {
     font-family: "Raleway", sans-serif;
+    position: relative;
 }
 
 nav {
@@ -7,9 +20,48 @@ nav {
 }
 
 .footer {
-    position: absolute;
     background: #484659;
     bottom: 0;
     left: 0;
     width: 100%;
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+}
+
+.navbar-brand span img {
+    margin-bottom: .25em;
+}
+
+a.nav-item.nav-link.navlink-custom {
+    color: #FFFFFF;
+}
+
+#logoutBtn,
+#logoutBtn:hover,
+#logoutBtn:focus {
+    border: none;
+}
+
+a.nav-item.nav-link.navlink-custom {
+    color: #FFFFFF; !important;
+    font-size: 1.1rem;
+}
+
+.white {
+    color: #fff;
+}
+
+.btn-custom {
+    background-color: var(--btn-color);
+    border-color: var(--btn-color);
+}
+.link-custom {
+    text-underline: none;
+    color: var(--primary-color);
+}
+
+.header-icons {
+    color: var(--btn-color);
 }
