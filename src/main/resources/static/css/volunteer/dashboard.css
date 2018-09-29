@@ -79,6 +79,10 @@ body {
     font-size: 1rem;
 }
 
+.hideOnLarge {
+    visibility: hidden;
+}
+
 footer {
     text-align: center;
 }
@@ -112,5 +116,9 @@ footer a:hover {
 
     .hideOnSmall {
         display: none;
+    }
+
+    .hideOnLarge {
+        visibility: visible;
     }
 }
