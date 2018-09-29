@@ -13,24 +13,21 @@
                     <h2><i class="fas fa-calendar-alt header-icons"></i> Events</h2>
 
                     <div class="row">
-                        <div class="col-12 y-scroll">
-                            <div class="row">
-                                <div class="col-4 p-2" id="events" th:each=" event : ${events}">
-                                    <div class="card event1">
-                                        <div class="card-body text-center">
-                                            <h4 class="card-title" th:text="${event.eventName}"></h4>
-                                            <p class="text-muted">
-                                             <span>
-                                                <a th:href="'/orgs/'+${event.org.orgName}" style="font-size: 12px;">
-                                                <img th:src="${event.getOrg().getUser().getPhotoUrl()}" alt="Org LOGO" style="width: 20px; height: 20px; border-radius: 50%" />
-                                                </a>
-                                             </span>
-                                             <a id="orgNameLink" class="link-custom" th:href="'/orgs/'+${event.org.orgName}" th:text="${event.org.orgName}"></a>
-                                             </p>
-                                            <a th:href="'/orgs/'+${event.organization.orgName}+'/event/'+${event.id}" class="btn btn-primary btn-custom">View More</a>
-                                            <a th:href="'/orgs/'+${event.organization.orgName}" class="btn btn-primary btn-custom">Profile</a>
-                                        </div>
-                                    </div>
+
+                        <div class="col-4 p-2" id="events" th:each=" event : ${events}">
+                            <div class="card event1">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title" th:text="${event.eventName}"></h4>
+                                    <p class="text-muted">
+                                     <span>
+                                        <a th:href="'/orgs/'+${event.org.orgName}" style="font-size: 12px;">
+                                        <img th:src="${event.getOrg().getUser().getPhotoUrl()}" alt="Org LOGO" style="width: 20px; height: 20px; border-radius: 50%" />
+                                        </a>
+                                     </span>
+                                     <a id="orgNameLink" class="link-custom" th:href="'/orgs/'+${event.org.orgName}" th:text="${event.org.orgName}"></a>
+                                     </p>
+                                    <a th:href="'/orgs/'+${event.org.orgName}+'/event/'+${event.id}" class="btn btn-primary btn-custom">View More</a>
+                                    <a th:href="'/orgs/'+${event.org.orgName}" class="btn btn-primary btn-custom">Profile</a>
                                 </div>
                             </div>
                         </div>

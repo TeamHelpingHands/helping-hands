@@ -20,7 +20,10 @@ public class Event {
     private String eventName;
 
     @Column(nullable = false, columnDefinition = "DATE")
-    private String dateTime;
+    private String date;
+
+    @Column(nullable = false, columnDefinition = "TIME")
+    private String time;
 
     @Column(name = "str_addr", nullable = false)
     private String strAddr;
@@ -47,13 +50,16 @@ public class Event {
     public Event() {
     }
 
-    public Event(String description, String eventName, String dateTime, String strAddr, String zipCode, Organization org) {
+    public Event(String description, String eventName, String date, String time, String strAddr, String zipCode, Organization org, List<FeedbackFromOrganization> feedback, List<Volunteer> volunteers) {
         this.description = description;
         this.eventName = eventName;
-        this.dateTime = dateTime;
+        this.date = date;
+        this.time = time;
         this.strAddr = strAddr;
         this.zipCode = zipCode;
         this.org = org;
+        this.feedback = feedback;
+        this.volunteers = volunteers;
     }
 
     public long getId() {
@@ -72,12 +78,28 @@ public class Event {
         this.description = description;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public String getEventName() {
+        return eventName;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getStrAddr() {
@@ -94,22 +116,6 @@ public class Event {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
-    }
-
-    public Organization getOrganization() {
-        return org;
-    }
-
-    public void setOrganization(Organization organization) {
-        this.org= organization;
-    }
-
-    public String getEventName() {
-        return eventName;
-    }
-
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
     }
 
     public Organization getOrg() {
