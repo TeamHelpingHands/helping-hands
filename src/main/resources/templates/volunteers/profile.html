@@ -4,6 +4,7 @@
     <th:block th:replace="fragments/head :: head" />
     <meta charset="UTF-8" />
     <title>Volunteers | Profile</title>
+    <th:block th:replace="fragments/head :: head" />
     <link rel="stylesheet" th:href="@{/css/profile.css}" />
 </head>
     <body>
@@ -43,7 +44,23 @@
                                     </div>
                                     <div class="col-12 col-m6 col-lg-6 text-center">
                                         <h6>Short Bio:</h6>
-                                        <p th:text="${user.volunteer.bio}"></p>
+                                        <div class="card-body ">
+                                            <div class="col-12 " style="overflow-y: auto;">
+                                                <div class="row ">
+                                                    <div class="card cardFeedback m-3 " th:each="orgFeedback : ${currentUser.getVolunteer().getOrgFeedback()}" style=" min-width: 100px; max-width: 300px;">
+                                                        <div class="card-body ">
+
+                                                            <img th:src="${orgFeedback.org.user.photoUrl}" style="width: 50px; height: 50px; border-radius: 50%; "/>
+                                                            <a th:href="'/orgs/'+${orgFeedback.org.orgName}">
+                                                                <h6 th:text="${orgFeedback.getOrg().getOrgName()}"></h6>
+                                                            </a>
+                                                            <p th:text="'Comments: ' + ${orgFeedback.getFeedback()}"></p>
+                                                            <small class="text-muted" th:text=" 'Date created: ' + ${orgFeedback.getDateCreated()} "></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +98,7 @@
                     </div>
                 </div>
             </div>
-
+          
             <!-- volunteer feed start-->
 
             <div class="row mb-5 ">
@@ -109,14 +126,14 @@
                     </div>
                 </div>
             </div>
-
-
+          
+          
 
         <th:block th:replace="fragments/hr-custom :: hr-custom" />
         </div>
-
-        <!-- ======= Footer ======= -->
-        <th:block: th:replace="fragments/footer :: footer" />
+     
+        <!-- ====== Footer ====== -->
+        <footer th:fragment="fragments/footer :: footer"></footer>
         <script th:replace="fragments/scripts :: scripts"></script>
     </body>
 </html>

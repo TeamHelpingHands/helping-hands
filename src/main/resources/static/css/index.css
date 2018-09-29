@@ -22,10 +22,6 @@ body {
     margin-bottom: .25em;
 }
 
-/*.nav-item.nav-link {*/
-    /*font-weight: 600;*/
-/*}*/
-
 #events {
     display: grid;
     grid-gap: 10px;
@@ -219,6 +215,11 @@ a.nav-item.nav-link.navlink-custom {
     font-size: 1.1rem;
 }
 
+.vidBgAlt {
+    background: url("https://i.postimg.cc/zX2hs4qC/IMG_1039.jpg") no-repeat;
+    background-size: cover;
+}
+
 /* =========== mobile view =========== */
 /* styles only applied to 580px or LESS */
 @media screen and (max-width: 580px) {
@@ -237,7 +238,9 @@ a.nav-item.nav-link.navlink-custom {
     }
 
     #welcome {
-        height: 50vh;
+        height: calc(100vh - 65px);
+        background: linear-gradient(rgba(255,127,0,0.49), rgba(255,255,255,0.34)), url("https://i.postimg.cc/SxQ7k8tM/cheerful-collaboration-community-1339629.jpg") no-repeat;
+        background-size: cover;
     }
 
     #welcome .container {
@@ -263,18 +266,6 @@ a.nav-item.nav-link.navlink-custom {
                 "org3";
         grid-template-columns: 2fr;
     }
-
-    video {
-        display: none;
-    }
-
-    .vidBgAlt {
-        background-image: url("https://i.postimg.cc/zX2hs4qC/IMG_1039.jpg");
-        background-size: cover;
-    }
-
-    #hh-logo-new
-
 }
 
 
