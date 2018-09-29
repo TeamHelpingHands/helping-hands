@@ -66,7 +66,7 @@
                         <div class="col-2">
                             <button class="btn btn-warning btn-sm mb-2" id="reply" data-toggle="modal" th:attr="data-target='#reply'+${message.getId()}"><i class="fas fa-reply"></i></button>
                             <br />
-                            <form th:action="'/vols/'+${currentUser.getUsername()}+'/messages'" method="POST">
+                            <form th:action="'/orgs/messages'" method="POST">
                                 <input type="hidden" name="id" th:value="${message.id}" />
                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                             </form>
@@ -152,10 +152,12 @@
             </div>
         </div>
 
+        <th:block th:replace="fragments/hr-custom :: hr-custom" />
+
     </div>
 
 
-
+    <th:block th:replace="fragments/footer :: footer" />
 
 <script th:replace="fragments/scripts :: scripts"></script>
 </body>

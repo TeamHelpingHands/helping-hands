@@ -13,7 +13,7 @@
     <nav th:replace="fragments/navbar :: navbar"></nav>
 
         <div class="container">
-            <h3 class="headerText mt-3">Organization Registration - (continued)</h3>
+            <h3 class="headerText mt-3"><i class="fas fa-user header-icons"></i> Complete Your Profile</h3>
 
             <div class="card mt-3 text-center">
                 <form th:action="@{/{username}/orgs/register(username=${user.getUsername()})}" th:method="POST" th:object="${user.organization}">
