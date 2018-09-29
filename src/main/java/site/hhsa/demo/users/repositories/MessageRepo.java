@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface MessageRepo extends CrudRepository<Message, Long> {
 
-    List<Message> findAllByReceiver(User user);
-    List<Message> findAllBySender(User user);
+    List<Message> findAllByReceiverOrderByTimeSentDesc(User user);
+    List<Message> findAllBySenderOrderByTimeSentDesc(User user);
 
 }

@@ -3,12 +3,13 @@
 <head>
     <th:block th:replace="fragments/head :: head" />
     <title>Inbox | Helping Hands</title>
+    <link rel="stylesheet" th:href="@{/css/messages.css}" />
 </head>
 <body>
     <nav th:replace="fragments/navbar :: navbar"></nav>
 
     <div class="container">
-        <h1 class="mt-3"><i class="fas fa-envelope header-icons"></i> Inbox</h1>
+        <h1 class="my-4"><i class="fas fa-envelope header-icons"></i> Inbox</h1>
 
         <th:block th:if="${deleted != null}">
             <div class="alert alert-info" role="alert" th:text="${deleted}"></div>
@@ -19,42 +20,76 @@
 
         <ul class="nav nav-tabs" id="messagesTabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="inbox-tab" data-toggle="tab" href="#inboxPane" role="tab" aria-controls="inbox" aria-selected="true">Inbox <span class="badge badge-dark" th:text="${newMessages}"></span></a>
+                <a class="nav-link link-custom active" id="inbox-tab" data-toggle="tab" href="#inboxPane" role="tab" aria-controls="inbox" aria-selected="true">Inbox <span class="badge badge-light" th:text="${newMessages}" style="background-color: #2ec4b6; color: #fff;"></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="sent-tab" data-toggle="tab" href="#sentPane" role="tab" aria-controls="sent" aria-selected="false">Sent</a>
+                <a class="nav-link link-custom" id="sent-tab" data-toggle="tab" href="#sentPane" role="tab" aria-controls="sent" aria-selected="false">Sent</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="inboxPane" role="tabpanel" aria-labelledby="inbox-tab">
                 <h3 class="mt-3 mb-4">Received Messages</h3>
-                <th:block th:if="${noOfMessagesInbox == 0}">
-                    <div class="row my-4">
-                        <h5>No messages <i class="far fa-frown"></i></h5>
+                <th:block th:if="${inboxMessages.size() == 0}">
+                    <div class="row my-4 p-5">
+                        <div class="col-12">
+                            <h5>No messages <i class="far fa-frown"></i></h5>
+                        </div>
                     </div>
                 </th:block>
+
+                <!--INBOX TAB-->
                 <th:block th:if="${noOfMessagesInbox != 0}">
                     <div class="row mt-3" th:each="message : ${inboxMessages}" style="border-bottom: 3px lightgrey double;">
-                        <div class="col-2 d-flex align-items-center text-center">
+                        <div class="col-2 text-center">
                             <div class="row">
                                 <div class="col-12">
-                                     <span class="text-muted mt-0" th:text="${message.getTimeSent().substring(0,10)}"></span>
+                                    <span class="text-muted mt-0" th:text="${message.getTimeSent().substring(0,10)}"></span>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-6 text-right">
-                                    <button class="btn btn-warning btn-sm mb-2" id="reply" data-toggle="modal" th:attr="data-target='#reply'+${message.getId()}"><i class="fas fa-reply"></i></button>
+                                <div class="col-6 p-1 text-right">
+                                    <button class="btn btn-warning btn-sm mb-2 btn-custom" id="reply" data-toggle="modal" th:attr="data-target='#reply'+${message.getId()}"><i class="fas fa-reply" style="color: #fff;"></i></button>
                                 </div>
-                                    <div class="col-6 text-left"><form th:action="'/vols/'+${currentUser.getUsername()}+'/messages'" method="POST">
-                                <input type="hidden" name="id" th:value="${message.id}" />
-                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-                            </form></div>
+                                <div class="col-6 p-1 text-left">
+                                    <th:block th:if="${!currentUser.isOrg()}">
+                                        <form th:action="'/vols/messages'" method="POST">
+                                        <input type="hidden" name="which" th:value="'receiver'" />
+                                        <input type="hidden" name="id" th:value="${message.id}" />
+                                        <button type="submit" class="btn btn-danger btn-sm btn-custom-del"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                    </th:block>
+                                    <th:block th:if="${currentUser.isOrg()}">
+                                        <form th:action="'/orgs/messages'" method="POST">
+                                        <input type="hidden" name="which" th:value="'receiver'" />
+                                        <input type="hidden" name="id" th:value="${message.id}" />
+                                        <button type="submit" class="btn btn-danger btn-sm btn-custom-del"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                    </th:block>
+                                </div>
                             </div>
                         </div>
                         <div class="col-8">
                             <div class="row">
-                                <div class="col-12">
-                                    <a th:href="'/vols/'+${message.getSender().getUsername()}"><h6 class="mb-2" style="font-weight: 800; font-size: 1.6rem;" th:text="${message.getSender().getUsername()}"></h6></a>
+                                <div class="col-12" th:if="${message.getSender().isOrg()}">
+                                    <a class="link-custom" th:href="'/orgs/'+${message.getSender().getOrganization().getOrgName()}">
+                                        <th:block th:if="${!message.isOpened()}">
+                                            <span><h6 class="mb-2" style="font-weight: 800; font-size: 1.6rem;" th:text="${message.getSender().getOrganization().getOrgName()}"></h6></span>
+                                        </th:block>
+                                        <th:block th:if="${message.isOpened()}">
+                                            <span><h6 class="mb-2" style="font-weight: 800; font-size: 1.6rem;" th:text="${message.getSender().getOrganization().getOrgName()}"></h6></span>
+                                        </th:block>
+                                    </a>
+                                </div>
+                                <div class="col-12" th:if="${!message.getSender().isOrg()}">
+                                    <a class="link-custom" th:href="'/vols/'+${message.getSender().getUsername()}">
+                                        <th:block th:if="${!message.isOpened()}">
+                                            <span><i class="fas fa-circle"></i></span>
+                                            <span><h6 class="mb-2" style="font-weight: 800; font-size: 1.6rem;" th:text="${message.getSender().getUsername()}"></h6></span>
+                                        </th:block>
+                                        <th:block th:if="${message.isOpened()}">
+                                            <span><h6 class="mb-2" style="font-weight: 800; font-size: 1.6rem;" th:text="${message.getSender().getUsername()}"></h6></span>
+                                        </th:block>
+                                    </a>
                                 </div>
                             </div>
                             <div class="row">
@@ -80,60 +115,91 @@
                         <div class="modal fade" th:id="'reply'+${message.getId()}" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
-                                    <div class="modal-header">
+                                    <div class="modal-header" th:if="${!message.getSender().isOrg()}">
                                         <h5 class="modal-title" id="replyModalLabel" th:text="'Replying to ' + ${message.getSender().getUsername()}"></h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form th:action="@{/vols/message/reply}" method="POST">
-                                        <div class="modal-body">
-                                            <input type="hidden" name="receiverId" th:value="${message.getSender().getId()}" />
+                                    <div class="modal-header" th:if="${message.getSender().isOrg()}">
+                                        <h5 class="modal-title" id="replyModalLabel" th:text="'Replying to ' + ${message.getSender().getOrganization().getOrgName()}"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                        <form th:action="@{/vols/message/reply}" method="POST">
+                                            <div class="modal-body">
+                                                <input type="hidden" name="receiverId" th:value="${message.getSender().getId()}" />
 
-                                            <div class="form-group">
-                                                <label for="subject">Subject</label>
-                                                <input class="form-control" type="text" id="subject" placeholder="Enter subject..." name="subject" th:value="'RE: ' + ${message.getSubject()}"/>
-                                            </div>
-                                            <div class="row my-3">
-                                                <div class="col-3">
-                                                    <p><strong>Previous Message: </strong></p>
+                                                <div class="form-group">
+                                                    <label for="subject">Subject</label>
+                                                    <input class="form-control" type="text" id="subject" placeholder="Enter subject..." name="subject" th:value="'RE: ' + ${message.getSubject()}"/>
                                                 </div>
-                                                <div class="col-9">
-                                                    <p class="text-muted" th:text="${message.getBody()}"></p>
+                                                <div class="row my-3">
+                                                    <div class="col-3">
+                                                        <p><strong>Previous Message: </strong></p>
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <p class="text-muted" th:text="${message.getBody()}"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="body">Message Body</label>
+                                                    <textarea class="form-control" id="body" name="body" rows="10" placeholder="Enter your message..."></textarea>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="body">Message Body</label>
-                                                <textarea class="form-control" id="body" name="body" rows="10" placeholder="Enter your message..."></textarea>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary btn-custom">Send <i class="fas fa-check-circle"></i></button>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">Send <i class="fas fa-check-circle"></i></button>
-                                        </div>
-                                    </form>
+                                        </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </th:block>
             </div>
+
+            <!--SENT TAB-->
             <div class="tab-pane fade" id="sentPane" role="tabpanel" aria-labelledby="sent-tab">
                 <h3 class="mt-3 mb-4">Sent Messages</h3>
-                <th:block th:if="${noOfMessagesSent == 0}">
-                    <div class="row my-4">
-                        <h5>No messages</h5>
+                <th:block th:if="${sentMessages.size() == 0}">
+                    <div class="row my-4 p-5">
+                        <h5>No messages <i class="far fa-frown"></i></h5>
                     </div>
                 </th:block>
                 <th:block th:if="${noOfMessagesSent != 0}">
                     <div class="row mt-3" th:each="message : ${sentMessages}" style="border-bottom: 3px lightgrey double;">
-                        <div class="col-2 d-flex align-items-center text-center">
-                            <p class="text-muted mt-0" th:text="${message.getTimeSent().substring(0,10)}"></p>
+                        <div class="col-2 text-center">
+                            <p class="text-muted my-0" th:text="${message.getTimeSent().substring(0,10)}"></p>
+                            <form th:action="'/vols/messages'" method="POST">
+                                <input type="hidden" name="which" th:value="'sender'" />
+                                <input type="hidden" name="id" th:value="${message.id}" />
+                                <button type="submit" class="btn btn-danger btn-sm btn-custom-del"><i class="fas fa-trash-alt"></i></button>
+                            </form>
                         </div>
                         <div class="col-10">
                             <div class="row">
-                                <div class="col-12">
-                                    <a th:href="'/vols/'+${message.getReceiver().getUsername()}"><h6 class="mb-2" style="font-weight: 800; font-size: 1.6rem;" th:text="${message.getReceiver().getUsername()}"></h6></a>
+                                <div class="col-12" th:if="${message.getSender().isOrg()}">
+                                    <a class="link-custom" th:href="'/orgs/'+${message.getSender().getOrganization().getOrgName()}">
+                                        <th:block th:if="${!message.isOpened()}">
+                                            <span><h6 class="mb-2" style="font-weight: 800; font-size: 1.6rem;" th:text="${message.getSender().getOrganization().getOrgName()}"></h6></span>
+                                        </th:block>
+                                        <th:block th:if="${message.isOpened()}">
+                                            <span><h6 class="mb-2" style="font-weight: 800; font-size: 1.6rem;" th:text="${message.getSender().getOrganization().getOrgName()}"></h6></span>
+                                        </th:block>
+                                    </a>
+                                </div>
+                                <div class="col-12" th:if="${!message.getSender().isOrg()}">
+                                    <a class="link-custom" th:href="'/vols/'+${message.getSender().getUsername()}">
+                                        <th:block th:if="${!message.isOpened()}">
+                                            <span><i class="fas fa-circle"></i></span>
+                                            <span><h6 class="mb-2" style="font-weight: 800; font-size: 1.6rem;" th:text="${message.getSender().getUsername()}"></h6></span>
+                                        </th:block>
+                                        <th:block th:if="${message.isOpened()}">
+                                            <span><h6 class="mb-2" style="font-weight: 800; font-size: 1.6rem;" th:text="${message.getSender().getUsername()}"></h6></span>
+                                        </th:block>
+                                    </a>
                                 </div>
                             </div>
                             <div class="row">
@@ -156,9 +222,9 @@
             </div>
         </div>
 
+    <th:block th:replace="fragments/hr-custom :: hr-custom" />
     </div>
 
-    <th:block th:replace="fragments/hr-custom :: hr-custom" />
 
 
     <th:block th:replace="fragments/footer :: footer" />
