@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <th:block th:replace="fragments/head :: head" />
     <meta charset="UTF-8" />
     <title>Volunteers | Profile</title>
     <th:block th:replace="fragments/head :: head" />
@@ -18,7 +19,7 @@
             <h1 class="mt-3" th:text="'Profile - ' + ${user.username}"></h1>
             <div class="row my-3">
                 <div class="col-12">
-                    <div class="card cardProfile">
+                    <div class="card cardOutline">
                         <div class="card-header">
                             <h6 class="text-center" th:text="'Details about: ' + ${user.username}"></h6>
                         </div>
@@ -35,8 +36,10 @@
                                 <div class="row">
                                     <div class="col-12 col-m-6 col-lg-6 text-center">
                                         <p>Number of events attended:</p>
-                                        <p th:text="'Rating: ' + ${user.phnNum}"></p>
-                                        <p th:text="'Stats ' + ${user.email}"></p>
+                                        <small id="noEventsEnrolled " class="hide " th:value="${noEventsEnrolled} "></small>
+                                        <small id="noOfDidAttend " class="hide " th:value="${noOfDidAttend} "></small>
+                                        <p th:text=" 'Number of events committed to: ' + ${noEventsEnrolled} "></p>
+                                        <p th:text=" 'Number of events attended: ' + ${noOfDidAttend} "></p>
                                         <p>fancy custom badge</p>
                                     </div>
                                     <div class="col-12 col-m6 col-lg-6 text-center">
@@ -95,10 +98,40 @@
                     </div>
                 </div>
             </div>
+          
+            <!-- volunteer feed start-->
 
-        </div>
+            <div class="row mb-5 ">
+                <div class="col-12 ">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Feedback</h5>
+                        </div>
+                        <div class="card-body cardOutline">
+                            <div class="col-12 " style="overflow-y: auto;">
+                                <div class="row ">
+                                    <div class="card cardFeedback m-3 " th:each="orgFeedback : ${user.volunteer.orgFeedback}" style=" min-width: 100px; max-width: 300px;">
+                                        <div class="card-body ">
+                                            <img th:src="${orgFeedback.org.user.photoUrl}" style="width: 50px; height: 50px; border-radius: 50%; "/>
+                                            <a th:href="'/orgs/'+${orgFeedback.org.orgName}">
+                                                <h6 th:text="${orgFeedback.getOrg().getOrgName()}"></h6>
+                                            </a>
+                                            <p th:text="'Comments: ' + ${orgFeedback.getFeedback()}"></p>
+                                            <small class="text-muted" th:text=" 'Date created: ' + ${orgFeedback.getDateCreated()} "></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+          
 
         <th:block th:replace="fragments/hr-custom :: hr-custom" />
+        </div>
+     
         <!-- ====== Footer ====== -->
         <footer th:fragment="fragments/footer :: footer"></footer>
         <script th:replace="fragments/scripts :: scripts"></script>

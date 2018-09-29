@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <th:block th:replace="fragments/head :: head" />
     <meta charset="UTF-8" />
     <title>Volunteer | Dashboard</title>
-    <th:block th:replace="fragments/head :: head" />
     <link rel="stylesheet" th:href="@{/css/volunteer/dashboard.css}" />
 </head>
 
@@ -24,12 +24,8 @@
                             <ul>
                                 <li>
                                     <a th:href="'/vols/messages'">Messages
-                                        <span class="badge badge-light" th:text="${newMessagesCount}"></span>
+                                        <span class="badge badge-light" th:text="${newMessageCount}" style="background-color: #2ec4b6; color: #fff;"></span>
                                     </a>
-                                </li>
-                                <span class="hideOnSmall">|</span>
-                                <li>
-                                    <a href="/">Update Profile</a>
                                 </li>
                                 <span class="hideOnSmall">|</span>
                                 <li>
@@ -51,15 +47,13 @@
                         <div class="col-12 col-sm-9">
                             <div class="row">
                                 <div class="col-12 col-m-6 col-lg-6 text-center">
-                                    <h5>Account Information</h5>
-                                    <hr/>
-                                        <p th:text="'Full Name: ' + ${currentUser.firstName} + ' ' + ${currentUser.lastName}"></p>
-                                        <p th:text="'Phone Number: ' + ${currentUser.phnNum}"></p>
-                                        <p th:text="'Email: ' + ${currentUser.email}"></p>
-                                    <h5>Event Stats</h5>
-                                    <hr/>
-                                        <p th:text=" 'Number of events committed to: ' + ${noEventsEnrolled} "></p>
-                                        <p th:text=" 'Number of events attended: ' + ${noOfDidAttend} "></p>
+                                    <p th:text="'Full Name: ' + ${currentUser.firstName} + ' ' + ${currentUser.lastName}"></p>
+                                    <p th:text="'Phone Number: ' + ${currentUser.phnNum}"></p>
+                                    <p th:text="'Email: ' + ${currentUser.email}"></p>
+                                    <small id="noEventsEnrolled " class="hide " th:value="${noEventsEnrolled} "></small>
+                                    <small id="noOfDidAttend " class="hide " th:value="${noOfDidAttend} "></small>
+                                    <p th:text=" 'Number of events committed to: ' + ${noEventsEnrolled} "></p>
+                                    <p th:text=" 'Number of events attended: ' + ${noOfDidAttend} "></p>
                                 </div>
                                 <div class="col-12 col-m6 col-lg-6 text-center">
                                     <hr class="hideOnLarge"/>
@@ -72,62 +66,12 @@
                 </div>
             </div>
         </div>
-        <!-- ====== participation information ====== -->
-
-        <!--<div class=" row mb-1 ">-->
-            <!--<div class="col-12 ">-->
-                <!--<div class="card ">-->
-                    <!--<div class="card-header ">-->
-                        <!--<h5>Volunteer Record</h5>-->
-                    <!--</div>-->
-                    <!--<div class="card-body row ">-->
-                        <!--<div class="col-12 col-md ">-->
-
-                            <!--<small id="noEventsEnrolled " class="hide " th:value="${noEventsEnrolled} "></small>-->
-                            <!--<small id="noOfDidAttend " class="hide " th:value="${noOfDidAttend} "></small>-->
-
-                        <!--</div>-->
-                        <!--<div class="col-12 col-md ">-->
-                            <!--<div id="chartdiv " style="height: 300px; width: 300px; ">-->
-                                <!--&lt;!&ndash;<p style="margin-top: 8em; text-align: center ">BIG OL DONUT CHART</p>&ndash;&gt;-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="row mb-5 ">-->
-            <!--<div class="col-12 ">-->
-                <!--<div class="card ">-->
-                    <!--<div class="card-header ">-->
-                        <!--<h5>Feedback</h5>-->
-                    <!--</div>-->
-                    <!--<div class="card-body ">-->
-                        <!--<div class="col-12 " style="overflow-y: auto;">-->
-                            <!--<div class="row ">-->
-                                <!--<div class="card cardFeedback m-3 " th:each="orgFeedback : ${currentUser.getVolunteer().getOrgFeedback()}" style=" min-width: 100px; max-width: 300px;">-->
-                                    <!--<div class="card-body ">-->
-
-                                        <!--<img th:src="${orgFeedback.org.user.photoUrl}" style="width: 50px; height: 50px; border-radius: 50%; "/>-->
-                                        <!--<a th:href="'/orgs/'+${orgFeedback.org.orgName}">-->
-                                            <!--<h6 th:text="${orgFeedback.getOrg().getOrgName()}"></h6>-->
-                                        <!--</a>-->
-                                        <!--<p th:text="'Comments: ' + ${orgFeedback.getFeedback()}"></p>-->
-                                        <!--<small class="text-muted" th:text=" 'Date created: ' + ${orgFeedback.getDateCreated()} "></small>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
 
     <th:block th:replace="fragments/hr-custom :: hr-custom" />
     </div>
+
     <!-- ======= Footer ======= -->
-    <footer th:fragment="fragments/footer :: footer"></footer>
+    <th:block: th:replace="fragments/footer :: footer" />
 <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>

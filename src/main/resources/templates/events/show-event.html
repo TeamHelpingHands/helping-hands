@@ -29,7 +29,8 @@
                             <small><a th:href="'/orgs/'+ ${event.org.orgName} +'/events'" class="card-link link-custom">View All Events From This Organization</a></small>
 
                             <th:block sec:authorize="isAuthenticated()">
-                                <p class="text-muted" th:text="${'When: ' + event.dateTime}"></p>
+                                <p class="text-muted" th:text="${'When: ' + event.date}"></p>
+                                <p class="text-muted" th:text="${'Time: ' + event.time}"></p>
                                 <p class="text-muted" id="streetAddress" th:text="'Street Address: ' +${event.strAddr}"></p>
                                 <p class="text-muted" th:text="'Zipcode: ' +${event.zipCode}"></p>
                             </th:block>
