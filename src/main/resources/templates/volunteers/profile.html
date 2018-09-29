@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Volunteers | Profile</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <th:block th:replace="fragments/head :: head" />
     <link rel="stylesheet" th:href="@{/css/profile.css}" />
 </head>
     <body>
@@ -42,7 +41,23 @@
                                     </div>
                                     <div class="col-12 col-m6 col-lg-6 text-center">
                                         <h6>Short Bio:</h6>
-                                        <p th:text="${user.volunteer.bio}"></p>
+                                        <div class="card-body ">
+                                            <div class="col-12 " style="overflow-y: auto;">
+                                                <div class="row ">
+                                                    <div class="card cardFeedback m-3 " th:each="orgFeedback : ${currentUser.getVolunteer().getOrgFeedback()}" style=" min-width: 100px; max-width: 300px;">
+                                                        <div class="card-body ">
+
+                                                            <img th:src="${orgFeedback.org.user.photoUrl}" style="width: 50px; height: 50px; border-radius: 50%; "/>
+                                                            <a th:href="'/orgs/'+${orgFeedback.org.orgName}">
+                                                                <h6 th:text="${orgFeedback.getOrg().getOrgName()}"></h6>
+                                                            </a>
+                                                            <p th:text="'Comments: ' + ${orgFeedback.getFeedback()}"></p>
+                                                            <small class="text-muted" th:text=" 'Date created: ' + ${orgFeedback.getDateCreated()} "></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -84,25 +99,8 @@
         </div>
 
         <th:block th:replace="fragments/hr-custom :: hr-custom" />
-
         <!-- ====== Footer ====== -->
-        <footer>
-            <div>
-                <div class="text-center mt-5">
-                    <a href="/">Home </a>
-                    <span>|</span>
-                    <a href="/faq">FAQ </a>
-                    <span>|</span>
-                    <a href="/about-team">The Team </a>
-                </div>
-            </div>
-            <div class="text-center">
-                HelpingHands Copyright &copy; 2018
-            </div>
-        </footer>
-
-
-
+        <footer th:fragment="fragments/footer :: footer"></footer>
         <script th:replace="fragments/scripts :: scripts"></script>
     </body>
 </html>
