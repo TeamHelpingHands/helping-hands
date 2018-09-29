@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <th:block th:replace="fragments/head :: head" />
     <meta charset="UTF-8" />
     <title>Volunteer | Dashboard</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
     <link rel="stylesheet" th:href="@{/css/volunteer/dashboard.css}" />
 </head>
 
@@ -25,12 +24,8 @@
                             <ul>
                                 <li>
                                     <a th:href="'/vols/messages'">Messages
-                                        <span class="badge badge-light" th:text="${newMessagesCount}"></span>
+                                        <span class="badge badge-light" th:text="${newMessageCount}" style="background-color: #2ec4b6; color: #fff;"></span>
                                     </a>
-                                </li>
-                                <span class="hideOnSmall">|</span>
-                                <li>
-                                    <a href="/">Update Profile</a>
                                 </li>
                                 <span class="hideOnSmall">|</span>
                                 <li>
@@ -55,6 +50,10 @@
                                     <p th:text="'Full Name: ' + ${currentUser.firstName} + ' ' + ${currentUser.lastName}"></p>
                                     <p th:text="'Phone Number: ' + ${currentUser.phnNum}"></p>
                                     <p th:text="'Email: ' + ${currentUser.email}"></p>
+                                    <small id="noEventsEnrolled " class="hide " th:value="${noEventsEnrolled} "></small>
+                                    <small id="noOfDidAttend " class="hide " th:value="${noOfDidAttend} "></small>
+                                    <p th:text=" 'Number of events committed to: ' + ${noEventsEnrolled} "></p>
+                                    <p th:text=" 'Number of events attended: ' + ${noOfDidAttend} "></p>
                                 </div>
                                 <div class="col-12 col-m6 col-lg-6 text-center">
                                     <h6>About Me:</h6>
@@ -66,76 +65,12 @@
                 </div>
             </div>
         </div>
-        <!-- ====== participation information ====== -->
 
-        <div class=" row mb-1 ">
-            <div class="col-12 ">
-                <div class="card ">
-                    <div class="card-header ">
-                        <h5>Volunteer Record</h5>
-                    </div>
-                    <div class="card-body row ">
-                        <div class="col-12 col-md ">
-
-                            <small id="noEventsEnrolled " class="hide " th:value="${noEventsEnrolled} "></small>
-                            <small id="noOfDidAttend " class="hide " th:value="${noOfDidAttend} "></small>
-                            <p th:text=" 'Kudos: [FINISH ME]' "></p>
-                            <p th:text=" 'Number of events committed to: ' + ${noEventsEnrolled} "></p>
-                            <p th:text=" 'Number of events attended: ' + ${noOfDidAttend} "></p>
-                        </div>
-                        <div class="col-12 col-md ">
-                            <div id="chartdiv " style="height: 300px; width: 300px; ">
-                                <!--<p style="margin-top: 8em; text-align: center ">BIG OL DONUT CHART</p>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-5 ">
-            <div class="col-12 ">
-                <div class="card ">
-                    <div class="card-header ">
-                        <h5>Feedback</h5>
-                    </div>
-                    <div class="card-body ">
-                        <div class="col-12 " style="overflow-y: auto;">
-                            <div class="row ">
-                                <div class="card cardFeedback m-3 " th:each="orgFeedback : ${currentUser.getVolunteer().getOrgFeedback()}" style=" min-width: 100px; max-width: 300px;">
-                                    <div class="card-body ">
-
-                                        <img th:src="${orgFeedback.org.user.photoUrl}" style="width: 50px; height: 50px; border-radius: 50%; "/>
-                                        <a th:href="'/orgs/'+${orgFeedback.org.orgName}">
-                                            <h6 th:text="${orgFeedback.getOrg().getOrgName()}"></h6>
-                                        </a>
-                                        <p th:text="'Comments: ' + ${orgFeedback.getFeedback()}"></p>
-                                        <small class="text-muted" th:text=" 'Date created: ' + ${orgFeedback.getDateCreated()} "></small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+    <th:block th:replace="fragments/hr-custom :: hr-custom" />
     </div>
-    <!-- ======= Footer ======= -->
-    <footer>
-        <div>
-            <div class="text-center">
-                <a href="/">Home </a>
-                <span>|</span>
-                <a href="/faq">FAQ </a>
-                <span>|</span>
-                <a href="/about-team">The Team </a>
-            </div>
-        </div>
-        <div class="text-center">
-            HelpingHands Copyright &copy; 2018
-        </div>
-    </footer>
 
+    <!-- ======= Footer ======= -->
+    <th:block: th:replace="fragments/footer :: footer" />
 <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>
