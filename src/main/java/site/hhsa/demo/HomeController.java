@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import site.hhsa.demo.auth.UserWithRoles;
 import site.hhsa.demo.organizations.models.Organization;
 import site.hhsa.demo.organizations.repositories.OrgRepo;
@@ -24,6 +25,7 @@ import site.hhsa.demo.volunteers.models.Volunteer;
 import site.hhsa.demo.volunteers.repositories.VolunteerRepo;
 
 import java.util.Collections;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -83,15 +85,30 @@ public class HomeController {
     }
 
     @PostMapping("/register")
-    public String userRegister(@ModelAttribute User user, @RequestParam String isOrg, Model model) {
+    public String userRegister(@ModelAttribute User user, @RequestParam String isOrg, @RequestParam String passwordCon, RedirectAttributes redir) {
 
-        System.out.println("isOrg string: " + isOrg);
+        List<User> users = (List<User>) userDao.findAll();
+
+        for (User person : users) {
+            if (user.getUsername().equals(person.getUsername())) {
+                redir.addFlashAttribute("usernameExists", "Username '" + user.getUsername() + "' already exists.");
+                redir.addFlashAttribute("newUser", user);
+                return "redirect:/register";
+            } else if (user.getEmail().equals(person.getEmail())) {
+                redir.addFlashAttribute("emailExists", "There is already an account with that email.");
+                redir.addFlashAttribute("newUser", user);
+                return "redirect:/register";
+            } else if (!user.getPassword().equals(passwordCon)) {
+                redir.addFlashAttribute("passwordNoMatch", "Passwords do not match.");
+                redir.addFlashAttribute("newUser", user);
+                return "redirect:/register";
+            }
+        }
+
         user.setOrg(Boolean.parseBoolean(isOrg));
-
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
-        System.out.println("IS THIS AN ORG????: " + user.isOrg());
         if (user.isOrg()) {
             return "redirect:/"+user.getUsername()+"/orgs/register";
         }

@@ -11,3 +11,8 @@ html, body {
 .footer {
     position: absolute;
 }
+
+.card-custom {
+    width: 60% !important;
+}
+
