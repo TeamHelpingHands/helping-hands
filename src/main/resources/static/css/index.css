@@ -97,7 +97,8 @@ img {
 }
 
 .callToAction{
-    background-image: url("https://s3-us-west-1.amazonaws.com/vl-photos/ProfessionalPhoto/women.jpg");
+    /*background-image: url("https://s3-us-west-1.amazonaws.com/vl-photos/ProfessionalPhoto/women.jpg");*/
+    background-image: url("https://i.postimg.cc/BvkSH8y7/IMG_0824.jpg");
     height: 300px;
     background-size: cover;
     background-repeat: no-repeat;
