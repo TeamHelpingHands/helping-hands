@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import site.hhsa.demo.auth.UserWithRoles;
 import site.hhsa.demo.organizations.models.Organization;
+import site.hhsa.demo.organizations.repositories.EventRepo;
 import site.hhsa.demo.organizations.repositories.OrgRepo;
 import site.hhsa.demo.services.SmsSender;
 import site.hhsa.demo.users.models.User;
@@ -30,6 +31,7 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+    EventRepo eventDao;
     UserRepo userDao;
     VolunteerRepo volDao;
     OrgRepo orgDao;
@@ -43,15 +45,17 @@ public class HomeController {
     @Value("${phnNUM}")
     private String Phn_num;
 
-    public HomeController(UserRepo userDao, VolunteerRepo volDao, OrgRepo orgDao, PasswordEncoder passwordEncoder) {
+    public HomeController(UserRepo userDao, VolunteerRepo volDao, OrgRepo orgDao,EventRepo eventDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.volDao = volDao;
         this.orgDao = orgDao;
+        this.eventDao = eventDao;
         this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/")
-    public String homePage(){
+    public String homePage(Model model){
+        model.addAttribute("events", eventDao.findAll());
         return "index";
     }
 
