@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <th:block th:replace="fragments/head :: head" />
-    <title th:text="${org.getOrgName()} + ' | Helping Hands'"></title>
+    <title th:text="${org.orgName} + ' | Helping Hands'"></title>
     <link rel="stylesheet" th:href="@{/css/organization/show.css}" />
 </head>
 <body>

@@ -90,59 +90,71 @@
         </div>
     </div>
 </section>
-<section class="row d-flex justify-content-center">
-    <div class="text-center text-align-middle text-white col-9 col-md-3" style="background: #f8c537; width:100%; height:300px; margin:0">
-        <div class="mt-5">
-            <p class="leadEvents mb-2">Want to make a difference in your community?</p>
-            <a href="/register"><button class="btn registerNow">Create Account</button></a>
-        </div>
-    </div>
-    <div class="callToAction col-9 col-md-6">
 
-    </div>
-</section>
-<section id="past-events" class="hideOnSmall">
-    <h2 class="div-title col-3 p-3">Past Events</h2>
-
-    <div id="events" th:each="event : ${events}">
-        <div class="card event col-5" style="width: 18rem;">
-            <div class="col-4" style="background:#2ec4b6;color:white">
-                <h2 class="text-center" th:text="${event.date}"></h2>
-            </div>
-            <div class="card-body col-8">
-                <h5 class="card-title" th:text="${event.eventName}"></h5>
-                <h6 class="card-subtitle mb-2 text-muted">time:<span th:text="${event.time}"></span></h6>
-                <p class="card-text" th:text="${event.description}"></p>
-                <a th:href="@{/events/{event_id}(event = ${event.id})}" class="card-link">View More</a>
-                <a th:href="@{/orgs/{org_name}(org_name = ${event.org})}" class="card-link">View Org Profile</a>
+<!--Hero banner/ call to action-->
+<div style="background: #ff7f00">
+    <section class="row d-flex justify-content-center">
+        <div class="text-center text-align-middle text-white col-9 col-md-3" style="background: #f8c537; width:100%; height:300px; margin:0">
+            <div class="mt-5 pt-5">
+                <p class="leadEvents mb-2">Want to make a difference in your community?</p>
+                <a href="/register"><button class="btn registerNow">Create Account</button></a>
             </div>
         </div>
-    </div>
+        <div class="callToAction col-9 col-md-6">
 
-</section>
+        </div>
+    </section>
+</div>
+
+<!--Events    -->
+<div class="container">
+    <h2 class="div-title col-4 p-3">UpcomingEvents:</h2>
+    <div class="row">
+        <div class="col-12 col-md-6 m-auto p-2" th:each=" event : ${events}">
+            <div class="card event1">
+                <div class="card-body text-center">
+                    <h4 class="card-title" th:text="${event.eventName}"></h4>
+                    <p class="text-muted">
+                                     <span>
+                                        <a th:href="'/orgs/'+${event.org.orgName}" style="font-size: 12px;">
+                                        <img th:src="${event.getOrg().getUser().getPhotoUrl()}" alt="Org LOGO" style="width: 20px; height: 20px; border-radius: 50%" />
+                                        </a>
+                                     </span>
+                        <a id="orgNameLink" class="link-custom" th:href="'/orgs/'+${event.org.orgName}" th:text="${event.org.orgName}"></a>
+                    </p>
+                    <a th:href="'/orgs/'+${event.org.orgName}+'/event/'+${event.id}" class="btn btn-primary btn-custom" style="width:120px">More Info</a>
+                    <a th:href="'/orgs/'+${event.org.orgName}" class="btn btn-primary btn-custom" style="width:120px">Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- ====================  Participating Orgs ====================  -->
-<section id="organizations">
-    <h2>Organization Partners</h2>
-    <p class="lead">Our partners are very engaged in the community.  Through marketing, event sponsorship, donations, employee engagement, and the power of volunteerism helps drive community involvement.!
-    </p>
-    <div class="org-logos-row-1 text-center">
-        <div class="org-1" alt="duck derby" title="Duck Derby"></div>
-        <div class="org-2" title="Codeup"></div>
-        <div class="org-3" title="Los Pollos Hermanos"></div>
-    </div>
-    <div class="org-logos-row-2 hideOnSmall">
-        <div class="org-4" title="Umbrella"></div>
-        <div class="org-5" title="Dunder Mifflin"></div>
-    </div>
-    <div class="text-center mt-3">
-        <p class="leadEvents mb-2">Browse all participating orgs:</p>
-        <a href="/orgs/index"><button class="btn registerNow">View More</button></a>
+<div style="background: #ff7f00;color:white">
+    <section id="organizations">
+        <h2>Organization Partners</h2>
+        <p class="lead">Our partners are very engaged in the community.  Through marketing, event sponsorship, donations, employee engagement, and the power of volunteerism helps drive community involvement.!
+        </p>
+        <div class="org-logos-row-1 text-center">
+            <div class="org-1" alt="duck derby" title="Duck Derby"></div>
+            <div class="org-2" title="Codeup"></div>
+            <div class="org-3" title="Los Pollos Hermanos"></div>
+        </div>
+        <div class="org-logos-row-2 hideOnSmall">
+            <div class="org-4" title="Umbrella"></div>
+            <div class="org-5" title="Dunder Mifflin"></div>
+        </div>
+        <div class="text-center mt-3">
+            <p class="leadEvents mb-2">Browse all participating orgs:</p>
+            <a th:href="@{/orgs}"><button class="btn registerNow">View More</button></a>
 
-    </div>
+        </div>
 
-    <th:block th:replace="fragments/hr-custom :: hr-custom" />
-</section>
+        <th:block th:replace="fragments/hr-custom :: hr-custom" />
+    </section>
+</div>
 
 <!-- ====================  Footer ====================  -->
 

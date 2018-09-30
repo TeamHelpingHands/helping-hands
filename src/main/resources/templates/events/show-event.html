@@ -10,12 +10,12 @@
 
     <section id="single-event">
         <div id="event">
-            <div class="card eventInfo">
+            <div class="card eventInfo text-center">
 
                 <div class="card-body">
                     <div class="row p-2">
 
-                        <div class="col-6">
+                        <div class="col-12 col-md-6">
                             <h2 th:text="${event.eventName}"></h2>
 
                              <p class="text-muted">
@@ -29,123 +29,125 @@
                             <small><a th:href="'/orgs/'+ ${event.org.orgName} +'/events'" class="card-link link-custom">View All Events From This Organization</a></small>
 
                             <th:block sec:authorize="isAuthenticated()">
-                                <p class="text-muted" th:text="${'When: ' + event.date}"></p>
-                                <p class="text-muted" th:text="${'Time: ' + event.time}"></p>
-                                <p class="text-muted" id="streetAddress" th:text="'Street Address: ' +${event.strAddr}"></p>
-                                <p class="text-muted" th:text="'Zipcode: ' +${event.zipCode}"></p>
+                                <div class="row">
+                                    <p class="text-muted col-6" th:text="${'When: ' + event.date}"></p>
+                                    <p class="text-muted col-6" th:text="${'Time: ' + event.time}"></p>
+                                </div>
                             </th:block>
+
+                            <div class="mb-3 text-center" style="border-left: solid 2px #c3bebe;border-right: solid 2px #c3bebe;">
+                                <div class="h-100">
+                                    <!--<div class="col-4 d-flex align-self-center justify-content-end">-->
+                                        <!--<h6 class="">Description:</h6>-->
+                                    <!--</div>-->
+                                    <div class="mt-3">
+                                        <p th:text="${event.description}"></p>
+                                    </div>
+                                </div>
+                            </div>
                                 <p id="strAddress" class="hide" th:value="${event.strAddr}"></p>
                                 <p id="zip" th:value="${event.zipCode}" class="hide"></p>
                             <!-- ====== event categories ===== -->
-                            <div class="text-left eventCategories hideOnSmall">
-                                <small class="card-text">
-                                    <em>Event Categories: sports, outdoors, church, mentor, etc</em>
-                                </small>
+                            <div class="row mt-3 p-2">
+
+
+
+                                <div class="col-6 m-auto text-center align-self-center">
+
+                                    <th:block sec:authorize="isAuthenticated()">
+                                        <div class="row">
+
+                                            <th:block th:if="${vols.contains(user.getVolunteer())}">
+                                                <div class="col-12">
+                                                    <div class="alert alert-success my-3 w-80">You are registered for this event! Nice job!</div>
+                                                </div>
+                                            </th:block>
+
+                                            <th:block th:if="${!vols.contains(user.getVolunteer())}">
+                                                <div class="col-12">
+                                                    <div class="row text-center">
+                                                        <small class="textSecondary text-muted">Interested in volunteering for this event? Click 'Put Me In, Coach!' to add yourself to the list of volunteers!
+                                                        </small>
+                                                    </div>
+                                                    <div class="row text-center">
+                                                        <button type="button" class="btn btn-primary btn-custom m-auto" data-toggle="modal" data-target="#confirm">
+                                                            Count me in! <i class="fas fa-thumbs-up"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </th:block>
+                                        </div>
+                                    </th:block>
+
+                                    <th:block sec:authorize="isAnonymous()">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h5>Want to get involved in this project?</h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p>
+                                                    <a class="link-custom" th:href="'/register'">Register</a> or
+                                                    <a class="link-custom" th:href="'/login'">Login</a>!
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </th:block>
+                                </div>
+                            </div>
+
+                            <th:block sec:authorize="isAuthenticated()">
+                                <div class="row mt-3">
+                                    <div class="col-8">
+
+                                    </div>
+                                    <div class="col-4">
+
+                                    </div>
+                                </div>
+                            </th:block>
+
+
+                            <div class="text-center">
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="myModalLabel">Please Confirm</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body" th:text="${'Are you sure you wish to register to volunteer for &quot;' + event.getEventName() + '&quot;?'}"></div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <form th:action="'/orgs/'+${event.org.orgName}+'/event/'+${event.id}" method="POST">
+                                                    <button type="submit" class="btn btn-primary btn-custom" id="volEnrollBtn">Sign up!</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="col-6" style="border-left: solid 2px #c3bebe;">
-                             <div class="row h-100">
-                                 <div class="col-4 d-flex align-self-center justify-content-end">
-                                     <h6 class="">Description:</h6>
-                                 </div>
-                                 <div class="col-8 d-flex align-self-center">
-                                     <p th:text="${event.description}"></p>
-                                 </div>
-                             </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row mt-3 p-2">
-
-                        <div class="col-6">
+                        <div class="col-12 col-md-6">
+                            <th:block sec:authorize="isAuthenticated()">
+                                <div class="row">
+                                    <p class="text-muted col-6" id="streetAddress" th:text="'Street Address: ' +${event.strAddr}"></p>
+                                    <p class="text-muted col-6" th:text="'Zipcode: ' +${event.zipCode}"></p>
+                                </div>
+                            </th:block>
                             <!-- ====== embedded map to show location of event ===== -->
                             <div id="map-canvas" style="height: 350px; width: 100%;"></div>
                             <!-- MAP END -->
                         </div>
-
-                        <div class="col-6 text-center align-self-center">
-
-                            <th:block sec:authorize="isAuthenticated()">
-                            <div class="row">
-
-                                <th:block th:if="${vols.contains(user.getVolunteer())}">
-                                    <div class="col-12">
-                                        <div class="alert alert-success my-3 w-80">You are registered for this event! Nice job!</div>
-                                    </div>
-                                </th:block>
-
-                                <th:block th:if="${!vols.contains(user.getVolunteer())}">
-                                   <div class="col-12">
-                                       <div class="row text-center">
-                                           <small class="textSecondary text-muted">Interested in volunteering for this event? Click 'Put Me In, Coach!' to add yourself to the list of volunteers!
-                                           </small>
-                                       </div>
-                                       <div class="row text-center">
-                                           <button type="button" class="btn btn-primary btn-custom" data-toggle="modal" data-target="#confirm">
-                                               Count me in! <i class="fas fa-thumbs-up"></i>
-                                           </button>
-                                       </div>
-                                   </div>
-                                </th:block>
-                            </div>
-                            </th:block>
-
-                            <th:block sec:authorize="isAnonymous()">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h5>Want to get involved in this project?</h5>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <p>
-                                            <a class="link-custom" th:href="'/register'">Register</a> or
-                                            <a class="link-custom" th:href="'/login'">Login</a>!
-                                        </p>
-                                    </div>
-                                </div>
-                            </th:block>
-                        </div>
                     </div>
 
-                    <th:block sec:authorize="isAuthenticated()">
-                        <div class="row mt-3">
-                            <div class="col-8">
 
-                            </div>
-                            <div class="col-4">
-
-                            </div>
-                        </div>
-                    </th:block>
-
-
-                    <div class="text-center">
-
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="myModalLabel">Please Confirm</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" th:text="${'Are you sure you wish to register to volunteer for &quot;' + event.getEventName() + '&quot;?'}"></div>
-                                        <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <form th:action="'/orgs/'+${event.org.orgName}+'/event/'+${event.id}" method="POST">
-                                                <button type="submit" class="btn btn-primary btn-custom" id="volEnrollBtn">Sign up!</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
                 </div>
             </div>
         </div>
