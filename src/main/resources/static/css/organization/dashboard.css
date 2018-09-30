@@ -10,6 +10,10 @@
     --easeOut: all 0.25s ease-out;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: "Montserrat", sans-serif;
 }
@@ -75,22 +79,15 @@ img {
     width: 100%;
 }
 
+.footer {
+    position: relative;
+}
+
 /* ============ mobile view ============ */
 @media screen and (max-width: 580px) {
     .org-main {
         text-align: center;
     }
-
-    /*.adminHeader a {*/
-        /*display: block;*/
-        /*width: 100%;*/
-        /*grid-template-areas:*/
-                /*"button"*/
-                /*"button"*/
-                /*"button"*/
-                /*"button";*/
-        /*grid-template-columns: 1fr;*/
-    /*}*/
 
     main {
         align-items: center;
@@ -113,6 +110,10 @@ img {
                 "img"
                 "img";
         grid-template-columns: 1fr;
+    }
+
+    .footer {
+        position: relative;
     }
 
     .hideOnSmall {

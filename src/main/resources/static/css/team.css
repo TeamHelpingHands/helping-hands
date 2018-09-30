@@ -10,6 +10,10 @@
     --easeOut: all 0.25s ease-out;
 }
 
+body, html {
+    height: 100%;
+}
+
 body {
     font-family: "Montserrat", sans-serif;
 }
@@ -36,18 +40,28 @@ label {
     background: url("../img/Lisa2.jpg");
 }
 
+.nameHighlight {
+    background-color: rgba(255, 127, 0, 0.85);
+    color: white;
+    font-weight: bold;
+}
+
 .teamImg {
     margin: auto;
-    height: 300px;
-    width: 300px;
+    height: 250px;
+    width: 250px;
     border-radius: 50%;
     background-size: cover;
 }
 
 .grid-profile {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+}
+
+.footer {
+    position: absolute;
 }
 
 /* ====== utility classes ===== */
@@ -74,12 +88,17 @@ label {
 }
 
 #icons i:hover {
-    color: var(--primary-color-hover);
+    color: var(--btn-color);
     transition: var(--easeOut);
 }
 
 /* ====== mobile view ====== */
 @media screen and (max-width: 580px) {
+
+    body, html {
+        height: 100%;
+    }
+
     .grid-profile {
         grid-template-areas:
                 "tj"
@@ -88,118 +107,9 @@ label {
                 "mykel";
         grid-template-columns: 1fr;
     }
+
+    .footer {
+        position: relative;
+    }
 }
-
-/*/////////////////////horizontal view below //////////////////////////*/
-
-
-/*@import url("https://fonts.googleapis.com/css?family=Lato|Montserrat");*/
-
-/*!* color and transition variables *!*/
-/*:root {*/
-    /*--primary-color: #ff7f00;*/
-    /*--primary-color-hover: #f8c537;*/
-    /*--secondary-color: #f4f4f4;*/
-    /*--secondary-color-hover: #011627;*/
-    /*--btn-color: #2ec4b6;*/
-    /*--easeOut: all 0.25s ease-out;*/
-/*}*/
-
-/*body {*/
-    /*!* background-color: var(--secondary-color-hover); *!*/
-    /*font-family: "Montserrat", sans-serif;*/
-    /*!* color: white; *!*/
-/*}*/
-
-/*label {*/
-    /*font-family: "Lato", sans-serif;*/
-/*}*/
-
-/*!* team images *!*/
-
-/*.mykel-img {*/
-    /*!* grid-area: mykel; *!*/
-    /*margin: auto;*/
-    /*width: 250px;*/
-    /*height: 250px;*/
-    /*background: url("../img/Mykel2.jpg");*/
-    /*border-radius: 50%;*/
-    /*background-size: cover;*/
-/*}*/
-
-/*.tj-img {*/
-    /*!* grid-area: tjImg; *!*/
-    /*margin: auto;*/
-    /*background: url("../img/TJ2.jpg");*/
-    /*width: 250px;*/
-    /*height: 250px;*/
-    /*background-size: cover;*/
-    /*border-radius: 50%;*/
-/*}*/
-
-/*.vince-img {*/
-    /*!* grid-area: vince; *!*/
-    /*background: url("../img/Vincent2.jpg");*/
-    /*margin: auto;*/
-    /*width: 250px;*/
-    /*height: 250px;*/
-    /*border-radius: 50%;*/
-    /*background-size: cover;*/
-/*}*/
-
-/*.lisa-img {*/
-    /*!* grid-area: lisa; *!*/
-    /*background: url("../img/Lisa2.jpg");*/
-    /*margin: auto;*/
-    /*width: 250px;*/
-    /*height: 250px;*/
-    /*border-radius: 50%;*/
-    /*background-size: cover;*/
-/*}*/
-
-/*.grid-profile {*/
-    /*display: grid;*/
-    /*grid-template-columns: repeat(4, 1fr);*/
-    /*grid-gap: 10px;*/
-/*}*/
-
-/*!* utility classes *!*/
-
-/*.container {*/
-    /*max-width: 1180px;*/
-    /*text-align: center;*/
-    /*margin: 0 auto;*/
-    /*padding: 0 3rem;*/
-/*}*/
-
-/*.lead {*/
-    /*font-size: 0.8rem;*/
-    /*font-family: Montserrat;*/
-/*}*/
-
-/*#icons {*/
-    /*font-size: 2rem;*/
-/*}*/
-
-/*#icons a {*/
-    /*text-decoration: none;*/
-    /*color: var(--secondary-color-hover);*/
-/*}*/
-
-/*#icons i:hover {*/
-    /*color: var(--primary-color-hover);*/
-    /*transition: var(--easeOut);*/
-/*}*/
-
-/*!* ====== mobile view ====== *!*/
-/*@media screen and (max-width: 580px) {*/
-    /*.grid-profile {*/
-        /*grid-template-areas:*/
-                /*"tj"*/
-                /*"lisa"*/
-                /*"vince"*/
-                /*"mykel";*/
-        /*grid-template-columns: 1fr;*/
-    /*}*/
-/*}*/
 
