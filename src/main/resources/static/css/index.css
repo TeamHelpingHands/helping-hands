@@ -98,6 +98,20 @@ img {
     background-color: #2ec4b6;
 }
 
+.callToAction{
+    background-image: url("https://s3-us-west-1.amazonaws.com/vl-photos/ProfessionalPhoto/women.jpg");
+    height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+}
+
+.div-title{
+    border:5px solid #2ec4b6;
+    border-radius:50px 15px;
+    box-shadow: 4px 4px #f8c537;
+}
+
 button {
     color: white;
 }
