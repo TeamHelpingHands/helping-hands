@@ -10,6 +10,10 @@
     --easeOut: all 0.25s ease-out;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: "Raleway", sans-serif;
     position: relative;
@@ -20,7 +24,7 @@ nav {
 }
 
 .footer {
-    position: absolute;
+    position: relative;
     background: #484659;
     bottom: 0;
     left: 0;
