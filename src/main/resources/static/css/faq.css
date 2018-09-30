@@ -10,6 +10,10 @@
     --easeOut: all 0.25s ease-out;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: "Montserrat", sans-serif;
 }
@@ -23,19 +27,7 @@ button {
     font-size: 2rem;
 }
 
-/* ============= footer ============= */
-
-footer {
-    text-align: center;
+.footer {
+    position: absolute;
 }
-
-footer a {
-    color: black;
-}
-
-footer a:hover {
-    color: var(--primary-color);
-    transition: var(--easeOut);
-}
-
 

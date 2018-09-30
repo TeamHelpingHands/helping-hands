@@ -14,6 +14,10 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+html, body {
+    height: 100%;
+}
+
 .cardProfile {
     border: 1px solid var(--primary-color);
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 3px rgba(0, 0, 0, 0.2);
@@ -25,6 +29,10 @@ body {
     color: white;
 }
 
+.footer {
+    position: relative;
+}
+
 /* ===== Mobile View ===== */
 @media screen and (max-width: 580px) {
 
@@ -34,5 +42,9 @@ body {
 
     .row {
         text-align: center;
+    }
+
+    .footer {
+        position: relative;
     }
 }

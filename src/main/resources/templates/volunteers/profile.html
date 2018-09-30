@@ -34,32 +34,17 @@
                             </div>
                             <div class="col-12 col-sm-9">
                                 <div class="row">
-                                    <div class="col-12 col-m-6 col-lg-6 text-center">
-                                        <p>Number of events attended:</p>
-                                        <small id="noEventsEnrolled " class="hide " th:value="${noEventsEnrolled} "></small>
+                                    <div class="col-12 col-m-6 col-lg-6 text-center mt-2">
+                                        <p>HH Member Since: 2018</p>
                                         <small id="noOfDidAttend " class="hide " th:value="${noOfDidAttend} "></small>
-                                        <p th:text=" 'Number of events committed to: ' + ${noEventsEnrolled} "></p>
-                                        <p th:text=" 'Number of events attended: ' + ${noOfDidAttend} "></p>
-                                        <p>fancy custom badge</p>
+                                        <p th:text=" 'Number of events committed to: ' + ${user.volunteer.events.size()} "></p>
+                                        <p th:text=" 'Number of events attended: ' + ${noOfDidAttend}"></p>
+                                        <p>Following <strong>27</strong> Organizations</p>
                                     </div>
-                                    <div class="col-12 col-m6 col-lg-6 text-center">
-                                        <h6>Short Bio:</h6>
-                                        <div class="card-body ">
-                                            <div class="col-12 " style="overflow-y: auto;">
-                                                <div class="row ">
-                                                    <div class="card cardFeedback m-3 " th:each="orgFeedback : ${currentUser.getVolunteer().getOrgFeedback()}" style=" min-width: 100px; max-width: 300px;">
-                                                        <div class="card-body ">
-
-                                                            <img th:src="${orgFeedback.org.user.photoUrl}" style="width: 50px; height: 50px; border-radius: 50%; "/>
-                                                            <a th:href="'/orgs/'+${orgFeedback.org.orgName}">
-                                                                <h6 th:text="${orgFeedback.getOrg().getOrgName()}"></h6>
-                                                            </a>
-                                                            <p th:text="'Comments: ' + ${orgFeedback.getFeedback()}"></p>
-                                                            <small class="text-muted" th:text=" 'Date created: ' + ${orgFeedback.getDateCreated()} "></small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="col-12 col-m6 col-lg-6 text-center m-auto">
+                                        <div class="col-12">
+                                            <h6>Short Bio:</h6>
+                                            <p th:text="${user.volunteer.bio}"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -126,14 +111,11 @@
                     </div>
                 </div>
             </div>
-          
-          
-
-        <th:block th:replace="fragments/hr-custom :: hr-custom" />
+            <th:block th:replace="fragments/hr-custom :: hr-custom" />
         </div>
      
         <!-- ====== Footer ====== -->
-        <footer th:fragment="fragments/footer :: footer"></footer>
+        <th:block th:replace="fragments/footer :: footer"></th:block>
         <script th:replace="fragments/scripts :: scripts"></script>
     </body>
 </html>

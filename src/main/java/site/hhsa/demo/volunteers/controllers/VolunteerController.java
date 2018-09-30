@@ -169,9 +169,21 @@ public class VolunteerController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userDao.findByUsername(user.getUsername());
         User userProfile = userDao.findByUsername(username);
+        List<Event> events = eventDao.findAllByVolunteersContains(userProfile.getVolunteer());
+        List<FeedbackFromOrganization> feedbacks = feedbackFromOrgDao.findAllByVolunteer(currentUser.getVolunteer());
+
+        int noOfDidAttend = 0;
+
+        for (FeedbackFromOrganization feedback: feedbacks) {
+            if (feedback.isDidAttend()) {
+                noOfDidAttend++;
+            }
+        }
+
         model.addAttribute("message", new Message());
         model.addAttribute("user", userProfile);
         model.addAttribute("currentUser", currentUser);
+        model.addAttribute("noOfDidAttend", noOfDidAttend);
         return "volunteers/profile";
     }
 

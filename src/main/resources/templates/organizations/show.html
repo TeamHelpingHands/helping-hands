@@ -17,9 +17,9 @@
         <h1 th:text="'Profile - ' + ${org.orgName}"></h1>
 
         <div class="row my-3">
-            <div class="col-10 m-auto">
+            <div class="col-12 m-auto">
                 <div class="card cardProfile">
-                    <div class="card-header text-centergit">
+                    <div class="card-header text-center">
                         <h6 th:text="'Details about the ' + ${org.orgName}+ ' organization:'"></h6>
                     </div>
                     <div class="card-body row">
@@ -41,9 +41,8 @@
                                     <p th:text="'Contact Number: ' + ${org.user.phnNum}"></p>
                                     <p th:tex="'Address: ' + ${org.strAddr}"></p>
                                     <p th:text="'Zipcode: ' + ${org.user.zipcode}"></p>
+                                    <p th:text="'Number of followers: ' + ${org.followers.size()}"></p>
                                 </div>
-                            </div>
-                            <div>
                                 <div class="col-12 col-m-6 col-lg-6 text-center">
                                     <h6 th:text="'About '+${org.orgName}+':'"></h6>
                                     <p th:class="lead" th:text="${org.aboutUs}"></p>
