@@ -120,7 +120,7 @@ public class OrgController {
     public String OrgDashboard(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userDao.findByUsername(user.getUsername());
-        List<Message> messages = messageDao.findAllByReceiver(currentUser);
+        List<Message> messages = messageDao.findAllByReceiverOrderByTimeSentDesc(currentUser);
         int newMessages = messages.size();
         model.addAttribute("newMessages", newMessages);
         model.addAttribute("currentUser", currentUser);
@@ -145,9 +145,10 @@ public class OrgController {
     @GetMapping("/orgs/messages")
     public String myOrgMessages(Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Message> inboxMessages = messageDao.findAllByReceiver(currentUser);
-        List<Message> sentMessages = messageDao.findAllBySender(currentUser);
-        List<Message> delMessages = new ArrayList<>();
+        List<Message> inboxMessages = messageDao.findAllByReceiverOrderByTimeSentDesc(currentUser);
+        List<Message> sentMessages = messageDao.findAllBySenderOrderByTimeSentDesc(currentUser);
+        List<Message> delInboxMessages = new ArrayList<>();
+        List<Message> delSentMessages = new ArrayList<>();
         int noOfMessagesInbox = inboxMessages.size();
         int noOfMessagesSent = sentMessages.size();
         int newMessages = 0;
@@ -159,10 +160,15 @@ public class OrgController {
                     messageDao.save(message);
                 }
             } else {
-                delMessages.add(message);
+                delInboxMessages.add(message);
+            }
+
+            if (message.isSenderDel()) {
+                delSentMessages.add(message);
             }
         }
-        inboxMessages.removeAll(delMessages);
+        inboxMessages.removeAll(delInboxMessages);
+        sentMessages.removeAll(delSentMessages);
         model.addAttribute("delMessage", new Message());
         model.addAttribute("newReply", new Message());
         model.addAttribute("noOfMessagesInbox", noOfMessagesInbox);
@@ -175,11 +181,15 @@ public class OrgController {
     }
 
     @PostMapping("orgs/messages")
-    public String deleteMessage(@RequestParam String id, Model model) {
+    public String deleteMessage(@RequestParam String id, @RequestParam String which, RedirectAttributes redir) {
         Message message = messageDao.findOne(Long.parseLong(id));
-        message.setReceiverDel(true);
+        if (which.equals("sender")) {
+            message.setSenderDel(true);
+        } else {
+            message.setReceiverDel(true);
+        }
         messageDao.save(message);
-        model.addAttribute("deleted", "Message deleted.");
+        redir.addFlashAttribute("deleted", "Message deleted.");
         return "redirect:/orgs/messages";
     }
 
@@ -189,7 +199,7 @@ public class OrgController {
             @RequestParam String receiverId,
             @RequestParam String subject,
             @RequestParam String body,
-            Model model) {
+            RedirectAttributes redir) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userDao.findByUsername(user.getUsername());
         Message message = new Message();
@@ -200,7 +210,7 @@ public class OrgController {
         message.setOpened(false);
         message.setReceiverDel(false);
         messageDao.save(message);
-        model.addAttribute("messageSent", "Message sent.");
+        redir.addFlashAttribute("messageSent", "Message sent.");
         return "redirect:/orgs/messages";
     }
 

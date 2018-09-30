@@ -15,7 +15,7 @@
         <h3><i class="fas fa-users header-icons"></i> Attendees:</h3>
         <div th:each="volunteer : ${event.volunteers}">
             <div th:if="not ${attendees.contains(volunteer)}">
-                <form th:action="@{/orgs/{org_name}/events/{event_id}/dash(org_name = ${event.getOrganization().getOrgName()}, event_id = ${event.getId()})}" th:method="post">
+                <form th:action="@{/orgs/{org_name}/events/{event_id}/dash(org_name = ${event.getOrg().getOrgName()}, event_id = ${event.getId()})}" th:method="post">
                     <label><span th:text="${volunteer.user.firstName}" /> <span th:text="${volunteer.user.lastName}" /></label>
                     <span>|</span>
                     <input type="hidden" name="volunteer" th:value="${volunteer.user.id}" />

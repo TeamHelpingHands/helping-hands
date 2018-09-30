@@ -20,6 +20,7 @@ nav {
 }
 
 .footer {
+    position: absolute;
     background: #484659;
     bottom: 0;
     left: 0;
@@ -56,6 +57,11 @@ a.nav-item.nav-link.navlink-custom {
 .btn-custom {
     background-color: var(--btn-color);
     border-color: var(--btn-color);
+}
+
+.btn-custom-del {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 .link-custom {
     text-underline: none;
