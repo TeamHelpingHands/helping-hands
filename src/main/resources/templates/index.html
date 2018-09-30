@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:border-radius="http://www.w3.org/1999/xhtml">
 <head>
     <th:block th:replace="fragments/head :: head" />
     <link rel="stylesheet" th:href="@{/css/index.css}" />
@@ -78,50 +78,47 @@
     </div>
 </div>
 <!-- ====================  About HH ====================  -->
-<section class="mt-4" id="about">
-    <h2>About HH</h2>
-    <p class="lead">HelpingHands is designed to help facilitate volunteer enrollment and participation for any given charitable event.
-        Volunteers have the ability to apply to help an organization or event, follow your favorite organizations, and earn points for frequent participation. HH makes it easy to
-        get involved, and stay involved!</p>
+<section class="container mt-4" id="about">
+    <div class="div-title col-3">
+        <h2 class="p-3">About HH</h2>
+    </div>
+    <div class="about-div" style="border:5px solid #f8c537; border-radius:15px 50px; box-shadow: 8px 8px #2ec4b6">
+        <div class="container p-3">
+            <p class="lead ">HelpingHands is designed to help facilitate volunteer enrollment and participation for any given charitable event.
+                Volunteers have the ability to apply to help an organization or event, follow your favorite organizations, and earn points for frequent participation. HH makes it easy to
+                get involved, and stay involved!</p>
+        </div>
+    </div>
 </section>
+<section class="row d-flex justify-content-center">
+    <div class="text-center text-align-middle text-white col-9 col-md-3" style="background: #f8c537; width:100%; height:300px; margin:0">
+        <div class="mt-5">
+            <p class="leadEvents mb-2">Want to make a difference in your community?</p>
+            <a href="/register"><button class="btn registerNow">Create Account</button></a>
+        </div>
+    </div>
+    <div class="callToAction col-9 col-md-6">
 
+    </div>
+</section>
 <section id="past-events" class="hideOnSmall">
-    <h2>Past Events</h2>
-    <p class="lead">Want to browse through previous events hosted by our partner organization:
-    </p>
-    <div id="events">
-        <div class="card event1" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Past Event #1</h5>
-                <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
-                <p class="card-text">short description about event here</p>
-                <a href="#" class="card-link">View More</a>
-                <a href="#" class="card-link">View Org Profile</a>
+    <h2 class="div-title col-3 p-3">Past Events</h2>
+
+    <div id="events" th:each="event : ${events}">
+        <div class="card event col-5" style="width: 18rem;">
+            <div class="col-4" style="background:#2ec4b6;color:white">
+                <h2 class="text-center" th:text="${event.date}"></h2>
             </div>
-        </div>
-        <div class="card event2" style="width: 20rem;">
-            <div class="card-body">
-                <h5 class="card-title">Past Event #2</h5>
-                <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
-                <p class="card-text">short description about event here</p>
-                <a href="#" class="card-link">View More</a>
-                <a href="#" class="card-link">View Org Profile</a>
-            </div>
-        </div>
-        <div class="card event3" style="width: 20rem;">
-            <div class="card-body">
-                <h5 class="card-title">Past Event #3</h5>
-                <h6 class="card-subtitle mb-2 text-muted">(date/org name?)</h6>
-                <p class="card-text">short description about event here</p>
-                <a href="#" class="card-link">View More</a>
-                <a href="#" class="card-link">View Org Profile</a>
+            <div class="card-body col-8">
+                <h5 class="card-title" th:text="${event.eventName}"></h5>
+                <h6 class="card-subtitle mb-2 text-muted">time:<span th:text="${event.time}"></span></h6>
+                <p class="card-text" th:text="${event.description}"></p>
+                <a th:href="@{/events/{event_id}(event = ${event.id})}" class="card-link">View More</a>
+                <a th:href="@{/orgs/{org_name}(org_name = ${event.org})}" class="card-link">View Org Profile</a>
             </div>
         </div>
     </div>
-    <div class="text-center mt-3">
-        <p class="leadEvents mb-2">Want to make a difference in your community?</p>
-        <a href="/register"><button class="btn registerNow">Create Account</button></a>
-    </div>
+
 </section>
 
 <!-- ====================  Participating Orgs ====================  -->
