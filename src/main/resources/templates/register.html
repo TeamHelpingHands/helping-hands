@@ -17,57 +17,57 @@
 
     <div class="row my-3 d-flex justify-content-center">
         <div class="card mt-5 text-center">
-            <form th:action="@{/register}" method="POST" th:object="${user}">
+            <form th:action="@{/register}" method="POST" th:object="${user}" class="form">
                 <div class="card-header">
                     <h1 class="formHeader"><i class="fas fa-user-plus header-icons"></i> Register</h1>
                 </div>
-                <div class="card-body col-7 m-auto">
+                <div class="card-body m-auto">
                    <div class="row">
                        <div class="col-12 col-md-6">
                             <th:block th:if="${usernameExists}">
                                 <div class="alert alert-danger text-center" th:text="${usernameExists}"></div>
                             </th:block>
-                            <div class="form-group d-flex justify-content-center">
+                            <div class="form-group d-flex justify-content-between">
                                 <label for="username">Username:</label>
                                 <input class="form-control ml-2" id="username" type="text" th:field="*{username}" />
                             </div>
                             <th:block th:if="${emailExists}">
                                 <div class="alert alert-danger text-center" th:text="${emailExists}"></div>
                             </th:block>
-                            <div class="form-group d-flex justify-content-center">
+                            <div class="form-group d-flex justify-content-between">
                                 <label for="email">Email address:</label>
                                 <input class="form-control" id="email" type="email" th:field="*{email}"/>
                             </div>
                             <th:block th:if="${passwordNoMatch}">
                                 <div class="alert alert-danger text-center" th:text="${passwordNoMatch}"></div>
                             </th:block>
-                            <div class="form-group d-flex justify-content-center">
+                            <div class="form-group d-flex justify-content-between">
                                 <label for="password">Password:</label>
                                 <input class="form-control ml-2" id="password" type="password" th:field="*{password}"/>
                             </div>
-                            <div class="form-group d-flex justify-content-center">
+                            <div class="form-group d-flex justify-content-between">
                                 <label for="passwordCon">Confirm Password:</label>
                                 <input class="form-control" id="passwordCon" type="password" th:name="'passwordCon'"/>
                             </div>
-                            <div class="form-group d-flex justify-content-center">
+                            <div class="form-group d-flex justify-content-between">
                                 <label for="firstName">First Name:</label>
                                 <input class="form-control" id="firstName" type="text" th:field="*{firstName}"/>
                             </div>
-                            <div class="form-group d-flex justify-content-center">
+                            <div class="form-group d-flex justify-content-between">
                                 <label for="lastName">Last Name:</label>
                                 <input class="form-control" id="lastName" type="text" th:field="*{lastName}"/>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group d-flex justify-content-center">
+                            <div class="form-group d-flex justify-content-between">
                                 <label for="phnNum">Phone Number:</label>
                                 <input class="form-control" id="phnNum" type="text"  th:field="*{phnNum}"/>
                             </div>
-                            <div class="form-group d-flex justify-content-center">
+                            <div class="form-group d-flex justify-content-between">
                                 <label for="zipcode">Zip Code:</label>
                                 <input class="form-control" id="zipcode" type="text"  th:field="*{zipcode}"/>
                             </div>
-                            <div class="form-group d-flex justify-content-center">
+                            <div class="form-group d-flex justify-content-between">
                                 <label for="picUrlInput">Profile picture:</label>
                                 <button type="button" class="btn btn-primary btn-custom ml-3" id="uploadBtn">Upload</button>
                                 <small id="picName"></small>
@@ -75,14 +75,14 @@
                             </div>
                             <div class="form-group">
                                 <h6>Are you registering as a <strong>Volunteer</strong> or an <strong>Organization</strong>?</h6>
-                                <div class="d-flex justify-content-center">
+                                <div class="d-flex justify-content-between">
                                     <div>
                                         <label for="vol">Volunteer</label>
-                                        <input class="form-control mr-3" id="vol" type="radio" name="isOrg" value="false" checked="checked" />
+                                        <input class="form-control text-center m-auto" id="vol" style="width:20px" type="radio" name="isOrg" value="false" checked="checked" />
                                     </div>
                                     <div>
                                         <label for="org">Organization</label>
-                                        <input class="form-control" id="org" type="radio" name="isOrg" value="true" />
+                                        <input class="form-control m-auto" style="width:20px" id="org" type="radio" name="isOrg" value="true" />
                                     </div>
                                 </div>
                             </div>
