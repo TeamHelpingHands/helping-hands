@@ -33,6 +33,11 @@ html, body {
     position: relative;
 }
 
+.btn-orange {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
 /* ===== Mobile View ===== */
 @media screen and (max-width: 580px) {
 
