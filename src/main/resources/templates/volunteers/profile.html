@@ -39,7 +39,7 @@
                                         <small id="noOfDidAttend " class="hide " th:value="${noOfDidAttend} "></small>
                                         <p th:text=" 'Number of events committed to: ' + ${user.volunteer.events.size()} "></p>
                                         <p th:text=" 'Number of events attended: ' + ${noOfDidAttend}"></p>
-                                        <p>Following <strong>27</strong> Organizations</p>
+                                        <p th:text="'Favorite Organizations: ' + ${user.favorites.size()}"></p>
                                     </div>
                                     <div class="col-12 col-m6 col-lg-6 text-center m-auto">
                                         <div class="col-12">

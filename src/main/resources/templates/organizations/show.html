@@ -14,7 +14,7 @@
             <div class="alert alert-success mt-3">Message sent!</div>
         </th:block>
 
-        <h1 th:text="'Profile - ' + ${org.orgName}"></h1>
+        <h1 class="my-3" th:text="'Profile - ' + ${org.orgName}"></h1>
 
         <div class="row my-3">
             <div class="col-12 m-auto">
@@ -26,11 +26,11 @@
                         <!-- this was original: <div class="col-3">-->
                         <div class="col-12 col-sm-3 text-center">
                             <div>
-                                <img th:src="${org.user.photoUrl}" alt="" style="width: 100%; height: 100%; border-radius: 50%" />
-                                <div sec:authorize="isAuthenticated()">
-                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#messageModal">Message</button>
-                                    <a th:if="${follower}" th:href="@{/orgs/{orgname}/follow(orgname= ${org.getOrgName()})}"  class="btn btn-success btn-sm my-1">unfollow</a>
-                                    <a th:if="not ${follower}" th:href="@{/orgs/{orgname}/follow(orgname = ${org.getOrgName()})}"  class="btn btn-success btn-sm my-1">follow</a>
+                                <img th:src="${org.user.photoUrl}" alt="" style="width: 85%; height: 85%; border-radius: 50%" />
+                                <div class="mt-2" sec:authorize="isAuthenticated()">
+                                    <button class="btn btn-primary btn-custom btn-sm mr-2" data-toggle="modal" data-target="#messageModal">Message...</button>
+                                    <a th:if="${follower}" th:href="@{/orgs/{orgname}/follow(orgname= ${org.getOrgName()})}"  class="btn btn-warning btn-sm ml-1">Unfollow</a>
+                                    <a th:if="not ${follower}" th:href="@{/orgs/{orgname}/follow(orgname = ${org.getOrgName()})}"  class="btn btn-success btn-sm ml-1 btn-orange">Follow</a>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="subject">Subject</label>
-                                <input class="form-control" type="text" id="subject" placeholder="Enter subject..." th:field="*{subject}"/>
+                                <input class="form-control" type="text" id="subject" placeholder="Enter subject..." th:name="'subject'" th:value="'Question about your event!'"/>
                             </div>
                             <div class="form-group">
                                 <label for="body">Message Body</label>

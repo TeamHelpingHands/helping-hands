@@ -75,9 +75,10 @@ public class OrgController {
     }
 
     @PostMapping("/orgs/{org_name}")
-    public String sendMessage(@PathVariable String org_name, @ModelAttribute Message message, RedirectAttributes redir) {
+    public String sendMessage(@PathVariable String org_name, @ModelAttribute Message message, @RequestParam String subject, RedirectAttributes redir) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findByUsername(currentUser.getUsername());
+        message.setSubject(subject);
         message.setSender(user);
         message.setReceiver(orgDao.findOrganizationByOrgName(org_name).getUser());
         messageDao.save(message);
