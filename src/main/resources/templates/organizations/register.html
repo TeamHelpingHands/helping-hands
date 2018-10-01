@@ -15,35 +15,39 @@
         <div class="container">
             <h3 class="headerText mt-3"><i class="fas fa-user header-icons"></i> Complete Your Profile</h3>
 
-            <div class="card mt-3 text-center">
+            <div class="card mt-3 text-center row">
                 <form th:action="@{/{username}/orgs/register(username=${user.getUsername()})}" th:method="POST" th:object="${user.organization}">
                     <div class="card-header">
                         <h1 class="formHeader">Complete Registration</h1>
                     </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="org_name">Organization Name:</label>
-                            <input type="text" id="org_name" th:field="*{orgName}"/>
+                    <div class="row">
+                        <div class="card-body col-12 col-md-6 pl-5">
+                            <div class="form-group d-flex justify-content-between">
+                                <label for="org_name">Organization Name:</label>
+                                <input type="text" id="org_name" th:field="*{orgName}"/>
+                            </div>
+                            <div class="form-group d-flex justify-content-between">
+                                <label for="taxId">Tax Id:</label>
+                                <input type="text" id="taxId" th:field="*{taxId}"/>
+                            </div>
+                            <div class="form-group d-flex justify-content-between">
+                                <label for="street_addr">Street Address:</label>
+                                <input type="text" id="street_addr" th:field="*{strAddr}"/>
+                            </div>
+                            <div class="form-group d-flex justify-content-between">
+                                <label for="city">City:</label>
+                                <input type="text" id="city" th:field="*{city}"/>
+                            </div>
+                            <div class="form-group d-flex justify-content-between">
+                                <label for="state">State:</label>
+                                <input type="text" id="state" th:field="*{state}"/>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="taxId">Tax Id:</label>
-                            <input type="text" id="taxId" th:field="*{taxId}"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="street_addr">Street Address:</label>
-                            <input type="text" id="street_addr" th:field="*{strAddr}"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="city">City:</label>
-                            <input type="text" id="city" th:field="*{city}"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="state">State:</label>
-                            <input type="text" id="state" th:field="*{state}"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="aboutUs">About us:</label><br />
-                            <textarea type="text" id="aboutUs" th:field="*{aboutUs}" required="required" style="width:100%"></textarea>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group row mt-3">
+                                <label class="col-9 col-md-3" for="aboutUs" style="text-align:left">About us:</label>
+                                <textarea class="col-9 col-md-7 form-control m-auto" id="aboutUs" th:field="*{aboutUs}" required="required" style="width:100%" rows="10"></textarea>
+                            </div>
                         </div>
                     </div>
 
