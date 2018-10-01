@@ -56,9 +56,13 @@
                                     <p th:text=" 'Number of events attended: ' + ${noOfDidAttend} "></p>
                                 </div>
                                 <div class="col-12 col-m6 col-lg-6 text-center">
-                                    <hr class="hideOnLarge"/>
-                                    <h6>About Me:</h6>
+                                    <h5>About Me:</h5>
                                     <p th:text="${currentUser.volunteer.bio}"></p>
+                                    <hr />
+                                    <h5 th:text="'- My Favorites ' + '('+ ${currentUser.favorites.size()}+') '+'-'"></h5>
+                                    <div th:each="favorite : ${currentUser.favorites}">
+                                        <a th:href="'/orgs/'+${favorite.orgName}"><p th:text="${favorite.orgName}"></p></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

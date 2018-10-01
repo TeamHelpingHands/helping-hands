@@ -37,7 +37,7 @@ html, body {
 }
 
 .footer {
-    position: relative;
+    position: absolute;
 }
 
 
@@ -61,7 +61,4 @@ html, body {
         border-radius: 3%;
     }
 
-    .footer {
-        position: relative;
-    }
 }
