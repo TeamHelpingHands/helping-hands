@@ -64,7 +64,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/orgs/{org_name}/register",
                         "/vols/{username}/events",
                         "/orgs/{org_name}",
-                        "/home"
+                        "/home",
+                        "/orgs/{org_name}/events/1/dash"
                         // only authenticated users can view
 
                 )

@@ -1,105 +1,75 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <th:block th:replace="fragments/head :: head" />
-    <title>Events Dashboard | Helping Hands</title>
-    <link rel="stylesheet" th:href="@{/css/events/show-event.css}" />
+    <title th:text="${event.org} + ' | '+${event.eventName}"></title>
+    <link rel="stylesheet" th:href="@{/css/organization/show.css}" />
 </head>
 <body>
-
 <nav th:replace="fragments/navbar :: navbar"></nav>
-
 <div class="container">
-    <section id="single-event">
-        <h2 class="mt-5" th:text="'Event: ' + ${event.eventName}"></h2>
-        <h3><i class="fas fa-users header-icons"></i> Attendees:</h3>
-        <div th:each="volunteer : ${event.volunteers}">
-            <div th:if="not ${attendees.contains(volunteer)}">
-                <form th:action="@{/orgs/{org_name}/events/{event_id}/dash(org_name = ${event.getOrg().getOrgName()}, event_id = ${event.getId()})}" th:method="post">
-                    <label><span th:text="${volunteer.user.firstName}" /> <span th:text="${volunteer.user.lastName}" /></label>
-                    <span>|</span>
-                    <input type="hidden" name="volunteer" th:value="${volunteer.user.id}" />
-                    <span>|</span>
-                    <label for="feedback">feedback:</label>
-                    <input type="text" id="feedback" name="feedback" />
-                    <span>|</span>
-                    <button class="btn btn-custom">Attended</button>
-                </form>
+
+    <h1 th:text="${event.org.orgName}"></h1>
+
+    <div class="row my-3">
+        <div class="col-12 m-auto">
+            <div class="card cardProfile">
+                <div class="card-header text-center">
+                    <h3 th:text="${event.eventName}+ ' manager:'"></h3>
+                </div>
+                <div class="card-body row">
+                    <div class="container">
+                        <section id="single-event">
+                            <h3><i class="fas fa-users header-icons"></i> Attendees</h3>
+                            <h5>Unverified:</h5>
+                            <hr />
+                            <div th:each="volunteer : ${event.volunteers}">
+                                <div th:if="not ${attendees.contains(volunteer)}">
+                                    <form th:action="@{/orgs/{org_name}/events/{event_id}/dash(org_name = ${event.getOrg().getOrgName()}, event_id = ${event.getId()})}" th:method="post">
+                                        <label><span th:text="${volunteer.user.firstName}" /> <span th:text="${volunteer.user.lastName}" /></label>
+                                        <span>|</span>
+                                        <input type="hidden" name="volunteer" th:value="${volunteer.user.id}" />
+                                        <span>|</span>
+                                        <label for="feedback">feedback:</label>
+                                        <input type="text" id="feedback" name="feedback" />
+                                        <span>|</span>
+                                        <button class="btn btn-custom">Attended</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="mt-4">
+                            <h5>Verified:</h5>
+                            <hr />
+                            <div th:each="volunteer : ${event.volunteers}">
+                                <div th:if="${attendees.contains(volunteer)}">
+                                    <div>
+                                        <span th:text="${volunteer.user.firstName}" />
+                                        <span th:text="${volunteer.user.lastName}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- ====================  Footer Section ====================  -->
+
+                    </div>
+
+
+                </div>
             </div>
         </div>
-    </section>
-    <hr />
-    <section>
-        <div th:each="volunteer : ${event.volunteers}">
-            <div th:if="${attendees.contains(volunteer)}">
-                <div><span th:text="${volunteer.user.firstName}" /> <span th:text="${volunteer.user.lastName}" /></div>
-            </div>
-        </div>
-    </section>
+    </div>
 
-    <!-- ====================  Footer Section ====================  -->
 
+    <th:block th:replace="fragments/hr-custom :: hr-custom" />
 </div>
 
-<th:block th:replace="fragments/hr-custom :: hr-custom" />
-
+<!-- ====================  Footer  ====================  -->
 <th:block th:replace="fragments/footer :: footer" />
 
 
-<!--<small id="street" th:class="hide" th:text="${event.strAddr}"></small>-->
-<!--<small id="zip" th:class="hide" th:text="${event.zipCode}"></small>-->
-
 <script th:replace="fragments/scripts :: scripts"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBr-hdb0AFXxNojXtRDX0_R4thUc-ET0t0&amp;callback=initMap" async="defer"></script>
-<script>
-
-    // ===== Confirming Volunteer Modal ===== \\
-    $('#confirm').on('shown.bs.modal', function () {
-        $('#myInput').trigger('focus')
-    });
-
-    // ===== Maps API ===== \\
-    function initMap() {
-        var mapCanvas = document.getElementById('map-canvas');
-        // Must have map configuration of zoom and location.
-        var mapOptions = {
-            zoom: 10,
-            center: {
-                lat: 29.4958247,
-                lng: -98.5352398
-            }
-
-        };
-
-
-        var map = new google.maps.Map(mapCanvas, mapOptions);
-        var geo = new google.maps.Geocoder();
-
-        // console.log(geo);
-
-        // var zip = "78240";
-
-
-        var streetAddress = "6015 Wilde Glen";
-        // var zip = "78240";
-
-
-        geo.geocode({ 'address': streetAddress }, function (results, status) {
-            if (status === "OK") {
-                if (results[0]) {
-                    map.setZoom(12);
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location
-                    });
-                }
-
-            } else {
-                console.log("Invalid Address.")
-            }
-        });
-    }
-
-</script>
 </body>
 </html>
