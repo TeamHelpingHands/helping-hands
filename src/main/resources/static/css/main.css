@@ -75,3 +75,12 @@ a.nav-item.nav-link.navlink-custom {
 .header-icons {
     color: var(--btn-color);
 }
+
+.form{
+
+}
+
+.form input{
+    width:200px;
+}
+
