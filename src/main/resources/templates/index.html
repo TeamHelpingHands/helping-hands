@@ -79,7 +79,7 @@
 </div>
 <!-- ====================  About HH ====================  -->
 <section class="container mt-4" id="about">
-    <div class="div-title col-3">
+    <div class="div-title col-5 col-md-8">
         <h2 class="p-3">About HH</h2>
     </div>
     <div class="about-div" style="border:5px solid #f8c537; border-radius:15px 50px; box-shadow: 8px 8px #2ec4b6">
@@ -91,24 +91,21 @@
     </div>
 </section>
 
-<!--Hero banner/ call to action-->
-<div style="background: #ff7f00">
-    <section class="row d-flex justify-content-center">
-        <div class="text-center text-align-middle text-white col-9 col-md-3" style="background: #f8c537; width:100%; height:300px; margin:0">
-            <div class="mt-5 pt-5">
-                <p class="leadEvents mb-2">Want to make a difference in your community?</p>
-                <a href="/register"><button class="btn registerNow">Create Account</button></a>
-            </div>
+<!-- ========== CTA Hero Banner Start ========== -->
+<div id="ctaHeroBanner">
+    <div class="cta-grid p-5">
+        <div class="heroCTA">
+            <h5>Want to make a difference in your community?</h5>
+            <a href="/register"><button class="btn registerNow">Create Account</button></a>
         </div>
-        <div class="callToAction col-9 col-md-4">
-
-        </div>
-    </section>
+    </div>
 </div>
+
+<!-- ========== CTA Hero Banner END ========== -->
 
 <!--Events    -->
 <div class="container">
-    <h2 class="div-title col-4 p-3">UpcomingEvents:</h2>
+    <h2 class="div-title col-12 col-md-5 p-3 mt-3">UpcomingEvents:</h2>
     <div class="row">
         <div class="col-12 col-md-6 m-auto p-2" th:each=" event : ${events}">
             <div class="card event1">
@@ -134,18 +131,16 @@
 <!-- ====================  Participating Orgs ====================  -->
 <div style="background: #ff7f00;color:white">
     <section id="organizations">
-        <h2>Organization Partners</h2>
-        <p class="lead">Our partners are very engaged in the community.  Through marketing, event sponsorship, donations, employee engagement, and the power of volunteerism helps drive community involvement.!
+        <h2 class="orgPartners">Organization Partners</h2>
+        <p class="lead">Our partners are very engaged in the community.  Through marketing, event sponsorship, donations, employee engagement, and the power of volunteerism helps drive community involvement!
         </p>
-        <div class="org-logos-row-1 text-center">
-            <div class="org-1" alt="duck derby" title="Duck Derby"></div>
-            <div class="org-2" title="Codeup"></div>
-            <div class="org-3" title="Los Pollos Hermanos"></div>
-        </div>
-        <div class="org-logos-row-2 hideOnSmall">
-            <div class="org-4" title="Umbrella"></div>
-            <div class="org-5" title="Dunder Mifflin"></div>
-        </div>
+            <div class="org-logos-row-1 text-center hideOnSmall">
+                <div class="org-1" alt="duck derby" title="Duck Derby"></div>
+                <div class="org-2" alt="local-threads-logo" title="Codeup"></div>
+                <div class="org-3" alt="dunder-mifflin-logo" title="Dunder Mifflin"></div>
+                <div class="org-4" alt="pollos-hermanos-logo" title="Los Pollos Hermanos"></div>
+                <div class="org-5" alt="codeup-logo" title="Codeup"></div>
+            </div>
         <div class="text-center mt-3">
             <p class="leadEvents mb-2">Browse all participating orgs:</p>
             <a th:href="@{/orgs}"><button class="btn registerNow">View More</button></a>

@@ -96,14 +96,14 @@ img {
     background-color: #2ec4b6;
 }
 
-.callToAction{
-    /*background-image: url("https://s3-us-west-1.amazonaws.com/vl-photos/ProfessionalPhoto/women.jpg");*/
-    background-image: url("https://i.postimg.cc/BvkSH8y7/IMG_0824.jpg");
-    height: 300px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 20%;
-}
+/*.callToAction{*/
+    /*!*background-image: url("https://s3-us-west-1.amazonaws.com/vl-photos/ProfessionalPhoto/women.jpg");*!*/
+    /*background-image: url("https://i.postimg.cc/BvkSH8y7/IMG_0824.jpg");*/
+    /*height: 300px;*/
+    /*background-size: cover;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: 50% 20%;*/
+/*}*/
 
 .div-title{
     border:5px solid #2ec4b6;
@@ -142,17 +142,11 @@ section {
 
 .org-logos-row-1 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     width: 100%;
     grid-gap: 10px;
 }
 
-.org-logos-row-2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    width: 100%;
-    grid-gap: 10px;
-}
 
 .org-1 {
     background-image: url("../img/dderby.jpeg");
@@ -165,7 +159,7 @@ section {
 }
 
 .org-2 {
-    background-image: url("../img/codeup.png");
+    background-image: url("../img/localthreads.png");
     margin: auto;
     width: 150px;
     height: 150px;
@@ -184,17 +178,8 @@ section {
     border: 1px solid black;
 }
 
-.org-4 {
-    background-image: url("../img/umbrella.jpeg");
-    margin: auto;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-size: cover;
-    border: 1px solid black;
-}
 
-.org-5 {
+.org-4 {
     background-image: url("../img/Dunder-Mifflin.jpg");
     margin: auto;
     width: 150px;
@@ -202,22 +187,38 @@ section {
     border-radius: 50%;
     background-size: cover;
     border: 1px solid black;
+    background-color: white;
 }
 
-/* ============= footer ============= */
-
-footer {
-    text-align: center;
+.org-5 {
+    background-image: url("../img/codeup.png");
+    margin: auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-size: cover;
+    border: 1px solid black;
 }
 
-footer a {
-    color: black;
+/* ============= Hero Banner CTA ============= */
+#ctaHeroBanner {
+    background: url("../img/hands.jpg") no-repeat center/cover;
+    height: 450px;
+    width: 100%;
+    position: relative;
+    overflow-y: hidden;
 }
 
-footer a:hover {
-    color: var(--primary-color);
-    transition: var(--easeOut);
+.cta-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+    max-width: 300px;
+    color: white;
+    background-color: rgba(255, 127, 0, 0.5);
+    height: 100%;
 }
+
 
 /* ========= Navigation ========= */
 
@@ -276,13 +277,22 @@ a.nav-item.nav-link.navlink-custom {
         font-size: 2.8em;
     }
 
-    .org-logos-row-1 {
-        grid-template-areas:
-                "org1"
-                "org2"
-                "org3";
-        grid-template-columns: 2fr;
+    .cta-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 10px;
+        max-width: 100%;
+        color: white;
+        background-color: rgba(255, 127, 0, 0.5);
+        height: 34%;
+        text-align: center;
     }
+
+    #organizations {
+        text-align: center;
+    }
+
+
 }
 
 
