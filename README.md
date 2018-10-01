@@ -64,7 +64,7 @@
 #### Volunteers
   * Registration
     - [x] Field for Bio
-    - [ ] Sends email verification after submitting registration form
+    - [ ] ~Sends email verification after submitting registration form~
     - [x] Forwards to `Dashboard`
   * Login
     - [x] `Username` and `Password`
@@ -73,68 +73,62 @@
     - [x] Forwards to `Dashboard`
   * "Public" Profile
     - [x] Information about the volunteer (name, location, etc)
-    - [ ] Stats about events they have attended
-    - [ ] Displays `Kudos` earned/given by orgs
-    - [ ] Displays comments/reviews given by organizations __(ONLY VIEWABLE BY OTHER ORGANIZATIONS)__
+    - [x] Stats about events they have attended
+    - [ ] ~Displays `Kudos` earned/given by orgs~
+    - [x] Displays comments/reviews given by organizations __(ONLY VIEWABLE BY OTHER ORGANIZATIONS)__
     - [X] `Message` option, to send a private message
-    - [ ] `Report` option, to report to admin for review
+    - [ ] ~`Report` option, to report to admin for review~
   * Dashboard
     - [ ] ~Ability to add more information pertaining to the volunteer (About me, profile picture, etc)~
     - [x] Can see their own stats about events they have attended
-    - [ ] Can see most recent event attended
+    - [ ] ~Can see most recent event attended~
     - `Events` Section
       - Can show the following options about events, using tabs/cards/etc:
       - [x] All events, ordered by date (most recent)
-      - [ ] All events near me, using zipcodes
-      - [ ] All events matching a category I can select
-      - [ ] All events by a specific organization
-    - [ ] Can see comments/reviews left by organizations
+      - [ ] ~All events near me, using zipcodes~
+      - [ ] ~All events matching a category I can select~
+      - [ ] ~All events by a specific organization~
+    - [x] Can see comments/reviews left by organizations
   * `Organization X` Profile, seen by a volunteer
-    - [ ] Can see basic information about Org
-    - [ ] Can see events created by org
-    - [ ] Can select one event to go to that event's page
-    - [ ] Can message Org with questions/comments
+    - [x] Can see basic information about Org
+    - [x] Can see events created by org
+    - [x] Can select one event to go to that event's page
+    - [x] Can message Org with questions/comments
   * `Event XYZ` page, seen by a volunteer
-    - [ ] TBD
+    - [x] TBD
 
 #### Organizations
   * Registration
     - [x] Fields info necessary for event creation
     - [x] Field for Tax ID, for verification
-    - [ ] Sends email verification after submitting registration form
-    - [ ] Checks for existing emails to avoid duplication
-    - [ ] Forwards to `Dashboard`
+    - [ ] ~Sends email verification after submitting registration form~
+    - [x] Checks for existing emails to avoid duplication
+    - [x] Forwards to `Complete your Profile`
   * Login
     - [x] `Email` and `Password`
-    - [ ] Verifies email exists
-    - [ ] Verifies password matches
-    - [ ] Forwards to `Dashboard`
+    - [x] Verifies email exists
+    - [x] Verifies password matches
+    - [x] Forwards to `Dashboard`
   * Dashboard
-    - [ ] Ability to add more information pertaining to the Org (About us, profile picture, etc)
+    - [x] Ability to add more information pertaining to the Org (About us, profile picture, etc)
     - `Create an Event` button -> `Create` page
       - [x] Event info (name, description, time, place)
-      - [ ] Event banner image, at top
-      - [ ] `I'm Interested` button, for volunteer to sign up
-        - [ ] Clicking this button will send automated email containing information about the event, the org's application process, and any other pertinent information
-        - [ ] Clicking this button will display small confirmation message, letting the volunteer know they have successfully expressed interest
+      - [ ] ~Event banner image, at top~
+      - [x] `I'm Interested` button, for volunteer to sign up
+        - [ ] ~Clicking this button will send automated email containing information about the event, the org's application process, and any other pertinent information~
+        - [x] Clicking this button will display small confirmation message, letting the volunteer know they have successfully expressed interest
     - [x] Can see list of events created/upcoming
     - `Event` page:
       - [x] Will show basic info about event
       - [ ] Option to "close" event because either 1) the event took place and is now over, or 2) it has been cancelled
       - [ ] Can approve/deny interested volunteers for the event
-      - [ ] Able to take attendance of volunteers that actually participated
-      - [ ] Able to give `kudos` and/or reviews to volunteers
-    - [ ] Can see comments/reviews left by volunteers
-  * "Public" Profile, viewable by volunteers
-    - [ ] Basic information about Org
-    - [ ] Events created by org
-    - [ ] Ability to select one event to go to that event's page
-    - [ ] `Message` Org with questions/comments
-    - [ ] Reviews given by volunteers
+      - [x] Able to take attendance of volunteers that actually participated
+      - [x] Able to give `kudos` and/or reviews to volunteers
+    - [x] Can see comments/reviews left by volunteers
 
 * * *
 ## Special
-#### Admin
+#### ~Admin~
 * Registration
   - No registration form for an Admin
   - Must be manually entered into the database by existing admin
