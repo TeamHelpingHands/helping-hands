@@ -166,24 +166,27 @@ public class VolunteerController {
 
     @GetMapping("vols/{username}")
     public String showProfile(@PathVariable String username, Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User currentUser = userDao.findByUsername(user.getUsername());
-        User userProfile = userDao.findByUsername(username);
-        List<Event> events = eventDao.findAllByVolunteersContains(userProfile.getVolunteer());
-        List<FeedbackFromOrganization> feedbacks = feedbackFromOrgDao.findAllByVolunteer(currentUser.getVolunteer());
 
-        int noOfDidAttend = 0;
-
-        for (FeedbackFromOrganization feedback: feedbacks) {
-            if (feedback.isDidAttend()) {
-                noOfDidAttend++;
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User currentUser = userDao.findByUsername(user.getUsername());
+            model.addAttribute("currentUser", currentUser);
+            List<FeedbackFromOrganization> feedbacks = feedbackFromOrgDao.findAllByVolunteer(currentUser.getVolunteer());
+            int noOfDidAttend = 0;
+            for (FeedbackFromOrganization feedback: feedbacks) {
+                if (feedback.isDidAttend()) {
+                    noOfDidAttend++;
+                }
             }
+            model.addAttribute("noOfDidAttend", noOfDidAttend);
+
         }
 
+
+        User userProfile = userDao.findByUsername(username);
+        List<Event> events = eventDao.findAllByVolunteersContains(userProfile.getVolunteer());
         model.addAttribute("message", new Message());
         model.addAttribute("user", userProfile);
-        model.addAttribute("currentUser", currentUser);
-        model.addAttribute("noOfDidAttend", noOfDidAttend);
         return "volunteers/profile";
     }
 

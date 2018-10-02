@@ -10,13 +10,13 @@
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <div class="container">
 
-    <h1 th:text="${event.org.orgName}"></h1>
+    <h1 class="my-4" th:text="${event.org.orgName}"></h1>
 
     <div class="row my-3">
         <div class="col-12 m-auto">
             <div class="card cardProfile">
                 <div class="card-header text-center">
-                    <h3 th:text="${event.eventName}+ ' manager:'"></h3>
+                    <h3 th:text="${event.eventName}+ ' - Manager:'"></h3>
                 </div>
                 <div class="card-body row">
                     <div class="container">
@@ -24,17 +24,19 @@
                             <h3><i class="fas fa-users header-icons"></i> Attendees</h3>
                             <h5>Unverified:</h5>
                             <hr />
-                            <div th:each="volunteer : ${event.volunteers}">
+                            <div th:each="volunteer : ${event.volunteers}" class="row mt-3 ml-5">
                                 <div th:if="not ${attendees.contains(volunteer)}">
                                     <form th:action="@{/orgs/{org_name}/events/{event_id}/dash(org_name = ${event.getOrg().getOrgName()}, event_id = ${event.getId()})}" th:method="post">
-                                        <label><span th:text="${volunteer.user.firstName}" /> <span th:text="${volunteer.user.lastName}" /></label>
-                                        <span>|</span>
+                                        <label><a class="link-custom" th:href="'/vols/'+${volunteer.user.username}">
+                                            <img th:src="${volunteer.user.photoUrl}" th:alt="${volunteer.user.firstName} + ' ' + ${volunteer.user.lastName} + ' | Profile'" style="width: 30px; height: 30px; border-radius: 50%" />
+                                            <span th:text="${volunteer.user.firstName}" /> <span th:text="${volunteer.user.lastName}" />
+                                        </a></label>
+                                        <span class="mx-3"> || </span>
                                         <input type="hidden" name="volunteer" th:value="${volunteer.user.id}" />
-                                        <span>|</span>
-                                        <label for="feedback">feedback:</label>
-                                        <input type="text" id="feedback" name="feedback" />
-                                        <span>|</span>
-                                        <button class="btn btn-custom">Attended</button>
+                                        <label for="feedback">Feedback: </label>
+                                        <input type="text" id="feedback" name="feedback" value="Great volunteer!" />
+                                        <span class="mx-3"> || </span>
+                                        <button class="btn btn-sm btn-custom" style="color: white;">Attended <i class="fas fa-check-square"></i></button>
                                     </form>
                                 </div>
                             </div>
@@ -45,8 +47,10 @@
                             <div th:each="volunteer : ${event.volunteers}">
                                 <div th:if="${attendees.contains(volunteer)}">
                                     <div>
-                                        <span th:text="${volunteer.user.firstName}" />
-                                        <span th:text="${volunteer.user.lastName}" />
+                                        <a class="link-custom" th:href="'/vols/'+${volunteer.user.username}">
+                                            <img th:src="${volunteer.user.photoUrl}" th:alt="${volunteer.user.firstName} + ' ' + ${volunteer.user.lastName} + ' | Profile'" style="width: 30px; height: 30px; border-radius: 50%" />
+                                            <span th:text="${volunteer.user.firstName}" /> <span th:text="${volunteer.user.lastName}" />
+                                        </a>
                                     </div>
                                 </div>
                             </div>
