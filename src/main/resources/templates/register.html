@@ -16,7 +16,7 @@
 
 
     <div class="row my-3 d-flex justify-content-center">
-        <div class="card mt-5 text-center">
+        <div class="card mt-5 text-center opaque">
             <form th:action="@{/register}" method="POST" th:object="${user}" class="form">
                 <div class="card-header">
                     <h1 class="formHeader"><i class="fas fa-user-plus header-icons"></i> Register</h1>
@@ -74,14 +74,14 @@
                                 <input class="form-control" id="picUrlInput" type="hidden" th:field="*{photoUrl}" />
                             </div>
                             <div class="form-group">
-                                <h6>Are you registering as a <strong>Volunteer</strong> or an <strong>Organization</strong>?</h6>
+                                <h6 class="my-4">Are you registering as a <strong>Volunteer</strong> or an <strong>Organization</strong>?</h6>
 
-                                <div class="d-flex justify-content-between">
-                                    <div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="mx-4">
                                         <label for="vol">Volunteer</label>
                                         <input class="form-control text-center m-auto" id="vol" style="width:20px" type="radio" name="isOrg" value="false" checked="checked" />
                                     </div>
-                                    <div>
+                                    <div class="mx-4">
                                         <label for="org">Organization</label>
                                         <input class="form-control m-auto" style="width:20px" id="org" type="radio" name="isOrg" value="true" />
 
@@ -91,7 +91,7 @@
                         </div>
                    </div>
                 </div>
-                <div class="card-footer mb-5">
+                <div class="card-footer">
                     <button class="btn btn-primary btn-custom" type="submit">Next <i class="far fa-arrow-alt-circle-right fa-sm"></i></button>
                 </div>
             </form>
