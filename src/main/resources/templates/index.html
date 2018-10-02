@@ -80,7 +80,7 @@
 <!-- ====================  About HH ====================  -->
 <section class="container my-5 py-5" id="about">
     <div class="div-title col-5 col-md-8">
-        <h2 class="p-3">About HH</h2>
+        <h2 class="p-3 sectionTitle">About HH</h2>
     </div>
     <div class="about-div" style="border:5px solid #f8c537; border-radius:15px 50px; box-shadow: 8px 8px #2ec4b6">
         <div class="container p-3">
@@ -102,10 +102,9 @@
 </div>
 
 <!-- ========== CTA Hero Banner END ========== -->
-
-<!--Events    -->
-<div class="container my-5 py-5">
-    <h2 class="div-title col-12 col-md-5 p-3 my-3">UpcomingEvents:</h2>
+<!-- Events -->
+<div class="container">
+    <h2 class="div-title col-12 col-md-5 p-3 mt-3">UpcomingEvents:</h2>
     <div class="row">
         <div class="col-12 col-md-6 m-auto p-2" th:each=" event : ${events}">
             <div class="card event1">
@@ -130,16 +129,16 @@
 
 <!-- ====================  Participating Orgs ====================  -->
 <div style="background: #ff7f00;color:white">
-    <section id="organizationsgit ">
-        <h2 class="orgPartners">Organization Partners</h2>
+    <section id="organizations">
+        <h2 class="sectionTitle">Organization Partners</h2>
         <p class="lead">Our partners are very engaged in the community.  Through marketing, event sponsorship, donations, employee engagement, and the power of volunteerism helps drive community involvement!
         </p>
-            <div class="org-logos-row-1 text-center hideOnSmall">
-                <div class="org-1 orgHover" alt="duck derby" title="Duck Derby"></div>
-                <div class="org-2 orgHover" alt="local-threads-logo" title="Local Threads"></div>
-                <div class="org-3 orgHover" alt="pollos-hermanos-logo" title="Los Pollos Hermanos" ></div>
-                <div class="org-4 orgHover" alt="dunder-mifflin-logo" title="Dunder Mifflin" ></div>
-                <div class="org-5 orgHover" alt="codeup-logo" title="Codeup"></div>
+            <div class="org-logo-grid text-center d-flex">
+                <div class="orgIcon duckImg hideOnSmall" alt="duck derby" title="Duck Derby"></div>
+                <div class="orgIcon localImg hideOnSmall" alt="local-threads-logo" title="Local Threads"></div>
+                <div class="orgIcon pollosImg hideOnSmall" alt="pollos-hermanos-logo" title="Los Pollos Hermanos" ></div>
+                <div class="orgIcon dunderImg hideOnSmall" alt="dunder-mifflin-logo" title="Dunder Mifflin" ></div>
+                <div class="orgIcon codeupImg hideOnSmall" alt="codeup-logo" title="Codeup"></div>
             </div>
         <div class="text-center mt-3">
             <p class="leadEvents mb-2">Browse all participating orgs:</p>

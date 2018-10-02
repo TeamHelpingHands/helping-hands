@@ -16,7 +16,7 @@
         <h1 class="title">My Dashboard</h1>
         <p th:text="'Welcome, ' + ${currentUser.username} + '!'" class="hideOnSmall"></p>
 
-        <div class="row my-3">
+        <div class="row my-3 mb-5">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header" id="menu">
@@ -70,8 +70,9 @@
                 </div>
             </div>
         </div>
-
-    <th:block th:replace="fragments/hr-custom :: hr-custom" />
+        <div class="hideOnSmall">
+            <th:block th:replace="fragments/hr-custom :: hr-custom" />
+        </div>
     </div>
 
     <!-- ======= Footer ======= -->

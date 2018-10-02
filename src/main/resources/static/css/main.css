@@ -23,11 +23,8 @@ nav {
     /*height: 40px;*/
 }
 
-.footer {
-    /*position: relative;*/
+.footerStyle {
     background: #484659;
-    bottom: 0;
-    left: 0;
     width: 100%;
 }
 
