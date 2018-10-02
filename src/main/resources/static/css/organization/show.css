@@ -29,14 +29,9 @@ html, body {
     color: white;
 }
 
-
 .btn-orange {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
-}
-
-.footer {
-    position: absolute;
 }
 
 /* ===== Mobile View ===== */
@@ -50,7 +45,7 @@ html, body {
         text-align: center;
     }
 
-    .footer {
-        position: relative;
+    .hideOnSmall {
+        display: none;
     }
 }

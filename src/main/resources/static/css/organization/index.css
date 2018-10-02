@@ -3,11 +3,13 @@ html, body {
     font-family: Montserrat, Helvetica, sans-serif;
 }
 
-.footer {
-    position: absolute;
-}
-
 .y-scroll {
     overflow-y: scroll;
     overflow-x: auto;
+}
+
+@media screen and (max-width: 580px) {
+    .hideOnSmall {
+        display: none;
+    }
 }

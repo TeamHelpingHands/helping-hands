@@ -96,15 +96,6 @@ img {
     background-color: #2ec4b6;
 }
 
-/*.callToAction{*/
-    /*!*background-image: url("https://s3-us-west-1.amazonaws.com/vl-photos/ProfessionalPhoto/women.jpg");*!*/
-    /*background-image: url("https://i.postimg.cc/BvkSH8y7/IMG_0824.jpg");*/
-    /*height: 300px;*/
-    /*background-size: cover;*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: 50% 20%;*/
-/*}*/
-
 .div-title{
     border:5px solid #2ec4b6;
     border-radius:50px 15px;
@@ -125,11 +116,15 @@ button {
     transition: var(--easeOut);
 }
 
-.lead {
-    font-family: "Montserrat", sans-serif;
-    font-size: 0.9rem;
+.sectionTitle {
+    font-size: 2rem;
+    font-weight: bold;
 }
 
+.lead {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;
+}
 
 section {
     padding: 2rem 0;
@@ -140,53 +135,34 @@ section {
     margin-top: 0.25rem;
 }
 
-.org-logos-row-1 {
+.org-logo-gird {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     width: 100%;
     grid-gap: 10px;
 }
 
-
-.org-1 {
-    background-image: url("../img/dderby.jpeg");
-    margin: auto;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-size: cover;
-    border: 1px solid black;
+.duckImg {
+    background: url("../img/dderby.jpeg");
 }
 
-.org-2 {
-    background-image: url("../img/localthreads.png");
-    margin: auto;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-size: cover;
-    border: 1px solid black;
+.localImg {
+    background: url("../img/localthreads.png");
 }
 
-.org-3 {
-    background-image: url("../img/polloshermanos.jpg");
-    margin: auto;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-size: cover;
-    border: 1px solid black;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 3px rgba(0, 0, 0, 0.2);
+.pollosImg {
+    background: url("../img/polloshermanos.jpg");
 }
 
-.orgHover:hover {
-    box-shadow:0 15px 3px rgba(0, 0, 0, 0.2);
-    transition: var(--easeOut);
+.dunderImg {
+    background: url("../img/Dunder-Mifflin.jpg");
 }
 
+.codeupImg {
+    background: url("../img/codeup.png");
+}
 
-.org-4 {
-    background-image: url("../img/Dunder-Mifflin.jpg");
+.orgIcon {
     margin: auto;
     width: 150px;
     height: 150px;
@@ -197,15 +173,9 @@ section {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 3px rgba(0, 0, 0, 0.2);
 }
 
-.org-5 {
-    background-image: url("../img/codeup.png");
-    margin: auto;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-size: cover;
-    border: 1px solid black;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 3px rgba(0, 0, 0, 0.2);
+.orgIcon:hover {
+    box-shadow:0 15px 3px rgba(0, 0, 0, 0.2);
+    transition: var(--easeOut);
 }
 
 /* ============= Hero Banner CTA ============= */
@@ -284,6 +254,10 @@ a.nav-item.nav-link.navlink-custom {
 
     h1 {
         font-size: 2.8em;
+    }
+
+    .lead {
+        font-size: 0.9rem;
     }
 
     .cta-grid {
