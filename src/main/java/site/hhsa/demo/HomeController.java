@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import site.hhsa.demo.auth.UserWithRoles;
+import site.hhsa.demo.organizations.models.Event;
 import site.hhsa.demo.organizations.models.Organization;
 import site.hhsa.demo.organizations.repositories.EventRepo;
 import site.hhsa.demo.organizations.repositories.OrgRepo;
@@ -55,7 +56,13 @@ public class HomeController {
 
     @GetMapping("/")
     public String homePage(Model model){
-        model.addAttribute("events", eventDao.findAll());
+        List<Event> events;
+        if(eventDao.findAll().size() < 7){
+            events = eventDao.findAll();
+        }else{
+            events = eventDao.findAll().subList(0,6);
+        }
+        model.addAttribute("events", events);
         return "index";
     }
 
