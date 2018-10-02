@@ -7,54 +7,48 @@
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
+    <div class="container">
+        <section id="all-events">
+            <h1>
+                Upcoming Events -
+                <span><a class="link-custom" th:href="'/vols/'+${currentUser.getUsername()}" th:text="${currentUser.getUsername()}"></a></span>
+            </h1>
 
-<div class="container">
-
-    <section id="all-events">
-        <h1>
-            Upcoming Events -
-            <span><a class="link-custom" th:href="'/vols/'+${currentUser.getUsername()}" th:text="${currentUser.getUsername()}"></a></span>
-        </h1>
-
-        <div class="row mt-3">
-            <div class="col-12 col-md-4 m-auto p-2" id="events" th:each=" event : ${events}">
-                <div class="card event1">
-                    <div class="card-body text-center">
-                        <h4 class="card-title" th:text="${event.eventName}"></h4>
-                        <p class="text-muted">
-                                     <span>
-                                        <a th:href="'/orgs/'+${event.org.orgName}" style="font-size: 12px;">
-                                        <img th:src="${event.getOrg().getUser().getPhotoUrl()}" alt="Org LOGO" style="width: 20px; height: 20px; border-radius: 50%" />
-                                        </a>
-                                     </span>
-                            <a id="orgNameLink" class="link-custom" th:href="'/orgs/'+${event.org.orgName}" th:text="${event.org.orgName}"></a>
-                        </p>
-                        <a th:href="'/orgs/'+${event.org.orgName}+'/event/'+${event.id}" class="btn btn-primary btn-custom">View More</a>
-                        <a th:href="'/orgs/'+${event.org.orgName}" class="btn btn-primary btn-custom">Profile</a>
+            <div class="row mt-3">
+                <div class="col-12 col-md-4 m-auto p-2" id="events" th:each=" event : ${events}">
+                    <div class="card event1">
+                        <div class="card-body text-center">
+                            <h4 class="card-title" th:text="${event.eventName}"></h4>
+                            <p class="text-muted">
+                                         <span>
+                                            <a th:href="'/orgs/'+${event.org.orgName}" style="font-size: 12px;">
+                                            <img th:src="${event.getOrg().getUser().getPhotoUrl()}" alt="Org LOGO" style="width: 20px; height: 20px; border-radius: 50%" />
+                                            </a>
+                                         </span>
+                                <a id="orgNameLink" class="link-custom" th:href="'/orgs/'+${event.org.orgName}" th:text="${event.org.orgName}"></a>
+                            </p>
+                            <a th:href="'/orgs/'+${event.org.orgName}+'/event/'+${event.id}" class="btn btn-primary btn-custom">View More</a>
+                            <a th:href="'/orgs/'+${event.org.orgName}" class="btn btn-primary btn-custom">Profile</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- ========== CTA After Event Cards ========== -->
-        <th:block sec:authorize="isAnonymous()">
-            <div class="text-center mt-3">
-                <p class="leadEvents mb-2">Want to make a difference in your community?</p>
-                <p>
-                    <a class="link-custom" th:href="'/register'">Register</a> or
-                    <a class="link-custom" th:href="'/login'">Login</a>!
-                </p>
-            </div>
-        </th:block>
-    </section>
+            <!-- ========== CTA After Event Cards ========== -->
+            <th:block sec:authorize="isAnonymous()">
+                <div class="text-center mt-3">
+                    <p class="leadEvents mb-2">Want to make a difference in your community?</p>
+                    <p>
+                        <a class="link-custom" th:href="'/register'">Register</a> or
+                        <a class="link-custom" th:href="'/login'">Login</a>!
+                    </p>
+                </div>
+            </th:block>
+        </section>
+        <th:block th:replace="fragments/hr-custom :: hr-custom" />
+    </div>
 
-    <br />
-
-    <th:block th:replace="fragments/hr-custom :: hr-custom" />
-
-    <!-- ====================  Footer Section ====================  -->
-</div>
-<th:block: th:replace="fragments/footer :: footer" />
+<th:block: th:replace="fragments/footer :: footer" style="position: relative;" />
 <script th:replace="fragments/scripts :: scripts"></script>
 </body>
 </html>
