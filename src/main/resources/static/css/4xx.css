@@ -1,0 +1,21 @@
+.container {
+    min-height: 80%;
+}
+
+.hr-custom {
+    margin: 5em auto;
+}
+
+.fa-meh {
+    color: var(--btn-color);
+}
+
+.footer {
+    position: absolute;
+    height: 65px;
+}
+
+#errorImg {
+    width: 100%;
+    height: auto;
+}

@@ -9,8 +9,8 @@
     <nav th:replace="fragments/navbar :: navbar"></nav>
     <div class="container">
         <h1 class="my-3"><i class="fas fa-users header-icons"></i> Organizations</h1>
-        <div class="row mt-5 y-scroll" th:each="org : ${orgs}">
-            <div class="col-3 p-2 d-flex justify-content-center">
+        <div class="row d-flex justify-content-center">
+            <div class="mt-5 col-9 col-md-3" th:each="org : ${orgs}">
                 <div class="card">
                     <div class="card-body">
                         <div class="row text-center"><div class="col-12 text-center">
