@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head :: head" />
+    <title th:text="'Uh oh. (' + ${error} + ') | Helping Hands'"></title>
+    <link rel="stylesheet" th:href="@{/css/4xx.css}" />
+</head>
+<body>
+
+    <nav th:replace="fragments/navbar :: navbar"></nav>
+
+    <div class="container">
+
+            <h1 class="mt-4"><i class="fas fa-meh mr-2"></i>Uh oh. Something happened on our end.</h1>
+
+            <div class="row mt-4">
+                <div class="col-4 d-flex align-items-center">
+                    <h4>Wait a few moments and we'll send you back to the Home page...</h4>
+                </div>
+                <div class="col-8">
+                    <img class="d-flex align-content-center" id="errorImg" th:src="@{/img/rawpixel-660714-unsplash.jpg}" alt="volunteering" />
+                </div>
+            </div>
+
+        <th:block th:replace="fragments/hr-custom :: hr-custom" />
+    </div>
+
+    <th:block th:replace="fragments/footer :: footer" />
+
+
+<th:block th:replace="fragments/scripts :: scripts" />
+<script>
+    setTimeout(function () {
+        window.location.href = "/"; //will redirect to your blog page (an ex: blog.html)
+    }, 4000);
+</script>
+</body>
+</html>
