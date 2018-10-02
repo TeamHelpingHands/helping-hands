@@ -8,7 +8,7 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
-<div class="container">
+<div class="container mb-5">
 
     <th:block th:if="${passwordNoMatch != null || emailExists != null || usernameExists != null}">
         <div class="alert alert-warning mt-4 text-center" style="width: 60%;">There is an error in one or more of your forms. Please confirm your information is correct and try again.</div>
@@ -91,7 +91,7 @@
                         </div>
                    </div>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer p-3 mb-3">
                     <button class="btn btn-primary btn-custom" type="submit">Next <i class="far fa-arrow-alt-circle-right fa-sm"></i></button>
                 </div>
             </form>
