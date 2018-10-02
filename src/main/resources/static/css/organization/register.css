@@ -5,3 +5,10 @@ html, body {
     ), url("https://i.postimg.cc/qMNCt5sg/IMG_0779.jpg");
     background-size: cover;
 }
+
+
+@media screen and (max-width: 580px) {
+    .hideOnSmall{
+        display: none;
+    }
+}

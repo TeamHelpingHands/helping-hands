@@ -51,9 +51,11 @@
                         </div>
                     </form>
                 </div>
+            <div class="hideOnSmall">
+                <th:block th:replace="fragments/hr-custom :: hr-custom" />
             </div>
-            <th:block th:replace="fragments/hr-custom :: hr-custom" />
-        </div>
+            </div>
+
     <th:block th:replace="fragments/footer :: footer" />
     <script th:replace="fragments/scripts :: scripts"></script>
 </body>
