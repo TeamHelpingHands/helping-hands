@@ -9,9 +9,9 @@
     <body>
         <nav th:replace="fragments/navbar :: navbar"></nav>
 
-        <div class="container">
+        <div class="container mb-5">
 
-            <h1 class="title">My Dashboard</h1>
+            <h1 class="title pt-3">My Dashboard</h1>
             <p class="title" th:text="'Welcome, '+${currentUser.organization.orgName}"></p>
 
             <div class="row my-3">
@@ -86,9 +86,7 @@
                         </div>
                     </div>
                 </div>
-            <th:block th:replace="fragments/hr-custom :: hr-custom" />
             </section>
-
         </div>
 
         <!-- ======= Footer ======= -->

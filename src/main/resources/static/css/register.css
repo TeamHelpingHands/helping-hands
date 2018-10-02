@@ -62,3 +62,7 @@ label {
 .bioHeader {
     font-size: 1rem;
 }
+
+.opaque {
+    opacity: .85;
+}
