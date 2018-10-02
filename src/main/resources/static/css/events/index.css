@@ -34,7 +34,7 @@ section {
 }
 
 .footer {
-    position: absolute;
+    position: relative;
 }
 
 .y-scroll {
