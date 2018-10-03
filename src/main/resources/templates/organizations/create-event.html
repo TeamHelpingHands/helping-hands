@@ -8,10 +8,10 @@
 <body>
     <nav th:replace="fragments/navbar :: navbar"></nav>
 
-    <div class="container">
-        <div class="row mt-5 d-flex justify-content-center">
-            <div class="card mt-3 text-center">
-                <form class="cf" th:action="'/orgs/'+${myOrg.getOrgName()}+'/events/create'" method="POST" th:object="${newEvent}">
+    <div class="mb-5 d-flex justify-content-center">
+        <div class="col-12 col-md-9">
+            <div class="card text-center" style="width: 100%">
+                <form class=" mb-3" th:action="'/orgs/'+${myOrg.getOrgName()}+'/events/create'" method="POST" th:object="${newEvent}">
                 <div class="card-header">
                     <h1 class="formHeader"><i class="fas fa-calendar-plus header-icons"></i> Create An Event</h1>
                 </div>
