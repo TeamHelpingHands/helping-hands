@@ -50,6 +50,10 @@ section {
     border-radius: 3px;
 }
 
+#single-event {
+    margin-top: 0;
+}
+
 /* ============ mobile view ============  */
 @media screen and (max-width: 580px) {
     section {
