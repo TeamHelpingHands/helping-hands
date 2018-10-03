@@ -85,18 +85,6 @@ body {
     grid-gap: 10px;
 }
 
-footer {
-    text-align: center;
-}
-
-footer a {
-    color: black;
-}
-
-footer a:hover {
-    color: var(--primary-color);
-    transition: var(--easeOut);
-}
 
 /* grid areas */
 
