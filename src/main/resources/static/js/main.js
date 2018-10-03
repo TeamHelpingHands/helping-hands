@@ -2,7 +2,7 @@
 // |                                | \\
 // ================================== \\
 
-var client = filestack.init("A9oLRH0uOQx236XVvgRSYz");
+var client = filestack.init("AYR6oC4gPTbSY1SMpRUnCz");
 
 document.getElementById("uploadBtn").addEventListener("click", function (ev) {
     client.pick({
